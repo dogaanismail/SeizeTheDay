@@ -1,0 +1,249 @@
+﻿@using Xgteamc1XgTeamModel
+@using SeizeTheDay.Entities.EntityClasses.MySQL
+@model Xgteamc1XgTeamModel.User
+@{
+    ViewBag.Title = "UserFriends";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    string birthday = "";
+    if (Model.UserInfoe_Id.BirthDate != null)
+    {
+        DateTime time = Model.UserInfoe_Id.BirthDate.Value;
+        birthday = time.ToShortDateString();
+    }
+}
+
+<div class="container main-content no-padding" style="background-color: #1c1c1c;padding: 10px 20px;">
+    <main role="main" id="ipsLayout_body" class="ipsLayout_container">
+        <div id="ipsLayout_contentArea">
+            <div id="ipsLayout_contentWrapper">
+                <nav class="ipsBreadcrumb ipsBreadcrumb_1 ipsFaded_withHover">
+
+                    <ul data-role="breadcrumbList">
+                        <li>
+                            <a title="Home" href="/Home/Index">
+                                <span><i class="fa fa-home"></i> Home <i class="fa fa-angle-right"></i></span>
+                            </a>
+                        </li>
+                        @if (Model.UserInfoe_Id.TagUserName != null)
+                        {
+                            <li>
+                                <a href="/Users/Profile/@Model.Id">
+                                    <span>@Model.UserInfoe_Id.TagUserName <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                @Model.UserInfoe_Id.TagUserName's Friends
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="/Users/Profile/@Model.Id">
+                                    <span>@Model.UserName <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                @Model.UserName's Friends
+                            </li>
+                        }
+                    </ul>
+                </nav>
+                <div id="ipsLayout_mainArea">
+                    <a id="elContent"></a>
+                    @if (Model.UserInfoe_Id.TagUserName != null)
+                    {
+                        <h3 class="ipsType_sectionHead" style="color: @Model.UserInfoe_Id.TagColor; font-family:Arial, Helvetica, sans-serif"> @Model.UserInfoe_Id.TagUserName's Friends</h3>
+
+                    }
+                    else
+                    {
+                        <h3 class="ipsType_sectionHead" style="color: #c4c4c4; font-family:Arial, Helvetica, sans-serif"> @Model.UserName's Friends</h3>
+
+                    }
+                    <br>
+                    <br>
+                    <ul class="ipsDataList">
+                        @if (Model.Friends_UserID.Count != 0 || Model.Friends_FutureFriendID.Count != 0)
+                        {
+                            foreach (var friends in Model.Friends_UserID)
+                            {
+                                if (friends.User_FutureFriendID.UserInfoe_Id.TagUserName != null)
+                                {
+                                    <li class="ipsDataItem ipsClearfix ">
+                                        <div class="ipsDataItem_icon ipsPos_top">
+                                            <a href="/Users/Profile/@friends.User_FutureFriendID.UserInfoe_Id.Id" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to @friends.User_FutureFriendID.UserInfoe_Id.TagUserName's profile">
+                                                <img src="~/FileUpload/UserProfile/@friends.User_FutureFriendID.UserInfoe_Id.PhotoPath" style="max-width:none" alt="@friends.User_FutureFriendID.UserInfoe_Id.TagUserName" itemprop="image">
+                                            </a>
+                                            <br>
+                                        </div>
+                                        <div class="ipsDataItem_main">
+                                            <div class="ipsPos_right">
+                                                <div>
+                                                    <a href="" class="ipsButton ipsButton_small ipsButton_primary ipsButton_fullWidth" style="border-radius: 2px; box-shadow: 0px 2px 20px rgba(17, 84, 69, 0.5);text-transform: uppercase;">Add Friend</a>
+
+                                                </div>
+                                            </div>
+                                            <strong class="ipsDataItem_title">
+                                                <a href="/Users/Profile/@friends.User_FutureFriendID.UserInfoe_Id.Id" data-ipshover="" title="Go to @friends.User_FutureFriendID.UserInfoe_Id.TagUserName's profile" class="ipsType_break"><span style="font-family:Arial, Helvetica, sans-serif ; color:@friends.User_FutureFriendID.UserInfoe_Id.TagColor "> @friends.User_FutureFriendID.UserInfoe_Id.TagUserName </span></a>
+                                            </strong> <br>
+                                            @if (  friends.User_FutureFriendID.UserInfoe_Id.UserType !=null && friends.User_FutureFriendID.UserInfoe_Id.UserType.UserTypeName != null)
+                                            {
+                                                <span style="font-family:Arial, Helvetica, sans-serif">@friends.User_FutureFriendID.UserInfoe_Id.UserType.UserTypeName </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="font-family:Arial, Helvetica, sans-serif">Member </span>
+
+                                            }
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="ipsDataItem ipsClearfix ">
+                                        <div class="ipsDataItem_icon ipsPos_top">
+                                            <a href="/Users/Profile/@friends.User_FutureFriendID.UserInfoe_Id.Id" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to @friends.User_FutureFriendID.UserName's profile">
+                                                <img src="~/FileUpload/UserProfile/@friends.User_FutureFriendID.UserInfoe_Id.PhotoPath" style="max-width:none" alt="@friends.User_FutureFriendID.UserName" itemprop="image">
+                                            </a>
+                                            <br>
+                                        </div>
+                                        <div class="ipsDataItem_main">
+                                            <div class="ipsPos_right">
+                                                <div>
+                                                    <a href="" class="ipsButton ipsButton_small ipsButton_primary ipsButton_fullWidth" style="border-radius: 2px; box-shadow: 0px 2px 20px rgba(17, 84, 69, 0.5);text-transform: uppercase;">Add Friend</a>
+
+                                                </div>
+                                            </div>
+                                            <strong class="ipsDataItem_title">
+                                                <a href="/Users/Profile/@friends.User_FutureFriendID.UserInfoe_Id.Id" data-ipshover="" title="Go to @friends.User_FutureFriendID.UserName's profile" class="ipsType_break"><span style="font-family:Arial, Helvetica, sans-serif; color:#c4c4c4"> @friends.User_FutureFriendID.UserName </span></a>
+                                            </strong> <br>
+                                            @if ( friends.User_FutureFriendID.UserInfoe_Id.UserType !=null &&   friends.User_FutureFriendID.UserInfoe_Id.UserType.UserTypeName != null)
+                                            {
+                                                <span style="font-family:Arial, Helvetica, sans-serif">@friends.User_FutureFriendID.UserInfoe_Id.UserType.UserTypeName </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="font-family:Arial, Helvetica, sans-serif">Member </span>
+
+                                            }
+                                        </div>
+                                    </li>
+                                }
+
+                            }
+
+                            foreach (var friends in Model.Friends_FutureFriendID)
+                            {
+                                if (friends.User_UserID.UserInfoe_Id.TagUserName != null)
+                                {
+                                    <li class="ipsDataItem ipsClearfix ">
+                                        <div class="ipsDataItem_icon ipsPos_top">
+                                            <a href="/Users/Profile/@friends.User_UserID.UserInfoe_Id.Id" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to @friends.User_UserID.UserInfoe_Id.TagUserName's profile">
+                                                <img src="~/FileUpload/UserProfile/@friends.User_UserID.UserInfoe_Id.PhotoPath" style="max-width:none" alt="@friends.User_UserID.UserInfoe_Id.TagUserName" itemprop="image">
+                                            </a>
+                                            <br>
+                                        </div>
+                                        <div class="ipsDataItem_main">
+                                            <div class="ipsPos_right">
+                                                <div>
+                                                    <a href="" class="ipsButton ipsButton_small ipsButton_primary ipsButton_fullWidth" style="border-radius: 2px; box-shadow: 0px 2px 20px rgba(17, 84, 69, 0.5);text-transform: uppercase;">Add Friend</a>
+
+                                                </div>
+                                            </div>
+                                            <strong class="ipsDataItem_title">
+                                                <a href="/Users/Profile/@friends.User_UserID.UserInfoe_Id.Id" title="Go to @friends.User_UserID.UserInfoe_Id.TagUserName's profile" class="ipsType_break"><span style="font-family:Arial, Helvetica, sans-serif; color:@friends.User_UserID.UserInfoe_Id.TagColor"> @friends.User_UserID.UserInfoe_Id.TagUserName </span></a>
+                                            </strong> <br>
+                                            @if ( friends.User_UserID.UserInfoe_Id.UserType !=null &&    friends.User_UserID.UserInfoe_Id.UserType.UserTypeName != null)
+                                            {
+                                                <span style="font-family:Arial, Helvetica, sans-serif">@friends.User_UserID.UserInfoe_Id.UserType.UserTypeName </span>
+
+                                            }
+                                            else
+                                            {
+                                                <span style="font-family:Arial, Helvetica, sans-serif">Member </span>
+
+                                            }
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="ipsDataItem ipsClearfix ">
+                                        <div class="ipsDataItem_icon ipsPos_top">
+                                            <a href="/Users/Profile/@friends.User_UserID.UserInfoe_Id.Id" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to @friends.User_UserID.UserName's profile">
+                                                <img src="~/FileUpload/UserProfile/@friends.User_UserID.UserInfoe_Id.PhotoPath" style="max-width:none" alt="@friends.User_UserID.UserName" itemprop="image">
+                                            </a>
+                                            <br>
+                                        </div>
+                                        <div class="ipsDataItem_main">
+                                            <div class="ipsPos_right">
+                                                <div>
+                                                    <a href="" class="ipsButton ipsButton_small ipsButton_primary ipsButton_fullWidth" style="border-radius: 2px; box-shadow: 0px 2px 20px rgba(17, 84, 69, 0.5);text-transform: uppercase;">Add Friend</a>
+
+                                                </div>
+                                            </div>
+                                            <strong class="ipsDataItem_title">
+                                                <a href="/Users/Profile/@friends.User_UserID.UserInfoe_Id.Id" data-ipshover="" title="Go to @friends.User_UserID.UserName's profile" class="ipsType_break"><span style="font-family:Arial, Helvetica, sans-serif; color:#c4c4c4"> @friends.User_UserID.UserName </span></a>
+                                            </strong> <br>
+                                            @if ( friends.User_UserID.UserInfoe_Id.UserType !=null && friends.User_UserID.UserInfoe_Id.UserType.UserTypeName != null)
+                                            {
+                                                <span style="font-family:Arial, Helvetica, sans-serif">@friends.User_UserID.UserInfoe_Id.UserType.UserTypeName </span>
+
+                                            }
+                                            else
+                                            {
+                                                <span style="font-family:Arial, Helvetica, sans-serif">Member </span>
+
+                                            }
+                                        </div>
+                                    </li>
+                                }
+
+                            }
+                        }
+
+                    </ul>
+                    <nav class="ipsBreadcrumb ipsBreadcrumb_ ipsFaded_withHover">
+
+                        <ul data-role="breadcrumbList">
+                            <li>
+                                <a title="Home" href="/Home/Index">
+                                    <span><i class="fa fa-home"></i> Home <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            @if (Model.UserInfoe_Id.TagUserName != null)
+                            {
+                                <li>
+                                    <a href="/Users/Profile/@Model.UserInfoe_Id.Id">
+                                        <span>@Model.UserInfoe_Id.TagUserName <i class="fa fa-angle-right"></i></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    @Model.UserInfoe_Id.TagUserName's Friends
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="/Users/Profile/@Model.UserInfoe_Id.Id">
+                                        <span>@Model.UserName <i class="fa fa-angle-right"></i></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    @Model.UserName's Friends
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+</div>
+
+

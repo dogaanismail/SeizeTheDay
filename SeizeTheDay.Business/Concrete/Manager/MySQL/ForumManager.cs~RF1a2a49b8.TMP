@@ -1,0 +1,51 @@
+﻿using System.Collections.Generic;
+using SeizeTheDay.Business.Abstract.MySQL;
+using SeizeTheDay.DataAccess.Abstract.MySQL;
+using Xgteamc1XgTeamModel;
+
+namespace SeizeTheDay.Business.Concrete.MySQL
+{
+    public class ForumManager : IForumService
+    {
+        private IForumDal _forumDal;
+
+        public ForumManager(IForumDal forumDal)
+        {
+            _forumDal = forumDal;
+        }
+        public void Add(Forum forum)
+        {
+            _forumDal.Add(forum);
+        }
+
+        public void Delete(Forum forum)
+        {
+            _forumDal.Delete(forum);
+        }
+
+        public List<Forum> GetAllLazy()
+        {
+            return _forumDal.TolistInclude(x =>x.User, x=>x.User.UserInfoe_Id, x => x.ForumPosts, x => x.ForumPosts, x => x.ForumTopics);
+        }
+
+        public Forum GetByForum(int id)
+        {
+            return _forumDal.Find(x => x.ForumID == id);
+        }
+
+        public List<Forum> GetByForumID(int id)
+        {
+            return _forumDal.Query(x => x.ForumID == id);
+        }
+
+        public List<Forum> GetList()
+        {
+            return _forumDal.GetList();
+        }
+
+        public void Update(Forum forum)
+        {
+            _forumDal.Update(forum);
+        }
+    }
+}

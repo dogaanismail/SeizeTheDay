@@ -1,0 +1,55 @@
+﻿@using Xgteamc1XgTeamModel
+@using Microsoft.AspNet.Identity;
+@model ForumPostComment
+
+<div class="ipsItemControls">
+    <div class="ipsItemControls_right ipsClearfix ">
+        <div class="ipsReact ipsPos_right">
+            <div class="ipsReact_blurb">
+                <ul class="ipsReact_reactions">
+                    <li class="ipsReact_reactCount">
+                        <a href="" title="See who reacted &quot;Like&quot;">
+                            <span>
+                                <img src="~/Content/blackfyre/images/common/react_like.png" alt="Like" />
+
+                            </span>
+                            <span>
+                                @Model.ForumCommentLikes.Count()
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="ipsReact_overview ipsType_blendLinks">
+                    <a href="" title="See who reacted to this"> @Model.ForumCommentLikes.Count() members</a>
+                    reacted to this
+                </div>
+            </div>
+
+            <div class="ipsReact_types">
+                <ul class="ipsList_inline"></ul>
+                @if (Model.ForumCommentLikes.Any(x => x.UserID == User.Identity.GetUserId() && x.CommentID == Model.ForumPostCommentID))
+                {
+                    <span class="ipsReact_button ipsReact_reacted">
+                        <a href="javascript:void(null)" class="ipsReact_reaction">
+                            <img src="~/Content/blackfyre/images/common/react_like.png" onclick="likeComment(@Model.ForumPostCommentID)" alt="Dislike" title="Dislike">
+                            <span class="ipsReact_name">Dislike</span>
+                        </a>
+                    </span>
+                    <a href="" class="ipsReact_unreact ipsHide" title="Remove your reaction">×</a>
+                }
+                else
+                {
+                    <span class="ipsReact_button ">
+                        <a href="javascript:void(null)" class="ipsReact_reaction">
+                            <img src="~/Content/blackfyre/images/common/react_like.png" onclick="likeComment(@Model.ForumPostCommentID)" alt="Like" title="Like">
+                            <span class="ipsReact_name">Like</span>
+                        </a>
+                    </span>
+
+                }
+            </div>
+
+        </div>
+    </div>
+
+</div>

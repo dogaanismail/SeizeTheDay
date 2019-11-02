@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNet.Identity;
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                @*<img src="@HttpContext.Current.Session["PhotoPath"].ToString()" err-src="@HttpContext.Current.Session["PhotoPath"].ToString()" style="height:50px;" class="img-circle" alt="User Image">*@
+            </div>
+            <div class="pull-left info">
+                <p> @User.Identity.GetUserName()</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+
+        <div ng-controller="MenuCtrl">
+
+            <ul class="sidebar-menu">
+                <li class="header">MAIN NAVIGATION</li>
+
+                <li ng-class="{'treeview': item.PageUrl=='#'}" ng-repeat="item in lstParentMenu | orderBy:'DisplayOrder'">
+                    <a href="~/{{item.PageUrl}}">
+                        <i class="fa {{item.PageIcon}}"></i>
+                        <span>{{item.ModuleName}}</span>
+                        <i ng-if="item.PageUrl=='#'" class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu" ng-repeat="obj in item.Submenu | orderBy:'DisplayOrder'">
+                        <li>
+                            <a href="/{{obj.PageUrl}}">
+                                <i class="fa {{obj.PageIcon}}"></i>
+                                {{obj.ModuleName}}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+
+    </section>
+    <!-- /.sidebar -->
+</aside>
+<!-- Content Wrapper. Contains page content -->

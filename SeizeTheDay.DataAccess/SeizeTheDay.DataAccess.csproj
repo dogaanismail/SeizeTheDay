@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E16BB027-349C-47B4-B7F4-09AF222A88D0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SeizeTheDay.DataAccess</RootNamespace>
+    <AssemblyName>SeizeTheDay.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="App_Licenses">
+      <HintPath>..\..\..\App_Licenses.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\MySQL\IChatBoxDal.cs" />
+    <Compile Include="Abstract\MySQL\IChatDal.cs" />
+    <Compile Include="Abstract\MySQL\ICountryDal.cs" />
+    <Compile Include="Abstract\MySQL\IForumCommentLikeDal.cs" />
+    <Compile Include="Abstract\MySQL\IForumDal.cs" />
+    <Compile Include="Abstract\MySQL\IForumPostCommentDal.cs" />
+    <Compile Include="Abstract\MySQL\IForumPostDal.cs" />
+    <Compile Include="Abstract\MySQL\IForumPostLikeDal.cs" />
+    <Compile Include="Abstract\MySQL\IForumTopicDal.cs" />
+    <Compile Include="Abstract\MySQL\IFriendDal.cs" />
+    <Compile Include="Abstract\MySQL\IFriendRequestDal.cs" />
+    <Compile Include="Abstract\MySQL\IModuleDal.cs" />
+    <Compile Include="Abstract\MySQL\INotificationDal.cs" />
+    <Compile Include="Abstract\MySQL\IPortalMessagesDal.cs" />
+    <Compile Include="Abstract\MySQL\IProfileVisitorDal.cs" />
+    <Compile Include="Abstract\MySQL\IRoleDal.cs" />
+    <Compile Include="Abstract\MySQL\IUserClaimDal.cs" />
+    <Compile Include="Abstract\MySQL\IUserDal.cs" />
+    <Compile Include="Abstract\MySQL\IUserInfoDal.cs" />
+    <Compile Include="Abstract\MySQL\IUserLoginDal.cs" />
+    <Compile Include="Abstract\MySQL\IUserPermissionDal.cs" />
+    <Compile Include="Abstract\MySQL\IUserRoleDal.cs" />
+    <Compile Include="Abstract\MySQL\IUserTypeDal.cs" />
+    <Compile Include="Concrete\MySQL\MyChatBoxDal.cs" />
+    <Compile Include="Concrete\MySQL\MyChatDal.cs" />
+    <Compile Include="Concrete\MySQL\MyCountryDal.cs" />
+    <Compile Include="Concrete\MySQL\MyForumCommentLikeDal.cs" />
+    <Compile Include="Concrete\MySQL\MyForumDal.cs" />
+    <Compile Include="Concrete\MySQL\MyForumPostCommentDal.cs" />
+    <Compile Include="Concrete\MySQL\MyForumPostDal.cs" />
+    <Compile Include="Concrete\MySQL\MyForumPostLikeDal.cs" />
+    <Compile Include="Concrete\MySQL\MyForumTopicDal.cs" />
+    <Compile Include="Concrete\MySQL\MyFriendDal.cs" />
+    <Compile Include="Concrete\MySQL\MyFriendRequestDal.cs" />
+    <Compile Include="Concrete\MySQL\MyModuleDal.cs" />
+    <Compile Include="Concrete\MySQL\MyNotificationDal.cs" />
+    <Compile Include="Concrete\MySQL\MyPortalMessagesDal.cs" />
+    <Compile Include="Concrete\MySQL\MyProfileVisitorDal.cs" />
+    <Compile Include="Concrete\MySQL\MyRoleDal.cs" />
+    <Compile Include="Concrete\MySQL\MyUserClaimDal.cs" />
+    <Compile Include="Concrete\MySQL\MyUserDal.cs" />
+    <Compile Include="Concrete\MySQL\MyUserInfoDal.cs" />
+    <Compile Include="Concrete\MySQL\MyUserLoginDal.cs" />
+    <Compile Include="Concrete\MySQL\MyUserPermissionDal.cs" />
+    <Compile Include="Concrete\MySQL\MyUserRoleDal.cs" />
+    <Compile Include="Concrete\MySQL\MyUserTypeDal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Abstract\EntityFramework\" />
+    <Folder Include="Abstract\NHibernate\" />
+    <Folder Include="Concrete\EntityFramework\" />
+    <Folder Include="Concrete\NHibernate\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SeizeTheDay.Core\SeizeTheDay.Core.csproj">
+      <Project>{18723BD2-A5DE-4635-8C62-5DBCDCCB5FA3}</Project>
+      <Name>SeizeTheDay.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SeizeTheDay.Entities\SeizeTheDay.Entities.csproj">
+      <Project>{a24ad207-6920-4f3f-b18d-564b079019cc}</Project>
+      <Name>SeizeTheDay.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

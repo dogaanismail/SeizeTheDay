@@ -1,0 +1,14 @@
+C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.DataAccess.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.DataAccess.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.DataAccess.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.DataAccess.Tests\bin\Debug\SeizeTheDay.DataAccess.Tests.dll
+C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.DataAccess.Tests\bin\Debug\SeizeTheDay.DataAccess.Tests.pdb
+C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.DataAccess.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.DataAccess.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.DataAccess.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.DataAccess.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.DataAccess.Tests\obj\Debug\SeizeTheDay.DataAccess.Tests.csproj.CoreCompileInputs.cache
+C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.DataAccess.Tests\obj\Debug\SeizeTheDay.DataAccess.Tests.csproj.CopyComplete
+C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.DataAccess.Tests\obj\Debug\SeizeTheDay.DataAccess.Tests.dll
+C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.DataAccess.Tests\obj\Debug\SeizeTheDay.DataAccess.Tests.pdb
+C:\Users\dogan\OneDrive\Masaüstü\seizetheday\Seizetheday\SeizeTheDay.DataAccess.Tests\obj\Debug\SeizeTheDay.DataAccess.Tests.csprojAssemblyReference.cache

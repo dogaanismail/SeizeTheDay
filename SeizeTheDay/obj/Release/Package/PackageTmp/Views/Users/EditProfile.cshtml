@@ -1,0 +1,107 @@
+﻿@model Xgteamc1XgTeamModel.UserInfoe
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="~/Content/blackfyre/js/tinymce/tinymce.js"></script>
+<link href="~/Areas/Admin/Content/AdminLTE/bootstrap/css/slider.css" rel="stylesheet" />
+
+<div class="container main-content no-padding">
+    <div class="reg-form container">
+        <nav class="ipsBreadcrumb ipsBreadcrumb_1 ipsFaded_withHover">
+            <ul data-role="breadcrumbList">
+                <li>
+                    <a title="Home" href="/Home/Index">
+                        <span><i class="fa fa-home"></i> Home <i class="fa fa-angle-right"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span>Edit Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="col-md-10 reg-form-inner">
+
+            @using (Html.BeginForm("EditUser", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.ValidationSummary(false)
+                @Html.AntiForgeryToken()
+
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.CoverPhotoPath)
+                @Html.HiddenFor(model => model.PhotoPath)
+                @Html.HiddenFor(model => model.BirthDate)
+                
+                <p>
+
+                    <label>Birthday</label>
+
+                    @Html.DropDownList("month", Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i) }), "", new { style = "width: 90px;" }) /
+                    @Html.DropDownList("day", Enumerable.Range(1, 31).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "", new { style = "width: 60px;" }) /
+                    @Html.DropDownList("year", Enumerable.Range(1900, 119).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "", new { style = "width: 75px;" })
+                </p>
+                <p>
+                    <label>Avatar Photo</label>
+                    <input type="file" style="margin-left:15px" name="avatarphoto" value="@Model.PhotoPath" />
+                </p>
+
+                <p>
+                    <label>Cover Photo</label>
+                    <input type="file" style="margin-left:15px" name="coverphoto" value="@Model.CoverPhotoPath" />
+                </p>
+
+                <p>
+                    <label>Country</label>
+                    @Html.DropDownList("CountryID", (SelectList)ViewData["country"], new { style = "width:160px;", @id = "CountryID" })
+                    @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+                </p>
+
+                <p>
+                    <label>City</label>
+                    @Html.EditorFor(model => model.UserCity, new { htmlAttributes = new { style = "width:160px;" } })
+                    @Html.ValidationMessageFor(model => model.UserCity, "", new { @class = "text-danger" })
+                </p>
+
+
+                <p>
+                    <label>FacebookLink:</label>
+                    @Html.TextBoxFor(model => model.FacebookLink, new { style = "width: 225px;", placeholder = "http://www.facebook.com/user" })
+                </p>
+
+                <p>
+                    <label>TwitterLink:</label>
+                    @Html.TextBoxFor(model => model.TwitterLink, new { style = "width: 225px;", placeholder = "http://www.twitter.com/user" })
+                </p>
+                <p>
+                    <label>SkypeID:</label>
+                    @Html.TextBoxFor(model => model.SkypeID, new { style = "width: 225px;", placeholder = "Skype UserName" })
+                </p>
+
+
+                <p class="submit">
+                    <button type="submit" class="button-green button-small center-block"> <i class="fa fa-edit"></i> Save</button>
+                </p>
+            }
+        </div>
+        <nav class="ipsBreadcrumb ipsBreadcrumb_1 ipsFaded_withHover">
+            <ul data-role="breadcrumbList">
+                <li>
+                    <a title="Home" href="/Home/Index">
+                        <span><i class="fa fa-home"></i> Home <i class="fa fa-angle-right"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span>Edit Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+

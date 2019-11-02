@@ -1,0 +1,102 @@
+﻿@using Xgteamc1XgTeamModel
+@using Microsoft.AspNet.Identity;
+@model  List<UserType>
+@{
+    ViewBag.Title = "Staff";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container main-content no-padding">
+    <nav class="ipsBreadcrumb ipsBreadcrumb_1 ipsFaded_withHover">
+
+        <ul data-role="breadcrumbList">
+            <li>
+                <a title="Home" href="/Home/Index">
+                    <span><i class="fa fa-home"></i> Home <i class="fa fa-angle-right"></i></span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span>Staff </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="col-lg-12 col-md-12">
+
+        @foreach (var types in Model)
+        {
+            <section class="staffDirectory">
+                <h2 class="sectionTitle">@types.UserTypeName</h2>
+                <div id="staffMembers">
+                    @foreach (var users in types.UserInfoes)
+                    {
+                        if (users.TagUserName != null)
+                        {
+                    <div class="staffGrid">
+                        <a title="Go to @users.TagUserName's profile" href="/Users/Profile/@users.Id">
+                            <img src="~/FileUpload/UserProfile/@users.PhotoPath" class=" img-responsive img-circle staffUserPhoto" />
+                        </a>
+                        <a title="Go to @users.TagUserName's profile" href="/Users/Profile/@users.Id"><h3 class="staffUserHead" style="word-wrap: break-word; color:@users.TagColor">@users.TagUserName</h3></a>
+                        @if (users.UserTask != null)
+                        {
+                            <p title="@users.UserTask.ToString()" class="staffTask">@users.UserTask.ToString()</p>
+                        }
+                        <br />
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a title="Send a privacy message !" href="/Users/Messenger/@User.Identity.GetUserId()" style="color: #b7bacd; text-decoration: none; ">
+                                <i class="fa fa-inbox"></i>
+                                Message
+                            </a>
+                        }
+                    </div>
+                        }
+                        else
+                        {
+                            <div class="staffGrid">
+                                <a title="Go to @users.User_Id.UserName's profile" href="/Users/Profile/@users.Id">
+                                    <img src="~/FileUpload/UserProfile/@users.PhotoPath" class=" img-responsive img-circle staffUserPhoto" />
+                                </a>
+                                <a title="Go to @users.User_Id.UserName's profile" href="/Users/Profile/@users.Id"><h3 class="staffUserHead" style="word-wrap: break-word; color:#c4c4c4">@users.User_Id.UserName</h3></a>
+                                @if (users.UserTask != null)
+                                {
+                                    <p title="@users.UserTask.ToString()" class="staffTask">@users.UserTask.ToString()</p>
+                                }
+                                <br />
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a title="Send a privacy message !" href="/Users/Messenger/@User.Identity.GetUserId()" style="color: #b7bacd; text-decoration: none; ">
+                                        <i class="fa fa-inbox"></i>
+                                        Message
+                                    </a>
+                                }
+
+                            </div>
+                        }
+
+                    }
+                </div>
+            </section>
+        }
+        <nav class="ipsBreadcrumb ipsBreadcrumb_1 ipsFaded_withHover">
+
+            <ul data-role="breadcrumbList">
+                <li>
+                    <a title="Home" href="/Home/Index">
+                        <span><i class="fa fa-home"></i> Home <i class="fa fa-angle-right"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span>Staff </span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <br />
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+

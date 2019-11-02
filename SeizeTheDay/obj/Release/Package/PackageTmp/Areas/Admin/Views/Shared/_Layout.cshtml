@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNet.Identity;
+
+<!DOCTYPE html>
+<html ng-app="startupController">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Seize The Day Admin Panel| Dashboard</title>
+    @*@Styles.Render("~/Content/AdminLTEcss")*@
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    @Html.Partial("_Styles")
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        @Html.Partial("_Header")
+        <!-- Left side column. contains the logo and sidebar -->
+        @Html.Partial("_SideBar")
+
+
+        @RenderBody()
+
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; @DateTime.Now.Year</strong> All rights
+            reserved.
+        </footer>
+
+        <!-- Add the sidebar's background. This div must be placed
+     immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- ./wrapper -->
+    @Html.Partial("_Scripts")
+</body>
+</html>

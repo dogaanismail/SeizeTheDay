@@ -1,0 +1,21 @@
+﻿///<reference path="/Areas/Admin/Content/IstPlay/plugins/bootstrap/js/bootstrap.js" />
+///<reference path="/Areas/Admin/Content/IstPlay/plugins/bootstrap-select/js/bootstrap-select.js" />
+///<reference path="/Areas/Admin/Content/IstPlay/plugins/jquery-slimscroll/jquery.slimscroll.js" />
+///<reference path="~/Areas/Admin/Content/IstPlay/plugins/node-waves/waves.js" />
+
+/// <reference path="ai.0.22.9-build00167.min.js" />
+/// <reference path="angular.min.js" />
+/// <reference path="angular-animate.min.js" />
+/// <reference path="angular-cookies.min.js" />
+/// <reference path="angular-loader.min.js" />
+/// <reference path="angular-mocks.js" />
+/// <reference path="angular-resource.min.js" />
+/// <reference path="angular-route.min.js" />
+/// <reference path="angular-sanitize.min.js" />
+/// <reference path="angular-touch.min.js" />
+/// <reference path="bootstrap.js" />
+/// <reference path="checklist-model.js" />
+/// <reference path="controller/app.js" />
+/// <reference path="controller/controller.js" />
+/// <reference path="modernizr-2.8.3.js" />
+/// <reference path="respond.js" />

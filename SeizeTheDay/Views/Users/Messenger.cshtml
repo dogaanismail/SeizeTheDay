@@ -1,0 +1,283 @@
+﻿
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Messenger";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Areas/Admin/Content/AdminLTE//dist/css/AdminLTE.css">
+
+<div class="container main-content no-padding no-overflow" ng-controller="MessengerCtrl">
+    <div class="col-lg-12 col-md-12">
+        <div id="buddypress" class="">
+            <nav class="ipsBreadcrumb ipsBreadcrumb_1 ipsFaded_withHover">
+
+                <ul data-role="breadcrumbList">
+                    <li>
+                        <a title="Home" href="/Home/Index">
+                            <span><i class="fa fa-home"></i> Home <i class="fa fa-angle-right"></i></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Messenger" href="/Users/Messenger/@User.Identity.GetUserId()">
+                            <span><i class="fa fa-inbox"></i> Messenger <i class="fa fa-angle-right"></i></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Go to @User.Identity.GetUserName()'s profile" href="/Users/Profile/@User.Identity.GetUserId()">
+                            <span> @User.Identity.GetUserName() </span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div id="item-body">
+                <div class="row row-fluid">
+                    <div class="col-md-4 sidebar">
+                        <div class="side-widget space25">
+                            <div class="ipsColumns ipsColumns_collapseTablet ">
+                                <div class="ipsColumn ipsColumn_veryWide">
+                                    <div  class=" elMessageSidebar ipsBox">
+                                        <h2 class="ipsType_sectionTitle ipsType_reset">Inbox</h2>
+
+                                        <div class="ipsButtonBar ipsPad_half ipsClearfix">
+
+                                            <!-- This has been implemented to use userID -->
+                                            <input type="hidden" id="getuserID" value="@User.Identity.GetUserId()" />
+
+                                            <!-- Deleting chatboxes -->
+                                            <ul class="ipsButtonRow ipsClearfix" ng-show="trashBox">
+                                                <li>
+
+                                                    <i class="fa fa-trash cAutoCheckIcon" ng-click="deleteChatboxes()" title="Delete inbox" style="font-size:24px; margin-left:20px; color:white"></i>
+                                                </li>
+                                                <li>
+                                                    <a class="ipsJS_show" href="" id="elCheck" title="Select rows to delete">
+                                                        <span class="cAutoCheckIcon ipsType_medium"><i class="fa fa-check-square"></i></span> <i class="fa fa-caret-down"></i>
+                                                        <span class="ipsNotificationCount">{{checkedBox.chatBox.length}}</span>
+                                                    </a>
+
+                                                </li>
+                                            </ul>
+
+                                            <ul class="ipsButtonRow ipsPos_right ipsClearfix">
+
+                                                <li ng-show="showPlus" style="padding-left:10px">
+                                                    <a href="" ng-click="showSearch()" title="Create a group !" style="font-size:13px"> New Group <i class="fa fa-plus-square"></i></a>
+                                                </li>
+
+                                                <li ng-show="showPlus">
+                                                    <a href="" ng-click="showSearch()" title="Send a new message to a user !" style="font-size:13px"> New Message <i class="fa fa-plus-square"></i></a>
+                                                </li>
+
+                                                <li ng-show="showQuery">
+                                                    <input type="text" placeholder="Search by username" ng-model="query" ng-keypress="focus=true">
+                                                    <div id="search-results" ng-show="focus">
+                                                        <div class="search-result" ng-repeat="item in userList | filter:query" ng-bind="item.UserName" ng-click="setQuery(item.UserName)"></div>
+                                                    </div>
+                                                    <p title="Close the query box !" ng-click="closeQueryBox()" style="float:right; padding-left:5px;"> <i class="fa fa-remove"></i></p>
+                                                    <p title="Create chatbox !" ng-click="createBox()" style="float:right; padding-left:5px;"> <i class="fa fa-plus-square"></i></p>
+
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                        <div class="elMessageList ipsClear ipsScrollbar">
+                                            <ol class="ipsDataList">
+
+                                                <!-- Sender messages -->
+                                              <li class="ipsDataItem ipsClearfix  cMessage" ng-repeat="item in lstReceiverList">
+
+                                                    <div class="ipsDataItem_icon ipsType_center ipsPos_top">
+                                                        <div class="ipsSpacer_bottom ipsSpacer_half">
+                                                            <a ng-click="showMessenger(item.Chatbox)" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to {{item.ReceiverName}}'s profile">
+                                                                <img ng-src="~/FileUpload/UserProfile/{{item.PhotoPath}}" itemprop="image" style="max-width:none">
+                                                            </a>
+                                                        </div>
+                                                        <span class="input-group-addon" style="background-color: #262525; border:none">
+                                                            <input type="checkbox" ng-click="selectBox()" id="{{item.Chatbox}}" value="{{item}}" checklist-model="checkedBox.chatBox" checklist-value="item.Chatbox" />
+                                                            <label for="{{item.Chatbox}}"></label>
+                                                        </span>
+
+                                                    </div>
+                                                    <div class="ipsDataItem_main">
+                                                        <h4 class="ipsDataItem_title ipsType_normal ipsType_break">
+                                                            <a title="Chat with {{item.ReceiverName}} !"  ng-click="showMessenger(item.Chatbox)" class="cMessageTitle ">
+                                                                <span style="color:#c4c4c4"> {{item.ReceiverName}} </span>
+                                                            </a>
+                                                        </h4>
+                                                        <div class="ipsDataItem_meta ipsContained_container ipsMessageRow" style="overflow-wrap: break-word;">
+                                                                <span class="ipsType_break ipsContained" ng-bind-html="renderHtml(item.text)"></span>
+                                                        </div>
+                                                        <span class="ipsType_light ipsType_medium ipsType_blendLinks">{{item.ReceiverName}} and {{item.SenderName}}</span>
+                                                    </div>
+                                                    <div class="ipsDataItem_generic ipsDataItem_size2 ipsPos_top ipsType_right">
+                                                        <div class="ipsCommentCount ipsSpacer_top ipsSpacer_half" title=" {{item.messageCount}} messages">
+                                                            {{item.messageCount}}
+                                                        </div>
+                                                        <p class="ipsType_reset ipsType_medium ipsType_light ipsType_right">
+                                                            <span title="Started by">
+                                                                <time datetime="{{item.CreatedDate|date:'MMM d, yyyy HH'}}" title="{{item.CreatedDate|date:'MMM d, yyyy HH'}}"> {{item.CreatedDate|date:'MMM d'}} </time>
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                </li>
+
+                                                <!-- Receiver messages -->
+
+                                                <li class="ipsDataItem ipsClearfix cMessage" ng-repeat="item in lstSenderList ">
+
+                                                    <div class="ipsDataItem_icon ipsType_center ipsPos_top">
+                                                        <div class="ipsSpacer_bottom ipsSpacer_half">
+                                                            <a ng-click="showMessenger(item.Chatbox)" class="ipsUserPhoto ipsUserPhoto_tiny" title="Show message box !">
+                                                                <img ng-src="~/FileUpload/UserProfile/{{item.PhotoPath}}" itemprop="image" style="max-width:none">
+                                                            </a>
+                                                        </div>
+                                                        <span class="input-group-addon" style="background-color: #262525; border:none">
+                                                            <input type="checkbox" ng-click="selectBox()" id="{{item.Chatbox}}" value="{{item}}" checklist-model="checkedBox.chatBox" checklist-value="item.Chatbox" />
+                                                            <label for="{{item.Chatbox}}"></label>
+                                                        </span>
+
+                                                    </div>
+                                                    <div class="ipsDataItem_main">
+                                                        <h4 class="ipsDataItem_title ipsType_normal ipsType_break">
+                                                            <a title="Chat with {{item.SenderName}} ! "  ng-click="showMessenger(item.Chatbox)" class="cMessageTitle ">
+                                                                <span style="color:#c4c4c4"> {{item.SenderName}} </span> </a>
+                                                        </h4>
+                                                        <div class="ipsDataItem_meta ipsContained_container ipsMessageRow" style="overflow-wrap: break-word;">
+                                                            <span class="ipsType_break ipsContained" ng-bind-html="renderHtml(item.text)"></span>
+                                                        </div>
+                                                        <span class="ipsType_light ipsType_medium ipsType_blendLinks">{{item.SenderName}} and {{item.ReceiverName}}</span>
+                                                    </div>
+                                                    <div class="ipsDataItem_generic ipsDataItem_size2 ipsPos_top ipsType_right">
+                                                        <div class="ipsCommentCount ipsSpacer_top ipsSpacer_half" title=" {{item.messageCount}} messages">
+                                                            {{item.messageCount}} </div>
+                                                        <p class="ipsType_reset ipsType_medium ipsType_light ipsType_right">
+                                                            <span title="Started by">
+                                                                <time datetime="{{item.CreatedDate|date:'MMM d'}} " title="{{item.CreatedDate|date:'MMM d, yyyy HH'}} "> {{item.CreatedDate|date:'MMM d'}}   </time>
+                                                            </span>
+                                                            </p>
+                                                        </div>
+                                                </li>
+
+                                            </ol>
+                                            <noscript>
+                                                <div class="ipsPad">
+                                                </div>
+                                            </noscript>
+                                           
+                                        </div>
+
+                                        <div class="ipsResponsive_showPhone ipsResponsive_block ipsAreaBackground_light ipsPad">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row row-fluid">
+                            <div class="home-blog col-md-12">
+                                <article class="blog-post">
+
+                                    <!-- no message -->
+                                    <div class="nomessage" ng-show="emptyBox">
+                                        <i class="fa fa-envelope" style="font-size:120px; margin-bottom:15px"></i><br />
+                                        No message selected
+                                    </div>
+
+                                    <!-- message box -->
+                                    <div id="gettingMessages" ng-show="showMessageBox">
+
+                                        <section class="">
+                                            <div class="box ">
+                                                <div class="box-header" style=" color: #c4c4c4;background-color: #2C3A49;background: #2c3a49;font-size: 11px;padding: 11px 20px;">
+                                                    <i class="fa fa-comments-o" style="color: #FFF;"></i>
+                                                    <h3 class="box-title" style=" font-family:Roboto,Helvetica, Arial, sans-serif; font-size: 11px; color: #FFF; ">
+                                                        Chatting !
+                                                    </h3>
+                                                    <!-- close the message box -->
+                                                    <p class="text-muted" style="float:right; font-size:20px; margin-left:10px" ng-click="closeMessageBox()" title="Close the message box ! "><i class="fa fa-remove"></i> &nbsp; &nbsp; </p>
+                                                </div>
+
+                                                <div class="box-body chat" id="chat-box">
+
+                                                    <div class="item" style="border-bottom:0.5px solid #096aa1; margin-bottom:10px; padding-top:5px" ng-repeat="item in lstChatList ">
+
+                                                        <img ng-src="~/FileUpload/UserProfile/{{item.SenderPhoto}}" title="{{item.SenderName}} 's photo" />
+                                                        <p class="message">
+                                                            <a href="javascript:void(null)" class="name">
+
+                                                                <!-- delete the message  -->
+                                                                <small class="text-muted" style="float:right; margin-left:10px" title="Delete the message ! " ng-click="deleteMessage(item.ChatID,item.ChatBoxID)"><i class="fa fa-remove"></i> &nbsp; &nbsp; </small>
+
+                                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{item.CreatedDate|date:'MMM d'}}  </small>
+                                                                <span title="{{item.SenderName}}" style="color:aliceblue"> {{item.SenderName}} </span>
+
+                                                                <input type="hidden" id="getReceiver" value="{{item.ReceiverName}}" />
+                                                                <input type="hidden" id="getReceiver2" value="{{item.SenderName}}" />
+                                                            </a>
+                                                        </p>
+
+                                                        <div ng-bind-html="renderHtml(item.Text)" class="inbox-messsage"> </div>
+
+                                                        @*<span ng-bind-html="renderHtml(mssg.TextMessage)"></span>*@
+
+                                                        <input type="hidden" value="{{item.ChatID"}}" id="chats" name="getting" />
+                                                        <input type="hidden" value="{{item.ChatBoxID}}" id="ChatBoxs" />
+                                                    </div>
+
+                                                </div>
+                                                <!-- /.chat -->
+                                                <div class="box-footer">
+                                                    <form role="form" id="form1" ng-enter="keyDown()" name="form1" ng-submit="formSubmit()">
+                                                        <div class="input-group">
+                                                            <input class="form-control" type="text" placeholder="Type message..." value="{{textMessage}}" ng-model="textMessage" name="text-message" id="text-message" ng-keypress="keyDown()" style=" border-color:#096aa1; color:darkgrey;  background-image: linear-gradient(to top, #1A1B1F, #212528);">
+                                                            <ul class="input-group-btn ipsToolList ipsToolList_horizontal ipsClearfix ipsSpacer_both">
+                                                                <li>
+                                                                    <a class="ipsButton ipsButton_small ipsButton_important" title="Send your message ! " ng-disabled="!form1.$valid" style="padding:4px 9px" ng-click="sendMessage()">Send</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        </form>
+                                                </div>
+                                            </div>
+                                        </section>
+
+                                    </div>
+
+                                </article>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="ipsBreadcrumb ipsBreadcrumb_1 ipsFaded_withHover">
+
+                <nav class="ipsBreadcrumb ipsBreadcrumb_1 ipsFaded_withHover">
+
+                    <ul data-role="breadcrumbList">
+                        <li>
+                            <a title="Home" href="/Home/Index">
+                                <span><i class="fa fa-home"></i> Home <i class="fa fa-angle-right"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a title="Messenger" href="/Users/Messenger/@User.Identity.GetUserId()">
+                                <span><i class="fa fa-inbox"></i> Messenger <i class="fa fa-angle-right"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a title="Go to @User.Identity.GetUserName()'s profile" href="/Users/Profile/@User.Identity.GetUserId()">
+                                <span> @User.Identity.GetUserName() </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </nav>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

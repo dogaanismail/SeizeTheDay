@@ -1,0 +1,160 @@
+﻿@using Xgteamc1XgTeamModel
+@using SeizeTheDay.DataDomain.ViewModels
+@model CreateNewTopic
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "CreateNewTopic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- TinyMCE -->
+<script src="~/Content/blackfyre/js/SpecialTinymce/js/tinymce/tinymce.min.js"></script>
+
+<div class="container main-content no-padding">
+    <div id="ipsLayout_contentArea">
+        <main role="main" id="ipsLayout_body" class="ipsLayout_container">
+            <div id="ipsLayout_contentArea">
+                <div id="ipsLayout_contentWrapper">
+                    <nav class="ipsBreadcrumb ipsBreadcrumb_1 ipsFaded_withHover">
+                        <ul>
+                            <li>
+                                <a title="Home" href="/Home/Index">
+                                    <span><i class="fa fa-home"></i> Home <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Home/Forum/@ViewBag.forumID">
+                                    <span>@ViewBag.forumName <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Home/ForumsTopic/@ViewBag.forumTopic">
+                                    <span>@ViewBag.forumTopicName <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                Create New Topic
+                            </li>
+                        </ul>
+                    </nav>
+                    <div id="ipsLayout_mainArea">
+                        <a id="elContent"></a>
+                        <div class="ipsPageHeader ipsClearfix ipsSpacer_bottom">
+                            <h1 class="ipsType_pageTitle">Create New Topic</h1>
+                        </div>
+                        @using (Html.BeginForm("CreateNewTopic", "Home", FormMethod.Post))
+                        {
+                            @Html.ValidationSummary()
+                            @Html.AntiForgeryToken()
+                        <div class="ipsBox">
+                            <h2 class="ipsType_sectionTitle ipsType_reset ipsHide">Topic Details</h2>
+                            <div class="ipsPad">
+                                <ul class="ipsForm ipsForm_vertical">
+                                    <li class="ipsFieldRow ipsClearfix ">
+                                        <label class="ipsFieldRow_label" for="topic_title">
+                                            Title <span class="ipsFieldRow_required">Required</span>
+                                        </label>
+                                        <div class="ipsFieldRow_content">
+
+                                            @Html.TextBoxFor(Model => Model.Title, new { Style = " background: #202020; border-color: #242424; border-radius: 0px; color:#c4c4c4;  font-size: 14px; vertical-align: middle; border-width: 1px; border-style: solid; border-color: rgba(0,0,0,0.2); border-radius: 3px; width: 100%; max-width: 350px; padding: 7px;" })
+                                        </div>
+                                    </li>
+
+                                    <li class="ipsFieldRow ipsClearfix " id="topic_content_editor">
+                                        <label class="ipsFieldRow_label" for="topic_content">
+                                            Content <span class="ipsFieldRow_required">Required</span>
+                                        </label>
+                                        <div class="ipsFieldRow_content">
+                                            <div class="ipsComposeArea_editor" data-role="editor">
+                                                <div class="ipsType_normal ipsType_richText ipsType_break">
+                                                    <div data-role="editorComposer">
+                                                        @Html.TextAreaFor(Model => Model.Content, new { @id = "tinymce2" })
+
+                                                        <div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="ipsAreaBackground ipsPad ipsType_center">
+                                <a href="" class="ipsButton ipsButton_link ipsButton ipsButton_medium">Cancel</a>
+
+                                <button type="submit" class="ipsButton ipsButton_medium ipsButton_important" tabindex="1" accesskey="s" role="button">
+                                    Submit Topic
+                                </button>
+                            </div>
+                        </div>
+                        }
+
+                    </div>
+                    <nav class="ipsBreadcrumb ipsBreadcrumb_ ipsFaded_withHover">
+
+                        <ul>
+                            <li>
+                                <a title="Home" href="/Home/Index">
+                                    <span><i class="fa fa-home"></i> Home <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Home/Forum/@ViewBag.forumID">
+                                    <span>@ViewBag.forumName <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Home/ForumsTopic/@ViewBag.forumTopic">
+                                    <span>@ViewBag.forumTopicName <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                Create New Topic
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //Editör initialize için gerekli config kodları
+    tinymce.init({
+        selector: '#tinymce2',
+        menubar: false,
+        skin: "oxide-dark",
+        plugins: [
+           "advlist autolink autoresize link image fullscreen  lists charmap paste print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking wordcount  ",
+            "table contextmenu directionality emoticons paste template spellchecker searchreplace responsivefilemanager help imagetools media youtube "
+        ],
+        mobile: {
+            theme: "mobile",
+            plugins: ['autosave', 'lists', 'autolink'],
+            toolbar: ['undo', 'bold', 'italic', 'styleselect']
+        },
+        toolbar_items_size: 'small',
+        toolbar: " undo redo | bold italic underline | aligncenter alignright alignjustify | forecolor  backcolor | fontselect | fontsizeselect | link | responsivefilemanager youtube | emoticons | searchreplace | help preview ",
+        image_advtab: true,
+
+        image_dimensions: false,
+        image_class_list: [
+            { title: 'Responsive', value: 'img-responsive' }
+        ],
+
+        link_context_toolbar: true,
+        paste_data_images: true,
+   
+        external_filemanager_path:"/filemanager/",
+        filemanager_title:"Responsive Filemanager" ,
+        external_plugins: { "filemanager" : "/filemanager/plugin.min.js"},
+      
+        width: "98%",
+        emoticons_database_url: '/Content/blackfyre/js/SpecialTinymce/js/tinymce/plugins/emoticons/js/emojis.js',
+        entity_encoding: "numeric"
+    });
+</script>

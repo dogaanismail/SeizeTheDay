@@ -1,0 +1,12 @@
+C:\Users\dogan\Desktop\Seizetheday\SeizeTheDay\SeizeTheDay.Common\bin\Debug\SeizeTheDay.Common.dll
+C:\Users\dogan\Desktop\Seizetheday\SeizeTheDay\SeizeTheDay.Common\bin\Debug\SeizeTheDay.Common.pdb
+C:\Users\dogan\Desktop\Seizetheday\SeizeTheDay\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.csproj.CoreCompileInputs.cache
+C:\Users\dogan\Desktop\Seizetheday\SeizeTheDay\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.dll
+C:\Users\dogan\Desktop\Seizetheday\SeizeTheDay\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.pdb
+C:\Users\dogan\OneDrive\Masaüstü\seizetheday\Seizetheday\SeizeTheDay.Common\bin\Debug\SeizeTheDay.Common.dll
+C:\Users\dogan\OneDrive\Masaüstü\seizetheday\Seizetheday\SeizeTheDay.Common\bin\Debug\SeizeTheDay.Common.pdb
+C:\Users\dogan\OneDrive\Masaüstü\seizetheday\Seizetheday\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.csproj.CoreCompileInputs.cache
+C:\Users\dogan\OneDrive\Masaüstü\seizetheday\Seizetheday\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.dll
+C:\Users\dogan\OneDrive\Masaüstü\seizetheday\Seizetheday\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.pdb
+C:\Users\dogan\Desktop\Seizetheday\SeizeTheDay\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.csprojAssemblyReference.cache
+C:\Users\dogan\OneDrive\Masaüstü\seizetheday\Seizetheday\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.csprojAssemblyReference.cache

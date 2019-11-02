@@ -1,0 +1,740 @@
+﻿
+@using SeizeTheDay.Entities.EntityClasses.MySQL
+@using Microsoft.AspNet.Identity;
+@model Xgteamc1XgTeamModel.User
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    GeneralHelper helper = new GeneralHelper();
+    string time2 = "";
+    if (Model.UserInfoe_Id.LastLoginDate !=null)
+    {
+      time2= helper.GetTimeAgo( Convert.ToDateTime ( Model.UserInfoe_Id.LastLoginDate)).ToString();
+    }
+    string birthday = "";
+    if (Model.UserInfoe_Id.BirthDate != null)
+    {
+        DateTime time = Model.UserInfoe_Id.BirthDate.Value;
+        birthday = time.ToShortDateString();
+    }
+}
+<div class="container main-content no-padding ">
+    <div id="ipsLayout_contentArea">
+        <main role="main" id="ipsLayout_body" class="ipsLayout_container">
+            <div id="ipsLayout_contentArea">
+                <div id="ipsLayout_contentWrapper">
+                    <nav class="ipsBreadcrumb ipsBreadcrumb_1 ipsFaded_withHover">
+
+                        <ul data-role="breadcrumbList">
+                            <li>
+                                <a title="Home" href="/Home/Index">
+                                    <span><i class="fa fa-home"></i> Home <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                @if (Model.UserInfoe_Id.TagUserName != null)
+                                {
+                                    <a href="/Users/Profile/@Model.UserInfoe_Id.Id">
+                                        <span style="color:@Model.UserInfoe_Id.TagColor"> @Model.UserInfoe_Id.TagUserName </span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="/Users/Profile/@Model.UserInfoe_Id.Id">
+                                        <span style="color:#c4c4c4"> @Model.UserName </span>
+                                    </a>
+                                }
+
+                            </li>
+                        </ul>
+                    </nav>
+                    <div id="ipsLayout_mainArea">
+                        <a id="elContent"></a>
+
+                        <div class="ipsBox">
+                            <div data-role="profileHeader">
+                                <div class="ipsPageHead_special " id="elProfileHeader">
+                                    <div class="ipsCoverPhoto_container" style="background-color: hsl(238, 100%, 80% )">
+                                        @if (Model.UserInfoe_Id.CoverPhotoPath == null)
+                                        {
+                                            <img src="~/Content/blackfyre/images/common/black-background-metal.jpg" class="ipsCoverPhoto_photo" alt="" style="opacity: 1; position: absolute; max-width:none; left: 0px; top: 0px;" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/FileUpload/CoverPhoto/@Model.UserInfoe_Id.CoverPhotoPath" class="ipsCoverPhoto_photo" alt="" style="opacity: 1; position: absolute; max-width:none; left: 0px; top: 0px;" />
+
+                                        }
+                                    </div>
+                                    @if (User.Identity.IsAuthenticated && User.Identity.GetUserId() == Model.UserInfoe_Id.Id)
+                                    {
+                                        <ul class="ipsButton_split" id="elEditProfile">
+                                            <li>
+                                                <a href="/Users/EditProfile/@Model.UserInfoe_Id.Id" class="ipsButton ipsButton_overlaid" title="Edit your profile">
+                                                    <i class="fa fa-pencil"></i>&nbsp;<span class="ipsResponsive_hidePhone ipsResponsive_inline" style="font-weight:bolder; background-color:#2c3a49">&nbsp;&nbsp;Edit Profile</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/Users/ChangePassword" class="ipsButton ipsButton_overlaid" title="Change your password">
+                                                    <i class="fa fa-pencil"></i>&nbsp;<span class="ipsResponsive_hidePhone ipsResponsive_inline" style="font-weight:bolder; background-color:#2c3a49">&nbsp;&nbsp;Change Password</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/Users/EditProfile/@Model.UserInfoe_Id.Id" class="ipsButton ipsButton_overlaid" id="elEditPhoto">
+                                                    <i class="fa fa-picture-o"></i>&nbsp;<span class="ipsResponsive_hidePhone ipsResponsive_inline">&nbsp;&nbsp;Cover Photo <i class="fa fa-caret-down"></i></span>
+                                                </a>
+                                                <ul class="ipsMenu ipsMenu_auto ipsHide" id="elEditPhoto_menu">
+                                                    <li class="ipsMenu_item">
+                                                        <a href="" title="Upload your photo" style="font-weight:bolder">Upload Photo</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    }
+                                    <div class="ipsColumns ipsColumns_collapsePhone">
+                                        <div class="ipsColumn ipsColumn_fixed ipsColumn_narrow ipsPos_center" id="elProfilePhoto">
+                                            <a href="" class="ipsUserPhoto ipsUserPhoto_xlarge">
+                                                <img src="~/FileUpload/UserProfile/@Model.UserInfoe_Id.PhotoPath" alt="" style="max-width: none" ;>
+                                            </a>
+                                        </div>
+                                        <div class="ipsColumn ipsColumn_fluid" style="background:none">
+                                            <div class="ipsPos_left ipsPad cProfileHeader_name ipsType_normal">
+                                                @if (Model.UserInfoe_Id.TagUserName != null)
+                                                {
+                                                    <h1 class="ipsType_reset ipsPageHead_barText" style="color:@Model.UserInfoe_Id.TagColor">
+                                                        @Model.UserInfoe_Id.TagUserName
+                                                    </h1>
+                                                }
+                                                else
+                                                {
+                                                    <h1 class="ipsType_reset ipsPageHead_barText" style="color:#c4c4c4">
+                                                        @Model.UserName
+                                                    </h1>
+                                                }
+
+                                                @if (Model.UserInfoe_Id.UserType == null || Model.UserInfoe_Id.UserType.UserTypeName == "None")
+                                                {
+                                                    <span>
+                                                        <span class="ipsPageHead_barText"><span>Member</span></span>
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span>
+                                                        <span class="ipsPageHead_barText"><span>@Model.UserInfoe_Id.UserType.UserTypeName</span></span>
+                                                    </span>
+                                                }
+                                            </div>
+                                            <ul class="ipsList_inline ipsPad ipsResponsive_hidePhone ipsResponsive_block ipsPos_left">
+
+                                                @if (User.Identity.IsAuthenticated && User.Identity.GetUserId() == Model.UserInfoe_Id.Id)
+                                                {
+                                                    <li>
+                                                        <div>
+                                                            <a href="/Users/Messenger/@Model.UserInfoe_Id.Id" title="Messenger" class="ipsButton ipsButton_primary" style="background-color:#2C3A49; color:white">
+                                                                <i class="fa fa-envelope-square"></i>
+                                                                <span class="ipsResponsive_showDesktop ipsResponsive_inline"> Inbox</span>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Users/FriendRequests/@Model.UserInfoe_Id.Id" class="ipsButton ipsButton_primary" target="_blank" style="background-color:#2C3A49; color:white">
+
+                                                            <i class="fa fa-bookmark"></i>
+                                                            <span class="ipsResponsive_showDesktop ipsResponsive_inline">&nbsp; Friend Request</span>
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                                @if (User.Identity.IsAuthenticated && User.Identity.GetUserId() != Model.UserInfoe_Id.Id)
+                                                {
+
+                                                    <li>
+                                                        <div>
+                                                            <div class="ipsResponsive_hidePhone ipsResponsive_block">
+                                                                @if (Model.FriendRequests_UserID.Any(x => x.User_FutureFriendID.UserInfoe_Id.Id == User.Identity.GetUserId()) == true)
+                                                                {
+                                                                    var item = Model.FriendRequests_UserID.FirstOrDefault(x => x.User_FutureFriendID.UserInfoe_Id.Id == User.Identity.GetUserId());
+                                                                    if (item.IsPending == true)
+                                                                    {
+                                                                        <a href="/Users/AddSenderFriend/@item.FriendRequestID" title="Accept Request" class="ipsButton ipsButton_primary" style="background-color:#2C3A49; color:white">
+                                                                            <i class="fa fa-plus"></i><i class="fa fa-user"></i>
+                                                                            <span class="ipsResponsive_showDesktop ipsResponsive_inline"> Accept Request</span>
+                                                                        </a>
+                                                                    }
+                                                                    else if (item.IsAccepted == true)
+                                                                    {
+                                                                        <a href="/Users/RemoveAFriend/@item.FriendRequestID" title="Remove Friend" class="ipsButton ipsButton_primary" style="background-color:#2C3A49; color:white">
+                                                                            <i class="fa fa-remove"></i><i class="fa fa-user"></i>
+                                                                            <span class="ipsResponsive_showDesktop ipsResponsive_inline"> Remove Friend</span>
+                                                                        </a>
+                                                                    }
+
+                                                                }
+                                                                else if ((Model.FriendRequests_FutureFriendID.Any(x => x.User_UserID.UserInfoe_Id.Id == User.Identity.GetUserId()) == true))
+                                                                {
+                                                                    var item = Model.FriendRequests_FutureFriendID.FirstOrDefault(x => x.User_UserID.UserInfoe_Id.Id == User.Identity.GetUserId());
+                                                                    if (item.IsPending == true)
+                                                                    {
+                                                                        <a href="/Users/RemoveMyRequest/@item.FriendRequestID" title="Remove Request" class="ipsButton ipsButton_primary" style="background-color:#2C3A49; color:white">
+                                                                            <i class="fa fa-remove"></i><i class="fa fa-user"></i>
+                                                                            <span class="ipsResponsive_showDesktop ipsResponsive_inline"> Remove Request</span>
+                                                                        </a>
+                                                                    }
+                                                                    else if (item.IsAccepted == true)
+                                                                    {
+                                                                        <a href="/Users/RemoveMYFriend/@item.FriendRequestID" title="Remove Friend" class="ipsButton ipsButton_primary" style="background-color:#2C3A49; color:white">
+                                                                            <i class="fa fa-remove"></i><i class="fa fa-user"></i>
+                                                                            <span class="ipsResponsive_showDesktop ipsResponsive_inline"> Remove Friend</span>
+                                                                        </a>
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    <a href="/Users/AddFriend/@Model.UserInfoe_Id.Id" title="Add Friend" class="ipsButton ipsButton_primary" style="background-color:#2C3A49; color:white">
+                                                                        <i class="fa fa-plus"></i><i class="fa fa-user"></i>
+                                                                        <span class="ipsResponsive_showDesktop ipsResponsive_inline"> Add Friend</span>
+                                                                    </a>
+                                                                }
+
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Users/Messenger/@User.Identity.GetUserId()" class="ipsButton ipsButton_primary" title="Send a message" target="_blank" style="background-color:#2C3A49; color:white">
+
+                                                            <i class="fa fa-envelope"></i>
+                                                            <span class="ipsResponsive_showDesktop ipsResponsive_inline">&nbsp; Message</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*Responsive mobile*@
+                                <div class="ipsGrid ipsAreaBackground ipsPad ipsResponsive_showPhone ipsResponsive_block">
+
+                                    @*Adding Friend*@
+                                    @if (User.Identity.IsAuthenticated && User.Identity.GetUserId() != Model.UserInfoe_Id.Id)
+                                    {
+                                        <div class="ipsGrid_span4" style="width: 31.914893617021278%;">
+                                            <div>
+                                                @if (Model.FriendRequests_UserID.Any(x => x.User_FutureFriendID.Id == User.Identity.GetUserId()) == true)
+                                                {
+                                                    var item = Model.FriendRequests_UserID.FirstOrDefault(x => x.User_FutureFriendID.UserInfoe_Id.Id == User.Identity.GetUserId());
+                                                    if (item.IsPending == true)
+                                                    {
+
+                                                        <div class="ipsResponsive_showPhone ipsResponsive_block">
+                                                            <a href="/Users/AddSenderFriend/@item.FriendRequestID" title="Add friend" class="ipsButton ipsButton_fullWidth ipsButton_small ipsButton_alternate" style="width: 100%;"><i class="fa fa-plus"></i><i class="fa fa-user"></i></a>
+                                                        </div>
+                                                    }
+                                                    else if (item.IsAccepted == true)
+                                                    {
+
+
+                                                        <div class="ipsResponsive_showPhone ipsResponsive_block">
+                                                            <a href="/Users/RemoveAFriend/@item.FriendRequestID" title="Remove friend" class="ipsButton ipsButton_fullWidth ipsButton_small ipsButton_alternate" style="width: 100%;"><i class="fa fa-remove"></i><i class="fa fa-user"></i></a>
+                                                        </div>
+                                                    }
+                                                }
+                                                else if ((Model.FriendRequests_FutureFriendID.Any(x => x.User_UserID.Id == User.Identity.GetUserId()) == true))
+                                                {
+                                                    var item = Model.FriendRequests_FutureFriendID.FirstOrDefault(x => x.User_UserID.UserInfoe_Id.Id == User.Identity.GetUserId());
+                                                    if (item.IsPending == true)
+                                                    {
+                                                        <div class="ipsResponsive_showPhone ipsResponsive_block">
+                                                            <a href="/Users/RemoveMyRequest/@item.FriendRequestID" title="Remove request" class="ipsButton ipsButton_fullWidth ipsButton_small ipsButton_alternate" style="width: 100%;"><i class="fa fa-remove"></i><i class="fa fa-user"></i></a>
+                                                        </div>
+
+                                                    }
+                                                    else if (item.IsAccepted == true)
+                                                    {
+                                                        <div class="ipsResponsive_showPhone ipsResponsive_block">
+                                                            <a href="/Users/RemoveMYFriend/@item.FriendRequestID" title="Remove friend" class="ipsButton ipsButton_fullWidth ipsButton_small ipsButton_alternate" style="width: 100%;"><i class="fa fa-remove"></i><i class="fa fa-user"></i></a>
+                                                        </div>
+                                                    }
+                                                }
+                                                else
+                                                {
+
+                                                    <div class="ipsResponsive_showPhone ipsResponsive_block">
+                                                        <a href="/Users/AddFriend/@Model.UserInfoe_Id.Id" title="Add friend" class="ipsButton ipsButton_fullWidth ipsButton_small ipsButton_alternate" style="width: 100%;"><i class="fa fa-plus"></i><i class="fa fa-user"></i></a>
+                                                    </div>
+                                                }
+
+
+
+                                            </div>
+                                        </div>
+                                    }
+
+                                    @if (User.Identity.IsAuthenticated && User.Identity.GetUserId() != Model.UserInfoe_Id.Id)
+                                    {
+                                        @*Sending message*@
+                                        <a href=" /Users/Messenger/@User.Identity.GetUserId()" class="ipsGrid_span4 ipsButton ipsButton_alternate ipsButton_small" style="width: 31.914893617021278%; ">
+                                            <i class="fa fa-envelope"></i> <i class="fa fa-caret-right"></i>
+                                        </a>
+                                    }
+                                    else if (User.Identity.IsAuthenticated && User.Identity.GetUserId() == Model.UserInfoe_Id.Id)
+                                    {
+                                        @*Sending message*@
+                                        <a href="/Users/Messenger/@Model.Id" class="ipsGrid_span4 ipsButton ipsButton_alternate ipsButton_small" style="width: 31.914893617021278%; ">
+                                            <i class="fa fa-envelope"></i> <i class="fa fa-caret-right"></i>
+                                        </a>
+
+                                        if (Model.UserInfoe_Id.TagUserName != null)
+                                        {
+                                            <div class="ipsGrid_span4" style="width: 31.914893617021278%;">
+                                                <div class="ipsHide">
+                                                    <a href="" class="ipsButton ipsButton_light ipsButton_small ipsButton_fullWidth" title="@Model.UserInfoe_Id.TagUserName's Profile"><i class="fa fa-user"></i></a>
+                                                </div>
+                                                <div class="">
+                                                    <a href="/Users/FriendRequests/@Model.UserInfoe_Id.Id" class="ipsButton ipsButton_alternate ipsButton_small ipsButton_fullWidth" title="@Model.UserInfoe_Id.TagUserName's Content" style="width:100%">
+                                                        <i class="fa fa-bookmark"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="ipsGrid_span4" style="width: 31.914893617021278%;">
+                                                <div class="ipsHide">
+                                                    <a href="" class="ipsButton ipsButton_light ipsButton_small ipsButton_fullWidth" title="@Model.UserName's Profile"><i class="fa fa-user"></i></a>
+                                                </div>
+                                                <div class="">
+                                                    <a href="/Users/FriendRequests/@Model.UserInfoe_Id.Id" class="ipsButton ipsButton_alternate ipsButton_small ipsButton_fullWidth" title="@Model.UserName's Content" style="width:100%">
+                                                        <i class="fa fa-bookmark"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    }
+
+                                </div>
+
+                                <div id="elProfileStats" class="ipsClearfix">
+                                    @if (Model.UserInfoe_Id.TagUserName != null)
+                                    {
+                                        <div class="ipsResponsive_hidePhone ipsResponsive_block">
+
+                                            <a href="#" class="ipsButton ipsButton_medium ipsButton_important ipsPos_right">
+                                                <span class="ipsResponsive_showDesktop ipsResponsive_inline">&nbsp;See their activity</span>
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="ipsResponsive_hidePhone ipsResponsive_block">
+                                            <a href="#" class="ipsButton ipsButton_medium ipsButton_important ipsPos_right">
+                                                <span class="ipsResponsive_showDesktop ipsResponsive_inline">&nbsp;See their activity</span>
+                                            </a>
+                                        </div>
+                                    }
+
+
+                                    <ul class="ipsList_inline ipsPos_left">
+                                        <li>
+                                            <h4 class="ipsType_minorHeading">Content count</h4>
+                                            @Model.ForumPosts.Count()
+                                        </li>
+
+                                        <li>
+                                            <h4 class="ipsType_minorHeading">Joined</h4>
+                                            <time title="@Model.UserInfoe_Id.RegisteredDate">@System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(Model.UserInfoe_Id.RegisteredDate.Value.Month) @Model.UserInfoe_Id.RegisteredDate.Value.Day.ToString(), @Model.UserInfoe_Id.RegisteredDate.Value.Year.ToString()</time>
+                                        </li>
+
+                                        <li>
+                                            <h4 class="ipsType_minorHeading">Last visited</h4>
+                                            <span>
+                                                @if (time2 == "")
+                                                {
+                                                    <time> Not logged in yet </time>
+                                                }
+                                                else
+                                                {
+                                                    <time @Model.UserInfoe_Id.LastLoginDate>@time2 </time>
+                                                }
+
+                                            </span>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div data-role="profileContent">
+                                <div class="ipsColumns ipsColumns_noSpacing ipsColumns_collapseTablet">
+                                    <div class="ipsColumn ipsColumn_fixed ipsColumn_veryWide ipsAreaBackground" id="elProfileInfoColumn">
+                                        <div class="ipsPad">
+
+                                            <div class="ipsWidget ipsWidget_vertical cProfileSidebarBlock ipsBox ipsSpacer_bottom">
+                                                @if (Model.UserInfoe_Id.TagUserName != null)
+                                                {
+                                                    <h2 class="ipsWidget_title ipsType_reset">About @Model.UserInfoe_Id.TagUserName</h2>
+                                                }
+                                                else
+                                                {
+                                                    <h2 class="ipsWidget_title ipsType_reset">About @Model.UserName</h2>
+                                                }
+
+
+                                                <div class="ipsWidget_inner ipsPad">
+
+                                                    <ul class="ipsDataList ipsDataList_reducedSpacing cProfileFields">
+                                                        <li class="ipsDataItem">
+                                                            <span class="ipsDataItem_generic ipsDataItem_size3 ipsType_break">
+                                                                <strong style="font-weight:bolder">Name</strong>
+                                                            </span>
+                                                            <div class="ipsDataItem_generic ipsType_break" style="font-weight:bolder">
+                                                                @Model.UserInfoe_Id.FirstName @Model.UserInfoe_Id.LastName
+                                                                <br>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+
+                                                    @if (Model.UserInfoe_Id.Country != null && Model.UserInfoe_Id.UserCity != null)
+                                                    {
+                                                        <ul class="ipsDataList ipsDataList_reducedSpacing cProfileFields">
+                                                            <li class="ipsDataItem">
+                                                                <span class="ipsDataItem_generic ipsDataItem_size3 ipsType_break">
+                                                                    <strong style="font-weight:bolder">Location</strong>
+                                                                </span>
+                                                                <div class="ipsDataItem_generic ipsType_break" style="font-weight:bolder">
+                                                                    @Model.UserInfoe_Id.Country.CountryName , @Model.UserInfoe_Id.UserCity
+                                                                    <br>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    }
+
+                                                    @if (Model.UserInfoe_Id.UserType != null && Model.UserInfoe_Id.UserType.UserTypeName != "None")
+                                                    {
+
+                                                        <ul class="ipsDataList ipsDataList_reducedSpacing cProfileFields">
+                                                            <li class="ipsDataItem">
+                                                                <span class="ipsDataItem_generic ipsDataItem_size3 ipsType_break">
+                                                                    <strong style="font-weight:bolder">Rank</strong>
+                                                                </span>
+                                                                <div class="ipsDataItem_generic ipsType_break" style="font-weight:bolder">
+                                                                    @Model.UserInfoe_Id.UserType.UserTypeName
+                                                                    <br>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    }
+                                                    @if (Model.UserInfoe_Id.BirthDate != null)
+                                                    {
+                                                        <ul class="ipsDataList ipsDataList_reducedSpacing cProfileFields">
+                                                            <li class="ipsDataItem">
+                                                                <span class="ipsDataItem_generic ipsDataItem_size3 ipsType_break">
+                                                                    <strong style="font-weight:bolder">BirthDay</strong>
+                                                                </span>
+                                                                <div class="ipsDataItem_generic ipsType_break" style="font-weight:bolder">
+                                                                    @birthday
+                                                                    <br>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    }
+                                                </div>
+
+                                            </div>
+
+                                            @*Recent Profile Visitors*@
+                                            @if (Model.ProfileVisitors_VisitorID != null)
+                                            {
+                                            <div class="ipsWidget ipsWidget_vertical cProfileSidebarBlock ipsBox ipsSpacer_bottom">
+                                                <h2 class="ipsWidget_title ipsType_reset">
+                                                    Recent Profile Visitors
+                                                </h2>
+                                                <div class="ipsWidget_inner ipsPad">
+                                                    <span class="ipsType_light">
+                                                        @Model.ProfileVisitors_VisitorID.Count() profile views
+                                                    </span>
+                                                    @foreach (var visitor in Model.ProfileVisitors_VisitorID)
+                                                    {
+                                                        GeneralHelper helper3 = new GeneralHelper();
+                                                        <ul class="ipsDataList ipsDataList_reducedSpacing ipsSpacer_top">
+
+                                                            @if (visitor.User_UserID.UserInfoe_Id.TagUserName != null)
+                                                            {
+                                                                <li class="ipsDataItem">
+                                                                    <div class="ipsType_center ipsDataItem_icon">
+                                                                        <a href="/Users/Profile/@visitor.User_UserID.Id" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to @visitor.User_UserID.UserInfoe_Id.TagUserName's profile">
+                                                                            <img src="~/FileUpload/UserProfile/@visitor.User_UserID.UserInfoe_Id.PhotoPath" alt="@visitor.User_UserID.UserInfoe_Id.TagUserName" style="max-width:none" itemprop="image">
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="ipsDataItem_main">
+                                                                        <h3 class="ipsDataItem_title">
+                                                                            <a href="/Users/Profile/@visitor.User_UserID.Id" title="Go to @visitor.User_UserID.UserInfoe_Id.TagUserName's profile" class="ipsType_break">
+                                                                                <span>@visitor.User_UserID.UserInfoe_Id.TagUserName</span>
+                                                                            </a>
+                                                                        </h3>
+                                                                        <p class="ipsDataItem_meta ipsType_light">
+                                                                            @helper3.GetTimeAgo(Convert.ToDateTime(visitor.VisitedDate)).ToString()
+                                                                        </p>
+                                                                    </div>
+                                                                </li>
+                                                            }
+                                                            else
+                                                            {
+                                                                <li class="ipsDataItem">
+                                                                    <div class="ipsType_center ipsDataItem_icon">
+                                                                        <a href="/Users/Profile/@visitor.User_UserID.Id" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to @visitor.User_UserID.UserName's profile">
+                                                                            <img src="~/FileUpload/UserProfile/@visitor.User_UserID.UserInfoe_Id.PhotoPath" alt="@visitor.User_UserID.UserName" style="max-width:none" itemprop="image">
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="ipsDataItem_main">
+                                                                        <h3 class="ipsDataItem_title">
+                                                                            <a href="/Users/Profile/@visitor.User_UserID.Id" title="Go to @visitor.User_UserID.UserName's profile" class="ipsType_break">
+                                                                                <span>@visitor.User_UserID.UserName</span>
+                                                                            </a>
+                                                                        </h3>
+                                                                        <p class="ipsDataItem_meta ipsType_light">
+                                                                            @helper3.GetTimeAgo(Convert.ToDateTime(visitor.VisitedDate)).ToString()
+                                                                        </p>
+                                                                    </div>
+                                                                </li>
+                                                            }
+
+
+                                                        </ul>
+                                                    }
+                                                </div>
+                                                </div>
+                                            }
+                                            @*Recent Profile Visitors*@
+
+
+                                            @{
+                                                int totalFriend = Model.Friends_UserID.Count() + Model.Friends_FutureFriendID.Count();
+                                            }
+                                            @if (totalFriend > 0)
+                                            {
+                                                <div class="ipsWidget ipsWidget_vertical cProfileSidebarBlock ipsBox ipsSpacer_bottom" id="elFollowers">
+                                                    <h2 class="ipsWidget_title ipsType_reset">
+
+                                                        @totalFriend Friends
+                                                    </h2>
+
+                                                    <div class="ipsWidget_inner">
+                                                        <ul class="ipsGrid ipsSpacer_top" style="margin-top: 15px;">
+                                                            @foreach (var friend in Model.Friends_UserID)
+                                                            {
+                                                                if (friend.User_FutureFriendID.UserInfoe_Id.TagUserName != null)
+                                                                {
+                                                                    <li class="ipsGrid_span3 ipsType_center " title="@friend.User_FutureFriendID.UserInfoe_Id.TagUserName" style="width: 31.914893617021278%;">
+                                                                        <a href="/Users/Profile/@friend.User_FutureFriendID.UserInfoe_Id.Id" class="ipsUserPhoto ipsUserPhoto_mini" title="Go to @friend.User_FutureFriendID.UserInfoe_Id.TagUserName's profile">
+                                                                            <img src="~/FileUpload/UserProfile/@friend.User_FutureFriendID.UserInfoe_Id.PhotoPath" alt="@friend.User_FutureFriendID.UserInfoe_Id.TagUserName" itemprop="image">
+                                                                        </a>
+                                                                    </li>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <li class="ipsGrid_span3 ipsType_center " title="@friend.User_FutureFriendID..UserName" style="width: 31.914893617021278%;">
+                                                                        <a href="/Users/Profile/@friend.User_FutureFriendID.UserInfoe_Id.Id" class="ipsUserPhoto ipsUserPhoto_mini" title="Go to @friend.User_FutureFriendID..UserName's profile">
+                                                                            <img src="~/FileUpload/UserProfile/@friend.User_FutureFriendID.UserInfoe_Id.PhotoPath" alt="@friend.User_FutureFriendID..UserName" itemprop="image">
+                                                                        </a>
+                                                                    </li>
+                                                                }
+
+                                                            }
+                                                            @foreach (var friend in Model.Friends_FutureFriendID)
+                                                            {
+                                                                if (friend.User_UserID.UserInfoe_Id.TagUserName != null)
+                                                                {
+                                                                    <li class="ipsGrid_span3 ipsType_center " title="@friend.User_UserID.UserInfoe_Id.TagUserName" style="width: 31.914893617021278%;">
+                                                                        <a href="/Users/Profile/@friend.User_UserID.UserInfoe_Id.Id" class="ipsUserPhoto ipsUserPhoto_mini" title="Go to @friend.User_UserID.UserInfoe_Id.TagUserName's profile">
+                                                                            <img src="~/FileUpload/UserProfile/@friend.User_UserID.UserInfoe_Id.PhotoPath" alt="@friend.User_UserID.UserInfoe_Id.TagUserName" itemprop="image">
+                                                                        </a>
+                                                                    </li>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <li class="ipsGrid_span3 ipsType_center " title="@friend.User_UserID.UserName" style="width: 31.914893617021278%;">
+                                                                        <a href="/Users/Profile/@friend.User_UserID.UserInfoe_Id.Id" class="ipsUserPhoto ipsUserPhoto_mini" title="Go to @friend.User_UserID.UserName's profile">
+                                                                            <img src="~/FileUpload/UserProfile/@friend.User_UserID.UserInfoe_Id.PhotoPath" alt="@friend.User_UserID.UserName" itemprop="image">
+                                                                        </a>
+                                                                    </li>
+                                                                }
+
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                    <p class="ipsType_right ipsType_reset ipsPad_half ipsType_small ipsType_light ipsAreaBackground_light">
+                                                        <a href="/Users/UserFriends/@Model.UserInfoe_Id.Id" class="ipsType_blendLinks">See all friends <i class="fa fa-caret-right"></i></a>
+                                                    </p>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <section class="ipsColumn ipsColumn_fluid">
+                                        <div id="elProfileTabs_content" class="ipsTabs_panels ipsPad_double ipsAreaBackground_reset">
+                                            <div id="ipsTabs_elProfileTabs_elProfileTab_activity_panel" class="ipsTabs_panel ipsAreaBackground_reset">
+                                                <div>
+                                                    <ol class="ipsStream ipsList_reset" id="elProfileActivityOverview">
+
+
+                                                        @*Last 4 post like from the user*@
+                                                        @foreach (var item in Model.ForumPostLikes.OrderByDescending(x => x.LikedDate).Take(4))
+                                                        {
+                                                            GeneralHelper HELPER = new GeneralHelper();
+                                                            if (item.User.UserInfoe_Id.TagUserName != null)
+                                                            {
+                                                                <li class="ipsStreamItem ipsStreamItem_expanded ipsStreamItem_actionBlock ipsAreaBackground_reset ipsPad">
+                                                                    <div class="ipsStreamItem_container">
+                                                                        <div class="ipsStreamItem_action ipsType_blendLinks ipsType_light">
+                                                                            &nbsp;<img src="~/Content/blackfyre/images/common/react_like.png" width="20" height="20" data-ipstooltip="" style="max-width:none" title="Like">&nbsp;
+
+                                                                            <a href="/Users/Profile/@item.User.UserInfoe_Id.Id" title="Go to @item.User.UserInfoe_Id.TagUserName's profile" class="ipsType_break" style="color:@item.User.UserInfoe_Id.TagColor">@item.User.UserInfoe_Id.TagUserName</a> reacted to a post in a topic:
+                                                                            <a href="/Home/TopicDetail/@item.ForumPost.ForumPostID" title="Go to @item.ForumPost.ForumPostTitle">@item.ForumPost.ForumPostTitle</a> <span class="ipsType_light">
+                                                                                <time title="@item.LikedDate">@HELPER.GetTimeAgo(item.LikedDate.Value)</time>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            }
+                                                            else
+                                                            {
+                                                                <li class="ipsStreamItem ipsStreamItem_expanded ipsStreamItem_actionBlock ipsAreaBackground_reset ipsPad">
+                                                                    <div class="ipsStreamItem_container">
+                                                                        <div class="ipsStreamItem_action ipsType_blendLinks ipsType_light">
+                                                                            &nbsp;<img src="~/Content/blackfyre/images/common/react_like.png" width="20" height="20" data-ipstooltip="" style="max-width:none" title="Like">&nbsp;
+
+                                                                            <a href="/Users/Profile/@item.User.UserInfoe_Id.Id" title="Go to @item.User.UserName's profile" class="ipsType_break"> <span style="color:#c4c4c4"> @item.User.UserName </span></a> reacted to a post in a topic:
+                                                                            <a href="/Home/TopicDetail/@item.ForumPost.ForumPostID" title="Go to @item.ForumPost.ForumPostTitle">@item.ForumPost.ForumPostTitle</a> <span class="ipsType_light">
+                                                                                <time title="@item.LikedDate">@HELPER.GetTimeAgo(item.LikedDate.Value)</time>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            }
+                                                        }
+
+
+
+
+                                                        @*User last 5 posts*@
+
+                                                        @foreach (var item in Model.ForumPostComments)
+                                                        {
+                                                            if (item != null)
+                                                            {
+                                                                GeneralHelper helper2 = new GeneralHelper();
+                                                                <li class="ipsStreamItem ipsStreamItem_contentBlock ipsStreamItem_expanded ipsAreaBackground_reset ipsPad">
+                                                                    <div class="ipsStreamItem_container ipsClearfix">
+                                                                        <div class="ipsStreamItem_header ipsPhotoPanel ipsPhotoPanel_mini">
+                                                                            <span class="ipsStreamItem_contentType" title="Post"><i class="fa fa-comment"></i></span>
+                                                                            <a href="" class="ipsUserPhoto ipsUserPhoto_mini" title="Go to @item.User.UserName's profile">
+                                                                                <img src="~/FileUpload/UserProfile/@item.User.UserInfoe_Id.PhotoPath" alt="@item.User.UserName" style="max-width:none">
+                                                                            </a>
+                                                                            <div class="">
+                                                                                <h2 class="ipsType_reset ipsStreamItem_title ipsContained_container ipsStreamItem_titleSmall">
+                                                                                    <span class="ipsType_break ipsContained">
+                                                                                        <a href="/Home/TopicDetail/@item.ForumPost.ForumPostID" title="Go to @item.ForumPost.ForumPostTitle post ">@item.ForumPost.ForumPostTitle</a>
+                                                                                    </span>
+                                                                                </h2>
+                                                                                <p class="ipsType_reset ipsStreamItem_status ipsType_blendLinks">
+                                                                                    <span style="color:@item.User.UserInfoe_Id.TagColor">@item.User.UserInfoe_Id.TagUserName</span> replied to
+
+                                                                                    @if (item.ForumPost.User.UserInfoe_Id.TagUserName != null)
+                                                                                    {
+                                                                                        <span style="color:@item.ForumPost.User.UserInfoe_Id.TagColor">@item.ForumPost.User.UserInfoe_Id.TagUserName</span>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <span>@item.ForumPost.User.UserName</span>
+                                                                                    }
+                                                                                    's topic in
+                                                                                    <a href="/Home/ForumsTopic/ @item.ForumPost.ForumTopic.ForumTopicID" title="Go to @item.ForumPost.ForumTopic.ForumTopicName">@item.ForumPost.ForumTopic.ForumTopicName</a>
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="ipsStreamItem_snippet ipsType_break">
+                                                                            <div class="ipsType_richText ipsContained ipsType_medium">
+                                                                                <div style="overflow-wrap: break-word;">
+                                                                                    @Html.Raw(item.Text)
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <ul class="ipsList_inline ipsStreamItem_meta">
+                                                                            <li class="ipsType_light ipsType_medium">
+                                                                                <a href="" class="ipsType_blendLinks">
+                                                                                    <i class="fa fa-clock-o"></i>
+                                                                                    <time title="@item.CreatedTime">@helper2.GetTimeAgo(item.CreatedTime.Value)</time>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li class="ipsType_light ipsType_medium">
+                                                                                <a href="" class="ipsType_blendLinks">
+                                                                                    <i class="fa fa-comment"></i> @item.ForumPost.ForumPostComments.Count() replies
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="ipsReactOverview ipsReactOverview_small ipsType_light">
+                                                                                    <ul>
+                                                                                        <li class="ipsReactOverview_repCount">
+                                                                                            @item.ForumPost.ForumPostLikes.Count() likes
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <a href="">
+
+                                                                                                <img src="~/Content/blackfyre/images/common/react_like.png" style="max-width:none" alt="Like" />
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </li>
+
+                                                                        </ul>
+                                                                    </div>
+                                                                </li>
+                                                            }
+                                                        }
+                                                    </ol>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="ipsBreadcrumb ipsBreadcrumb_1 ipsFaded_withHover">
+
+                        <ul data-role="breadcrumbList">
+                            <li>
+                                <a title="Home" href="/Home/Index">
+                                    <span><i class="fa fa-home"></i> Home <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                @if (Model.UserInfoe_Id.TagUserName != null)
+                                {
+                                    <a href="/Users/Profile/@Model.UserInfoe_Id.Id">
+                                        <span style="color:@Model.UserInfoe_Id.TagColor"> @Model.UserInfoe_Id.TagUserName </span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="/Users/Profile/@Model.Id">
+                                        <span style="color:#c4c4c4"> @Model.UserName </span>
+                                    </a>
+                                }
+
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+

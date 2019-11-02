@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper" ng-controller="ForumPostCtrl">
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Forum Posts
+        </h1>
+        <div class="text-right">
+            <a href="/Admin/Dashboard/Index"><i class="fa fa-dashboard"></i> Home ></a> 
+            <a href="/Admin/ForumTopic/Index"> Forum Posts List</a>
+            <span>{{UserState}}</span>
+        </div>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div ng-show="flgMessage" id="message" class="alert alert-dismissible">
+                    <button type="button" class="close" ng-click="hideMessage()" aria-hidden="true">&times;</button>
+                    <h4><i id="icon" class="icon fa "></i> Alert!</h4>
+                    {{message}}
+                </div>
+
+                <!-- general form elements -->
+                <div class="box box-primary" ng-show="flgTable"> 
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Forum Post List</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-header">
+                        <button type="button" ng-click="addForumPost()" class="btn btn-primary"><i class="fa fa-plus"></i> Add Forum Post</button>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="">
+                            <table id="forumPostTable" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <td>Forum Post Title</td>
+                                        <td>Created By</td>
+                                        <td>Forum Name</td>
+                                        <td>Forum Topic Name</td>
+                                        <td>Created Time</td>
+                                        <td>Action</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in lstForumPosts">
+                                        <td>{{item.ForumPostTitle}}</td>
+                                        <td>{{item.CreatedByUserName}}</td>
+                                        <td>{{item.ForumName}}</td>
+                                        <td>{{item.ForumTopicName}}</td>
+                                        <td>{{item.CreatedTime|date:'MMM d, yyyy HH:mm:ss'}}</td>
+                                        <td>
+                                            <a href="#" class="btn btn-primary btn-circle" ng-click="editForumPost(item)" title="" data-toggle="tooltip" data-placement="top" data-original-title="Edit ForumPost">
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-danger btn-circle" ng-click="deleteForumPost(item)" title="" data-toggle="tooltip" data-placement="top" data-original-title="Delete ForumPost">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.box -->
+
+                </div>
+
+                <div class="box box-primary" ng-show="!flgTable">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Forum Post Add/Update</h3>
+                    </div>
+
+                    <form role="form" id="form1" name="form1" ng-submit="formSubmit()">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="Forum Name">Forum ID</label>
+
+                                        <select id="Forums" name="Forums" class="form-control" ng-selected="true" style="width: 100%;" ng-change="getAllForumTopicByID(model.ForumID)" ng-model="model.ForumID">
+                                            <option ng-repeat="item in lstForums" ng-selected="model.ForumID==item.ForumID" value="{{item.ForumID}}">{{item.ForumName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="Forum Topic Name">Forum Topic ID</label>
+                                        <select id="ForumTopics" name="ForumTopics" class="form-control" style="width: 100%;" required ng-model="model.ForumTopicID">
+                                            <option ng-show="lstTopic!==null" ng-selected="model.ForumTopicID==item.ForumTopicID" ng-repeat="item in lstTopic" value="{{item.ForumTopicID}}">{{item.ForumTopicName}}</option>
+                                            <option ng-show="lstForumTopics!==null" ng-selected="model.ForumTopicID==item.ForumTopicID" ng-repeat="item in lstForumTopics" value="{{item.ForumTopicID}}">{{item.ForumTopicName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <div class="form-group">
+                                        <label for="Forum Name">Post Locked ?</label>
+                                        <br />
+                                        <label class="switch">
+                                            <input type="checkbox" ng-model="model.PostLocked" value="{{model.PostLocked}}" />
+                                            <div class="slider round">
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <div class="form-group">
+                                        <label for="Forum Name">Show Portal ?</label>
+                                        <br />
+                                        <label class="switch">
+                                            <input type="checkbox" ng-model="model.ShowInPortal" value="{{model.ShowInPortal}}" />
+                                            <div class="slider round">
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <div class="form-group">
+                                        <label for="Forum Name">Is Default ?</label>
+                                        <br />
+                                        <label class="switch">
+                                            <input type="checkbox" ng-model="model.IsDefault" value="{{model.IsDefault}}" />
+                                            <div class="slider round">
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="Forum Name">Forum Post Content</label>
+                                        <!-- NOTE: TinyMCE textareas must have id's -->
+                                        <textarea required data-ui-tinymce="tinymceOptions" id="post" data-ng-model="model.ForumPostContent"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="Forum Name">Forum Post Title</label>
+                                    <input type="text" ng-model="model.ForumPostTitle" required class="form-control" id="ForumPostTitle" placeholder="Forum Post Title">
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="button" ng-disabled="!form1.$valid" ng-click="createForumPost(model)" class="btn btn-primary">Submit</button>
+                            <button type="button" ng-click="reset()" class="btn btn-default">Cancel</button>
+                        </div>
+                    </form>
+                    <!-- /.box -->
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- /.content -->
+</div>

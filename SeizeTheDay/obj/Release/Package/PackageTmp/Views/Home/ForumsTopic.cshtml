@@ -1,0 +1,221 @@
+﻿@using Xgteamc1XgTeamModel
+@using Microsoft.AspNet.Identity;
+@model ForumTopic
+@{
+    ViewBag.Title = "ForumTopic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container main-content no-padding">
+    <div id="ipsLayout_contentArea">
+        <main role="main" id="ipsLayout_body" class="ipsLayout_container">
+            <div id="ipsLayout_contentArea">
+                <div id="ipsLayout_contentWrapper">
+                    <nav class="ipsBreadcrumb ipsBreadcrumb_1 ipsFaded_withHover">
+
+                        <ul data-role="breadcrumbList">
+                            <li>
+                                <a title="Home" href="/Home/Index">
+                                    <span><i class="fa fa-home"></i> Home <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Home/Forum">
+                                    <span>Forum <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                @Model.ForumTopicName
+                            </li>
+                        </ul>
+                    </nav>
+                    <div id="ipsLayout_mainArea">
+                        <a id="elContent"></a>
+                        <div class="ipsPageHeader ipsClearfix">
+                            <div class="ipsSpacer_bottom">
+                                <h1 class="ipsType_pageTitle">@Model.ForumTopicName</h1>
+
+                                <div class="ipsType_richText ipsType_normal">
+                                    <p>
+                                        @Model.ForumTopicDescription
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <ul class="ipsToolList ipsToolList_horizontal ipsClearfix ipsSpacer_both">
+                                    <li>
+                                        @*<a href="/Home/CreateNewTopic/@Model.ForumTopicID" class="ipsButton ipsButton_medium ipsButton_fullWidth ipsButton_link" >Create New Topic</a>*@
+                                        <a href="/Home/CreateNewTopic/@Model.ForumTopicID" class="ipsButton ipsButton_medium ipsButton_important">Start new topic</a>
+                                    </li>
+                                </ul>
+                            }
+                            <br />
+
+                            <div class="ipsBox">
+                                <h2 class="ipsType_sectionTitle ipsHide ipsType_medium ipsType_reset ipsClear">@Model.ForumPosts.Count() posts in this forum</h2>
+
+                                <ol class="ipsDataList ipsDataList_zebra ipsClear cForumTopicTable  cTopicList " id="elTable_6a3341ab48a7f19dd5bba85349acf36d">
+                                    @if (Model.ForumPosts.Count() != 0)
+                                    {
+                                        foreach (var post in Model.ForumPosts)
+                                        {
+                                            <li class="ipsDataItem ipsDataItem_responsivePhoto ">
+                                                <div class="ipsDataItem_icon ipsPos_top">
+                                                    &nbsp;
+                                                </div>
+                                                <div class="ipsDataItem_main">
+                                                    <h4 class="ipsDataItem_title ipsContained_container">
+                                                        @if (post.PostLocked == false)
+                                                        {
+                                                            <span><span class="ipsBadge ipsBadge_icon ipsBadge_small ipsBadge_positive" title="Pinned"><i class="fa fa-thumb-tack"></i></span></span>
+                                                        }
+                                                        else if (post.PostLocked == true)
+                                                        {
+                                                            <span>
+                                                                <i class="ipsType_medium fa fa-lock" title="This post is locked !"></i>
+                                                            </span>
+                                                        }
+
+                                                        <span class="ipsType_break ipsContained">
+                                                            <a href="@Url.Action("TopicDetail","Home", new {id= post.ForumPostID}, Request.Url.Scheme)" class="" title="@post.ForumPostTitle">
+                                                                <span>
+                                                                    @post.ForumPostTitle
+                                                                </span>
+                                                            </a>
+                                                        </span>
+                                                    </h4>
+                                                    <div class="ipsDataItem_meta ipsType_reset ipsType_light ipsType_blendLinks">
+                                                        @if (post.User.UserInfoe_Id.TagUserName != null)
+                                                        {
+                                                            <span>
+                                                                By
+                                                                <a href="/Users/Profile/@post.User.UserInfoe_Id.Id" title="Go to @post.User.UserInfoe_Id.TagUserName's profile" class="ipsType_break">
+                                                                    <span style="font-weight: 800; color:@post.User.UserInfoe_Id.TagColor">@post.User.UserInfoe_Id.TagUserName</span>
+                                                                </a>,
+                                                            </span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span>
+                                                                By
+                                                                <a href="/Users/Profile/@post.User.UserInfoe_Id.Id" title="Go to @post.User.UserName's profile" class="ipsType_break">
+                                                                    <span style="font-weight: 800; color:#c4c4c4">@post.User.UserName</span>
+                                                                </a>,
+                                                            </span>
+                                                        }
+                                                        <time title="@post.CreatedTime"> @System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(post.CreatedTime.Value.Month) @post.CreatedTime.Value.Day.ToString(), @post.CreatedTime.Value.Year.ToString()</time>
+                                                    </div>
+                                                </div>
+                                                <ul class="ipsDataItem_stats">
+                                                    <li>
+                                                        <span class="ipsDataItem_stats_number">@post.ForumPostComments.Count()</span>
+                                                        <span class="ipsDataItem_stats_type"> replies</span>
+                                                    </li>
+                                                    <li class="ipsType_light">
+                                                        @if (post.ReviewCount == null)
+                                                        {
+                                                            <span class="ipsDataItem_stats_number">0</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="ipsDataItem_stats_number">@post.ReviewCount</span>
+                                                        }
+                                                        <span class="ipsDataItem_stats_type"> views</span>
+                                                    </li>
+                                                </ul>
+                                                @if (post.User.UserInfoe_Id.TagUserName != null)
+                                                {
+                                                    <ul class="ipsDataItem_lastPoster ipsDataItem_withPhoto ipsType_blendLinks">
+                                                        <li style="margin-left:50px">
+                                                            <a href="/Users/Profile/@post.User.UserInfoe_Id.Id" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to @post.User.UserInfoe_Id.TagUserName's profile">
+                                                                <img src="~/FileUpload/UserProfile/@post.User.UserInfoe_Id.PhotoPath" style="max-width:none !important" alt="@post.User.UserInfoe_Id.TagUserName" itemprop="image">
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" title="Go to @post.User.UserInfoe_Id.TagUserName,'s profile" class="ipsType_break"><span style="color:@post.User.UserInfoe_Id.TagColor">@post.User.UserInfoe_Id.TagUserName</span></a>
+                                                        </li>
+                                                        <li class="ipsType_light">
+                                                            <a href="/Users/Profile/@post.User.UserInfoe_Id.Id" title="" class="ipsType_blendLinks">
+                                                                <time title="@post.CreatedTime">@System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(post.CreatedTime.Value.Month) @post.CreatedTime.Value.Day.ToString(), @post.CreatedTime.Value.Year.ToString()</time>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                }
+                                                else
+                                                {
+                                                    <ul class="ipsDataItem_lastPoster ipsDataItem_withPhoto ipsType_blendLinks">
+                                                        <li style="margin-left:50px">
+                                                            <a href="/Users/Profile/@post.User.UserInfoe_Id.Id" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to @post.User.UserName's profile">
+                                                                <img src="~/FileUpload/UserProfile/@post.User.UserInfoe_Id.PhotoPath" style="max-width:none !important" alt="@post.User.UserName" itemprop="image">
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" title="Go to @post.User.UserName's profile" class="ipsType_break"><span style="color:#c4c4c4">@post.User.UserName</span></a>
+                                                        </li>
+                                                        <li class="ipsType_light">
+                                                            <a href="/Users/Profile/@post.User.UserInfoe_Id.Id" title="" class="ipsType_blendLinks">
+                                                                <time title="@post.CreatedTime">@System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(post.CreatedTime.Value.Month) @post.CreatedTime.Value.Day.ToString(), @post.CreatedTime.Value.Year.ToString()</time>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                }
+                                            </li>
+                                        }
+
+                                    }
+
+                                </ol>
+                            </div>
+                        </div>
+
+
+                        @*Recently Browser*@
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="cWidgetContainer " style="margin-top:10px">
+                                <ul class="ipsList_reset">
+                                    <li class="ipsWidget ipsWidget_horizontal ipsBox">
+                                        <h3 class="ipsType_reset ipsWidget_title">
+                                            Recently Browsing
+                                            &nbsp;&nbsp;<span class="ipsType_light ipsType_unbold ipsType_medium">1 member</span>
+                                        </h3>
+                                        <div class="ipsWidget_inner ipsPad">
+                                            <ul class="ipsList_inline ipsList_csv ipsList_noSpacing ipsType_normal">
+                                                    <li>
+                                                        <a href="/Users/Profile/@User.Identity.GetUserId()" title="Go to @User.Identity.GetUserName()'s profile"><span style="color:#c4c4c4">@User.Identity.GetUserName()</span></a>
+                                                    </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                    <nav class="ipsBreadcrumb ipsBreadcrumb_ ipsFaded_withHover">
+
+
+                        <ul data-role="breadcrumbList">
+                            <li>
+                                <a title="Home" href="/Home/Index">
+                                    <span><i class="fa fa-home"></i> Home <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Home/Forum">
+                                    <span>Forum <i class="fa fa-angle-right"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                @Model.ForumTopicName
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+

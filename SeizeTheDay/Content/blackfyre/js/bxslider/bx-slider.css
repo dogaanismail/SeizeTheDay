@@ -1,0 +1,400 @@
+/**
+ * BxSlider v4.1.2 - Fully loaded, responsive content slider
+ * http://bxslider.com
+ *
+ * Written by: Steven Wanderski, 2014
+ * http://stevenwanderski.com
+ * (while drinking Belgian ales and listening to jazz)
+ *
+ * CEO and founder of bxCreative, LTD
+ * http://bxcreative.com
+ */
+
+
+/** RESET AND LAYOUT
+===================================*/
+
+.bx-wrapper {
+	position: relative;
+	margin: 0 auto 0px;
+	padding: 0;
+	*zoom: 1;
+}
+
+.bx-wrapper img {
+	min-width: 100%;
+	display: block;
+	width: 100%;
+}
+
+/** THEME
+===================================*/
+
+.bx-wrapper .bx-viewport {
+	background: #292c33;
+
+	/*fix other elements on the page moving (on Chrome)*/
+	-webkit-transform: translatez(0);
+	-moz-transform: translatez(0);
+    	-ms-transform: translatez(0);
+    	-o-transform: translatez(0);
+    	transform: translatez(0);
+}
+
+.bx-wrapper .bx-pager,
+.bx-wrapper .bx-controls-auto {
+	position: relative;
+	bottom: 0px;
+	max-width: 210px;
+	left: 17%;
+	width: auto;
+	display: block;
+	-webkit-transform: skew(339deg);
+    transform: skew(339deg);
+}
+.bx-wrapper .bx-pager a{
+	-webkit-transform: skew(-339deg);
+    transform: skew(-339deg);
+}
+
+
+/* LOADER */
+
+.bx-wrapper .bx-loading {
+	min-height: 50px;
+	background: url(../img/bx_loader.gif) center center no-repeat #fff;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2000;
+}
+
+/* PAGER */
+
+.bx-wrapper .bx-pager {
+	text-align: center;
+	font-size: .85em;
+	font-family: Arial;
+	font-weight: bold;
+	color: #666;
+	height: 40px;
+	margin-top:-1px;
+	padding: 0px 15px;
+}
+
+.bx-wrapper .bx-pager .bx-pager-item,
+.bx-wrapper .bx-controls-auto .bx-controls-auto-item {
+	display: inline-block;
+	*zoom: 1;
+	*display: inline;
+}
+
+.bx-wrapper .bx-pager.bx-default-pager a {
+	display: block;
+    width: 35px;
+	height: 100%;
+	/* margin: 0 5px; */
+	outline: 0;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 0px;
+	padding: 9px 10px;
+	overflow:visible;
+	font-size:14px;
+	color:#fff;
+	font-family:"Oswald";
+	font-weight: normal;
+}
+.bx-wrapper .bx-pager.bx-default-pager a:before{
+	content:'';
+	/background: red;
+	height: 100%;
+	width: 100%;
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: -1;
+	-webkit-transform: skew(-339deg);
+	transform: skew(339deg);
+}
+
+.bx-wrapper .bx-pager.bx-default-pager a:hover:before,
+.bx-wrapper .bx-pager.bx-default-pager a.active:before{
+	/background: #000;
+}
+
+/* DIRECTION CONTROLS (NEXT / PREV) */
+
+.bx-wrapper .bx-prev {
+	left: 10px;
+	background: url(../img/controls.png) no-repeat 0 -32px;
+}
+
+.bx-wrapper .bx-next {
+	right: 10px;
+	background: url(../img/controls.png) no-repeat -43px -32px;
+}
+
+.bx-wrapper .bx-prev:hover {
+	background-position: 0 0;
+}
+
+.bx-wrapper .bx-next:hover {
+	background-position: -43px 0;
+}
+
+.bx-wrapper .bx-controls-direction a {
+	position: absolute;
+	top: 50%;
+	margin-top: -16px;
+	outline: 0;
+	width: 32px;
+	height: 32px;
+	text-indent: -9999px;
+	z-index: 9999;
+}
+
+.bx-wrapper .bx-controls-direction a.disabled {
+	display: none;
+}
+
+/* AUTO CONTROLS (START / STOP) */
+
+.bx-wrapper .bx-controls-auto {
+	text-align: center;
+}
+
+.bx-wrapper .bx-controls-auto .bx-start {
+	display: block;
+	text-indent: -9999px;
+	width: 10px;
+	height: 11px;
+	outline: 0;
+	background: url(../img/controls.png) -86px -11px no-repeat;
+	margin: 0 3px;
+}
+
+.bx-wrapper .bx-controls-auto .bx-start:hover,
+.bx-wrapper .bx-controls-auto .bx-start.active {
+	background-position: -86px 0;
+}
+
+.bx-wrapper .bx-controls-auto .bx-stop {
+	display: block;
+	text-indent: -9999px;
+	width: 9px;
+	height: 11px;
+	outline: 0;
+	background: url(../img/controls.png) -86px -44px no-repeat;
+	margin: 0 3px;
+}
+
+.bx-wrapper .bx-controls-auto .bx-stop:hover,
+.bx-wrapper .bx-controls-auto .bx-stop.active {
+	background-position: -86px -33px;
+}
+
+/* PAGER WITH AUTO-CONTROLS HYBRID LAYOUT */
+
+.bx-wrapper .bx-controls.bx-has-controls-auto.bx-has-pager .bx-pager {
+	text-align: left;
+	width: 80%;
+}
+
+.bx-wrapper .bx-controls.bx-has-controls-auto.bx-has-pager .bx-controls-auto {
+	right: 0;
+	width: 35px;
+}
+
+/* IMAGE CAPTIONS */
+
+.bx-wrapper .bx-caption {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: #666\9;
+	background: rgba(80, 80, 80, 0.75);
+	width: 100%;
+}
+.bxslider li{
+	min-height:340px;
+	max-height:340px;
+	overflow:hidden;
+}
+.bx-wrapper .bx-caption span {
+	color: #fff;
+	font-family: Arial;
+	display: block;
+	font-size: .85em;
+	padding: 10px;
+}
+
+.slider-text-wrapper{
+	width: 260px;
+	height: 341px;
+	padding:20px 30px;
+	position:absolute;
+	left:45%;
+	z-index:9;
+	font-size:34px;
+	color:#fff;
+	font-weight:500;
+	text-transform:uppercase;
+	margin-top:0px;
+	font-family: "Oswald";
+	//-webkit-transform: skew(350deg);
+	//transform: skew(350deg);
+}
+.slider-text-wrapper a{
+	font-weight:500;
+	color:white;
+}
+
+.slider-text-wrapper a:hover, 
+.slider_text a:hover{
+	opacity:0.8 !important;
+}
+.slider_text{
+	//-webkit-transform: skew(-350deg);
+	//transform: skew(-350deg);
+	font-size: 32px;
+}
+.next_slide_text{
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	z-index:9;
+	background-color: #212528;
+	-webkit-box-shadow: inset 0 1px 1px rgba(255,255,255,.2);
+	-moz-box-shadow: inset 0 1px 1px rgba(255,255,255,.2);
+	box-shadow: inset 0 1px 1px rgba(255,255,255,.2);
+	border: solid 1px #000;
+	height:40px;
+	width:50%;
+	padding: 6px 15px;
+}
+.next_slide_text .fa-bolt{
+	font-size:22px;
+	margin-right:5px;
+	top: 2px;
+	position: relative;
+	left: -2px;
+}
+.next_slide_text strong{
+	color:#eee;
+	font-size:16px;
+}
+.next_slide_text_inner{
+	color:#fff;
+	display:inline-block;
+	font-size:14px;
+	margin-left:5px;
+}
+.slider-wrapper{
+	position: relative;
+	margin-top: 0px;
+	display:none;
+}
+.net{
+	position:absolute;
+	width:50%;
+	height:340px;
+	left:50%;
+	z-index:8;
+	background:url(../img/net.png) repeat top left;
+}
+.bx-next-out:hover .next-line{
+	background:#eee;
+}
+.bx-next-out:hover .next-arrow{
+	border-left:30px solid #eee;
+}
+
+.bx-next{
+	height:100%;
+	display: block;
+	position: absolute;
+	top: 0px;
+	right: -31px;
+}
+.next-arrow{
+	width: 0;
+	height: 0;
+	border-top: 30px solid transparent;
+	border-bottom: 30px solid transparent;
+	top: 38%;
+	position:relative;
+	z-index: 9;
+left: 5px;
+}
+
+.next-arrow:before{
+	display: block;
+	content: "\f054";
+	font-family: FontAwesome;
+	font-size: 14px;
+	position: absolute;
+	top: -9px;
+	left: -24px;
+	color: white;
+}
+
+.bx-next:hover .next-arrow:before{
+	color: #25c2f5;
+}
+
+.slider-left-wall, .slider-right-wall{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:10px;
+	height:100%;
+	z-index:9;
+}
+.slider-right-wall{
+	right:0px;
+	left:auto;
+}
+
+.slider-pick{
+	position: absolute;
+	left: -25px;
+	top: 20%;
+}
+
+.bx-controls{
+	height:40px;
+	z-index:9;
+	position:relative;
+}
+.bx-controls:before{
+	background:url(../../images/common/net2.png) repeat top left;
+	content:'';
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	position:absolute;
+}
+
+.bx-wrapper .bx-pager, .bx-controls, .slider-left-wall, .slider-right-wall{
+	-webkit-box-shadow: inset 0 1px 1px rgba(255,255,255,.2);
+	-moz-box-shadow: inset 0 1px 1px rgba(255,255,255,.2);
+	box-shadow: inset 0 1px 1px rgba(255,255,255,.2);
+	border: solid 1px #000;
+	background-image: -webkit-linear-gradient(bottom, #1a1b1f, #212528);
+	background-image: -moz-linear-gradient(bottom, #1a1b1f, #212528);
+	background-image: -o-linear-gradient(bottom, #1a1b1f, #212528);
+	background-image: linear-gradient(to top, #1a1b1f, #212528);
+}
+.slider_com_wrap{
+	font-size: 16px;
+	margin-top:15px;
+}
+.slider_com_wrap .fa-comments{
+	font-size: 28px;
+	margin-right:5px;
+}
