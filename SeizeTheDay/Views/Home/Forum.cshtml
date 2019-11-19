@@ -116,7 +116,7 @@
                                                                 }
 
 
-                                                                <li class="ipsType_light">
+                                                                <li style="margin-left:50px" class="ipsType_light">
                                                                     <a href="" title="Go to last post" class="ipsType_blendLinks">
                                                                         <time title="@lastPost.CreatedTime">@System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(topic.CreatedTime.Value.Month) @lastPost.CreatedTime.Value.Day.ToString(), @lastPost.CreatedTime.Value.Year.ToString()</time>
                                                                     </a>
@@ -149,7 +149,7 @@
                                     <h3 class="ipsType_reset ipsWidget_title">
                                         Who's Online
                                         &nbsp;&nbsp;
-                                        @if (Model.OnlineUsersCount !=null)
+                                        @if (Model.OnlineUsersCount != null)
                                         {
                                             <span class="ipsType_light ipsType_unbold ipsType_medium">@Model.OnlineUsersCount Members, 0 Anonymous</span>
                                         }
@@ -162,7 +162,7 @@
                                     </h3>
                                     <div class="ipsWidget_inner ipsPad">
                                         <ul class="ipsList_inline ipsList_csv ipsList_noSpacing ipsType_normal">
-                                            @if (Model.OnlineUsers !=null)
+                                            @if (Model.OnlineUsers != null)
                                             {
                                                 foreach (var onlineUsers in Model.OnlineUsers)
                                                 {
@@ -191,7 +191,7 @@
                                     <h3 class="ipsType_reset ipsWidget_title">
                                         Who Was Online
                                         &nbsp;&nbsp;
-                                        @if (Model.OfflineUsersCount !=null)
+                                        @if (Model.OfflineUsersCount != null)
                                         {
                                             <span class="ipsType_light ipsType_unbold ipsType_medium">@Model.OfflineUsersCount Users were Online in the Last 24 Hours</span>
                                         }
@@ -203,7 +203,7 @@
                                     </h3>
                                     <div class="ipsWidget_inner ipsPad">
                                         <ul class="ipsList_inline ipsList_csv ipsList_noSpacing">
-                                            @if (Model.OfflineUsers !=null)
+                                            @if (Model.OfflineUsers != null)
                                             {
                                                 foreach (var offlineUsers in Model.OfflineUsers)
                                                 {
@@ -239,41 +239,41 @@
                                                 <span class="ipsType_light ipsType_medium">Most Online</span>
                                             </div>
                                             <div class="ipsGrid_span4 ipsType_left ipsPhotoPanel ipsPhotoPanel_mini cNewestMember" style="width: 31.914893617021278%;">
-                                                @if (Model.LastUser !=null)
+                                                @if (Model.LastUser != null)
                                                 {
 
                                                     if (Model.LastUser.TagUserName != null)
-                                                {
-                                                    <a href="/Users/Profile/@Model.LastUser.Id" class="ipsUserPhoto ipsUserPhoto_mini" title="Go to @Model.LastUser.TagUserName's profile">
-                                                        <img src="~/FileUpload/UserProfile/@Model.LastUser.PhotoPath" style="max-width:none" alt="@Model.LastUser.TagUserName" itemprop="image">
-                                                    </a>
-                                                    <div>
-                                                        <span class="ipsType_minorHeading">Newest Member</span><br>
-                                                        <span class="ipsType_normal">
-                                                            <a href="/Users/Profile/@Model.LastUser.Id" title="Go to @Model.LastUser.TagUserName's profile" class="ipsType_break"><span style="color:@Model.LastUser.TagColor">@Model.LastUser.TagUserName</span></a>
-                                                        </span><br>
-                                                        <span class="ipsType_small ipsType_light">
-                                                            Joined
-                                                            <time title="@Model.LastUser.RegisteredDate">@Model.LastUser.RegisteredDate</time>
-                                                        </span>
-                                                    </div>
-                                                }
-                                                else
-                                                {
-                                                    <a href="/Users/Profile/@Model.LastUser.Id" class="ipsUserPhoto ipsUserPhoto_mini" title="Go to @Model.LastUser.UserName's profile">
-                                                        <img src="~/FileUpload/UserProfile/@Model.LastUser.PhotoPath" style="max-width:none" alt="@Model.LastUser.UserName" itemprop="image">
-                                                    </a>
-                                                    <div>
-                                                        <span class="ipsType_minorHeading">Newest Member</span><br>
-                                                        <span class="ipsType_normal">
-                                                            <a href="/Users/Profile/@Model.LastUser.Id" title="Go to @Model.LastUser.UserName's profile" class="ipsType_break"><span style="color:#c4c4c4">@Model.LastUser.UserName</span></a>
-                                                        </span><br>
-                                                        <span class="ipsType_small ipsType_light">
-                                                            Joined
-                                                            <time datetime="2019-02-02T17:28:06Z" title="@Model.LastUser.RegisteredDate">@Model.LastUser.RegisteredDate</time>
-                                                        </span>
-                                                    </div>
-                                                }
+                                                    {
+                                                        <a href="/Users/Profile/@Model.LastUser.Id" class="ipsUserPhoto ipsUserPhoto_mini" title="Go to @Model.LastUser.TagUserName's profile">
+                                                            <img src="~/FileUpload/UserProfile/@Model.LastUser.PhotoPath" style="max-width:none" alt="@Model.LastUser.TagUserName" itemprop="image">
+                                                        </a>
+                                                        <div>
+                                                            <span class="ipsType_minorHeading">Newest Member</span><br>
+                                                            <span class="ipsType_normal">
+                                                                <a href="/Users/Profile/@Model.LastUser.Id" title="Go to @Model.LastUser.TagUserName's profile" class="ipsType_break"><span style="color:@Model.LastUser.TagColor">@Model.LastUser.TagUserName</span></a>
+                                                            </span><br>
+                                                            <span class="ipsType_small ipsType_light">
+                                                                Joined
+                                                                <time title="@Model.LastUser.RegisteredDate">@Model.LastUser.RegisteredDate</time>
+                                                            </span>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="/Users/Profile/@Model.LastUser.Id" class="ipsUserPhoto ipsUserPhoto_mini" title="Go to @Model.LastUser.UserName's profile">
+                                                            <img src="~/FileUpload/UserProfile/@Model.LastUser.PhotoPath" style="max-width:none" alt="@Model.LastUser.UserName" itemprop="image">
+                                                        </a>
+                                                        <div>
+                                                            <span class="ipsType_minorHeading">Newest Member</span><br>
+                                                            <span class="ipsType_normal">
+                                                                <a href="/Users/Profile/@Model.LastUser.Id" title="Go to @Model.LastUser.UserName's profile" class="ipsType_break"><span style="color:#c4c4c4">@Model.LastUser.UserName</span></a>
+                                                            </span><br>
+                                                            <span class="ipsType_small ipsType_light">
+                                                                Joined
+                                                                <time datetime="2019-02-02T17:28:06Z" title="@Model.LastUser.RegisteredDate">@Model.LastUser.RegisteredDate</time>
+                                                            </span>
+                                                        </div>
+                                                    }
                                                 }
                                             </div>
                                         </div>
@@ -305,7 +305,7 @@
                                     <h3 class="ipsWidget_title ipsType_reset">New Posts</h3>
                                     <div class="ipsPad_half ipsWidget_inner">
                                         <ul class="ipsDataList ipsDataList_reducedSpacing">
-                                            @if (Model.NewPosts !=null)
+                                            @if (Model.NewPosts != null)
                                             {
                                                 foreach (var newPost in Model.NewPosts)
                                                 {
@@ -432,52 +432,52 @@
                                     </div>
                                 </li>
                                 @*
-                                    DISCORD USER
-                                    <li class="ipsWidget ipsWidget_vertical ipsBox">
-                                    <h3 class="ipsWidget_title ipsType_reset">
-                                        Discord Server: Xtreme Gamers
-                                        <div class="ipsPos_right">@ViewBag.DisCordUserCount </div>
-                                    </h3>
-                                    <div class="ipsPad_half ipsWidget_inner">
-                                        <ul class="ipsDataList ipsDataList_reducedSpacing">
-                                            @foreach (var userDiscord in ViewBag.DisCordUser as List<TblUserMast>)
-                                            {
-                                                <li class="ipsDataItem">
-                                                    <style>
-                                                        .ipsOnlineStatus_idle {
-                                                            color: #d7d000;
+                                        DISCORD USER
+                                        <li class="ipsWidget ipsWidget_vertical ipsBox">
+                                        <h3 class="ipsWidget_title ipsType_reset">
+                                            Discord Server: Xtreme Gamers
+                                            <div class="ipsPos_right">@ViewBag.DisCordUserCount </div>
+                                        </h3>
+                                        <div class="ipsPad_half ipsWidget_inner">
+                                            <ul class="ipsDataList ipsDataList_reducedSpacing">
+                                                @foreach (var userDiscord in ViewBag.DisCordUser as List<TblUserMast>)
+                                                {
+                                                    <li class="ipsDataItem">
+                                                        <style>
+                                                            .ipsOnlineStatus_idle {
+                                                                color: #d7d000;
+                                                            }
+                                                        </style>
+                                                        <div class="ipsDataItem_icon ipsPos_middle ipsType_center ipsType_large ipsType_light">
+                                                            <strong class="ipsOnlineStatus ipsOnlineStatus_dnd"><i class="fa fa-circle"></i></strong>
+                                                        </div>
+                                                        <div class="ipsDataItem_icon ipsPos_top">
+                                                            <div class="ipsUserPhoto ipsUserPhoto_tiny">
+                                                                <img src="/FileUpload/UserProfile/@userDiscord.PhotoPath" style="max-width:none" alt="@userDiscord.UserName" itemprop="image">
+                                                            </div>
+                                                        </div>
+                                                        @if (userDiscord.TagUserName != null)
+                                                        {
+                                                            <div class="ipsDataItem_main ipsPos_middle" style="padding:12px 10px;">
+                                                                <div class="ipsType_large"> <span style="color:@userDiscord.TagColor">@userDiscord.TagUserName </span></div>
+                                                            </div>
                                                         }
-                                                    </style>
-                                                    <div class="ipsDataItem_icon ipsPos_middle ipsType_center ipsType_large ipsType_light">
-                                                        <strong class="ipsOnlineStatus ipsOnlineStatus_dnd"><i class="fa fa-circle"></i></strong>
-                                                    </div>
-                                                    <div class="ipsDataItem_icon ipsPos_top">
-                                                        <div class="ipsUserPhoto ipsUserPhoto_tiny">
-                                                            <img src="/FileUpload/UserProfile/@userDiscord.PhotoPath" style="max-width:none" alt="@userDiscord.UserName" itemprop="image">
-                                                        </div>
-                                                    </div>
-                                                    @if (userDiscord.TagUserName != null)
-                                                    {
-                                                        <div class="ipsDataItem_main ipsPos_middle" style="padding:12px 10px;">
-                                                            <div class="ipsType_large"> <span style="color:@userDiscord.TagColor">@userDiscord.TagUserName </span></div>
-                                                        </div>
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="ipsDataItem_main ipsPos_middle" style="padding:12px 10px;">
-                                                            <div class="ipsType_large"> <span style="color:#c4c4c4">@userDiscord.UserName</span></div>
-                                                        </div>
-                                                    }
+                                                        else
+                                                        {
+                                                            <div class="ipsDataItem_main ipsPos_middle" style="padding:12px 10px;">
+                                                                <div class="ipsType_large"> <span style="color:#c4c4c4">@userDiscord.UserName</span></div>
+                                                            </div>
+                                                        }
 
-                                                </li>
-                                            }
+                                                    </li>
+                                                }
 
-                                        </ul>
-                                        <a class="ipsPos_right ipsSpacer_top ipsButton ipsButton_normal ipsButton_small" href="https://discord.gg/DCba67" target="_blank">Join Us!</a>
+                                            </ul>
+                                            <a class="ipsPos_right ipsSpacer_top ipsButton ipsButton_normal ipsButton_small" href="https://discord.gg/DCba67" target="_blank">Join Us!</a>
 
-                                        <div class="ipsClear"></div>
-                                    </div>
-                                </li>*@
+                                            <div class="ipsClear"></div>
+                                        </div>
+                                    </li>*@
                             </ul>
                         </div>
                     </div>
