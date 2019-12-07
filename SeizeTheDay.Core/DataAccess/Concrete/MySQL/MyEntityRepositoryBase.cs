@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 
 namespace SeizeTheDay.Core.Concrete.MySQL
 {
-    public class MyEntityRepositoryBase<TEntity, TContext> : MyEntityRepository<TEntity>
+    public class MyEntityRepositoryBase<TEntity, TContext> : IMyEntityRepository<TEntity>
         where TEntity : EntityObject, new()  //EntityObject is used for MySQL
         where TContext : ObjectContext, new()  //ObjectContext is used for MySQL
     {

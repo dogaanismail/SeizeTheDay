@@ -3,7 +3,7 @@ using Xgteamc1XgTeamModel;
 
 namespace SeizeTheDay.DataAccess.Abstract.MySQL
 {
-    public interface IChatBoxDal :  MyEntityRepository<ChatBox>
+    public interface IChatBoxDal :  IMyEntityRepository<ChatBox>
     {
     }
 }

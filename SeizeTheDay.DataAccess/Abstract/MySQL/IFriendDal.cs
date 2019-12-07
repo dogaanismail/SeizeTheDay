@@ -3,7 +3,7 @@ using Xgteamc1XgTeamModel;
 
 namespace SeizeTheDay.DataAccess.Abstract.MySQL
 {
-    public interface IFriendDal : MyEntityRepository<Friend>
+    public interface IFriendDal : IMyEntityRepository<Friend>
     {
 
     }

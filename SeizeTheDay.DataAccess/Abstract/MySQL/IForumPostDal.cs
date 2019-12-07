@@ -3,7 +3,7 @@ using Xgteamc1XgTeamModel;
 
 namespace SeizeTheDay.DataAccess.Abstract.MySQL
 {
-    public interface IForumPostDal: MyEntityRepository<ForumPost>
+    public interface IForumPostDal: IMyEntityRepository<ForumPost>
     {
     }
 }

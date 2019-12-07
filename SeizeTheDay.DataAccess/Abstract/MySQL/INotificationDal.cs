@@ -3,7 +3,7 @@ using Xgteamc1XgTeamModel;
 
 namespace SeizeTheDay.DataAccess.Abstract.MySQL
 {
-    public interface INotificationDal : MyEntityRepository<Notification>
+    public interface INotificationDal : IMyEntityRepository<Notification>
     {
 
     }

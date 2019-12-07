@@ -161,7 +161,7 @@
     <Compile Include="CrossCuttingConcerns\Security\Web\AuthenticationHelper.cs" />
     <Compile Include="CrossCuttingConcerns\Security\Web\SecurityUtilities.cs" />
     <Compile Include="CrossCuttingConcerns\Validation\FluentValidation\ValidatorTool.cs" />
-    <Compile Include="DataAccess\Abstract\MySQL\MyEntityRepository.cs" />
+    <Compile Include="DataAccess\Abstract\MySQL\IMyEntityRepository.cs" />
     <Compile Include="DataAccess\Abstract\MySQL\IMyQueryableRepository.cs" />
     <Compile Include="DataAccess\Concrete\EntityFramework\EfEntityRepositoryBase.cs" />
     <Compile Include="DataAccess\Concrete\EntityFramework\EfQueryableRepository.cs" />

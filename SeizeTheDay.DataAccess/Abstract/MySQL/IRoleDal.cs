@@ -3,7 +3,7 @@ using Xgteamc1XgTeamModel;
 
 namespace SeizeTheDay.DataAccess.Abstract.MySQL
 {
-    public interface IRoleDal : MyEntityRepository<Role>
+    public interface IRoleDal : IMyEntityRepository<Role>
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace SeizeTheDay.Core.DataAccess.Abstract.MySQL
 {
-    public interface MyEntityRepository<T> where T: EntityObject, new()  //EntityObject is used for MySQL
+    public interface IMyEntityRepository<T> where T: EntityObject, new()  //EntityObject is used for MySQL
     {
         List<T> GetList();
         void Add(T entity);

@@ -3,7 +3,7 @@ using Xgteamc1XgTeamModel;
 
 namespace SeizeTheDay.DataAccess.Abstract.MySQL
 {
-    public interface IPortalMessagesDal: MyEntityRepository<PortalMessage>
+    public interface IPortalMessagesDal: IMyEntityRepository<PortalMessage>
     {
 
     }
