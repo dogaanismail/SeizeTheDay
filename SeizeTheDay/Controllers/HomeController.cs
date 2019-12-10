@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using SeizeTheDay.Business.Concrete.IdentityManagers;
 using Microsoft.Owin.Security;
 using SeizeTheDay.FilterAttributes;
+using SeizeTheDay.Core.CrossCuttingConcerns.Caching.Microsoft;
+using SeizeTheDay.Core.Aspects.Postsharp.CacheAspects;
 
 namespace SeizeTheDay.Controllers
 {
@@ -64,6 +66,7 @@ namespace SeizeTheDay.Controllers
 
         [AllowAnonymous]
         [Log]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
         public ActionResult Index()
         {
             IndexPageModel model = new IndexPageModel
@@ -85,6 +88,7 @@ namespace SeizeTheDay.Controllers
         }
 
         [AllowAnonymous]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
         public ActionResult Forum()
         {
 
@@ -107,6 +111,7 @@ namespace SeizeTheDay.Controllers
         }
 
         [AllowAnonymous]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
         public ActionResult ForumsTopic(int id)
         {
             ForumTopic topic = _forumTopicService.SingleStringIncludeWithExp(id);
@@ -116,6 +121,7 @@ namespace SeizeTheDay.Controllers
         }
 
         [AllowAnonymous]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
         public ActionResult TopicDetail(int id)
         {
             ViewBag.PostID = id;
@@ -314,7 +320,7 @@ namespace SeizeTheDay.Controllers
 
         #region Staff
         [AllowAnonymous]
-        [OutputCache(Duration = 60)]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
         public ActionResult Staff()
         {
             return View(_userTypeService.GetListWithInclude().Where(x => x.UserTypeName != "None").ToList());

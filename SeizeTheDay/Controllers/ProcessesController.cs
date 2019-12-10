@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using SeizeTheDay.Business.Abstract.MySQL;
+using SeizeTheDay.Core.Aspects.Postsharp.CacheAspects;
+using SeizeTheDay.Core.CrossCuttingConcerns.Caching.Microsoft;
 using SeizeTheDay.Entities.EntityClasses.MySQL;
 using SeizeTheDay.Ninject.Factories;
 using System;
@@ -19,6 +21,7 @@ namespace SeizeTheDay.Controllers
         private readonly IPortalMessagesService _portalMessagesService = InstanceFactory.GetInstance<IPortalMessagesService>();
 
         //Portal Messages get api
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
         public IHttpActionResult Get()
         {
             List<SeizeTheDay.Entities.EntityClasses.MySQL.PortalMessages> messages = new List<SeizeTheDay.Entities.EntityClasses.MySQL.PortalMessages>();
@@ -283,6 +286,7 @@ namespace SeizeTheDay.Controllers
         private readonly IForumPostService _postService = InstanceFactory.GetInstance<IForumPostService>();
         private readonly Dictionary<string, object> res = new Dictionary<string, object>();
 
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
         public IHttpActionResult Get(int id)
         {
             Xgteamc1XgTeamModel.ForumPost getPost = _postService.SingleInclude(id);
@@ -358,6 +362,7 @@ namespace SeizeTheDay.Controllers
     {
         private readonly IForumPostCommentService _commentService = InstanceFactory.GetInstance<IForumPostCommentService>();
 
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
         public IHttpActionResult Get(int id)
         {
             List<Entities.EntityClasses.MySQL.PostComments> commentInf = _commentService.StringInclude(id).Select(x => new Entities.EntityClasses.MySQL.PostComments()
@@ -464,6 +469,7 @@ namespace SeizeTheDay.Controllers
         private readonly INotificationService _notificationService = InstanceFactory.GetInstance<INotificationService>();
         private readonly IUserService _userService = InstanceFactory.GetInstance<IUserService>();
 
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
         public IHttpActionResult Get()
         {
             Xgteamc1XgTeamModel.User getUser = _userService.GetUserNotifications(User.Identity.GetUserName());
@@ -545,6 +551,7 @@ namespace SeizeTheDay.Controllers
         private readonly IUserService _userService = InstanceFactory.GetInstance<IUserService>();
         private readonly IChatService _chatService = InstanceFactory.GetInstance<IChatService>();
 
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
         public IHttpActionResult Get()
         {
             Xgteamc1XgTeamModel.User getUser = _userService.GetUserNotifications(User.Identity.GetUserName());

@@ -6150,13 +6150,6 @@ html[dir="ltr"] .ipsComposeArea_withPhoto .ipsComposeArea_editor::after {
     text-shadow: none;
 }
 
-.cke_toolgroup span.cke_button_icon[style*="icons.png"] {
-    background-image: url('https://forum.vultaic.com/uploads/set_resources_14/08288993a29fdc8c9953f75f68b949f5_icons.png') !important;
-}
-
-.cke .cke_hidpi .cke_top .cke_toolbox span.cke_button_icon[style*="icons_hidpi.png"] {
-    background-image: url('https://forum.vultaic.com/uploads/set_resources_14/08288993a29fdc8c9953f75f68b949f5_icons_hidpi.png') !important;
-}
 
 .cke a.cke_button, .cke a.cke_combo_button, .cke .cke_combo_text, .cke .cke_combo_open, .cke .cke_combo_arrow {
     cursor: pointer;
@@ -8793,7 +8786,6 @@ html[dir="ltr"] #elSearch input[type="search"] {
         height: 100%;
         display: block;
         position: absolute;
-        background: linear-gradient(180deg, rgba(20, 21, 27, 0.5) 0%, #14151B 100%), url(https://forum.vultaic.com/uploads/monthly_2018_05/Filter-dot.png.e179b085f8d3c84d100b7b0d4750096d.png);
         z-index: 1;
     }
 
@@ -9870,7 +9862,6 @@ html[dir="ltr"] .ipsToggle.ipsToggle_off span, html[dir="ltr"] .ipsToggle.ipsTog
 }
 
 .ipsApp select:not([multiple]) {
-    background-image: url( "https://forum.vultaic.com/uploads/set_resources_14/84c1e40ea0e759e3f1505eb1788ddf3c_select_dropdown_rtl.png" ), -moz-linear-gradient(top, #262525 0%, #262525 100%) !important;
     background-position: right center;
     background-size: 18px 9px, 100% 100%;
     background-repeat: no-repeat, repeat;
@@ -10815,14 +10806,6 @@ html[dir="ltr"] .ipsComposeArea_withPhoto .ipsComposeArea_editor::after {
 
 .cke .cke_combo_text, .cke .cke_button_label {
     text-shadow: none;
-}
-
-.cke_toolgroup span.cke_button_icon[style*="icons.png"] {
-    background-image: url('https://forum.vultaic.com/uploads/set_resources_14/08288993a29fdc8c9953f75f68b949f5_icons.png') !important;
-}
-
-.cke .cke_hidpi .cke_top .cke_toolbox span.cke_button_icon[style*="icons_hidpi.png"] {
-    background-image: url('https://forum.vultaic.com/uploads/set_resources_14/08288993a29fdc8c9953f75f68b949f5_icons_hidpi.png') !important;
 }
 
 .cke a.cke_button, .cke a.cke_combo_button, .cke .cke_combo_text, .cke .cke_combo_open, .cke .cke_combo_arrow {
@@ -24835,7 +24818,6 @@ html[dir="ltr"] .ipsFieldRow_required {
 .cForumList  h2 {
     position: relative;
     background-color: #36373d;
-    background-image: linear-gradient(270deg, #36373D 0%, rgba(72, 74, 81, 0) 23.76%), linear-gradient(270deg, rgba(72, 74, 81, 0) 0%, #36373D 50.28%), url(https://forum.vultaic.com/uploads/monthly_2018_05/mta-screen_2018-04-22_15-31-25.png.3886ece….png);
     background-position: right;
     background-repeat: no-repeat;
 }
