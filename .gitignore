@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs/SeizeTheDay/v15
+*.dll
+*.pdb
+*.pssym
+*.cache
+applicationhost.config
