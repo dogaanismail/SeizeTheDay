@@ -144,6 +144,7 @@
     <Reference Include="PhpNetMbstring, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2771987119c16a03, processorArchitecture=MSIL">
       <HintPath>..\packages\ResponsiveFileManagerMVC.Phalanger.1.0.0\lib\PhpNetMbstring.dll</HintPath>
     </Reference>
+    <Reference Include="PostSharp, Version=4.2.17.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7" />
     <Reference Include="SendGrid, Version=9.10.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
       <HintPath>..\packages\Sendgrid.9.10.0\lib\net452\SendGrid.dll</HintPath>
     </Reference>

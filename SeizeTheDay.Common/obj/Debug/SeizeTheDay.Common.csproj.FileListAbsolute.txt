@@ -16,3 +16,8 @@ C:\Users\dogan\Source\Repos\SeizeTheDay\SeizeTheDay.Common\obj\Debug\SeizeTheDay
 C:\Users\dogan\Source\Repos\SeizeTheDay\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.csproj.CoreCompileInputs.cache
 C:\Users\dogan\Source\Repos\SeizeTheDay\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.dll
 C:\Users\dogan\Source\Repos\SeizeTheDay\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.Common\bin\Debug\SeizeTheDay.Common.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.Common\bin\Debug\SeizeTheDay.Common.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.csproj.CoreCompileInputs.cache
+C:\Projects\SeizeTheDay\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.pdb
