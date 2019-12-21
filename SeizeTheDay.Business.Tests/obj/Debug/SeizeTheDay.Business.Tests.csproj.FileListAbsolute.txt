@@ -38,4 +38,3 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Business.Tests\bin\Debug\Microsoft.VisualStu
 C:\Projects\SeizeTheDay\SeizeTheDay.Business.Tests\obj\Debug\SeizeTheDay.Business.Tests.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.Business.Tests\obj\Debug\SeizeTheDay.Business.Tests.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business.Tests\obj\Debug\SeizeTheDay.Business.Tests.pdb
-C:\Projects\SeizeTheDay\SeizeTheDay.Business.Tests\obj\Debug\SeizeTheDay.Business.Tests.csprojAssemblyReference.cache

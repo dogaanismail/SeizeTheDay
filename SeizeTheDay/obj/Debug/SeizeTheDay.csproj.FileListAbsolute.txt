@@ -1076,3 +1076,13 @@ C:\Projects\SeizeTheDay\SeizeTheDay\bin\Remotion.Linq.xml
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\Remotion.Linq.EagerFetching.xml
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\Iesi.Collections.xml
 C:\Projects\SeizeTheDay\SeizeTheDay\obj\Debug\SeizeTheDay.csproj.CopyComplete
+C:\Projects\SeizeTheDay\SeizeTheDay\bin\Devart.Data.MySql.Design.dll
+C:\Projects\SeizeTheDay\SeizeTheDay\bin\Devart.Data.MySql.Vs.dll
+C:\Projects\SeizeTheDay\SeizeTheDay\bin\Devart.Data.Design.dll
+C:\Projects\SeizeTheDay\SeizeTheDay\bin\EnvDTE.dll
+C:\Projects\SeizeTheDay\SeizeTheDay\bin\VSLangProj.dll
+C:\Projects\SeizeTheDay\SeizeTheDay\bin\VsWebSite.Interop.dll
+C:\Projects\SeizeTheDay\SeizeTheDay\bin\Microsoft.VisualStudio.OLE.Interop.dll
+C:\Projects\SeizeTheDay\SeizeTheDay\bin\Microsoft.VisualStudio.Shell.Interop.dll
+C:\Projects\SeizeTheDay\SeizeTheDay\bin\stdole.dll
+C:\Projects\SeizeTheDay\SeizeTheDay\bin\Microsoft.VisualStudio.TextManager.Interop.dll
