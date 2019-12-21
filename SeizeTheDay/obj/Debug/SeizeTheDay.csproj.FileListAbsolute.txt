@@ -791,7 +791,6 @@ C:\Users\dogan\Source\Repos\SeizeTheDay\SeizeTheDay\obj\Debug\SeizeTheDay.dll
 C:\Users\dogan\Source\Repos\SeizeTheDay\SeizeTheDay\obj\Debug\SeizeTheDay.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay\obj\Debug\SeizeTheDay.csprojAssemblyReference.cache
 C:\Projects\SeizeTheDay\SeizeTheDay\obj\Debug\SeizeTheDay.dll.licenses
-C:\Projects\SeizeTheDay\SeizeTheDay\obj\Debug\SeizeTheDay.csproj.CoreCompileInputs.cache
 C:\Projects\SeizeTheDay\SeizeTheDay\obj\Debug\SeizeTheDay.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\obj\Debug\SeizeTheDay.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\SeizeTheDay.dll.config
@@ -944,10 +943,8 @@ C:\Projects\SeizeTheDay\SeizeTheDay\bin\System.Xml.XPath.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\System.Xml.XPath.XDocument.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\Antlr3.Runtime.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\Devart.Data.dll
-C:\Projects\SeizeTheDay\SeizeTheDay\bin\Devart.Data.MySql.Design.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\Devart.Data.MySql.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\Devart.Data.MySql.Entity.EF6.dll
-C:\Projects\SeizeTheDay\SeizeTheDay\bin\Devart.Data.MySql.Vs.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\EntityFramework.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\EntityFramework.SqlServer.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\Microsoft.AspNet.Identity.Core.dll
@@ -1009,17 +1006,9 @@ C:\Projects\SeizeTheDay\SeizeTheDay\bin\SeizeTheDay.DataAccess.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\NHibernate.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\log4net.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\Unity.Mvc.dll
-C:\Projects\SeizeTheDay\SeizeTheDay\bin\Devart.Data.Design.dll
-C:\Projects\SeizeTheDay\SeizeTheDay\bin\EnvDTE.dll
-C:\Projects\SeizeTheDay\SeizeTheDay\bin\VSLangProj.dll
-C:\Projects\SeizeTheDay\SeizeTheDay\bin\VsWebSite.Interop.dll
-C:\Projects\SeizeTheDay\SeizeTheDay\bin\Microsoft.VisualStudio.Shell.Interop.dll
-C:\Projects\SeizeTheDay\SeizeTheDay\bin\Microsoft.VisualStudio.OLE.Interop.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\Remotion.Linq.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\Remotion.Linq.EagerFetching.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\Iesi.Collections.dll
-C:\Projects\SeizeTheDay\SeizeTheDay\bin\stdole.dll
-C:\Projects\SeizeTheDay\SeizeTheDay\bin\Microsoft.VisualStudio.TextManager.Interop.dll
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\SeizeTheDay.Business.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\SeizeTheDay.Business.dll.config
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\SeizeTheDay.Common.pdb
@@ -1052,7 +1041,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\Newtonsoft.Json.xml
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\Ninject.xml
-C:\Projects\SeizeTheDay\SeizeTheDay\bin\PostSharp.xml
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\SendGrid.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\SendGrid.xml
 C:\Projects\SeizeTheDay\SeizeTheDay\bin\System.Diagnostics.DiagnosticSource.xml

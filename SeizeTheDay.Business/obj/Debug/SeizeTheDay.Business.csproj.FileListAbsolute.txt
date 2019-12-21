@@ -250,7 +250,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Iesi.Collections.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Devart.Data.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Devart.Data.MySql.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\obj\Debug\SeizeTheDay.Business.csprojAssemblyReference.cache
-C:\Projects\SeizeTheDay\SeizeTheDay.Business\obj\Debug\SeizeTheDay.Business.csproj.CoreCompileInputs.cache
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\obj\Debug\SeizeTheDay.Business.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\obj\Debug\SeizeTheDay.Business.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\obj\Debug\SeizeTheDay.Business.pdb

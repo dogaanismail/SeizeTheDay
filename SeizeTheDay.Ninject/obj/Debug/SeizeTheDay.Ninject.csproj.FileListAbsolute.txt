@@ -243,7 +243,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Iesi.Collections.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Devart.Data.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Devart.Data.MySql.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\obj\Debug\SeizeTheDay.Ninject.csprojAssemblyReference.cache
-C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\obj\Debug\SeizeTheDay.Ninject.csproj.CoreCompileInputs.cache
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\obj\Debug\SeizeTheDay.Ninject.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\obj\Debug\SeizeTheDay.Ninject.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\obj\Debug\SeizeTheDay.Ninject.pdb

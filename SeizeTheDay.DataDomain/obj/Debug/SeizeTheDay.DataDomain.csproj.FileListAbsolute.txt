@@ -151,7 +151,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Devart.Data.MySql.Entit
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Devart.Data.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Devart.Data.MySql.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\obj\Debug\SeizeTheDay.DataDomain.csprojAssemblyReference.cache
-C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\obj\Debug\SeizeTheDay.DataDomain.csproj.CoreCompileInputs.cache
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\obj\Debug\SeizeTheDay.DataDomain.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\obj\Debug\SeizeTheDay.DataDomain.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\obj\Debug\SeizeTheDay.DataDomain.pdb

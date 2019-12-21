@@ -8,3 +8,7 @@
 *.pssym
 *.cache
 applicationhost.config
+/.vs/SeizeTheDay/v16/Server/sqlite3
+/.vs/slnx.sqlite
+/.vs/SeizeTheDay/v16/.suo
+/.vs/VSWorkspaceState.json

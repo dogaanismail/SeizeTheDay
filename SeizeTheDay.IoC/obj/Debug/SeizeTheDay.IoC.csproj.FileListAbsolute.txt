@@ -564,7 +564,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\Iesi.Collections.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\Devart.Data.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\Devart.Data.MySql.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Debug\SeizeTheDay.IoC.csprojAssemblyReference.cache
-C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Debug\SeizeTheDay.IoC.csproj.CoreCompileInputs.cache
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Debug\SeizeTheDay.IoC.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Debug\SeizeTheDay.IoC.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Debug\SeizeTheDay.IoC.pdb
