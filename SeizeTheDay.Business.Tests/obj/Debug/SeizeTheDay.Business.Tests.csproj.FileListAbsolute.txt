@@ -35,6 +35,7 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Business.Tests\bin\Debug\Microsoft.VisualStu
 C:\Projects\SeizeTheDay\SeizeTheDay.Business.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.Business.Tests\obj\Debug\SeizeTheDay.Business.Tests.csprojAssemblyReference.cache
 C:\Projects\SeizeTheDay\SeizeTheDay.Business.Tests\obj\Debug\SeizeTheDay.Business.Tests.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.Business.Tests\obj\Debug\SeizeTheDay.Business.Tests.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business.Tests\obj\Debug\SeizeTheDay.Business.Tests.pdb

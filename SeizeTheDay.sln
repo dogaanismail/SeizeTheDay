@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeizeTheDay", "SeizeTheDay\SeizeTheDay.csproj", "{4C3DE72E-7791-44D4-BEAC-C2546091E7F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeizeTheDay.Web", "SeizeTheDay.Web\SeizeTheDay.Web.csproj", "{4C3DE72E-7791-44D4-BEAC-C2546091E7F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeizeTheDay.Entities", "SeizeTheDay.Entities\SeizeTheDay.Entities.csproj", "{A24AD207-6920-4F3F-B18D-564B079019CC}"
 EndProject
