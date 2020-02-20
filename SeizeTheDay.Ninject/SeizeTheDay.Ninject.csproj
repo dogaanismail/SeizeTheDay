@@ -109,7 +109,7 @@
     <Compile Include="Factories\NinjectControllerFactory.cs" />
     <Compile Include="Modules\AutoMapperModule.cs" />
     <Compile Include="Modules\BusinessModule.cs" />
-    <Compile Include="Modules\IdendityModule.cs" />
+    <Compile Include="Modules\IdentityModule.cs" />
     <Compile Include="Factories\InstanceFactory.cs" />
     <Compile Include="Modules\ValidationModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -18,7 +18,7 @@ namespace SeizeTheDay.Web.Controllers
     public class UsersController : Controller
     {
         // GET: User
-        #region DefinitionsOfServices
+        #region Ctor
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

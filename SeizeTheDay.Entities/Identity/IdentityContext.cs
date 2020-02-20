@@ -9,7 +9,7 @@ namespace SeizeTheDay.Entities.Identity
     public class IdentityContext : IdentityDbContext<User>
     {
         public IdentityContext()
-            : base("IdendityConnection", throwIfV1Schema: false)
+            : base("IdentityConnection", throwIfV1Schema: false)
         {
         }
         public static IdentityContext Create()

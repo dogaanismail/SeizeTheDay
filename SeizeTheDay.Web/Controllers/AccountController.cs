@@ -17,7 +17,7 @@ namespace SeizeTheDay.Web.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        #region DefinitionofServices
+        #region Ctor
         private IUserService _userService;
         private IUserInfoService _userInfoService;
         private ApplicationSignInManager _signInManager;
@@ -27,7 +27,7 @@ namespace SeizeTheDay.Web.Controllers
 
 
         public AccountController(ApplicationUserManager userManager, IUserService userService,
-            IUserInfoService userInfoService,  ApplicationSignInManager signInManager , 
+            IUserInfoService userInfoService,  ApplicationSignInManager signInManager, 
             ApplicationRoleManager roleManager, IAuthenticationManager authenticationManager )
         {
             _userManager = userManager;

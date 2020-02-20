@@ -47,7 +47,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Devart\dotConnect\MySQL\Devart.Data.MySql.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Devart.Data.MySql.Entity.EF5, Version=8.12.1328.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
     <Reference Include="Devart.Data.MySql.Entity.EF6, Version=8.12.1328.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Devart\dotConnect\MySQL\Entity\EF6\Devart.Data.MySql.Entity.EF6.dll</HintPath>

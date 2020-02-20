@@ -11,27 +11,20 @@ using SeizeTheDay.Entities.Identity.Entities;
 using System.Data.Entity.Core.Objects;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 using Unity;
 using Unity.AspNet.Mvc;
 using Unity.Injection;
-using Unity.Lifetime;
 using Xgteamc1XgTeamModel;
 
 namespace SeizeTheDay.IoC.App_Start
 {
-    public static class UnityConfigMvc
+    public static class UnityConfigApi
     {
-
         public static void RegisterComponents()
         {
             var container = new UnityContainer();
-            RegisterTypes(container);
-            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
-            GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
-        }
-        public static void RegisterTypes(IUnityContainer container)
-        {
+
+
             container.RegisterType<IdentityContext>(new PerRequestLifetimeManager());
             container.RegisterType<ApplicationSignInManager>(new PerRequestLifetimeManager());
             container.RegisterType<ApplicationRoleManager>(new PerRequestLifetimeManager());
@@ -112,12 +105,8 @@ namespace SeizeTheDay.IoC.App_Start
 
             container.BindInRequstScope<ObjectContext, Xgteamc1XgTeamEntities>();
 
-        }
 
-        public static void BindInRequstScope<T1, T2>(this IUnityContainer container) where T2 : T1
-        {
-            container.RegisterType<T1, T2>(new HierarchicalLifetimeManager());
+            GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
         }
     }
 }
-

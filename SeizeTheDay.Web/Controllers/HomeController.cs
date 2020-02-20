@@ -17,7 +17,7 @@ namespace SeizeTheDay.Web.Controllers
     public class HomeController : Controller
     {
 
-        #region Services
+        #region Ctor
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

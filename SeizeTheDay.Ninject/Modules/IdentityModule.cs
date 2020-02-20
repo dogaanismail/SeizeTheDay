@@ -7,7 +7,7 @@ using System.Web;
 
 namespace SeizeTheDay.Ninject.Modules
 {
-    public class IdendityModule : NinjectModule
+    public class IdentityModule : NinjectModule
     {
         public override void Load()
         {

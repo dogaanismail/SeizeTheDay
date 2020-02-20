@@ -567,3 +567,11 @@ C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Debug\SeizeTheDay.IoC.csprojAssembly
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Debug\SeizeTheDay.IoC.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Debug\SeizeTheDay.IoC.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Debug\SeizeTheDay.IoC.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\System.Net.Http.Formatting.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\System.Web.Http.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\System.Web.Http.WebHost.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\Unity.Mvc5.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\Unity.WebApi.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\System.Net.Http.Formatting.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\System.Web.Http.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\System.Web.Http.WebHost.xml

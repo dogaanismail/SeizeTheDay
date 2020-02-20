@@ -246,7 +246,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Core\bin\Debug\System.Web.WebPages.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\bin\Debug\SeizeTheDay.Core.pssym
-C:\Projects\SeizeTheDay\SeizeTheDay.Core\obj\Debug\SeizeTheDay.Core.csprojAssemblyReference.cache
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\obj\Debug\SeizeTheDay.Core.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\obj\Debug\SeizeTheDay.Core.dll.postsharp
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\obj\Debug\SeizeTheDay.Core.dll
