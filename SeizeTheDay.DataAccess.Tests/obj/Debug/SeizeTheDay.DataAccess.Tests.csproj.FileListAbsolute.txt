@@ -38,3 +38,4 @@ C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess.Tests\bin\Debug\Microsoft.VisualS
 C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess.Tests\obj\Debug\SeizeTheDay.DataAccess.Tests.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess.Tests\obj\Debug\SeizeTheDay.DataAccess.Tests.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess.Tests\obj\Debug\SeizeTheDay.DataAccess.Tests.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess.Tests\obj\Debug\SeizeTheDay.DataAccess.Tests.csprojAssemblyReference.cache

@@ -1,4 +1,5 @@
-﻿using SeizeTheDay.IoC.App_Start;
+﻿using Newtonsoft.Json;
+using SeizeTheDay.IoC.App_Start;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -15,6 +16,9 @@ namespace SeizeTheDay.Api
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
 
             //Unity Settings For Api
             UnityConfigApi.RegisterComponents();

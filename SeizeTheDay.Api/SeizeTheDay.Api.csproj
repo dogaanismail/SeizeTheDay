@@ -49,11 +49,17 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -178,6 +184,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -202,11 +210,24 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SeizeTheDay.Business\SeizeTheDay.Business.csproj">
+      <Project>{1F8586EF-790E-4458-8F74-06ED58A8A5FF}</Project>
+      <Name>SeizeTheDay.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SeizeTheDay.DataDomain\SeizeTheDay.DataDomain.csproj">
+      <Project>{EC241A13-1A40-4AAC-9D3B-7CE868D743B4}</Project>
+      <Name>SeizeTheDay.DataDomain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SeizeTheDay.Entities\SeizeTheDay.Entities.csproj">
+      <Project>{A24AD207-6920-4F3F-B18D-564B079019CC}</Project>
+      <Name>SeizeTheDay.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SeizeTheDay.IoC\SeizeTheDay.IoC.csproj">
       <Project>{3C601B04-DE79-4686-A2E8-3C47D61055B8}</Project>
       <Name>SeizeTheDay.IoC</Name>

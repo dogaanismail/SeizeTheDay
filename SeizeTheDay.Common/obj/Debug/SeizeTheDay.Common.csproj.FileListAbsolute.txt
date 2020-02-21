@@ -20,3 +20,4 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Common\bin\Debug\SeizeTheDay.Common.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Common\bin\Debug\SeizeTheDay.Common.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.Common\obj\Debug\SeizeTheDay.Common.csprojAssemblyReference.cache

@@ -154,3 +154,7 @@ C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\obj\Debug\SeizeTheDay.DataDomain.
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\obj\Debug\SeizeTheDay.DataDomain.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\obj\Debug\SeizeTheDay.DataDomain.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\obj\Debug\SeizeTheDay.DataDomain.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\System.Net.Http.Formatting.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\System.Web.Http.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\System.Net.Http.Formatting.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\System.Web.Http.xml

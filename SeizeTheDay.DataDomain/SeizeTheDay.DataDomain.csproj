@@ -64,8 +64,15 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
@@ -90,6 +97,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\RoleApi.cs" />
+    <Compile Include="Common\ApiResponse.cs" />
+    <Compile Include="Common\ResultModel.cs" />
+    <Compile Include="DTOs\RoleDto.cs" />
     <Compile Include="DTO\AccountBindingModels.cs" />
     <Compile Include="DTO\AccountViewModels.cs" />
     <Compile Include="DTO\ChangePassword.cs" />
@@ -119,6 +130,10 @@
     <Compile Include="DTO\UserPermission.cs" />
     <Compile Include="DTO\UserRole.cs" />
     <Compile Include="DTO\UserType.cs" />
+    <Compile Include="Enumerations\ApiStatusEnum.cs" />
+    <Compile Include="Error\ValidationError.cs" />
+    <Compile Include="Error\ValidationErrorDetail.cs" />
+    <Compile Include="Handlers\ApiResponseHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignalRModels\ConnectedIdModel.cs" />
     <Compile Include="SignalRModels\UserHubModels.cs" />
@@ -144,5 +159,6 @@
       <Name>SeizeTheDay.Entities</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
