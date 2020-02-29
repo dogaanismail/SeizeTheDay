@@ -2,10 +2,8 @@
 using SeizeTheDay.Business.Concrete.IdentityManagers;
 using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
 using SeizeTheDay.DataDomain.Api;
-using SeizeTheDay.DataDomain.Common;
 using SeizeTheDay.DataDomain.DTOs;
 using SeizeTheDay.DataDomain.Enumerations;
-using SeizeTheDay.Entities.Identity.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,21 +13,20 @@ using Xgteamc1XgTeamModel;
 
 namespace SeizeTheDay.Api.Controllers
 {
-
-    [RoutePrefix("api/roles")]
-    public class RolesController : BaseController
+    [RoutePrefix("api/users")]
+    public class UsersController : ApiController
     {
         #region Ctor
-        private readonly IRoleService _roleService;
+        private readonly IUserService _userService;
+        private ApplicationUserManager _userManager;
         private ApplicationRoleManager _roleManager;
-        private readonly IModuleService _moduleService;
 
-        public RolesController(IRoleService roleService, ApplicationRoleManager roleManager,
-            IModuleService moduleService)
+        public UsersController(IUserService userService, ApplicationUserManager userManager,
+            ApplicationRoleManager roleManager)
         {
-            _roleService = roleService;
+            _userService = userService;
+            _userManager = userManager;
             _roleManager = roleManager;
-            _moduleService = moduleService;
         }
 
         #endregion
@@ -37,43 +34,47 @@ namespace SeizeTheDay.Api.Controllers
         [HttpGet]
         [Route("getroles")]
         [PerformanceCounterAspect]
-        public List<RoleDto> GetRoles()
+        public List<UserDto> GetUsers()
         {
-            List<RoleDto> roles = _roleService.GetList().Select(p => new RoleDto
+            List<UserDto> users = _userService.GetList().Select(p => new UserDto
             {
                 Id = p.Id,
-                Name = p.Name
+                UserName = p.UserName
+                //TODO
             }).ToList();
 
-            return roles; 
+            return users;
         }
 
-        [Route("getrolebyid")]
+        [Route("getuserbyid")]
         [HttpGet]
-        public RoleDto GetRoleById(string id)
+        [PerformanceCounterAspect]
+        public UserDto GetUserById(string id)
         {
-            Role role = _roleService.GetByRoleID(id);
-            RoleDto roleDto = new RoleDto
+            User user = _userService.GetByUserID(id);
+            UserDto userDto = new UserDto
             {
-                Id = role.Id,
-                Name = role.Name
+                Id = user.Id,
+                UserName = user.UserName
+                //TODO
             };
 
-            return roleDto;
+            return userDto;
         }
 
-        [Route("createrole")]
+        [Route("createuser")]
         [HttpPost]
-        public async Task<IHttpActionResult> CreateRole([FromBody] RoleApi model)
+        public async Task<IHttpActionResult> CreateUser([FromBody] UserApi model)
         {
             try
             {
-                Roles role = new Roles
+                User user = new User
                 {
-                    Name = model.Name
+                    UserName = model.UserName
+                    //TODO
                 };
 
-                var result =  await _roleManager.CreateAsync(role);
+                var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
                     return Ok(ApiStatusEnum.Ok);
@@ -89,14 +90,14 @@ namespace SeizeTheDay.Api.Controllers
             }
         }
 
-        [Route("deletepost")]
+        [Route("deleteuser")]
         [HttpPost]
-        public async Task<IHttpActionResult> DeleteRole([FromBody] RoleApi model)
+        public async Task<IHttpActionResult> DeleteUser([FromBody] UserApi model)
         {
             try
             {
-                var getRole = await _roleManager.FindByIdAsync(model.Id);
-                var result = await _roleManager.DeleteAsync(getRole);
+                var getUser = await _userManager.FindByIdAsync(model.Id);
+                var result = await _userManager.DeleteAsync(getUser);
                 if (result.Succeeded)
                 {
                     return Ok(200);
@@ -112,16 +113,17 @@ namespace SeizeTheDay.Api.Controllers
             }
         }
 
-        [Route("updaterole")]
+        [Route("updateuser")]
         [HttpPost]
-        public async Task<IHttpActionResult> UpdateRole([FromBody] RoleApi model)
+        public async Task<IHttpActionResult> UpdateUser([FromBody] UserApi model)
         {
             try
             {
-                var getRole = await _roleManager.FindByIdAsync(model.Id);
-                getRole.Name = model.Name;
+                var getUser = await _userManager.FindByIdAsync(model.Id);
+                getUser.UserName = model.UserName;
+                //TODO
 
-                var result = await _roleManager.UpdateAsync(getRole);
+                var result = await _userManager.UpdateAsync(getUser);
                 if (result.Succeeded)
                 {
                     return Ok(200);
@@ -137,6 +139,5 @@ namespace SeizeTheDay.Api.Controllers
                 return BadRequest(ex.Message.ToString());
             }
         }
-
     }
 }

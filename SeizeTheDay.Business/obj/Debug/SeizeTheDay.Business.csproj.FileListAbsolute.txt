@@ -203,7 +203,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Microsoft.Owin.Security.O
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Newtonsoft.Json.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Ninject.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Owin.dll
-C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\PostSharp.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\SeizeTheDay.Core.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\SeizeTheDay.DataAccess.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\SeizeTheDay.Entities.dll

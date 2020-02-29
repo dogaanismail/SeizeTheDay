@@ -98,9 +98,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\RoleApi.cs" />
+    <Compile Include="Api\UserApi.cs" />
     <Compile Include="Common\ApiResponse.cs" />
     <Compile Include="Common\ResultModel.cs" />
     <Compile Include="DTOs\RoleDto.cs" />
+    <Compile Include="DTOs\UserDto.cs" />
     <Compile Include="DTO\AccountBindingModels.cs" />
     <Compile Include="DTO\AccountViewModels.cs" />
     <Compile Include="DTO\ChangePassword.cs" />

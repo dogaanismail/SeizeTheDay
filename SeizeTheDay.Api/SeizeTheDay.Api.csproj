@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PostSharp, Version=4.2.17.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -186,6 +187,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -219,6 +221,10 @@
     <ProjectReference Include="..\SeizeTheDay.Business\SeizeTheDay.Business.csproj">
       <Project>{1F8586EF-790E-4458-8F74-06ED58A8A5FF}</Project>
       <Name>SeizeTheDay.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SeizeTheDay.Core\SeizeTheDay.Core.csproj">
+      <Project>{18723BD2-A5DE-4635-8C62-5DBCDCCB5FA3}</Project>
+      <Name>SeizeTheDay.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\SeizeTheDay.DataDomain\SeizeTheDay.DataDomain.csproj">
       <Project>{EC241A13-1A40-4AAC-9D3B-7CE868D743B4}</Project>
