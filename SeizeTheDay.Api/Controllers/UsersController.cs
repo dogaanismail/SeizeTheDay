@@ -4,6 +4,8 @@ using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
 using SeizeTheDay.DataDomain.Api;
 using SeizeTheDay.DataDomain.DTOs;
 using SeizeTheDay.DataDomain.Enumerations;
+using IdentityUser = SeizeTheDay.Entities.Identity.Entities.User;
+using IdentityRole = SeizeTheDay.Entities.Identity.Entities.Roles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,7 +70,7 @@ namespace SeizeTheDay.Api.Controllers
         {
             try
             {
-                User user = new User
+                IdentityUser user = new IdentityUser
                 {
                     UserName = model.UserName
                     //TODO

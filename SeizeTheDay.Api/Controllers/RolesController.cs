@@ -2,10 +2,10 @@
 using SeizeTheDay.Business.Concrete.IdentityManagers;
 using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
 using SeizeTheDay.DataDomain.Api;
-using SeizeTheDay.DataDomain.Common;
 using SeizeTheDay.DataDomain.DTOs;
 using SeizeTheDay.DataDomain.Enumerations;
-using SeizeTheDay.Entities.Identity.Entities;
+using IdentityUser = SeizeTheDay.Entities.Identity.Entities.User;
+using IdentityRole = SeizeTheDay.Entities.Identity.Entities.Roles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,7 +68,7 @@ namespace SeizeTheDay.Api.Controllers
         {
             try
             {
-                Roles role = new Roles
+                IdentityRole role = new IdentityRole
                 {
                     Name = model.Name
                 };

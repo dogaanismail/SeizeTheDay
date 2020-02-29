@@ -104,4 +104,3 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Entities\obj\Debug\SeizeTheDay.Entities.dll.
 C:\Projects\SeizeTheDay\SeizeTheDay.Entities\obj\Debug\SeizeTheDay.Entities.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.Entities\obj\Debug\SeizeTheDay.Entities.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Entities\obj\Debug\SeizeTheDay.Entities.pdb
-C:\Projects\SeizeTheDay\SeizeTheDay.Entities\obj\Debug\SeizeTheDay.Entities.csprojAssemblyReference.cache

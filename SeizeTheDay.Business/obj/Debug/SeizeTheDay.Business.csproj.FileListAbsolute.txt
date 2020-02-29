@@ -237,7 +237,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Microsoft.Owin.Security.C
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Newtonsoft.Json.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Ninject.xml
-C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\PostSharp.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\NHibernate.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\log4net.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml
