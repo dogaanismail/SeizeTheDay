@@ -188,6 +188,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ForumPostsController.cs" />
     <Compile Include="Controllers\ForumsController.cs" />
+    <Compile Include="Controllers\ForumTopicsController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />

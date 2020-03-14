@@ -109,7 +109,7 @@ namespace SeizeTheDay.Api.Controllers
             }
         }
 
-        [Route("updaterole")]
+        [Route("updateforum")]
         [HttpPost]
         public IHttpActionResult UpdateForum([FromBody] ForumApi model)
         {

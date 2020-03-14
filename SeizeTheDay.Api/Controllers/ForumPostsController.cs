@@ -2,7 +2,9 @@
 using SeizeTheDay.Core.Aspects.Postsharp.CacheAspects;
 using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
 using SeizeTheDay.Core.CrossCuttingConcerns.Caching.Microsoft;
+using SeizeTheDay.DataDomain.Api;
 using SeizeTheDay.DataDomain.DTOs;
+using SeizeTheDay.DataDomain.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,6 +80,75 @@ namespace SeizeTheDay.Api.Controllers
                 IsDefault = forumPost.IsDefault
             };
             return postDto;
+        }
+
+        [Route("createforumpost")]
+        [HttpPost]
+        public IHttpActionResult CreateForumPost([FromBody] ForumPostApi model)
+        {
+            try
+            {
+                ForumPost forumPost = new ForumPost()
+                {
+                    ForumPostTitle = model.ForumPostTitle,
+                    ForumPostContent = model.ForumPostContent,
+                    CreatedTime = DateTime.Now,
+                    CreatedBy = model.CreatedBy,
+                    ForumTopicID = model.ForumTopicID,
+                    ForumID = model.ForumID,
+                    ShowInPortal = model.ShowInPortal,
+                    PostLocked = model.PostLocked,
+                    ReviewCount = model.ReviewCount,
+                    IsDefault = model.IsDefault
+                };
+                _forumPostService.Add(forumPost);
+                return Ok(ApiStatusEnum.Ok);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+        [Route("deleteforumpost")]
+        [HttpPost]
+        public IHttpActionResult DeleteForumPost([FromBody] ForumPostApi model)
+        {
+            try
+            {
+                var getForumPost = _forumPostService.GetByForumPost(model.ForumPostID);
+                _forumPostService.Delete(getForumPost);
+                return Ok(ApiStatusEnum.Ok);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+        [Route("updateforumpost")]
+        [HttpPost]
+        public IHttpActionResult UpdateForumPost([FromBody] ForumPostApi model)
+        {
+            try
+            {
+                var updateForumPost = _forumPostService.SingleInclude(model.ForumPostID);
+                updateForumPost.ForumPostTitle = model.ForumPostTitle;
+                updateForumPost.ForumPostContent = model.ForumPostContent;
+                updateForumPost.ForumTopicID = model.ForumTopicID;
+                updateForumPost.ForumID = model.ForumID;
+                updateForumPost.ShowInPortal = model.ShowInPortal;
+                updateForumPost.PostLocked = model.PostLocked;
+                updateForumPost.ReviewCount = model.ReviewCount;
+                updateForumPost.IsDefault = model.IsDefault;
+                _forumPostService.Update(updateForumPost);
+                return Ok(ApiStatusEnum.Ok);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message.ToString());
+            }
         }
     }
 }
