@@ -100,12 +100,7 @@
     <Compile Include="Concrete\MySQL\MyUserTypeDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Abstract\EntityFramework\" />
-    <Folder Include="Abstract\NHibernate\" />
-    <Folder Include="Concrete\EntityFramework\" />
-    <Folder Include="Concrete\NHibernate\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

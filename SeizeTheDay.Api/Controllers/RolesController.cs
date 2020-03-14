@@ -89,7 +89,7 @@ namespace SeizeTheDay.Api.Controllers
             }
         }
 
-        [Route("deletepost")]
+        [Route("deleterole")]
         [HttpPost]
         public async Task<IHttpActionResult> DeleteRole([FromBody] RoleApi model)
         {
