@@ -46,10 +46,10 @@ namespace SeizeTheDay.Api.Controllers
             return modules;
         }
 
-        [Route("getmodulebyid")]
+        [Route("getbyid")]
         [HttpGet]
         [PerformanceCounterAspect]
-        public ModuleDto GetRoleById(int id)
+        public ModuleDto GetModuleById(int id)
         {
             Module module = _moduleService.GetByModuleID(id);
             ModuleDto moduleDto = new ModuleDto
@@ -86,7 +86,7 @@ namespace SeizeTheDay.Api.Controllers
                     IsDefault = model.IsDefault,
                     IsActive = model.IsActive,
                     IsDeleted = model.IsDeleted,
-                    ParentModuleID = model.ParentModuleId
+                    ParentModuleID = model.ParentModuleId,                
                 };
 
                 _moduleService.Add(module);
@@ -105,6 +105,22 @@ namespace SeizeTheDay.Api.Controllers
             try
             {
                 var getModule = _moduleService.GetByModuleID(model.Id);
+                _moduleService.Delete(getModule);
+                return Ok(ApiStatusEnum.Ok);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+        [Route("deletemodule")]
+        [HttpPost]
+        public IHttpActionResult DeleteModule(int id)
+        {
+            try
+            {
+                var getModule = _moduleService.GetByModuleID(id);
                 _moduleService.Delete(getModule);
                 return Ok(ApiStatusEnum.Ok);
             }

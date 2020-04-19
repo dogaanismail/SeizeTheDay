@@ -12,6 +12,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Xgteamc1XgTeamModel;
 using ModelPostComment = Xgteamc1XgTeamModel.ForumPostComment;
 
 namespace SeizeTheDay.Api.Controllers
@@ -65,6 +66,55 @@ namespace SeizeTheDay.Api.Controllers
                     ForumPostID = model.PostID
                 };
                 _commentService.Add(newComment);
+                return Ok(ApiStatusEnum.Ok);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+        [Route("deletecomment")]
+        [HttpPost]
+        public IHttpActionResult DeleteForumComment([FromBody] ForumPostCommentApi model)
+        {
+            try
+            {
+                var getForumComment = _commentService.GetByForumPostComment(model.CommentID);
+                _commentService.Delete(getForumComment);
+                return Ok(ApiStatusEnum.Ok);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+        [Route("deletecomment")]
+        [HttpPost]
+        public IHttpActionResult DeleteForumComment(int id)
+        {
+            try
+            {
+                var getForumComment = _commentService.GetByForumPostComment(id);
+                _commentService.Delete(getForumComment);
+                return Ok(ApiStatusEnum.Ok);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+        [Route("updatecomment")]
+        [HttpPost]
+        public IHttpActionResult UpdateForumComment([FromBody] ForumPostCommentApi model)
+        {
+            try
+            {
+                ForumPostComment getCom = _commentService.GetByForumPostComment(Convert.ToInt32(model.CommentID));
+                getCom.Text = model.Text;
+                _commentService.Update(getCom);
                 return Ok(ApiStatusEnum.Ok);
             }
             catch (Exception ex)

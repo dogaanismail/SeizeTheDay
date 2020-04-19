@@ -1,4 +1,5 @@
-﻿using SeizeTheDay.Business.Abstract.MySQL;
+﻿using Microsoft.AspNet.Identity;
+using SeizeTheDay.Business.Abstract.MySQL;
 using SeizeTheDay.Core.Aspects.Postsharp.CacheAspects;
 using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
 using SeizeTheDay.Core.CrossCuttingConcerns.Caching.Microsoft;
@@ -81,7 +82,7 @@ namespace SeizeTheDay.Api.Controllers
                     Title = model.Title,
                     Description = model.Description,
                     Status = "Active",
-                    CreatedBy = model.CreatedBy,
+                    CreatedBy = User.Identity.GetUserId(),
                     IsDefault = model.IsDefault
                 };
                 _forumService.Add(forum);
@@ -100,6 +101,22 @@ namespace SeizeTheDay.Api.Controllers
             try
             {
                 var getForum = _forumService.GetByForum(model.ForumID);
+                _forumService.Delete(getForum);
+                return Ok(ApiStatusEnum.Ok);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+        [Route("deleteforum")]
+        [HttpPost]
+        public IHttpActionResult DeleteForum(int id)
+        {
+            try
+            {
+                var getForum = _forumService.GetByForum(id);
                 _forumService.Delete(getForum);
                 return Ok(ApiStatusEnum.Ok);
             }

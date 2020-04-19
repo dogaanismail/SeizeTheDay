@@ -3,6 +3,7 @@ using SeizeTheDay.Business.Abstract.MySQL;
 using SeizeTheDay.Core.Aspects.Postsharp.CacheAspects;
 using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
 using SeizeTheDay.Core.CrossCuttingConcerns.Caching.Microsoft;
+using SeizeTheDay.DataDomain.Api;
 using SeizeTheDay.DataDomain.DTOs;
 using SeizeTheDay.DataDomain.Enumerations;
 using System;
@@ -119,6 +120,64 @@ namespace SeizeTheDay.Api.Controllers
                 TotalNotification = getUser.Notifications.Where(x => x.Type == (int)NotificationTypeEnum.MessageNotification).Count()
             };
             return count;
+        }
+
+        [Route("createnotification")]
+        [HttpPost]
+        public IHttpActionResult CreateNotification([FromBody] NotificationApi model)
+        {
+            try
+            {
+                Notification notf = new Notification()
+                {
+                    Type = model.Type,
+                    Details = model.Details,
+                    Title = model.Title,
+                    DetailsUrl = model.DetailsUrl,
+                    SentTo = model.SentTo,
+                    CreatedDate = DateTime.Now,
+                    IsRead = model.IsRead
+                };
+                _notificationService.Add(notf);
+                return Ok(ApiStatusEnum.Ok);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+        [Route("updatenotification")]
+        [HttpPost]
+        public IHttpActionResult UpdateNotification([FromBody] NotificationApi model)
+        {
+            try
+            {
+                var updatedNotf = _notificationService.GetByNotificationID(model.NotificationID);
+                updatedNotf.IsRead = model.IsRead;
+                _notificationService.Update(updatedNotf);
+                return Ok(ApiStatusEnum.Ok);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+        [Route("deletenotification")]
+        [HttpPost]
+        public IHttpActionResult DeleteNotification([FromBody] NotificationApi model)
+        {
+            try
+            {
+                var updatedNotf = _notificationService.GetByNotificationID(model.NotificationID);
+                _notificationService.Delete(updatedNotf);
+                return Ok(ApiStatusEnum.Ok);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
         }
 
 

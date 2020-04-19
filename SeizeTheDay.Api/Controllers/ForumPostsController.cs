@@ -1,4 +1,5 @@
-﻿using SeizeTheDay.Business.Abstract.MySQL;
+﻿using Microsoft.AspNet.Identity;
+using SeizeTheDay.Business.Abstract.MySQL;
 using SeizeTheDay.Core.Aspects.Postsharp.CacheAspects;
 using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
 using SeizeTheDay.Core.CrossCuttingConcerns.Caching.Microsoft;
@@ -93,7 +94,7 @@ namespace SeizeTheDay.Api.Controllers
                     ForumPostTitle = model.ForumPostTitle,
                     ForumPostContent = model.ForumPostContent,
                     CreatedTime = DateTime.Now,
-                    CreatedBy = model.CreatedBy,
+                    CreatedBy = User.Identity.GetUserId(),
                     ForumTopicID = model.ForumTopicID,
                     ForumID = model.ForumID,
                     ShowInPortal = model.ShowInPortal,

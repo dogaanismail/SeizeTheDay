@@ -100,7 +100,10 @@
     <Compile Include="Api\ForumApi.cs" />
     <Compile Include="Api\ForumPostApi.cs" />
     <Compile Include="Api\ForumPostCommentApi.cs" />
+    <Compile Include="Api\ForumTopicApi.cs" />
     <Compile Include="Api\ModuleApi.cs" />
+    <Compile Include="Api\NotificationApi.cs" />
+    <Compile Include="Api\PortalMessageApi.cs" />
     <Compile Include="Api\RoleApi.cs" />
     <Compile Include="Api\UserApi.cs" />
     <Compile Include="Common\ApiResponse.cs" />
@@ -110,6 +113,7 @@
     <Compile Include="DTOs\ForumTopicDto.cs" />
     <Compile Include="DTOs\ModuleDto.cs" />
     <Compile Include="DTOs\NotificationDto.cs" />
+    <Compile Include="DTOs\PortalMessageDto.cs" />
     <Compile Include="DTOs\PostCommentDto.cs" />
     <Compile Include="DTOs\RoleDto.cs" />
     <Compile Include="DTOs\UserDto.cs" />
