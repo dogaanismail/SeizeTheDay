@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="Api\ForumApi.cs" />
     <Compile Include="Api\ForumPostApi.cs" />
+    <Compile Include="Api\ForumPostCommentApi.cs" />
     <Compile Include="Api\ModuleApi.cs" />
     <Compile Include="Api\RoleApi.cs" />
     <Compile Include="Api\UserApi.cs" />
@@ -108,6 +109,8 @@
     <Compile Include="DTOs\ForumPostDto.cs" />
     <Compile Include="DTOs\ForumTopicDto.cs" />
     <Compile Include="DTOs\ModuleDto.cs" />
+    <Compile Include="DTOs\NotificationDto.cs" />
+    <Compile Include="DTOs\PostCommentDto.cs" />
     <Compile Include="DTOs\RoleDto.cs" />
     <Compile Include="DTOs\UserDto.cs" />
     <Compile Include="DTO\AccountBindingModels.cs" />
@@ -140,6 +143,7 @@
     <Compile Include="DTO\UserRole.cs" />
     <Compile Include="DTO\UserType.cs" />
     <Compile Include="Enumerations\ApiStatusEnum.cs" />
+    <Compile Include="Enumerations\NotificationTypeEnum.cs" />
     <Compile Include="Error\ValidationError.cs" />
     <Compile Include="Error\ValidationErrorDetail.cs" />
     <Compile Include="Handlers\ApiResponseHandler.cs" />

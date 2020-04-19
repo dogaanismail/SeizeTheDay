@@ -1,6 +1,6 @@
-﻿namespace SeizeTheDay.Entities.EntityClasses.MySQL
+﻿namespace SeizeTheDay.DataDomain.DTOs
 {
-    public class PostComments
+    public class PostCommentDto
     {
         public int? CommentID { get; set; }
         public string Text { get; set; }
