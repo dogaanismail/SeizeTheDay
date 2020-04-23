@@ -17,7 +17,6 @@ namespace SeizeTheDay.DataDomain.DTOs
         public bool? LockoutEnabled { get; set; }
         public int? AccessFailedCount { get; set; }
         public string UserName { get; set; }
-
         //User Infoes
         public string FirstName { get; set; }
         public string LastName { get; set; }

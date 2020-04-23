@@ -49,7 +49,7 @@ namespace SeizeTheDay.Api.Controllers
             return forums;
         }
 
-        [Route("getforumbyid")]
+        [Route("getbyid")]
         [HttpGet]
         [PerformanceCounterAspect]
         public ForumDto GetForumById(int id)

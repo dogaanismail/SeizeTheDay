@@ -30,7 +30,7 @@ namespace SeizeTheDay.Api.Controllers
         #endregion
 
         [HttpGet]
-        [Route("getforums")]
+        [Route("getposts")]
         [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<ForumPostDto> GetForumPosts()
@@ -57,7 +57,7 @@ namespace SeizeTheDay.Api.Controllers
         }
 
         [HttpGet]
-        [Route("getforumbyid")]
+        [Route("getpostbyid")]
         [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public ForumPostDto GetForumPostById(int id)
@@ -83,7 +83,7 @@ namespace SeizeTheDay.Api.Controllers
             return postDto;
         }
 
-        [Route("createforumpost")]
+        [Route("createpost")]
         [HttpPost]
         public IHttpActionResult CreateForumPost([FromBody] ForumPostApi model)
         {
@@ -111,7 +111,7 @@ namespace SeizeTheDay.Api.Controllers
             }
         }
 
-        [Route("deleteforumpost")]
+        [Route("deletepost")]
         [HttpPost]
         public IHttpActionResult DeleteForumPost([FromBody] ForumPostApi model)
         {
@@ -127,7 +127,24 @@ namespace SeizeTheDay.Api.Controllers
             }
         }
 
-        [Route("updateforumpost")]
+
+        [Route("deletepost")]
+        [HttpPost]
+        public IHttpActionResult DeleteForumPost(int id)
+        {
+            try
+            {
+                var getForumPost = _forumPostService.GetByForumPost(id);
+                _forumPostService.Delete(getForumPost);
+                return Ok(ApiStatusEnum.Ok);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+        [Route("updatepost")]
         [HttpPost]
         public IHttpActionResult UpdateForumPost([FromBody] ForumPostApi model)
         {

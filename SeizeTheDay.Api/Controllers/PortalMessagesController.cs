@@ -29,7 +29,7 @@ namespace SeizeTheDay.Api.Controllers
         #endregion
 
         [HttpGet]
-        [Route("getlist")]
+        [Route("getmessages")]
         [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<PortalMessageDto> GetPortalMessages()

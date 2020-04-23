@@ -48,7 +48,7 @@ namespace SeizeTheDay.Api.Controllers
             return roles; 
         }
 
-        [Route("getrolebyid")]
+        [Route("getbyid")]
         [HttpGet]
         public RoleDto GetRoleById(string id)
         {

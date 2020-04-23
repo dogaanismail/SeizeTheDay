@@ -4,6 +4,7 @@ using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
 using SeizeTheDay.DataDomain.Api;
 using SeizeTheDay.DataDomain.DTOs;
 using SeizeTheDay.DataDomain.Enumerations;
+using SeizeTheDayEntities = Xgteamc1XgTeamModel.Xgteamc1XgTeamEntities;
 using IdentityUser = SeizeTheDay.Entities.Identity.Entities.User;
 using IdentityRole = SeizeTheDay.Entities.Identity.Entities.Roles;
 using System;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Xgteamc1XgTeamModel;
+using System.Data.Entity.Infrastructure;
 
 namespace SeizeTheDay.Api.Controllers
 {
@@ -19,22 +21,24 @@ namespace SeizeTheDay.Api.Controllers
     public class UsersController : ApiController
     {
         #region Ctor
+        private readonly SeizeTheDayEntities _entities;
         private readonly IUserService _userService;
         private ApplicationUserManager _userManager;
         private ApplicationRoleManager _roleManager;
 
         public UsersController(IUserService userService, ApplicationUserManager userManager,
-            ApplicationRoleManager roleManager)
+            ApplicationRoleManager roleManager, SeizeTheDayEntities entities)
         {
             _userService = userService;
             _userManager = userManager;
             _roleManager = roleManager;
+            _entities = entities;
         }
 
         #endregion
 
         [HttpGet]
-        [Route("getroles")]
+        [Route("getusers")]
         [PerformanceCounterAspect]
         public List<UserDto> GetUsers()
         {
@@ -48,7 +52,20 @@ namespace SeizeTheDay.Api.Controllers
             return users;
         }
 
-        [Route("getuserbyid")]
+        [HttpGet]
+        [Route("getnamelist")]
+        [PerformanceCounterAspect]
+        public List<NameListDto> GetNameList()
+        {
+            List<NameListDto> nameLists = _userService.GetList().Select(p => new NameListDto
+            {
+                UserName = p.UserName
+            }).ToList();
+
+            return nameLists;
+        }
+
+        [Route("getbyid")]
         [HttpGet]
         [PerformanceCounterAspect]
         public UserDto GetUserById(string id)
@@ -113,6 +130,36 @@ namespace SeizeTheDay.Api.Controllers
             {
                 return BadRequest(ex.Message.ToString());
             }
+        }
+
+        [Route("deleteuser")]
+        [HttpPost]
+        public async Task<IHttpActionResult> DeleteUser(string id)
+        {
+            try
+            {
+                var getUser = await _userManager.FindByIdAsync(id);
+                var result = await _userManager.DeleteAsync(getUser);
+                if (result.Succeeded)
+                {
+                    return Ok(ApiStatusEnum.Ok);
+                }
+                else
+                {
+                    return BadRequest(result.Errors.ToString());
+                }
+            }
+
+            catch (DbUpdateConcurrencyException ex)
+            {
+                ex.Entries.Single().Reload();
+                this._entities.SaveChanges();
+                return Ok(ApiStatusEnum.Ok);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }        
         }
 
         [Route("updateuser")]

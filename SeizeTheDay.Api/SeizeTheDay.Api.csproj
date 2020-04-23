@@ -186,7 +186,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ChatBoxesController.cs" />
+    <Compile Include="Controllers\ChatsController.cs" />
     <Compile Include="Controllers\ForumPostCommentsController.cs" />
+    <Compile Include="Controllers\ForumPostDetailsController.cs" />
     <Compile Include="Controllers\ForumPostsController.cs" />
     <Compile Include="Controllers\ForumsController.cs" />
     <Compile Include="Controllers\ForumTopicsController.cs" />

@@ -14,6 +14,6 @@ namespace SeizeTheDay.DataDomain.Enumerations
         Forbidden = 403,
 
         [Display(Name = "NotFound")]
-        NotFound = 403,
+        NotFound = 404,
     }
 }

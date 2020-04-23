@@ -29,7 +29,7 @@ namespace SeizeTheDay.Api.Controllers
         #endregion
 
         [HttpGet]
-        [Route("getforumtopics")]
+        [Route("gettopics")]
         [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<ForumTopicDto> GetForumTopics()
@@ -49,7 +49,7 @@ namespace SeizeTheDay.Api.Controllers
             return forumTopic;
         }
 
-        [Route("getforumtopicbyid")]
+        [Route("getbyid")]
         [HttpGet]
         [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
@@ -72,7 +72,29 @@ namespace SeizeTheDay.Api.Controllers
             return forumDto;
         }
 
-        [Route("createforumtopic")]
+        [Route("getbyforumid")]
+        [HttpGet]
+        [PerformanceCounterAspect]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
+        public List<ForumTopicDto> GetByForumId(int id)
+        {
+            List<ForumTopicDto> forumTopic = _forumTopicService.TolistIncludeByForumID(id)
+                 .Select(x => new ForumTopicDto()
+                 {
+                     ForumTopicID = x.ForumTopicID,
+                     ForumTopicName = x.ForumTopicName,
+                     ForumTopicDescription = x.ForumTopicDescription,
+                     CreatedTime = x.CreatedTime,
+                     CreatedBy = x.CreatedBy,
+                     ForumID = x.ForumID,
+                     ForumTopicTitle = x.ForumTopicTitle,
+                     ForumName = x.Forum.ForumName
+                 }).ToList();
+            return forumTopic;
+        }
+
+
+        [Route("createtopic")]
         [HttpPost]
         public IHttpActionResult CreateForumTopic([FromBody] ForumTopicApi model)
         {
@@ -97,7 +119,7 @@ namespace SeizeTheDay.Api.Controllers
             }
         }
 
-        [Route("deleteforumtopic")]
+        [Route("deletetopic")]
         [HttpPost]
         public IHttpActionResult DeleteForumTopic([FromBody] ForumTopicApi model)
         {
@@ -113,7 +135,7 @@ namespace SeizeTheDay.Api.Controllers
             }
         }
 
-        [Route("deleteforumtopic")]
+        [Route("deletetopic")]
         [HttpPost]
         public IHttpActionResult DeleteForumTopic(int id)
         {
@@ -129,7 +151,7 @@ namespace SeizeTheDay.Api.Controllers
             }
         }
 
-        [Route("updateforumpost")]
+        [Route("updatetopic")]
         [HttpPost]
         public IHttpActionResult UpdateForumTopic([FromBody] ForumTopicApi model)
         {
