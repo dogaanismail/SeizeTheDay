@@ -2205,7 +2205,6 @@
     <Content Include="Areas\Admin\Views\Shared\_Styles.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Header.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_SideBar.cshtml" />
-    <Content Include="SeizeTheDay.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />

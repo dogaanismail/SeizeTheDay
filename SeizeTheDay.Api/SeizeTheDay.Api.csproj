@@ -226,7 +226,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="SeizeTheDay.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SeizeTheDay.Business\SeizeTheDay.Business.csproj">
