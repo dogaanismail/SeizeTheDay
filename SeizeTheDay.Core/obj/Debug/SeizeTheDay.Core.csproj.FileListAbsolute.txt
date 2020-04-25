@@ -250,3 +250,4 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Core\obj\Debug\SeizeTheDay.Core.csproj.CopyC
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\obj\Debug\SeizeTheDay.Core.dll.postsharp
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\obj\Debug\SeizeTheDay.Core.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\obj\Debug\SeizeTheDay.Core.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.Core\obj\Debug\SeizeTheDay.Core.csprojAssemblyReference.cache
