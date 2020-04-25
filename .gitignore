@@ -12,6 +12,10 @@
 *.config
 *Web.config
 SeizeTheDay.Api/Web.config
+.dll
+.pdb
+.cache
+.exe
 
 
 # User-specific files (MonoDevelop/Xamarin Studio)
