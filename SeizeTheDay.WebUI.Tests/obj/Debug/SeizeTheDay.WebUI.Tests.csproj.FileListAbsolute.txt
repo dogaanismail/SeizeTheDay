@@ -38,4 +38,3 @@ C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\bin\Debug\Microsoft.VisualStudio
 C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Debug\SeizeTheDay.WebUI.Tests.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Debug\SeizeTheDay.WebUI.Tests.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Debug\SeizeTheDay.WebUI.Tests.pdb
-C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Debug\SeizeTheDay.WebUI.Tests.csprojAssemblyReference.cache

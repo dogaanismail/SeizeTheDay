@@ -357,3 +357,5 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 SeizeTheDay.DataAccess.Tests/obj/Debug/SeizeTheDay.DataAccess.Tests.csproj.FileListAbsolute.txt
+SeizeTheDay.Core/obj/Debug/SeizeTheDay.Core.csproj.FileListAbsolute.txt
+SeizeTheDay.WebUI.Tests/obj/Debug/SeizeTheDay.WebUI.Tests.csproj.FileListAbsolute.txt
