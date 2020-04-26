@@ -1,6 +1,7 @@
 ﻿using Ninject.Modules;
 using SeizeTheDay.Business.Abstract.MySQL;
 using SeizeTheDay.Business.Concrete.Manager.MySQL;
+using SeizeTheDay.Core.DataAccess.Abstract.MySQL;
 using SeizeTheDay.DataAccess.Abstract.MySQL;
 using SeizeTheDay.DataAccess.Concrete.MySQL;
 using System.Data.Entity.Core.Objects;
@@ -47,7 +48,7 @@ namespace SeizeTheDay.Ninject.Modules
 
             Bind<IUserTypeService>().To<UserTypeManager>().InSingletonScope();
             Bind<IUserTypeDal>().To<MyUserTypeDal>();
-          
+
             Bind<IChatService>().To<ChatManager>().InSingletonScope();
             Bind<IChatDal>().To<MyChatDal>();
 
@@ -75,9 +76,9 @@ namespace SeizeTheDay.Ninject.Modules
             Bind<INotificationService>().To<NotificationManager>().InSingletonScope();
             Bind<INotificationDal>().To<MyNotificationDal>();
 
-         
+            Bind<ObjectContext>().ToMethod(c => new Xgteamc1XgTeamEntities());
+            Bind(typeof(IMyQueryableRepository<>)).To(typeof(IMyQueryableRepository<>));
 
-            Bind<ObjectContext>().To<Xgteamc1XgTeamEntities>();
 
         }
     }
