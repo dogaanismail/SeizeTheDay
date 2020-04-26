@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using SeizeTheDayEntities = Xgteamc1XgTeamModel.Xgteamc1XgTeamEntities;
 using ModelUser = Xgteamc1XgTeamModel.User;
 using ModelChatbox = Xgteamc1XgTeamModel.ChatBox;
 using ModelChat = Xgteamc1XgTeamModel.Chat;
@@ -18,15 +17,13 @@ namespace SeizeTheDay.Api.Controllers
     public class ChatBoxesController : BaseController
     {
         #region Ctor
-        private readonly SeizeTheDayEntities _entities;
         private readonly IChatBoxService _chatBoxService;
         private readonly IChatService _chatService;
         private readonly IUserService _userService;
 
-        public ChatBoxesController(SeizeTheDayEntities entities, IChatBoxService chatBoxService,
+        public ChatBoxesController(IChatBoxService chatBoxService,
             IChatService chatService, IUserService userService)
         {
-            _entities = entities;
             _chatBoxService = chatBoxService;
             _chatService = chatService;
             _userService = userService;
@@ -38,50 +35,7 @@ namespace SeizeTheDay.Api.Controllers
         [PerformanceCounterAspect]
         public MessengerDto GetChatBoxes(string id)
         {
-            var receiver = (from u in _entities.ChatBoxes.Include("Chats").ToList()
-                            where (u.ReceiverID == id || u.SenderID == id)
-                            join p in _entities.Users on u.ReceiverID equals p.Id
-                            join v in _entities.Users on u.SenderID equals v.Id
-                            join z in _entities.UserInfoes on u.ReceiverID equals z.Id
-                            where p.Id != id
-                            select new
-                            {
-                                Chatbox = u.ChatboxID,
-                                ReceiverName = p.UserName,
-                                z.PhotoPath,
-                                SenderName = v.UserName,
-                                u.CreatedDate,
-                                text = u.Chats == null || u.Chats.Count() == 0 ? "" :
-                                u.Chats.OrderByDescending(x => x.SentDate).Select(x => x.Text).Take(1).FirstOrDefault().ToString(),
-                                messageCount = u.Chats == null || u.Chats.Count() == 0 ? 0 : u.Chats.Count()
-                            }).ToList();
-
-            var sender = (from u in _entities.ChatBoxes.Include("Chats").ToList()
-                          where (u.ReceiverID == id || u.SenderID == id)
-                          join p in _entities.Users on u.SenderID equals p.Id
-                          join v in _entities.Users on u.ReceiverID equals v.Id
-                          join z in _entities.UserInfoes on u.SenderID equals z.Id
-                          where p.Id != id
-                          select new
-                          {
-                              Chatbox = u.ChatboxID,
-                              SenderName = p.UserName,
-                              z.PhotoPath,
-                              ReceiverName = v.UserName,
-                              u.CreatedDate,
-                              text = u.Chats == null || u.Chats.Count() == 0 ? "" :
-                              u.Chats.OrderByDescending(x => x.SentDate).Select(x => x.Text).Take(1).FirstOrDefault().ToString(),
-                              messageCount = u.Chats == null || u.Chats.Count() == 0 ? 0 : u.Chats.Count()
-                          }).ToList();
-
-            MessengerDto messages = new MessengerDto
-            {
-                ChatBoxes_ReceiverID = receiver.ToList(),
-                ChatBoxes_SenderID = sender.ToList()
-
-            };
-
-            return messages;
+            return _chatBoxService.GetChatBoxes(id);
         }
 
         [Route("createchatbox")]

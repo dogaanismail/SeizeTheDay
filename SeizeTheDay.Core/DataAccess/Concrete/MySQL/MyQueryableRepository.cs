@@ -1,10 +1,11 @@
 ﻿using SeizeTheDay.Core.DataAccess.Abstract.MySQL;
 using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 
 namespace SeizeTheDay.Core.DataAccess.Concrete.MySQL
 {
-    public class MyQueryableRepository<T> : IMyQueryableRepository<T> where T : class, new()
+    public class MyQueryableRepository<T> : IMyQueryableRepository<T> where T : EntityObject, new()
     {
         private readonly ObjectContext _context;
         private IObjectSet<T> _entities;

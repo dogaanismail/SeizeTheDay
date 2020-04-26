@@ -4,6 +4,8 @@ using Microsoft.Owin.Security;
 using SeizeTheDay.Business.Abstract.MySQL;
 using SeizeTheDay.Business.Concrete.IdentityManagers;
 using SeizeTheDay.Business.Concrete.Manager.MySQL;
+using SeizeTheDay.Core.DataAccess.Abstract.MySQL;
+using SeizeTheDay.Core.DataAccess.Concrete.MySQL;
 using SeizeTheDay.DataAccess.Abstract.MySQL;
 using SeizeTheDay.DataAccess.Concrete.MySQL;
 using SeizeTheDay.Entities.Identity;
@@ -14,6 +16,7 @@ using System.Web.Http;
 using Unity;
 using Unity.AspNet.Mvc;
 using Unity.Injection;
+using Unity.Lifetime;
 using Xgteamc1XgTeamModel;
 
 namespace SeizeTheDay.IoC.App_Start
@@ -103,8 +106,9 @@ namespace SeizeTheDay.IoC.App_Start
             container.BindInRequstScope<INotificationService, NotificationManager>();
             container.BindInRequstScope<INotificationDal, MyNotificationDal>();
 
-            container.BindInRequstScope<ObjectContext, Xgteamc1XgTeamEntities>();
-
+            container.RegisterType<Xgteamc1XgTeamEntities>(new HierarchicalLifetimeManager(), new InjectionFactory(c => new Xgteamc1XgTeamEntities()));
+            container.RegisterType<ObjectContext>(new HierarchicalLifetimeManager(), new InjectionFactory(c => new Xgteamc1XgTeamEntities()));
+            container.RegisterType(typeof(IMyQueryableRepository<>), typeof(MyQueryableRepository<>), new PerRequestLifetimeManager());
 
             GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
         }

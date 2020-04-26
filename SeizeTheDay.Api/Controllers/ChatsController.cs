@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Http;
-using SeizeTheDayEntities = Xgteamc1XgTeamModel.Xgteamc1XgTeamEntities;
-using ModelChatbox = Xgteamc1XgTeamModel.ChatBox;
 using ModelChat = Xgteamc1XgTeamModel.Chat;
 using SeizeTheDay.DataDomain.Enumerations;
 using SeizeTheDay.Business.Abstract.MySQL;
 using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
 using SeizeTheDay.DataDomain.DTOs;
+using SeizeTheDay.Core.Aspects.Postsharp.CacheAspects;
+using SeizeTheDay.Core.CrossCuttingConcerns.Caching.Microsoft;
 
 namespace SeizeTheDay.Api.Controllers
 {
@@ -15,15 +14,13 @@ namespace SeizeTheDay.Api.Controllers
     public class ChatsController : BaseController
     {
         #region Ctor
-        private readonly SeizeTheDayEntities _entities;
         private readonly IChatBoxService _chatBoxService;
         private readonly IChatService _chatService;
         private readonly IUserService _userService;
 
-        public ChatsController(SeizeTheDayEntities entities, IChatBoxService chatBoxService,
+        public ChatsController(IChatBoxService chatBoxService,
             IChatService chatService, IUserService userService)
         {
-            _entities = entities;
             _chatBoxService = chatBoxService;
             _chatService = chatService;
             _userService = userService;
@@ -33,31 +30,10 @@ namespace SeizeTheDay.Api.Controllers
         [HttpGet]
         [Route("getchats")]
         [PerformanceCounterAspect]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
         public ChatDto GetChatBoxes(int id)
-        {
-            ModelChatbox getChatBox = _chatBoxService.GetByChatBoxID(id);
-
-            var sender = (from u in _entities.Chats
-                          where (u.ChatBoxID == id)
-                          join a in _entities.Users on u.SenderID equals a.Id
-                          join b in _entities.UserInfoes on u.SenderID equals b.Id
-                          join c in _entities.Users on u.ReceiverID equals c.Id
-                          select new
-                          {
-                              u.ChatID,
-                              u.ChatBoxID,
-                              SenderName = a.UserName,
-                              SenderPhoto = b.PhotoPath,
-                              ReceiverName = c.UserName,
-                              CreatedDate = u.SentDate,
-                              u.Text
-                          }).ToList();
-
-            ChatDto messages = new ChatDto
-            {
-                Sender = sender.OrderBy(x => x.CreatedDate).ToList(),
-            };
-            return messages;
+        {          
+            return _chatService.GetChatsByBoxId(id);
         }
 
         [Route("deletechats")]

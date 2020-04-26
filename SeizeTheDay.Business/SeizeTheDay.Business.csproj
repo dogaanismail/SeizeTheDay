@@ -156,6 +156,10 @@
       <Project>{e16bb027-349c-47b4-b7f4-09af222a88d0}</Project>
       <Name>SeizeTheDay.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SeizeTheDay.DataDomain\SeizeTheDay.DataDomain.csproj">
+      <Project>{EC241A13-1A40-4AAC-9D3B-7CE868D743B4}</Project>
+      <Name>SeizeTheDay.DataDomain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SeizeTheDay.Entities\SeizeTheDay.Entities.csproj">
       <Project>{a24ad207-6920-4f3f-b18d-564b079019cc}</Project>
       <Name>SeizeTheDay.Entities</Name>

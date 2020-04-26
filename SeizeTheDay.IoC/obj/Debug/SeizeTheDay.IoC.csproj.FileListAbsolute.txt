@@ -575,3 +575,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\Unity.WebApi.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\System.Net.Http.Formatting.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\System.Web.Http.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\System.Web.Http.WebHost.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\SeizeTheDay.DataDomain.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\SeizeTheDay.DataDomain.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\SeizeTheDay.DataDomain.dll.config

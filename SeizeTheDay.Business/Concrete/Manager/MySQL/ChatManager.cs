@@ -1,19 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using SeizeTheDay.Business.Abstract.MySQL;
+using SeizeTheDay.Core.DataAccess.Abstract.MySQL;
 using SeizeTheDay.DataAccess.Abstract.MySQL;
+using SeizeTheDay.DataDomain.DTOs;
 using Xgteamc1XgTeamModel;
+using System.Linq;
 
 namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class ChatManager : IChatService
     {
-        private IChatDal _chatDal;
+        #region Ctor
+        private readonly IChatDal _chatDal;
+        private readonly IMyQueryableRepository<Chat> _chatRepository;
+        private readonly IMyQueryableRepository<User> _userRepository;
+        private readonly IMyQueryableRepository<UserInfoe> _userDetailRepository;
 
-        public ChatManager(IChatDal chatDal)
+        public ChatManager(IChatDal chatDal,
+            IMyQueryableRepository<Chat> chatRepository,
+            IMyQueryableRepository<User> userRepository,
+            IMyQueryableRepository<UserInfoe> userDetailRepository)
         {
             _chatDal = chatDal;
+            _chatRepository = chatRepository;
+            _userRepository = userRepository;
+            _userDetailRepository = userDetailRepository;
         }
+
+        #endregion
 
         public void Add(Chat chat)
         {
@@ -27,7 +42,7 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 
         public Chat FirstOrDefault()
         {
-           return _chatDal.FirstOrDefault();
+            return _chatDal.FirstOrDefault();
         }
 
         public List<Chat> GetAllLazyWithoutID()
@@ -75,9 +90,29 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
             return _chatDal.Query(x => x.SenderID == id);
         }
 
-        public Chat GetFirstOrDefaultInclude(int id)
+        public ChatDto GetChatsByBoxId(int id)
         {
-            throw new NotImplementedException();
+            var sender = (from u in _chatRepository.Table
+                          where (u.ChatBoxID == id)
+                          join a in _userRepository.Table on u.SenderID equals a.Id
+                          join b in _userDetailRepository.Table on u.SenderID equals b.Id
+                          join c in _userRepository.Table on u.ReceiverID equals c.Id
+                          select new
+                          {
+                              u.ChatID,
+                              u.ChatBoxID,
+                              SenderName = a.UserName,
+                              SenderPhoto = b.PhotoPath,
+                              ReceiverName = c.UserName,
+                              CreatedDate = u.SentDate,
+                              u.Text
+                          }).ToList();
+
+            ChatDto messages = new ChatDto
+            {
+                Sender = sender.OrderBy(x => x.CreatedDate).ToList(),
+            };
+            return messages;
         }
 
         public List<Chat> GetList()
