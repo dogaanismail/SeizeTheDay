@@ -1611,7 +1611,8 @@ app.controller('PortalCtrl', ['$scope', '$http', '$sce', '$sanitize','portalMess
 
     $scope.getAllPortalMessages = function () {
         portalMessageService.getMessages().then(function (result) {
-            $scope.lstMessages = result.data;
+            $scope.lstMessages = result.data.result;
+            console.log($scope.lstMessages);
             $scope.slimScroll();
         });
     };

@@ -2,6 +2,7 @@
 using SeizeTheDay.Business.Abstract.MySQL;
 using SeizeTheDay.Business.Concrete.Manager.MySQL;
 using SeizeTheDay.Core.DataAccess.Abstract.MySQL;
+using SeizeTheDay.Core.DataAccess.Concrete.MySQL;
 using SeizeTheDay.DataAccess.Abstract.MySQL;
 using SeizeTheDay.DataAccess.Concrete.MySQL;
 using System.Data.Entity.Core.Objects;
@@ -76,10 +77,9 @@ namespace SeizeTheDay.Ninject.Modules
             Bind<INotificationService>().To<NotificationManager>().InSingletonScope();
             Bind<INotificationDal>().To<MyNotificationDal>();
 
-            Bind<ObjectContext>().ToMethod(c => new Xgteamc1XgTeamEntities());
-            Bind(typeof(IMyQueryableRepository<>)).To(typeof(IMyQueryableRepository<>));
-
-
+            Bind<ObjectContext>().ToConstructor(c => new Xgteamc1XgTeamEntities()).InSingletonScope();
+            Bind<Xgteamc1XgTeamEntities>().ToConstructor(c => new Xgteamc1XgTeamEntities()).InSingletonScope();
+            Bind(typeof(IMyQueryableRepository<>)).To(typeof(MyQueryableRepository<>));
         }
     }
 }

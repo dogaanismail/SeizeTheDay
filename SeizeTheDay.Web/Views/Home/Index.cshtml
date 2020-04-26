@@ -53,16 +53,16 @@
                                                 <div class="box-body chat" id="chat-box">
                                                     <!-- chat item -->
                                                     <div class="item" style="border-bottom:0.5px solid #096aa1" ng-repeat="mssg in lstMessages">
-                                                        <img ng-src="~/FileUpload/UserProfile/{{mssg.PhotoPath}}" alt="{{mssg.UserName}}">
+                                                        <img ng-src="~/FileUpload/UserProfile/{{mssg.photoPath}}" alt="{{mssg.userName}}">
                                                         <p class="message">
                                                             <a href="javascript:void(null)" class="name" style=" text-shadow: 0px 2px 20px rgba(17, 84, 69, 0.5);">
 
-                                                                <small ng-show="'@getUserID' == mssg.PortalMessageUserID" class="text-muted" style="float:right; margin-left:10px" ng-click="deleteMessage(mssg.MessageID)"><i class="fa fa-remove"></i> &nbsp; &nbsp; </small>
-                                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{mssg.SendDate}} </small>
-                                                                <span> {{mssg.UserName}}</span>
+                                                                <small ng-show="'@getUserID' == mssg.portalMessageUserID" class="text-muted" style="float:right; margin-left:10px" ng-click="deleteMessage(mssg.messageID)"><i class="fa fa-remove"></i> &nbsp; &nbsp; </small>
+                                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{mssg.sendDate}} </small>
+                                                                <span> {{mssg.userName}}</span>
                                                             </a>
 
-                                                            <span ng-bind-html="renderHtml(mssg.TextMessage)"></span>
+                                                            <span ng-bind-html="renderHtml(mssg.textMessage)"></span>
 
                                                         </p>
                                                         <!-- /.attachment -->
