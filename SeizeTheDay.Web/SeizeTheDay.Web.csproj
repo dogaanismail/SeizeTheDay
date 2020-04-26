@@ -3120,6 +3120,7 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Shared\_Scripts.cshtml" />
     <Content Include="Views\Shared\_Styles.cshtml" />
+    <Content Include="SeizeTheDay.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
