@@ -1,7 +1,7 @@
 ﻿angular.module('startupController')
     .service('portalMessageService', ['$http', function ($http) {
 
-        var urlBase = '/api/PortalMessages';
+        var urlBase = 'https://localhost:44367/api/messages/getmessages';
         
         this.getMessages = function () {
             return $http.get(urlBase);

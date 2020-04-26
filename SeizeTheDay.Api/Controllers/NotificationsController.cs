@@ -38,23 +38,27 @@ namespace SeizeTheDay.Api.Controllers
         {
             User getUser = _userService.GetUserNotifications(User.Identity.GetUserName());
 
-            if (getUser.Notifications != null)
+            if (getUser != null)
             {
-                List<NotificationDto> getNot = getUser.Notifications.Where(x => x.Type == (int)NotificationTypeEnum.Notification).
-                    Select(x => new NotificationDto
-                    {
-                        NotificationID = x.NotificationID,
-                        Type = x.Type,
-                        Details = x.Details,
-                        Title = x.Title,
-                        DetailsUrl = x.DetailsUrl,
-                        SentTo = x.SentTo,
-                        CreatedDate = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(x.CreatedDate.Value.Month) + " " +
-                    x.CreatedDate.Value.Day.ToString() + "," + x.CreatedDate.Value.Year.ToString() + " " + x.CreatedDate.Value.Hour + " : " + x.CreatedDate.Value.Minute,
-                        IsRead = x.IsRead,
-                    }).ToList();
+                if (getUser.Notifications != null)
+                {
+                    List<NotificationDto> getNot = getUser.Notifications.Where(x => x.Type == (int)NotificationTypeEnum.Notification).
+                        Select(x => new NotificationDto
+                      {
+                          NotificationID = x.NotificationID,
+                          Type = x.Type,
+                          Details = x.Details,
+                          Title = x.Title,
+                          DetailsUrl = x.DetailsUrl,
+                          SentTo = x.SentTo,
+                          CreatedDate = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(x.CreatedDate.Value.Month) + " " +
+                      x.CreatedDate.Value.Day.ToString() + "," + x.CreatedDate.Value.Year.ToString() + " " + x.CreatedDate.Value.Hour + " : " + x.CreatedDate.Value.Minute,
+                          IsRead = x.IsRead,
+                      }).ToList();
 
-                return getNot;
+                    return getNot;
+                }
+                return null;
             }
             else
             {
@@ -69,11 +73,15 @@ namespace SeizeTheDay.Api.Controllers
         public NotificationDto GetNotificationsCount()
         {
             User getUser = _userService.GetUserNotifications(User.Identity.GetUserName());
-            NotificationDto count = new NotificationDto
+            if (getUser != null)
             {
-                TotalNotification = getUser.Notifications.Where(x => x.Type == (int)NotificationTypeEnum.Notification).Count()
-            };
-            return count;
+                NotificationDto count = new NotificationDto
+                {
+                    TotalNotification = getUser.Notifications.Where(x => x.Type == (int)NotificationTypeEnum.Notification).Count()
+                };
+                return count;
+            }
+            return null;
         }
 
         [HttpGet]
@@ -84,23 +92,27 @@ namespace SeizeTheDay.Api.Controllers
         {
             User getUser = _userService.GetUserNotifications(User.Identity.GetUserName());
 
-            if (getUser.Notifications != null)
+            if (getUser != null)
             {
-                List<NotificationDto> getNot = getUser.Notifications.Where(x => x.Type ==
-                (int)NotificationTypeEnum.MessageNotification).Select(x => new NotificationDto
+                if (getUser.Notifications != null)
                 {
-                    NotificationID = x.NotificationID,
-                    Type = x.Type,
-                    Details = x.Details,
-                    Title = x.Title,
-                    DetailsUrl = x.DetailsUrl,
-                    SentTo = x.SentTo,
-                    CreatedDate = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(x.CreatedDate.Value.Month) + " " +
-                    x.CreatedDate.Value.Day.ToString() + "," + x.CreatedDate.Value.Year.ToString() + " " + x.CreatedDate.Value.Hour + " : " + x.CreatedDate.Value.Minute,
-                    IsRead = x.IsRead,
-                }).ToList();
+                    List<NotificationDto> getNot = getUser.Notifications.Where(x => x.Type ==
+                             (int)NotificationTypeEnum.MessageNotification).Select(x => new NotificationDto
+                             {
+                                 NotificationID = x.NotificationID,
+                                 Type = x.Type,
+                                 Details = x.Details,
+                                 Title = x.Title,
+                                 DetailsUrl = x.DetailsUrl,
+                                 SentTo = x.SentTo,
+                                 CreatedDate = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(x.CreatedDate.Value.Month) + " " +
+                               x.CreatedDate.Value.Day.ToString() + "," + x.CreatedDate.Value.Year.ToString() + " " + x.CreatedDate.Value.Hour + " : " + x.CreatedDate.Value.Minute,
+                                 IsRead = x.IsRead,
+                             }).ToList();
 
-                return getNot;
+                    return getNot;
+                }
+                return null;
             }
             else
             {
@@ -115,11 +127,16 @@ namespace SeizeTheDay.Api.Controllers
         public NotificationDto GetMessageNotificationsCount()
         {
             User getUser = _userService.GetUserNotifications(User.Identity.GetUserName());
-            NotificationDto count = new NotificationDto
+            if (getUser != null)
             {
-                TotalNotification = getUser.Notifications.Where(x => x.Type == (int)NotificationTypeEnum.MessageNotification).Count()
-            };
-            return count;
+                NotificationDto count = new NotificationDto
+                {
+                    TotalNotification = getUser.Notifications.Where(x => x.Type == (int)NotificationTypeEnum.MessageNotification).Count()
+                };
+                return count;
+            }
+
+            return null;
         }
 
         [Route("createnotification")]

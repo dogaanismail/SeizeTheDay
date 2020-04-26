@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using SeizeTheDay.Ninject.Factories;
 using SeizeTheDay.DataDomain.SignalRModels;
+using SeizeTheDay.DataDomain.DTOs;
+using SeizeTheDay.Core.Constants;
+using SeizeTheDay.Web.ServiceManager;
 
 namespace SeizeTheDay.Hubs
 {
@@ -36,6 +39,9 @@ namespace SeizeTheDay.Hubs
         public void Send(string username, string message)
         {
             string con = Context.ConnectionId;
+
+            var result = ServiceManager.RestSharpGet<List<PortalMessageDto>>(ApiUrlConstants.GetPortalMessages);
+
             Xgteamc1XgTeamModel.User getUser = _userService.GetByUserName(username);
             Xgteamc1XgTeamModel.PortalMessage newMessage = new Xgteamc1XgTeamModel.PortalMessage
             {

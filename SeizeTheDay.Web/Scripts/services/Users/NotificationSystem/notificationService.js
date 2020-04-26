@@ -1,30 +1,25 @@
 ﻿angular.module('startupController')
     .service('notificationService', ['$http', function ($http) {
 
-        var notificationUrl = '/api/Notifications';
-        var notificationCountUrl = '/api/NotificationCount';
-
-        var messageNotifUrl = '/api/MessageNotif';
-        var messageNotifCountUrl = '/api/MessageNotifCount';
-
+        var notificationUrl = 'https://localhost:44367/api/notifications/';
 
         ////////////////////// General Notifications //////////////////////////////////
         this.getGeneralNotif = function () {
-            return $http.get(notificationUrl);
+            return $http.get(notificationUrl + "getnotifications");
         };
 
         this.getGeneralNotifCount = function () {
-            return $http.get(notificationCountUrl);
+            return $http.get(notificationUrl + "getcount");
         };
 
         /////////////////////// Message Notifications //////////////////////////////////
 
         this.getMessageNotif = function () {
-            return $http.get(messageNotifUrl);
+            return $http.get(notificationUrl + "getmessagenot");
         };
 
         this.getMessageCountNotif = function () {
-            return $http.get(messageNotifCountUrl);
+            return $http.get(notificationUrl + "getnotcount");
         };
 
     }]);

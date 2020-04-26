@@ -24,9 +24,9 @@ namespace SeizeTheDay.Api.Controllers
         #endregion
 
         [HttpGet]
-        [Route("getdetails")]
+        [Route("getdetailsbyid")]
         [PerformanceCounterAspect]
-        public TopicDetailDto GetPostDetail(int id)
+        public TopicDetailDto GetPostDetailById(int id)
         {
             ModelForumpost getPost = _forumPostService.SingleInclude(id);
 

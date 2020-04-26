@@ -147,6 +147,7 @@
     <Compile Include="Aspects\PostsSharp\PerformanceAspects\PerformanceCounterAspect.cs" />
     <Compile Include="Aspects\PostsSharp\TransactionAspects\TransactionScopeAspect.cs" />
     <Compile Include="Aspects\PostsSharp\ValidationAspects\FluentValidationAspect.cs" />
+    <Compile Include="Constants\ApiUrlConstants.cs" />
     <Compile Include="CrossCuttingConcerns\Caching\ICacheManager.cs" />
     <Compile Include="CrossCuttingConcerns\Caching\Microsoft\MemoryCacheManager.cs" />
     <Compile Include="CrossCuttingConcerns\Logging\Log4Net\Layouts\JsonLayout.cs" />
