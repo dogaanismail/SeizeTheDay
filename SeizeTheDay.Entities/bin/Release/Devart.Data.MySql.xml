@@ -714,6 +714,97 @@
       <keywords>InvalidCharsetException.ServerCharset property </keywords>
       <value>Server character set. </value>
     </member>
+    <member name="T:Devart.Data.MySql.MemCryptStorage">
+      <summary>This class represents an in-memory storage for keys and certificates for establishing a protected SSL or SSH connection. It allows you to upload certificates and keys into memory once when the application starts and don't load certificate and key from some external sources (for example, files) each time when a connection is opened. </summary>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.#ctor()">
+      <summary>Initializes a new instance of the <see cref="T:Devart.Data.MySql.MemCryptStorage" /> class. </summary>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.AddCa(System.String,System.Byte[])">
+      <summary>Adds a CA certificate with a specific ID to <see cref="T:Devart.Data.MySql.MemCryptStorage" />. </summary>
+      <keywords>MemCryptStorage.AddCa method </keywords>
+      <param name="id">The CA certificate ID. </param>
+      <param name="pemCa">The added CA certificate. </param>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.AddCa(System.String,System.String)">
+      <summary>Adds a CA certificate with a specific ID to <see cref="T:Devart.Data.MySql.MemCryptStorage" />. </summary>
+      <keywords>MemCryptStorage.AddCa method </keywords>
+      <param name="id">The CA certificate ID. </param>
+      <param name="pemCa">The added CA certificate. </param>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.AddCert(System.String,System.Byte[])">
+      <summary>Adds a certificate with a specific ID to <see cref="T:Devart.Data.MySql.MemCryptStorage" />. </summary>
+      <keywords>MemCryptStorage.AddCert method </keywords>
+      <param name="id">The certificate ID. </param>
+      <param name="pemCert">The added certificate. </param>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.AddCert(System.String,System.String)">
+      <summary>Adds a certificate with a specific ID to <see cref="T:Devart.Data.MySql.MemCryptStorage" />. </summary>
+      <keywords>MemCryptStorage.AddCert method </keywords>
+      <param name="id">The certificate ID. </param>
+      <param name="pemCert">The added certificate. </param>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.AddKey(System.String,System.Byte[])">
+      <summary>Adds a key with a specific ID to <see cref="T:Devart.Data.MySql.MemCryptStorage" />. </summary>
+      <keywords>MemCryptStorage.AddKey method </keywords>
+      <param name="id">The key ID. </param>
+      <param name="pemKey">The added key. </param>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.AddKey(System.String,System.String)">
+      <summary>Adds a key with a specific ID to <see cref="T:Devart.Data.MySql.MemCryptStorage" />. </summary>
+      <keywords>MemCryptStorage.AddKey method </keywords>
+      <param name="id">The key ID. </param>
+      <param name="pemKey">The added key. </param>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.ClearAll()">
+      <summary>Deletes all CA certificates, certificates, and keys from the <see cref="T:Devart.Data.MySql.MemCryptStorage" />. </summary>
+      <keywords>MemCryptStorage.ClearAll method </keywords>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.ClearCa()">
+      <summary>Deletes all CA certificates from the <see cref="T:Devart.Data.MySql.MemCryptStorage" />. </summary>
+      <keywords>MemCryptStorage.ClearCa method </keywords>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.ClearCert()">
+      <summary>Deletes all certificates from the <see cref="T:Devart.Data.MySql.MemCryptStorage" />. </summary>
+      <keywords>MemCryptStorage.ClearCert method </keywords>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.ClearKey()">
+      <summary>Deletes all keys from the <see cref="T:Devart.Data.MySql.MemCryptStorage" />. </summary>
+      <keywords>MemCryptStorage.ClearKey method </keywords>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.ContainsCa(System.String)">
+      <summary>Determines whether the <see cref="T:Devart.Data.MySql.MemCryptStorage" /> contains a CA certificate with the specified ID. </summary>
+      <keywords>MemCryptStorage.ContainsCa method </keywords>
+      <param name="id">The specified ID. </param>
+      <returns><see langword="true" />, if the <see cref="T:Devart.Data.MySql.MemCryptStorage" /> contains a CA certificate with the specified ID. </returns>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.ContainsCert(System.String)">
+      <summary>Determines whether the <see cref="T:Devart.Data.MySql.MemCryptStorage" /> contains a certificate with the specified ID. </summary>
+      <keywords>MemCryptStorage.ContainsCert method </keywords>
+      <param name="id">The specified ID. </param>
+      <returns><see langword="true" />, if the <see cref="T:Devart.Data.MySql.MemCryptStorage" /> contains a certificate with the specified ID. </returns>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.ContainsKey(System.String)">
+      <summary>Determines whether the <see cref="T:Devart.Data.MySql.MemCryptStorage" /> contains a key with the specified ID. </summary>
+      <keywords>MemCryptStorage.ContainsKey method </keywords>
+      <param name="id">The specified ID. </param>
+      <returns><see langword="true" />, if the <see cref="T:Devart.Data.MySql.MemCryptStorage" /> contains a key with the specified ID. </returns>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.RemoveCa(System.String)">
+      <summary>Removes a CA certificate with the specified ID from the <see cref="T:Devart.Data.MySql.MemCryptStorage" />. </summary>
+      <keywords>MemCryptStorage.RemoveCa method </keywords>
+      <param name="id">The specified ID. </param>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.RemoveCert(System.String)">
+      <summary>Removes a certificate with the specified ID from the <see cref="T:Devart.Data.MySql.MemCryptStorage" />. </summary>
+      <keywords>MemCryptStorage.RemoveCert method </keywords>
+      <param name="id">The specified ID. </param>
+    </member>
+    <member name="M:Devart.Data.MySql.MemCryptStorage.RemoveKey(System.String)">
+      <summary>Removes a key with the specified ID from the <see cref="T:Devart.Data.MySql.MemCryptStorage" />. </summary>
+      <keywords>MemCryptStorage.RemoveKey method </keywords>
+      <param name="id">The specified ID. </param>
+    </member>
     <member name="T:Devart.Data.MySql.MySqlAuthenticationPrompEventArgs">
       <summary>Provides data for the <see cref="E:Devart.Data.MySql.MySqlConnection.AuthenticationPrompt" /> event. </summary>
     </member>
@@ -1568,7 +1659,7 @@ A positive integer means that the current instance is greater than the <b>object
     </member>
     <member name="P:Devart.Data.MySql.MySqlConnectionStringBuilder.ClientInteractive">
       <summary>Determines the inactivity timeout before the server breaks the connection. </summary>
-      <keywords>interactive_timeout                                                                                                           </keywords>
+      <keywords>interactive_timeout                                                                                                                </keywords>
       <keywords>wait_timeout </keywords>
       <keywords>MySqlConnectionStringBuilder.ClientInteractive property </keywords>
       <value>If <see langword="true" />, the server breaks the connection after number of seconds specified in <i>interactive_timeout</i> sever variable, otherwise <i>wait_timeout</i> is used.

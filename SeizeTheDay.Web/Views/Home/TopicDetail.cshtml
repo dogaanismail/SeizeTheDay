@@ -27,17 +27,17 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/Home/Forum/{{postDetail.ForumID}}">
-                                        <span> {{postDetail.ForumName}} <i class="fa fa-angle-right"></i></span>
+                                    <a href="/Home/Forum/{{postDetail.forumID}}">
+                                        <span> {{postDetail.forumName}} <i class="fa fa-angle-right"></i></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/Home/ForumsTopic/{{postDetail.ForumTopicID}}">
-                                        <span>{{postDetail.ForumTopicName}} <i class="fa fa-angle-right"></i></span>
+                                    <a href="/Home/ForumsTopic/{{postDetail.forumTopicID}}">
+                                        <span>{{postDetail.forumTopicName}} <i class="fa fa-angle-right"></i></span>
                                     </a>
                                 </li>
                                 <li>
-                                    {{postDetail.ForumPostTitle}}
+                                    {{postDetail.forumPostTitle}}
                                 </li>
                             </ul>
                         </nav>
@@ -49,25 +49,25 @@
 
                                 <div class="ipsPhotoPanel ipsPhotoPanel_small ipsPhotoPanel_notPhone ipsClearfix">
 
-                                    <a href="/Users/Profile/{{postDetail.CreatedByUserID}}" class="ipsUserPhoto ipsUserPhoto_small" title="Go to {{postDetail.CreatedByUserName}}'s profile">
-                                        <img ng-src="~/FileUpload/UserProfile/{{postDetail.CreatedByPhotoPath}}" alt="Division" itemprop="image" style="max-width:none">
+                                    <a href="/Users/Profile/{{postDetail.createdByUserID}}" class="ipsUserPhoto ipsUserPhoto_small" title="Go to {{postDetail.createdByUserName}}'s profile">
+                                        <img ng-src="~/FileUpload/UserProfile/{{postDetail.createdByPhotoPath}}" alt="Division" itemprop="image" style="max-width:none">
                                     </a>
 
                                     <div>
                                         <h1 class="ipsType_pageTitle">
-                                            <span ng-show="!postDetail.PostLocked" class="ipsBadge ipsBadge_icon ipsBadge_positive" data-ipstooltip="" title="Pinned"><i class="fa fa-thumb-tack"></i></span>
-                                            <span ng-show="postDetail.PostLocked"><i class="ipsType_large ipsBadge  ipsBadge_icon fa fa-lock" title="This post is locked !"></i></span>
-                                            {{postDetail.ForumPostTitle}}
+                                            <span ng-show="!postDetail.postLocked" class="ipsBadge ipsBadge_icon ipsBadge_positive" data-ipstooltip="" title="Pinned"><i class="fa fa-thumb-tack"></i></span>
+                                            <span ng-show="postDetail.postLocked"><i class="ipsType_large ipsBadge  ipsBadge_icon fa fa-lock" title="This post is locked !"></i></span>
+                                            {{postDetail.forumPostTitle}}
                                         </h1>
 
                                         <p class="ipsType_reset ipsType_blendLinks ">
                                             <span class="ipsType_normal">
                                                 Started by
-                                                <a href="/Users/Profile/{{postDetail.CreatedByUserID}}" title="Go to {{postDetail.CreatedByUserName}}'s profile" class="ipsType_break">
-                                                    <span style="font-weight: bold; color:azure">{{postDetail.CreatedByUserName}}</span>
+                                                <a href="/Users/Profile/{{postDetail.createdByUserID}}" title="Go to {{postDetail.createdByUserName}}'s profile" class="ipsType_break">
+                                                    <span style="font-weight: bold; color:azure">{{postDetail.createdByUserName}}</span>
                                                 </a>
                                             </span>,
-                                            <span class="ipsType_light ipsType_noBreak"><time title="{{postDetail.CreatedTime}}">{{postDetail.CreatedTime}}</time></span><br>
+                                            <span class="ipsType_light ipsType_noBreak"><time title="{{postDetail.createdTime}}">{{postDetail.createdTime}}</time></span><br>
                                         </p>
 
                                     </div>
@@ -77,22 +77,22 @@
                                 <br /><br />
                             </div>
                             <div class="cTopic ipsClear ipsSpacer_top">
-                                <h2 class="ipsType_sectionTitle ipsType_reset ipsType_medium">{{postDetail.CommentCount}} replies in this topic</h2>
+                                <h2 class="ipsType_sectionTitle ipsType_reset ipsType_medium">{{postDetail.commentCount}} replies in this topic</h2>
                                 <div class="ipsAreaBackground_light">
                                     <a id="comment-2039"></a>
                                     <article class="cPost ipsBox  ipsComment  ipsComment_parent ipsClearfix ipsClear ipsColumns ipsColumns_noSpacing ipsColumns_collapsePhone ipsComment_highlighted ">
                                         <div class="cAuthorPane cAuthorPane_mobile ipsResponsive_showPhone ipsResponsive_block">
 
                                             <h3 class="ipsType_sectionHead cAuthorPane_author ipsResponsive_showPhone ipsResponsive_inlineBlock ipsType_break ipsType_blendLinks ipsTruncate ipsTruncate_line">
-                                                <a href="/Users/Profile/{{postDetail.CreatedByUserID}}" title="Go to {{postDetail.CreatedByUserName}}'s profile" class="ipsType_break">
-                                                    <span style="font-weight: bold; color:azure;">{{postDetail.CreatedByUserName}}</span>
+                                                <a href="/Users/Profile/{{postDetail.createdByUserID}}" title="Go to {{postDetail.createdByUserName}}'s profile" class="ipsType_break">
+                                                    <span style="font-weight: bold; color:azure;">{{postDetail.createdByUserName}}</span>
                                                 </a>
                                             </h3>
 
 
                                             <div class="cAuthorPane_photo">
-                                                <a href="/Users/Profile/{{postDetail.CreatedByUserID}}" class="ipsUserPhoto ipsUserPhoto_large" title="Go to {{postDetail.CreatedByUserName}}'s profile">
-                                                    <img ng-src="~/FileUpload/UserProfile/{{postDetail.CreatedByPhotoPath}}" class="img-circle" alt="{{postDetail.CreatedByUserName}}" itemprop="image">
+                                                <a href="/Users/Profile/{{postDetail.createdByUserID}}" class="ipsUserPhoto ipsUserPhoto_large" title="Go to {{postDetail.createdByUserName}}'s profile">
+                                                    <img ng-src="~/FileUpload/UserProfile/{{postDetail.createdByPhotoPath}}" class="img-circle" alt="{{postDetail.createdByUserName}}" itemprop="image">
                                                 </a>
                                             </div>
 
@@ -100,10 +100,10 @@
                                         <aside class="ipsComment_author cAuthorPane ipsColumn ipsColumn_medium ipsResponsive_hidePhone">
 
                                             <h3 class="ipsType_sectionHead cAuthorPane_author ipsType_blendLinks ipsType_break">
-                                                <i style="font-size: 16px" class="fa fa-circle ipsOnlineStatus_online" title="{{postDetail.CreatedByUserName}} is online now"></i>
+                                                <i style="font-size: 16px" class="fa fa-circle ipsOnlineStatus_online" title="{{postDetail.createdByUserName}} is online now"></i>
                                                 <strong>
-                                                    <a href="/Users/Profile/{{postDetail.CreatedByUserID}}" title="Go to {{postDetail.CreatedByUserName}}'s profile" class="ipsType_break">
-                                                        <span style="font-weight: bold;  color:azure">{{postDetail.CreatedByUserName}}</span>
+                                                    <a href="/Users/Profile/{{postDetail.createdByUserID}}" title="Go to {{postDetail.createdByUserName}}'s profile" class="ipsType_break">
+                                                        <span style="font-weight: bold;  color:azure">{{postDetail.createdByUserName}}</span>
                                                     </a>
                                                 </strong>
 
@@ -114,8 +114,8 @@
                                                 @*<li ng-show="postDetail." class="ipsType_break">@Model.User.UserInfoe_Id.UserType.UserTypeName</li>*@
 
                                                 <li class="cAuthorPane_photo">
-                                                    <a href="/Users/Profile/{{postDetail.CreatedByUserID}}" class="ipsUserPhoto ipsUserPhoto_large" title="Go to {{postDetail.CreatedByUserName}}'s profile" id="ips_uid_5030_3">
-                                                        <img ng-src="~/FileUpload/UserProfile/{{postDetail.CreatedByPhotoPath}}" alt="{{postDetail.CreatedByUserName}}" class="img-circle" itemprop="image">
+                                                    <a href="/Users/Profile/{{postDetail.createdByUserID}}" class="ipsUserPhoto ipsUserPhoto_large" title="Go to {{postDetail.createdByUserName}}'s profile" id="ips_uid_5030_3">
+                                                        <img ng-src="~/FileUpload/UserProfile/{{postDetail.createdByPhotoPath}}" alt="{{postDetail.createdByUserName}}" class="img-circle" itemprop="image">
                                                     </a>
                                                 </li>
 
@@ -132,18 +132,18 @@
                                                     <div class="ipsType_reset">
                                                         <a href="" class="ipsType_blendLinks">
                                                             Posted
-                                                            <time title="{{postDetail.CreatedTime}}">{{postDetail.CreatedTime}}</time>
+                                                            <time title="{{postDetail.createdTime}}">{{postDetail.createdTime}}</time>
                                                         </a>
 
                                                         @if (User.Identity.IsAuthenticated)
                                                         {
-                                                            <div ng-show="postDetail.CreatedByUserID == '@User.Identity.GetUserId()'" class="pull-right">
-                                                                <a ng-click="deletePost(postDetail.ForumPostID)" title="Delete your post !" style="color: #25C2F5 !important" class="pull-right">
+                                                            <div ng-show="postDetail.createdByUserID == '@User.Identity.GetUserId()'" class="pull-right">
+                                                                <a ng-click="deletePost(postDetail.forumPostID)" title="Delete your post !" style="color: #25C2F5 !important" class="pull-right">
                                                                     <span class="fa fa-remove "></span>Delete
                                                                 </a>
 
                                                                 <span class="pull-right"> &nbsp; &nbsp; </span>
-                                                                <a ng-click="editPost(postDetail.ForumPostID)" title="Edit your post !" style="color: #25C2F5 !important" class="pull-right">
+                                                                <a ng-click="editPost(postDetail.forumPostID)" title="Edit your post !" style="color: #25C2F5 !important" class="pull-right">
                                                                     <span class="fa fa-edit "></span>Edit
                                                                 </a>
                                                             </div>
@@ -155,7 +155,7 @@
                                                 </div>
                                                 <div class="cPost_contentWrap ipsPad">
                                                     <div class="ipsType_normal ipsType_richText ipsContained">
-                                                        <div ng-bind-html="renderHtml(postDetail.ForumPostContent)"> </div>
+                                                        <div ng-bind-html="renderHtml(postDetail.forumPostContent)"> </div>
                                                     </div>
 
                                                     <div class="ipsItemControls">
@@ -170,13 +170,13 @@
 
                                                                                 </span>
                                                                                 <span>
-                                                                                    {{postDetail.PostLikesCount}}
+                                                                                    {{postDetail.postLikesCount}}
                                                                                 </span>
                                                                             </a>
                                                                         </li>
                                                                     </ul>
                                                                     <div class="ipsReact_overview ipsType_blendLinks">
-                                                                        <a href="" title="See who reacted to this"> {{postDetail.PostLikesCount}} members</a>
+                                                                        <a href="" title="See who reacted to this"> {{postDetail.postLikesCount}} members</a>
                                                                         reacted to this
                                                                     </div>
                                                                 </div>
@@ -220,24 +220,24 @@
                                         <div class="cAuthorPane cAuthorPane_mobile ipsResponsive_showPhone ipsResponsive_block">
 
                                             <h3 class="ipsType_sectionHead cAuthorPane_author ipsResponsive_showPhone ipsResponsive_inlineBlock ipsType_break ipsType_blendLinks ipsTruncate ipsTruncate_line">
-                                                <a href="/Users/Profile/{{comment.CreatedByUserID}}" title="Go to {{comment.CreatedByUserName}}'s profile" class="ipsType_break">
-                                                    <span style="color:azure">{{comment.CreatedByUserName}}</span>
+                                                <a href="/Users/Profile/{{comment.createdByUserID}}" title="Go to {{comment.createdByUserName}}'s profile" class="ipsType_break">
+                                                    <span style="color:azure">{{comment.createdByUserName}}</span>
                                                 </a>
                                             </h3>
 
                                             <div class="cAuthorPane_photo">
-                                                <a href="/Users/Profile/{{comment.CreatedByUserID}}" class="ipsUserPhoto ipsUserPhoto_large" title="Go to {{comment.CreatedByUserName}}'s profile">
-                                                    <img ng-src="~/FileUpload/UserProfile/{{comment.CreatedByPhotoPath}}" alt="{{comment.CreatedByUserName}}" itemprop="image">
+                                                <a href="/Users/Profile/{{comment.createdByUserID}}" class="ipsUserPhoto ipsUserPhoto_large" title="Go to {{comment.createdByUserName}}'s profile">
+                                                    <img ng-src="~/FileUpload/UserProfile/{{comment.createdByPhotoPath}}" alt="{{comment.createdByUserName}}" itemprop="image">
                                                 </a>
                                             </div>
                                         </div>
                                         <aside class="ipsComment_author cAuthorPane ipsColumn ipsColumn_medium ipsResponsive_hidePhone">
 
                                             <h3 class="ipsType_sectionHead cAuthorPane_author ipsType_blendLinks ipsType_break">
-                                                <i style="font-size: 16px" class="fa fa-circle ipsOnlineStatus_online" title="{{comment.CreatedByUserName}} is online now"></i>
+                                                <i style="font-size: 16px" class="fa fa-circle ipsOnlineStatus_online" title="{{comment.createdByUserName}} is online now"></i>
                                                 <strong>
-                                                    <a href="/Users/Profile/{{comment.CreatedByUserID}}" title="Go to {{comment.CreatedByUserName}}'s profile" class="ipsType_break">
-                                                        <span style="color:azure">{{comment.CreatedByUserName}}</span>
+                                                    <a href="/Users/Profile/{{comment.createdByUserID}}" title="Go to {{comment.createdByUserName}}'s profile" class="ipsType_break">
+                                                        <span style="color:azure">{{comment.createdByUserName}}</span>
                                                     </a>
                                                 </strong>
                                             </h3>
@@ -245,8 +245,8 @@
 
                                             <ul class="cAuthorPane_info ipsList_reset">
                                                 <li class="cAuthorPane_photo">
-                                                    <a href="/Users/Profile/{{comment.CreatedByUserID}}" class="ipsUserPhoto ipsUserPhoto_large" title="Go to {{comment.CreatedByUserName}}'s profile">
-                                                        <img ng-src="~/FileUpload/UserProfile/{{comment.CreatedByPhotoPath}}" alt="{{comment.CreatedByUserName}}" itemprop="image">
+                                                    <a href="/Users/Profile/{{comment.createdByUserID}}" class="ipsUserPhoto ipsUserPhoto_large" title="Go to {{comment.createdByUserName}}'s profile">
+                                                        <img ng-src="~/FileUpload/UserProfile/{{comment.createdByPhotoPath}}" alt="{{comment.createdByUserName}}" itemprop="image">
                                                     </a>
                                                 </li>
 
@@ -261,18 +261,18 @@
                                                     <div class="ipsType_reset">
                                                         <a href="" class="ipsType_blendLinks">
                                                             Posted
-                                                            <time title="{{comment.CreatedTime}}">{{comment.CreatedTime}}</time>
+                                                            <time title="{{comment.createdTime}}">{{comment.createdTime}}</time>
                                                         </a>
 
                                                         @if (User.Identity.IsAuthenticated)
                                                         {
-                                                            <div ng-show="comment.CreatedByUserID == '@User.Identity.GetUserId()'" class="pull-right">
-                                                                <a ng-click="deleteComment(comment.CommentID)" style="color: #25C2F5 !important" class="pull-right">
+                                                            <div ng-show="comment.createdByUserID == '@User.Identity.GetUserId()'" class="pull-right">
+                                                                <a ng-click="deleteComment(comment.commentID)" style="color: #25C2F5 !important" class="pull-right">
                                                                     <span class="fa fa-remove "></span>Delete
                                                                 </a>
 
                                                                 <span class="pull-right"> &nbsp; &nbsp; </span>
-                                                                <a href="#EditComment" style="color: #25C2F5 !important" ng-click="editComment(comment.CommentID)"  id="{{comment.CommentID}}" class="pull-right">
+                                                                <a href="#EditComment" style="color: #25C2F5 !important" ng-click="editComment(comment.commentID)"  id="{{comment.commentID}}" class="pull-right">
                                                                     <span class="fa fa-edit "></span>Edit
                                                                 </a>
                                                             </div>
@@ -284,7 +284,7 @@
                                                 </div>
                                                 <div class="cPost_contentWrap ipsPad">
                                                     <div class="ipsType_normal ipsType_richText ipsContained">
-                                                        <div ng-bind-html="renderHtml(comment.Text)"> </div>
+                                                        <div ng-bind-html="renderHtml(comment.text)"> </div>
                                                     </div>
 
                                                     <div class="ipsItemControls">
@@ -299,13 +299,13 @@
 
                                                                                 </span>
                                                                                 <span>
-                                                                                    {{comment.CommentLikesCount}}
+                                                                                    {{comment.commentLikesCount}}
                                                                                 </span>
                                                                             </a>
                                                                         </li>
                                                                     </ul>
                                                                     <div class="ipsReact_overview ipsType_blendLinks">
-                                                                        <a href="" title="See who reacted to this"> {{comment.CommentLikesCount}} members</a>
+                                                                        <a href="" title="See who reacted to this"> {{comment.commentLikesCount}} members</a>
                                                                         reacted to this
                                                                     </div>
                                                                 </div>
@@ -360,7 +360,7 @@
                                                 <br />
                                                 <ul class="ipsToolList ipsToolList_horizontal ipsClearfix ipsSpacer_both">
                                                     <li>
-                                                        <a class="ipsButton ipsButton_medium ipsButton_important" ng-click="createComment(postDetail.ForumPostID,postDetail.CreatedByUserName)" title="Submit your comment !">Submit Reply</a>
+                                                        <a class="ipsButton ipsButton_medium ipsButton_important" ng-click="createComment(postDetail.forumPostID,postDetail.createdByUserName)" title="Submit your comment !">Submit Reply</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -410,17 +410,17 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/Home/Forum/{{postDetail.ForumID}}">
-                                            <span> {{postDetail.ForumName}} <i class="fa fa-angle-right"></i></span>
+                                        <a href="/Home/Forum/{{postDetail.forumID}}">
+                                            <span> {{postDetail.forumName}} <i class="fa fa-angle-right"></i></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/Home/ForumsTopic/{{postDetail.ForumTopicID}}">
-                                            <span>{{postDetail.ForumTopicName}} <i class="fa fa-angle-right"></i></span>
+                                        <a href="/Home/ForumsTopic/{{postDetail.forumTopicID}}">
+                                            <span>{{postDetail.forumTopicName}} <i class="fa fa-angle-right"></i></span>
                                         </a>
                                     </li>
                                     <li>
-                                        {{postDetail.ForumPostTitle}}
+                                        {{postDetail.forumPostTitle}}
                                     </li>
                                 </ul>
                             </nav>
@@ -467,7 +467,7 @@
                                                     Title <span class="ipsFieldRow_required">Required</span>
                                                 </label>
                                                 <div class="ipsFieldRow_content">
-                                                    <input type="text" ng-model="model.ForumPostTitle" required id="ForumPostTitle" style="background: #202020; border-color: #242424; border-radius: 0px; color:#c4c4c4;  font-size: 14px; vertical-align: middle; border-width: 1px; border-style: solid; border-color: rgba(0,0,0,0.2); border-radius: 3px; width: 100%; max-width: 350px; padding: 7px;">
+                                                    <input type="text" ng-model="model.forumPostTitle" required id="ForumPostTitle" style="background: #202020; border-color: #242424; border-radius: 0px; color:#c4c4c4;  font-size: 14px; vertical-align: middle; border-width: 1px; border-style: solid; border-color: rgba(0,0,0,0.2); border-radius: 3px; width: 100%; max-width: 350px; padding: 7px;">
                                                 </div>
                                             </li>
 
@@ -481,7 +481,7 @@
                                                             <div data-role="editorComposer">
 
                                                                 <!-- NOTE: TinyMCE textareas must have id's -->
-                                                                <textarea required data-ui-tinymce="tinymceforEdit" id="detailEdit" data-ng-model="model.ForumPostContent"></textarea>
+                                                                <textarea required data-ui-tinymce="tinymceforEdit" id="detailEdit" data-ng-model="model.forumPostContent"></textarea>
 
                                                                 <div>
                                                                 </div>
@@ -497,7 +497,7 @@
                                     <ul class="ipsToolList ipsToolList_horizontal ipsClearfix ipsSpacer_both">
                                         <li>
                                             <a class="ipsButton ipsButton_medium ipsButton_important" style="margin-left:10px" ng-click="reset()" title="Reset !">Cancel</a>
-                                            <a class="ipsButton ipsButton_medium ipsButton_important" ng-disabled="!form1.$valid" style="margin-right:10px" ng-click="updatePost(model.ForumPostID)" title="Submit your edit post !">Submit </a>
+                                            <a class="ipsButton ipsButton_medium ipsButton_important" ng-disabled="!form1.$valid" style="margin-right:10px" ng-click="updatePost(model.forumPostID)" title="Submit your edit post !">Submit </a>
                                         </li>
                                     </ul>
                                     <br />

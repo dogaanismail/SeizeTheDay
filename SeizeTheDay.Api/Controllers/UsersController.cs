@@ -18,7 +18,7 @@ using System.Data.Entity.Infrastructure;
 namespace SeizeTheDay.Api.Controllers
 {
     [RoutePrefix("api/users")]
-    public class UsersController : ApiController
+    public class UsersController : BaseController
     {
         #region Ctor
         private readonly SeizeTheDayEntities _entities;

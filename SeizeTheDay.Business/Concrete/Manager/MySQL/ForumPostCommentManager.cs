@@ -51,7 +51,7 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
             return _forumPostCommentDal.GetList();
         }
 
-        public List<ForumPostComment> StringInclude(int id)
+        public List<ForumPostComment> GetCommentsByPostId(int id)
         {
             return _forumPostCommentDal.StringIncludeWithExpression(x => x.ForumPostID == id, "User", "User.UserInfoe_Id", "ForumCommentLikes");
         }
@@ -59,6 +59,11 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
         public void Update(ForumPostComment forumPostComment)
         {
              _forumPostCommentDal.Update(forumPostComment);
+        }
+
+        public List<ForumPostComment> GetListWithInclude()
+        {
+            return _forumPostCommentDal.StringInclude("User", "User.UserInfoe_Id", "ForumCommentLikes");
         }
     }
 }

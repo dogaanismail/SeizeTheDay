@@ -17,8 +17,8 @@ using ModelPostComment = Xgteamc1XgTeamModel.ForumPostComment;
 
 namespace SeizeTheDay.Api.Controllers
 {
-    [RoutePrefix("api/postcomments")]
-    public class ForumPostCommentsController : ApiController
+    [RoutePrefix("api/comments")]
+    public class ForumPostCommentsController : BaseController
     {
         #region Ctor
         private readonly IForumPostCommentService _commentService;
@@ -30,12 +30,54 @@ namespace SeizeTheDay.Api.Controllers
         #endregion
 
         [HttpGet]
+        [Route("getlistbypostid")]
+        [PerformanceCounterAspect]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
+        public List<PostCommentDto> GetListByPostId(int id)
+        {
+            List<PostCommentDto> comments = _commentService.GetCommentsByPostId(id).Select(x => new PostCommentDto()
+            {
+                CommentID = x.ForumPostCommentID,
+                Text = x.Text,
+                CreatedTime = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(x.CreatedTime.Value.Month) + " " +
+                x.CreatedTime.Value.Day.ToString() + "," + x.CreatedTime.Value.Year.ToString(),
+                CreatedBy = x.CreatedBy,
+                ForumPostID = x.ForumPostID,
+                CreatedByUserName = x.User.UserName,
+                CreatedByUserID = x.User.Id,
+                CreatedByPhotoPath = x.User.UserInfoe_Id.PhotoPath,
+                CommentLikesCount = x.ForumCommentLikes.Count().ToString()
+            }).ToList();
+
+            return comments;
+        }
+
+        [HttpGet]
+        [Route("getbyid")]
+        [PerformanceCounterAspect]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
+        public PostCommentDto GetById(int id)
+        {
+            ModelPostComment data = _commentService.GetByForumPostComment(id);
+            if (data != null)
+            {
+                PostCommentDto commentInf = new PostCommentDto
+                {
+                    Text = data.Text
+                };
+
+                return commentInf;
+            }
+            return null;
+        }
+
+        [HttpGet]
         [Route("getcomments")]
         [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
-        public List<PostCommentDto> GetForumComments(int id)
+        public List<PostCommentDto> GetComments()
         {
-            List<PostCommentDto> comments = _commentService.StringInclude(id).Select(x => new PostCommentDto()
+            List<PostCommentDto> comments = _commentService.GetListWithInclude().Select(x => new PostCommentDto()
             {
                 CommentID = x.ForumPostCommentID,
                 Text = x.Text,

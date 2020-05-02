@@ -94,7 +94,6 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
             return _forumPostDal.StringInclude("User", "User.UserInfoe_Id", "ForumPostComments");
         }
 
-        [CacheAspect(typeof(MemoryCacheManager), 30)]
         public ForumPost SingleInclude(int id, params string[] children)
         {
             return _forumPostDal.StringIncludeSingleWithExpression(x => x.ForumPostID == id, "User", "User.UserInfoe_Id", "ForumTopic", "Forum", "ForumPostLikes", "ForumPostComments");

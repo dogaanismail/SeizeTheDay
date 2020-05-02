@@ -39,52 +39,12 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
             _chatBoxDal.Delete(chat);
         }
 
-        public ChatBox GetByChatBoxID(int id)
+        public void Update(ChatBox chat)
         {
-            return _chatBoxDal.Find(x => x.ChatboxID == id);
+            _chatBoxDal.Update(chat);
         }
 
-        public List<ChatBox> GetByChatBoxIDToList(int id)
-        {
-            return _chatBoxDal.Query(x => x.ChatboxID == id);
-        }
-
-        public ChatBox GetByCreatedByID(string id)
-        {
-            return _chatBoxDal.Find(x => x.SenderID == id);
-        }
-
-        public List<ChatBox> GetByCreatedByIDToList(string id)
-        {
-            return _chatBoxDal.Query(x => x.SenderID == id);
-        }
-
-        public ChatBox GetByReceiverandSenderID(string sender, string receiver)
-        {
-            return _chatBoxDal.Find(x => x.SenderID == sender && x.ReceiverID == receiver);
-        }
-
-        public ChatBox GetByReceiverID(string id)
-        {
-            return _chatBoxDal.Find(x => x.ReceiverID == id);
-        }
-
-        public List<ChatBox> GetByReceiverIDTolist(string id)
-        {
-            return _chatBoxDal.Query(x => x.ReceiverID == id);
-        }
-
-        public ChatBox GetBySenderandReceiver(string sender, string receiver)
-        {
-            return _chatBoxDal.Find(x => x.ReceiverID == receiver && x.SenderID == sender);
-        }
-
-        public List<ChatBox> GetByUserBoxes(string id)
-        {
-            return _chatBoxDal.GetAllLazyLoad(x => x.ReceiverID == id || x.SenderID == id);
-        }
-
-        public MessengerDto GetChatBoxes(string id)
+        public MessengerDto GetUserChatBoxes(string id)
         {
             var receiver = (from u in _chatBoxRepository.Table.Include("Chats").ToList()
                             where (u.ReceiverID == id || u.SenderID == id)
@@ -131,35 +91,24 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
             return messages;
         }
 
-        public ChatBox GetFirstOrDefaultInclude(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<ChatBox> GetList()
-        {
-            return _chatBoxDal.GetList();
-        }
-
-        public List<ChatBox> GetTolistInclude(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public ChatBox IncludeSingleWithExp(int chatBoxID)
         {
             return _chatBoxDal.StringIncludeSingleWithExpression(x => x.ChatboxID == chatBoxID, "User_ReceiverID", "User_SenderID", "Chats");
-
         }
 
-        public List<ChatBox> IncludeWithExp(string userID)
+        public ChatBox GetById(int id)
         {
-            return _chatBoxDal.StringIncludeWithExpression(x => x.ReceiverID == userID || x.SenderID == userID, "User_ReceiverID", "User_SenderID", "User_SenderID.ChatBoxes_ReceiverID", "User_ReceiverID.ChatBoxes_SenderID");
+            return _chatBoxDal.Find(x => x.ChatboxID == id);
         }
 
-        public void Update(ChatBox chat)
+        public ChatBox GetBySenderandReceiver(string sender, string receiver)
         {
-            _chatBoxDal.Update(chat);
+            return _chatBoxDal.Find(x => x.SenderID == sender && x.ReceiverID == receiver);
+        }
+
+        public List<ChatBox> GetListById(int id)
+        {
+            return _chatBoxDal.Query(x => x.ChatboxID == id);
         }
     }
 }

@@ -12,7 +12,6 @@ namespace SeizeTheDay.Core.DataAccess.Abstract.MySQL
         void Add(T entity);
         void Delete(T entity);
         void Update(T entity);
-        IQueryable<T> GetAll();
         T FirstOrDefault();
         List<T> Query(Expression<Func<T, bool>> where);  //According to query
         List<T> GetAllLazyLoad(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] children);
@@ -23,7 +22,6 @@ namespace SeizeTheDay.Core.DataAccess.Abstract.MySQL
         T StringIncludeSingleWithExpression(Expression<Func<T, bool>> filter, params string[] children); //string include single with exp.
         T GetFirstOrDefaultInclude(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] children);
         T GetFirstOrDefaultInclude2(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] children);
-        List<T> Include(string includeTable);
         T Find(Expression<Func<T, bool>> filter);
     }
 }

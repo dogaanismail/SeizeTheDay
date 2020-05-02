@@ -28,10 +28,10 @@ namespace SeizeTheDay.Api.Controllers
         #endregion
 
         [HttpGet]
-        [Route("getchats")]
+        [Route("getchatsbyboxid")]
         [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
-        public ChatDto GetChatBoxes(int id)
+        public ChatDto GetChatByBoxId(int id)
         {          
             return _chatService.GetChatsByBoxId(id);
         }

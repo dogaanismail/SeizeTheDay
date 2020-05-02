@@ -197,6 +197,21 @@ namespace SeizeTheDay.Api.Controllers
             }
         }
 
+        [Route("deletenotification")]
+        [HttpPost]
+        public IHttpActionResult DeleteNotification([FromBody] int id)
+        {
+            try
+            {
+                var updatedNotf = _notificationService.GetByNotificationID(id);
+                _notificationService.Delete(updatedNotf);
+                return Ok(ApiStatusEnum.Ok);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
 
 
     }

@@ -1,11 +1,11 @@
 ﻿angular.module('startupController')
     .service('forumPostService', ['$http', function ($http) {
 
-        var urlBase = '/api/ForumPost';
-        var postDetail = '/api/TopicDetail';
+        var urlBase = 'https://localhost:44367/api/forumposts/';
+        var postDetail = 'https://localhost:44367/api/postdetail/';
 
         this.getForumPostList = function () {
-            return $http.get(urlBase);
+            return $http.get(urlBase + "getposts");
         };
 
         this.insertUpdateForumPost = function (forumPost) {
@@ -18,14 +18,14 @@
 
         ////////////////   POSTDETAIL ////////////////////////////////////
         this.getTopicDetail = function (id) {
-            return $http.get(postDetail, id);
+            return $http.get(postDetail + "getdetailsbyid?id=" + id);
         };
 
         this.updatePostDetail = function (forumPost) {
-            return $http.post(postDetail, forumPost);
+            return $http.post(postDetail + "editpostdetail" + '/', forumPost);
         };
 
-        this.deleteTopicDetail = function (id) {
-            return $http.delete(postDetail + '/' +  id);
+        this.deletePost = function (id) {
+            return $http.delete(postDetail + '/' + id);
         };
     }]);

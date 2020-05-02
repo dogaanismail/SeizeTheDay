@@ -227,6 +227,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="SeizeTheDay.config" />
+    <None Include="Properties\PublishProfiles\Api-Profile.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SeizeTheDay.Business\SeizeTheDay.Business.csproj">

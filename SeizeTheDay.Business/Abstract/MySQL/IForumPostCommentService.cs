@@ -13,8 +13,12 @@ namespace SeizeTheDay.Business.Abstract.MySQL
         List<ForumPostComment> GetByForumPostCommentID(int id);
         List<ForumPostComment> GetByForumPostID(int id);
         ForumPostComment GetFirstOrDefaultInclude(int id);
+        List<ForumPostComment> GetCommentsByPostId(int id);
+        /// <summary>
+        /// Gets comment list by include
+        /// </summary>
+        /// <returns></returns>
+        List<ForumPostComment> GetListWithInclude();
 
-        List<ForumPostComment> StringInclude(int id);
-        
     }
 }

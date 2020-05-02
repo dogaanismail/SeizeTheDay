@@ -60,14 +60,6 @@ namespace SeizeTheDay.Core.Concrete.MySQL
             }
         }
 
-        public List<TEntity> Include(string includeTable)
-        {
-            using (TContext context = new TContext())
-            {
-                return context.CreateObjectSet<TEntity>().Include(includeTable).ToList();
-            }
-        }
-
         public TEntity Find(Expression<Func<TEntity, bool>> filter)
         {
             using (TContext context = new TContext())
@@ -86,7 +78,6 @@ namespace SeizeTheDay.Core.Concrete.MySQL
                 return query.ToList();
             }
         }
-
 
         public TEntity FirstOrDefault()
         {
@@ -127,14 +118,6 @@ namespace SeizeTheDay.Core.Concrete.MySQL
                 foreach (var child in children)
                     query = context.CreateObjectSet<TEntity>().Include(child).ToList();
                 return query.ToList();
-            }
-        }
-
-        public IQueryable<TEntity> GetAll()
-        {
-            using (TContext context = new TContext())
-            {
-                return context.CreateObjectSet<TEntity>().AsQueryable<TEntity>();
             }
         }
 
