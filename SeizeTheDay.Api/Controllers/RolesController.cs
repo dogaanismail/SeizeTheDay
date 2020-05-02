@@ -99,12 +99,29 @@ namespace SeizeTheDay.Api.Controllers
                 var result = await _roleManager.DeleteAsync(getRole);
                 if (result.Succeeded)
                 {
-                    return Ok(200);
+                    return Ok(ApiStatusEnum.Ok);
                 }
                 else
                 {
                     return BadRequest(result.Errors.ToString());
                 }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+
+        [Route("deleterole")]
+        [HttpPost]
+        public async Task<IHttpActionResult> DeleteRole([FromBody] string id)
+        {
+            try
+            {
+                var getRole = _roleService.GetByRoleID(id);
+                _roleService.Delete(getRole);
+                return Ok(ApiStatusEnum.Ok);
             }
             catch (Exception ex)
             {

@@ -31,11 +31,11 @@ namespace SeizeTheDay.Api.Controllers
         #endregion
 
         [HttpGet]
-        [Route("getchatboxes")]
+        [Route("getchatboxesbyuserid")]
         [PerformanceCounterAspect]
-        public MessengerDto GetChatBoxes(string id)
+        public MessengerDto GetChatBoxesByUserId(string id)
         {
-            return _chatBoxService.GetChatBoxes(id);
+            return _chatBoxService.GetUserChatBoxes(id);
         }
 
         [Route("createchatbox")]
@@ -69,7 +69,7 @@ namespace SeizeTheDay.Api.Controllers
 
         }
 
-        [Route("deletechatboxes")]
+        [Route("deletechatbox")]
         [HttpPost]
         public IHttpActionResult DeleteChatBox([FromUri]int[] boxID)
         {
@@ -86,7 +86,7 @@ namespace SeizeTheDay.Api.Controllers
                         {
                             deleteBox.Clear();
                             deleteText.AddRange(_chatService.GetByChatBoxIDToList(boxID[i]));
-                            deleteBox.AddRange(_chatBoxService.GetByChatBoxIDToList(boxID[i]));
+                            deleteBox.AddRange(_chatBoxService.GetListById(boxID[i]));
                             if (deleteText != null)
                             {
                                 for (int k = 0; i <= deleteText.Count; ++k)

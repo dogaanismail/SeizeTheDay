@@ -1539,723 +1539,711 @@ These controllers that are in the below belongs to the Normal Page like Forum,Fo
 */
 
 //Portal Controller
-app.controller('PortalCtrl', ['$scope', '$http', '$sce', '$sanitize','portalMessageService',
+app.controller('PortalCtrl', ['$scope', '$http', '$sce', '$sanitize', 'portalMessageService',
     function ($scope, $http, $sce, $sanitize, portalMessageService) {
 
-    $scope.userName = null;
-    $scope.generalHub = null; // holds the reference to hub
+        $scope.userName = null;
+        $scope.generalHub = null; // holds the reference to hub
 
-    $scope.generalHub = $.connection.generalHub; // initializes hub
-    $.connection.hub.start(); // starts hub
+        $scope.generalHub = $.connection.generalHub; // initializes hub
+        $.connection.hub.start(); // starts hub
 
-    // register a client method on hub to be invoked by the server
-    $scope.generalHub.client.addNewMessage = function (name, message) {
-        $scope.playSound();
-        $scope.getAllPortalMessages();
-        $scope.$apply();
-    };
-
-    $scope.createMessage = function (obj) {
-        $scope.sanitizedText = $sanitize($scope.textMessage);
-        $scope.userName = obj;
-        $scope.textMessage = null;
-        $("#text-message").data("emojioneArea").setText('');  // Reset Emoji field
-        $scope.generalHub.server.send($scope.userName, $scope.sanitizedText);
-
-    };
-
-    $scope.init = function () {
-        $scope.textMessage = null;
-        $scope.model = {
-            MessageID: 0,
-            PortalMessageUserID: '',
-            TextMessage: '',
-            SendDate: null,
-            UserID: '',
-            UserName: '',
-            PhotoPath: '',
-            TagUserName: '',
-            TagColor: ''
-        };
-        //for display message
-        $scope.flgMessage = false;
-        //for message
-        $scope.message = "";
-        $scope.getAllPortalMessages();
-
-        $scope.getOnlineUsers();
-
-        //emoji input text settings
-        $("#text-message").emojioneArea({
-            pickerPosition: "bottom",
-            filtersPosition: "bottom",
-            saveEmojisAs: "unicode"
-        });
-    };
-
-    $scope.slimScroll = function () {
-        setTimeout(function () {
-            $("#chat-box").slimScroll({
-                start: 'bottom',
-            });
-        }, 200);
-    };
-
-    //Hide alert message
-    $scope.hideMessage = function () {
-        //make message flg false for hide message
-        $scope.flgMessage = false;
-        $("#message").removeClass("alert alert-success").removeClass("alert alert-danger");
-        $("#icon").removeClass("fa-check").removeClass("fa-ban");
-    };
-
-    $scope.getAllPortalMessages = function () {
-        portalMessageService.getMessages().then(function (result) {
-            $scope.lstMessages = result.data.result;
-            console.log($scope.lstMessages);
-            $scope.slimScroll();
-        });
-    };
-
-    $scope.playSound = function () {
-        var media = document.getElementById("play");
-        media.pause();
-        const playPromise = media.play();
-        if (playPromise !== null) {
-            playPromise.catch(() => { media.play(); })
-        }
-    };
-
-    //if the user presses enter button from a keyboard
-    $scope.keyDown = function (userName) {
-        $scope.textMessage = $("#text-message").data("emojioneArea").getText(); //getting text       
-        $("#text-message").data("emojioneArea").setText('');  // Reset Emoji field
-        $scope.createMessage(userName);
-    };
-
-    $scope.getOnlineUsers = function () {
-        $scope.onlineUsersList = $scope.onlineUsers;
-    };
-
-    $scope.generalHub.client.online = function (list) {
-        $scope.onlineUsers = list;
-    };
-
-    $scope.deleteMessage = function (obj) {
-        params = {
-            id: obj
-        };
-        portalMessageService.deleteMessage(params.id).then(function (result) {
+        // register a client method on hub to be invoked by the server
+        $scope.generalHub.client.addNewMessage = function (name, message) {
+            $scope.playSound();
             $scope.getAllPortalMessages();
-        });
-    };
-
-    $scope.renderHtml = function (html) {
-        return $sce.trustAsHtml(html);
-    };
-
-    //Reset data
-    $scope.reset = function () {
-        $scope.model = {
-            MessageID: 0,
-            PortalMessageUserID: '',
-            TextMessage: '',
-            SendDate: null,
-            UserID: '',
-            UserName: '',
-            PhotoPath: '',
-            TagUserName: '',
-            TagColor: ''
+            $scope.$apply();
         };
-    };
 
-    $scope.init();
+        $scope.createMessage = function (obj) {
+            $scope.sanitizedText = $sanitize($scope.textMessage);
+            $scope.userName = obj;
+            $scope.textMessage = null;
+            $("#text-message").data("emojioneArea").setText('');  // Reset Emoji field
+            $scope.generalHub.server.send($scope.userName, $scope.sanitizedText);
 
-}]);
+        };
+
+        $scope.init = function () {
+            $scope.textMessage = null;
+            $scope.model = {
+                MessageID: 0,
+                PortalMessageUserID: '',
+                TextMessage: '',
+                SendDate: null,
+                UserID: '',
+                UserName: '',
+                PhotoPath: '',
+                TagUserName: '',
+                TagColor: ''
+            };
+            //for display message
+            $scope.flgMessage = false;
+            //for message
+            $scope.message = "";
+            $scope.getAllPortalMessages();
+
+            $scope.getOnlineUsers();
+
+            //emoji input text settings
+            $("#text-message").emojioneArea({
+                pickerPosition: "bottom",
+                filtersPosition: "bottom",
+                saveEmojisAs: "unicode"
+            });
+        };
+
+        $scope.slimScroll = function () {
+            setTimeout(function () {
+                $("#chat-box").slimScroll({
+                    start: 'bottom',
+                });
+            }, 200);
+        };
+
+        //Hide alert message
+        $scope.hideMessage = function () {
+            //make message flg false for hide message
+            $scope.flgMessage = false;
+            $("#message").removeClass("alert alert-success").removeClass("alert alert-danger");
+            $("#icon").removeClass("fa-check").removeClass("fa-ban");
+        };
+
+        $scope.getAllPortalMessages = function () {
+            portalMessageService.getMessages().then(function (result) {
+                $scope.lstMessages = result.data.result;
+                $scope.slimScroll();
+            });
+        };
+
+        $scope.playSound = function () {
+            var media = document.getElementById("play");
+            media.pause();
+            const playPromise = media.play();
+            if (playPromise !== null) {
+                playPromise.catch(() => { media.play(); })
+            }
+        };
+
+        //if the user presses enter button from a keyboard
+        $scope.keyDown = function (userName) {
+            $scope.textMessage = $("#text-message").data("emojioneArea").getText(); //getting text       
+            $("#text-message").data("emojioneArea").setText('');  // Reset Emoji field
+            $scope.createMessage(userName);
+        };
+
+        $scope.getOnlineUsers = function () {
+            $scope.onlineUsersList = $scope.onlineUsers;
+        };
+
+        $scope.generalHub.client.online = function (list) {
+            $scope.onlineUsers = list;
+        };
+
+        $scope.deleteMessage = function (obj) {
+            params = {
+                id: obj
+            };
+            portalMessageService.deleteMessage(params.id).then(function (result) {
+                $scope.getAllPortalMessages();
+            });
+        };
+
+        $scope.renderHtml = function (html) {
+            return $sce.trustAsHtml(html);
+        };
+
+        //Reset data
+        $scope.reset = function () {
+            $scope.model = {
+                MessageID: 0,
+                PortalMessageUserID: '',
+                TextMessage: '',
+                SendDate: null,
+                UserID: '',
+                UserName: '',
+                PhotoPath: '',
+                TagUserName: '',
+                TagColor: ''
+            };
+        };
+
+        $scope.init();
+
+    }]);
 
 //Messenger Controller
 app.controller('MessengerCtrl', ['$scope', '$http', '$sce', '$sanitize', 'chatService', 'chatboxService',
     function ($scope, $http, $sce, $sanitize, chatService, chatboxService) {
 
-    $scope.generalHub = null; // holds the reference to hub
-    $scope.generalHub = $.connection.generalHub; // initializes hub
-    $.connection.hub.start(); // starts hub
+        $scope.generalHub = null; // holds the reference to hub
+        $scope.generalHub = $.connection.generalHub; // initializes hub
+        $.connection.hub.start(); // starts hub
 
-    $scope.init = function () {
+        $scope.init = function () {
 
-        $scope.model = {
-        };
+            $scope.model = {
+            };
 
-        $scope.textMessage = null;
-        //for display message
-        $scope.flgMessage = false;
-        //for message
-        $scope.message = "";
-        $scope.showPlus = true;
-        $scope.showQuery = false;
-        $scope.showMessageBox = false;
-        $scope.trashBox = false;
-        $scope.emptyBox = true;
-        $scope.selectedBoxCount = null;
-        $scope.SenderName = '';
-        $scope.gettingChatboxID = '';
-        $scope.ReceiverName = '';
-        $scope.getUserList(); // to get a real username search
-        $scope.getReceiverChatbox();
-        $scope.getSenderChatbox();
-
-        //defined checked chatBox to be deleted
-        $scope.checkedBox = {
-            chatBox: [],
-        };
-
-        $("#text-message").emojioneArea({
-            pickerPosition: "top",
-            filtersPosition: "bottom",
-            searchPosition: "bottom",
-            saveEmojisAs: "unicode"
-        });
-    };
-
-    // register a client method on hub to be invoked by the server
-    $scope.generalHub.client.newMessage = function (boxID) {
-        $scope.playSound();
-        $scope.getBox(boxID);
-        $scope.slimScroll();
-        $scope.refreshBoxes();
-        $scope.$apply();
-    };
-
-    $scope.getReceiverChatbox = function () {
-        var userID = $('input[id="getuserID"]').val();
-        params = {
-            id: userID
-        };
-
-        chatboxService.getBoxListByID({ params: params }).then(function (result) {
-            $scope.lstReceiverList = result.data.ChatBoxes_ReceiverID;
-        })
-    };
-
-    $scope.getSenderChatbox = function () {
-        var userID = $('input[id="getuserID"]').val();
-        params = {
-            id: userID
-        };
-
-        chatboxService.getBoxListByID({ params: params }).then(function (result) {
-            $scope.lstSenderList = result.data.ChatBoxes_SenderID;
-        })
-    };
-
-    $scope.setQuery = function (query) {
-        $scope.query = query;
-        $scope.focus = false;
-    };
-
-    $scope.getUserList = function () {
-        chatboxService.getUserNameList().then(function (result) {
-            $scope.userList = result.data;
-        })
-    };
-
-    $scope.getBox = function (obj) {
-        $scope.gettingChatboxID = obj;
-        //getting by chatboxID
-        params = {
-            id: obj
-        };
-        //getting chats
-        chatService.getChatsByBoxID({ params: params }).then(function (result) {
-            $scope.lstChatList = result.data.Sender;
-            $scope.slimScroll();
-        });
-    };
-
-    $scope.showMessenger = function (obj) {
-        $scope.showMessageBox = true;
-        $scope.emptyBox = false;
-        $scope.getBox(obj);
-    };
-
-    $scope.sendMessage = function () {
-        // sends a new message to the server
-        var chatBoxs = $('input[id="ChatBoxs"]').val();
-        var userID = $('input[id="getuserID"]').val();
-        var receiverName = $('input[id="getReceiver"]').val();
-        var receiverName2 = $('input[id="getReceiver2"]').val();
-
-        $scope.sanitizedText = $sanitize($scope.textMessage);
-
-        if (chatBoxs === undefined) {  //if there is no any chat message, we have to set up chatBoxs value to send a message
-            chatBoxs = $scope.gettingChatboxID;
-        }
-
-        data = {
-            id: userID,
-            chbx: chatBoxs,
-            text: $scope.sanitizedText,
-            receiver: receiverName,
-            receiver2: receiverName2
-        }
-
-        $("#text-message").data("emojioneArea").setText('');  // Reset Emoji field
-        $scope.textMessage = null;
-        $scope.generalHub.server.message(data.chbx, data.text, data.id, data.receiver, data.receiver2); //send a real time message
-        $scope.generalHub.server.notificationForMessage(data.receiver, data.receiver2); //send a real time notification
-    };
-
-    $scope.showSearch = function () {
-        $scope.showPlus = false;
-        $scope.showQuery = true;
-    };
-
-    $scope.playSound = function () {
-        var media = document.getElementById("play");
-        media.pause();
-        const playPromise = media.play();
-        if (playPromise !== null) {
-            playPromise.catch(() => { media.play(); })
-        }
-    };
-
-    $scope.selectBox = function () {
-        $scope.trashBox = true;
-    };
-
-    $scope.slimScroll = function () {
-        setTimeout(function () {
-            $("#chat-box").slimScroll({
-                start: 'bottom',
-            });
-        }, 200);
-    };
-
-    $scope.refreshBoxes = function () {
-        setTimeout(function () {
+            $scope.textMessage = null;
+            //for display message
+            $scope.flgMessage = false;
+            //for message
+            $scope.message = "";
+            $scope.showPlus = true;
+            $scope.showQuery = false;
+            $scope.showMessageBox = false;
+            $scope.trashBox = false;
+            $scope.emptyBox = true;
+            $scope.selectedBoxCount = null;
+            $scope.SenderName = '';
+            $scope.gettingChatboxID = '';
+            $scope.ReceiverName = '';
+            $scope.getUserList(); // to get a real username search
             $scope.getReceiverChatbox();
             $scope.getSenderChatbox();
-        }, 200);
-    };
 
-    $scope.createBox = function () {
-        params = {
-            username: $scope.query
+            //defined checked chatBox to be deleted
+            $scope.checkedBox = {
+                chatBox: [],
+            };
+
+            $("#text-message").emojioneArea({
+                pickerPosition: "top",
+                filtersPosition: "bottom",
+                searchPosition: "bottom",
+                saveEmojisAs: "unicode"
+            });
         };
-        chatboxService.insertBox(params.username).then(function (result) {
-            $scope.getReceiverChatbox();
-        })
-    };
 
-    $scope.deleteChatboxes = function () {
-        //getting checked boxes
-        params = {
-            boxID: $scope.checkedBox.chatBox
-        };
-        chatboxService.deleteBox({ params: params }).then(function (result) {
-            $scope.reset();
-        });
-
-    };
-
-    $scope.deleteMessage = function (obj, boxID) {
-        params = {
-            id: obj
-        };
-        chatService.deleteChatByID(params.id).then(function (result) {
+        // register a client method on hub to be invoked by the server
+        $scope.generalHub.client.newMessage = function (boxID) {
+            $scope.playSound();
             $scope.getBox(boxID);
-        });
-    };
-
-    $scope.closeMessageBox = function () {
-        $scope.showMessageBox = false;
-        $scope.emptyBox = true;
-    };
-
-    $scope.closeQueryBox = function () {
-        $scope.showQuery = false;
-        $scope.showPlus = true;
-    };
-
-    $scope.renderHtml = function (html) {
-        return $sce.trustAsHtml(html);
-    };
-
-    $scope.reset = function () {
-
-        $scope.model = {
+            $scope.slimScroll();
+            $scope.refreshBoxes();
+            $scope.$apply();
         };
 
-        //for display message
-        $scope.flgMessage = false;
-        //for message
-        $scope.message = "";
-        $scope.showPlus = true;
-        $scope.showQuery = false;
-        $scope.showMessageBox = false;
-        $scope.trashBox = false;
-        $scope.emptyBox = true;
-        $scope.selectedBoxCount = null;
-        $scope.SenderName = '';
-        $scope.gettingChatboxID = '';
-        $scope.ReceiverName = '';
-        $scope.getUserList(); // to get a real username search
-        $scope.getReceiverChatbox();
-        $scope.getSenderChatbox();
+        $scope.getReceiverChatbox = function () {
+            var userID = $('input[id="getuserID"]').val();
+            params = {
+                id: userID
+            };
 
-        //defined checked chatBox to be deleted
-        $scope.checkedBox = {
-            chatBox: [],
+            chatboxService.getBoxListByID({ params: params }).then(function (result) {
+                $scope.lstReceiverList = result.data.ChatBoxes_ReceiverID;
+            })
         };
-    };
 
-    //if the user presses enter button from a keyboard
-    $scope.keyDown = function () {
-        $scope.textMessage = $("#text-message").data("emojioneArea").getText(); //getting text       
-        $("#text-message").data("emojioneArea").setText('');  // Reset Emoji field
-        $scope.sendMessage();
-    };
+        $scope.getSenderChatbox = function () {
+            var userID = $('input[id="getuserID"]').val();
+            params = {
+                id: userID
+            };
 
-    $scope.init();
-}]);
+            chatboxService.getBoxListByID({ params: params }).then(function (result) {
+                $scope.lstSenderList = result.data.ChatBoxes_SenderID;
+            })
+        };
+
+        $scope.setQuery = function (query) {
+            $scope.query = query;
+            $scope.focus = false;
+        };
+
+        $scope.getUserList = function () {
+            chatboxService.getUserNameList().then(function (result) {
+                $scope.userList = result.data;
+            })
+        };
+
+        $scope.getBox = function (obj) {
+            $scope.gettingChatboxID = obj;
+            //getting by chatboxID
+            params = {
+                id: obj
+            };
+            //getting chats
+            chatService.getChatsByBoxID({ params: params }).then(function (result) {
+                $scope.lstChatList = result.data.Sender;
+                $scope.slimScroll();
+            });
+        };
+
+        $scope.showMessenger = function (obj) {
+            $scope.showMessageBox = true;
+            $scope.emptyBox = false;
+            $scope.getBox(obj);
+        };
+
+        $scope.sendMessage = function () {
+            // sends a new message to the server
+            var chatBoxs = $('input[id="ChatBoxs"]').val();
+            var userID = $('input[id="getuserID"]').val();
+            var receiverName = $('input[id="getReceiver"]').val();
+            var receiverName2 = $('input[id="getReceiver2"]').val();
+
+            $scope.sanitizedText = $sanitize($scope.textMessage);
+
+            if (chatBoxs === undefined) {  //if there is no any chat message, we have to set up chatBoxs value to send a message
+                chatBoxs = $scope.gettingChatboxID;
+            }
+
+            data = {
+                id: userID,
+                chbx: chatBoxs,
+                text: $scope.sanitizedText,
+                receiver: receiverName,
+                receiver2: receiverName2
+            }
+
+            $("#text-message").data("emojioneArea").setText('');  // Reset Emoji field
+            $scope.textMessage = null;
+            $scope.generalHub.server.message(data.chbx, data.text, data.id, data.receiver, data.receiver2); //send a real time message
+            $scope.generalHub.server.notificationForMessage(data.receiver, data.receiver2); //send a real time notification
+        };
+
+        $scope.showSearch = function () {
+            $scope.showPlus = false;
+            $scope.showQuery = true;
+        };
+
+        $scope.playSound = function () {
+            var media = document.getElementById("play");
+            media.pause();
+            const playPromise = media.play();
+            if (playPromise !== null) {
+                playPromise.catch(() => { media.play(); })
+            }
+        };
+
+        $scope.selectBox = function () {
+            $scope.trashBox = true;
+        };
+
+        $scope.slimScroll = function () {
+            setTimeout(function () {
+                $("#chat-box").slimScroll({
+                    start: 'bottom',
+                });
+            }, 200);
+        };
+
+        $scope.refreshBoxes = function () {
+            setTimeout(function () {
+                $scope.getReceiverChatbox();
+                $scope.getSenderChatbox();
+            }, 200);
+        };
+
+        $scope.createBox = function () {
+            params = {
+                username: $scope.query
+            };
+            chatboxService.insertBox(params.username).then(function (result) {
+                $scope.getReceiverChatbox();
+            })
+        };
+
+        $scope.deleteChatboxes = function () {
+            //getting checked boxes
+            params = {
+                boxID: $scope.checkedBox.chatBox
+            };
+            chatboxService.deleteBox({ params: params }).then(function (result) {
+                $scope.reset();
+            });
+
+        };
+
+        $scope.deleteMessage = function (obj, boxID) {
+            params = {
+                id: obj
+            };
+            chatService.deleteChatByID(params.id).then(function (result) {
+                $scope.getBox(boxID);
+            });
+        };
+
+        $scope.closeMessageBox = function () {
+            $scope.showMessageBox = false;
+            $scope.emptyBox = true;
+        };
+
+        $scope.closeQueryBox = function () {
+            $scope.showQuery = false;
+            $scope.showPlus = true;
+        };
+
+        $scope.renderHtml = function (html) {
+            return $sce.trustAsHtml(html);
+        };
+
+        $scope.reset = function () {
+
+            $scope.model = {
+            };
+
+            //for display message
+            $scope.flgMessage = false;
+            //for message
+            $scope.message = "";
+            $scope.showPlus = true;
+            $scope.showQuery = false;
+            $scope.showMessageBox = false;
+            $scope.trashBox = false;
+            $scope.emptyBox = true;
+            $scope.selectedBoxCount = null;
+            $scope.SenderName = '';
+            $scope.gettingChatboxID = '';
+            $scope.ReceiverName = '';
+            $scope.getUserList(); // to get a real username search
+            $scope.getReceiverChatbox();
+            $scope.getSenderChatbox();
+
+            //defined checked chatBox to be deleted
+            $scope.checkedBox = {
+                chatBox: [],
+            };
+        };
+
+        //if the user presses enter button from a keyboard
+        $scope.keyDown = function () {
+            $scope.textMessage = $("#text-message").data("emojioneArea").getText(); //getting text       
+            $("#text-message").data("emojioneArea").setText('');  // Reset Emoji field
+            $scope.sendMessage();
+        };
+
+        $scope.init();
+    }]);
 
 //TopicDetail Controller
 app.controller('DetailCtrl', ['$scope', '$sce', '$window', 'forumPostService', 'forumPostCommentService',
     function ($scope, $sce, $window, forumPostService, forumPostCommentService) {
 
-    $scope.generalHub = null; // holds the reference to hub
+        $scope.generalHub = null; // holds the reference to hub
 
-    $scope.generalHub = $.connection.generalHub; // initializes hub
-    $.connection.hub.start(); // starts hub
+        $scope.generalHub = $.connection.generalHub; // initializes hub
+        $.connection.hub.start(); // starts hub
 
-    $scope.init = function () {
-        $scope.model = {
+        $scope.init = function () {
+            $scope.model = {
 
-        };
-        $scope.getDetail(); //getting a detail of a forum post
-        $scope.getAllComments(); //getting all comments of a forum post
-        $scope.commentID = null;
-        $scope.commentText = null;
-        $scope.postDetailShow = true;
-        $scope.editPostShow = false;
+            };
+            $scope.getDetail(); //getting a detail of a forum post
+            $scope.getAllComments(); //getting all comments of a forum post
+            $scope.commentID = null;
+            $scope.commentText = null;
+            $scope.postDetailShow = true;
+            $scope.editPostShow = false;
 
-        //tinymce plugin and toolbar options
-        $scope.tinymceOptions = {
-            selector: '#post',
-            menubar: false,
-            skin: "oxide-dark",
-            plugins: [
-                "advlist autolink autoresize link image fullscreen  lists charmap paste print preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking wordcount  ",
-                "table contextmenu directionality emoticons paste template spellchecker searchreplace responsivefilemanager help imagetools media youtube "
-            ],
-            mobile: {
-                theme: "mobile",
-                plugins: ['autosave', 'lists', 'autolink'],
-                toolbar: ['undo', 'bold', 'italic', 'styleselect']
-            },
-            toolbar_items_size: 'small',
-            toolbar: " undo redo | bold italic underline | aligncenter alignright alignjustify | forecolor  backcolor | fontselect | fontsizeselect | link | responsivefilemanager youtube | emoticons | searchreplace | help preview ",
-            image_dimensions: false,
-            image_class_list: [
-                { title: 'Responsive', value: 'img-responsive' }
-            ],
+            //tinymce plugin and toolbar options
+            $scope.tinymceOptions = {
+                selector: '#post',
+                menubar: false,
+                skin: "oxide-dark",
+                plugins: [
+                    "advlist autolink autoresize link image fullscreen  lists charmap paste print preview hr anchor pagebreak",
+                    "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking wordcount  ",
+                    "table contextmenu directionality emoticons paste template spellchecker searchreplace responsivefilemanager help imagetools media youtube "
+                ],
+                mobile: {
+                    theme: "mobile",
+                    plugins: ['autosave', 'lists', 'autolink'],
+                    toolbar: ['undo', 'bold', 'italic', 'styleselect']
+                },
+                toolbar_items_size: 'small',
+                toolbar: " undo redo | bold italic underline | aligncenter alignright alignjustify | forecolor  backcolor | fontselect | fontsizeselect | link | responsivefilemanager youtube | emoticons | searchreplace | help preview ",
+                image_dimensions: false,
+                image_class_list: [
+                    { title: 'Responsive', value: 'img-responsive' }
+                ],
 
-            link_context_toolbar: true,
-            image_advtab: true,
-            paste_data_images: true,
+                link_context_toolbar: true,
+                image_advtab: true,
+                paste_data_images: true,
 
-            external_filemanager_path: "/filemanager/",
-            filemanager_title: "Responsive Filemanager",
-            external_plugins: { "filemanager": "/filemanager/plugin.min.js" },
+                external_filemanager_path: "/filemanager/",
+                filemanager_title: "Responsive Filemanager",
+                external_plugins: { "filemanager": "/filemanager/plugin.min.js" },
 
-            width: "98%",
-            emoticons_database_url: '/Content/blackfyre/js/SpecialTinymce/js/tinymce/plugins/emoticons/js/emojis.js',
-            entity_encoding: "numeric"
-        };
-
-        //tinymce plugin and toolbar options
-        $scope.tinymceforEdit = {
-            selector: '#detailEdit',
-            menubar: false,
-            skin: "oxide-dark",
-            plugins: [
-                "advlist autolink autoresize link image fullscreen  lists charmap paste print preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking wordcount  ",
-                "table contextmenu directionality emoticons paste template spellchecker searchreplace responsivefilemanager help imagetools media youtube "
-            ],
-            mobile: {
-                theme: "mobile",
-                plugins: ['autosave', 'lists', 'autolink'],
-                toolbar: ['undo', 'bold', 'italic', 'styleselect']
-            },
-            toolbar_items_size: 'small',
-            toolbar: " undo redo | bold italic underline | aligncenter alignright alignjustify | forecolor  backcolor | fontselect | fontsizeselect | link | responsivefilemanager youtube | emoticons | searchreplace | help preview ",
-            image_dimensions: false,
-            image_class_list: [
-                { title: 'Responsive', value: 'img-responsive' }
-            ],
-
-            link_context_toolbar: true,
-            image_advtab: true,
-            paste_data_images: true,
-
-            external_filemanager_path: "/filemanager/",
-            filemanager_title: "Responsive Filemanager",
-            external_plugins: { "filemanager": "/filemanager/plugin.min.js" },
-
-            width: "98%",
-            emoticons_database_url: '/Content/blackfyre/js/SpecialTinymce/js/tinymce/plugins/emoticons/js/emojis.js',
-            entity_encoding: "numeric"
-        };
-    };
-
-    $scope.getDetail = function () {
-        var postID = $('input[id="getPostID"]').val();
-        params = {
-            id: postID
-        };
-
-        forumPostService.getTopicDetail({ params: params }).then(function (result) {
-            $scope.postDetail = result.data;
-        })
-    };
-
-    $scope.getAllComments = function () {
-        var getpostID = $('input[id="getPostID"]').val();
-        params = {
-            id: getpostID
-        };
-
-        forumPostCommentService.getCommentListByPostID({ params: params }).then(function (result) {
-            $scope.postComments = result.data;
-        })
-    };
-
-    $scope.renderHtml = function (html) {
-        return $sce.trustAsHtml(html);
-    };
-
-    //create/update comment
-    $scope.createComment = function (obj, userName) {
-
-        if ($scope.commentID === null) {
-            //obj is forumPost
-            params = {
-                PostID: obj,
-                Text: $scope.commentText
+                width: "98%",
+                emoticons_database_url: '/Content/blackfyre/js/SpecialTinymce/js/tinymce/plugins/emoticons/js/emojis.js',
+                entity_encoding: "numeric"
             };
 
-            forumPostCommentService.insertUpdateComment(params).then(function (result) {
-                $scope.generalHub.server.notificationForComment(obj, userName);
+            //tinymce plugin and toolbar options
+            $scope.tinymceforEdit = {
+                selector: '#detailEdit',
+                menubar: false,
+                skin: "oxide-dark",
+                plugins: [
+                    "advlist autolink autoresize link image fullscreen  lists charmap paste print preview hr anchor pagebreak",
+                    "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking wordcount  ",
+                    "table contextmenu directionality emoticons paste template spellchecker searchreplace responsivefilemanager help imagetools media youtube "
+                ],
+                mobile: {
+                    theme: "mobile",
+                    plugins: ['autosave', 'lists', 'autolink'],
+                    toolbar: ['undo', 'bold', 'italic', 'styleselect']
+                },
+                toolbar_items_size: 'small',
+                toolbar: " undo redo | bold italic underline | aligncenter alignright alignjustify | forecolor  backcolor | fontselect | fontsizeselect | link | responsivefilemanager youtube | emoticons | searchreplace | help preview ",
+                image_dimensions: false,
+                image_class_list: [
+                    { title: 'Responsive', value: 'img-responsive' }
+                ],
+
+                link_context_toolbar: true,
+                image_advtab: true,
+                paste_data_images: true,
+
+                external_filemanager_path: "/filemanager/",
+                filemanager_title: "Responsive Filemanager",
+                external_plugins: { "filemanager": "/filemanager/plugin.min.js" },
+
+                width: "98%",
+                emoticons_database_url: '/Content/blackfyre/js/SpecialTinymce/js/tinymce/plugins/emoticons/js/emojis.js',
+                entity_encoding: "numeric"
+            };
+        };
+
+        $scope.getDetail = function () {
+            var postID = $('input[id="getPostID"]').val();
+            forumPostService.getTopicDetail(postID).then(function (result) {
+                $scope.postDetail = result.data.result;
+            })
+        };
+
+        $scope.getAllComments = function () {
+            var getpostID = $('input[id="getPostID"]').val();
+            forumPostCommentService.getCommentListByPostID(getpostID).then(function (result) {
+                $scope.postComments = result.data.result;
+            })
+        };
+
+        $scope.renderHtml = function (html) {
+            return $sce.trustAsHtml(html);
+        };
+
+        //create/update comment
+        $scope.createComment = function (obj, userName) {
+
+            if ($scope.commentID === null) {
+                //obj is forumPost
+                params = {
+                    PostID: obj,
+                    Text: $scope.commentText
+                };
+
+                forumPostCommentService.insertUpdateComment(params).then(function (result) {
+                    $scope.generalHub.server.notificationForComment(obj, userName);
+                    $scope.getAllComments();
+                    tinymce.activeEditor.setContent("");
+                });
+
+            }
+            else {
+                //obj is forumPost
+                params = {
+                    CommentID: $scope.commentID,
+                    PostID: obj,
+                    Text: $scope.commentText
+                };
+
+                forumPostCommentService.updateComment(params).then(function (result) {
+                    $scope.getAllComments();
+                    $scope.commentID = null;
+                    tinymce.activeEditor.setContent("");
+                });
+            }
+
+        };
+
+        $scope.editPost = function (obj) {
+
+            $scope.postDetailShow = false;
+            $scope.editPostShow = true;
+            $scope.model.forumPostID = $scope.postDetail.forumPostID;
+            $scope.model.forumPostTitle = $scope.postDetail.forumPostTitle;
+            $scope.model.forumPostContent = $scope.postDetail.forumPostContent;
+        };
+
+        $scope.deleteComment = function (obj) {
+            params = {
+                id: obj
+            };
+            forumPostCommentService.deleteComment(params.id).then(function (result) {
                 $scope.getAllComments();
-                tinymce.activeEditor.setContent("");
             });
 
-        }
-        else {
-            //obj is forumPost
+        };
+
+        $scope.editComment = function (obj) {
+            $scope.commentID = obj;
+            forumPostCommentService.getEditComment(obj).then(function (result) {
+                $scope.commentText = result.data.result.text;
+            })
+        };
+
+        $scope.reset = function () {
+            $scope.init();
+        };
+
+        $scope.updatePost = function (obj) {
+            //obj is postId
             params = {
-                CommentID: $scope.commentID,
                 PostID: obj,
-                Text: $scope.commentText
+                Content: $scope.model.forumPostContent,
+                Title: $scope.model.forumPostTitle
+            };
+            forumPostService.updatePostDetail(params).then(function (result) {
+                if (result.data.result === 200) {
+                    $scope.init();
+                }
+            });
+        };
+
+        $scope.deletePost = function (obj) {
+            console.log(obj);
+            params = {
+                id: obj
             };
 
-            forumPostCommentService.updateComment(params).then(function (result) {
-                $scope.getAllComments();
-                $scope.commentID = null;
-                tinymce.activeEditor.setContent("");
+            forumPostService.deleteTopicDetail(obj).then(function (result) {
+                if (result.data.success === 1) {
+                    $window.location.href = '/Home/Index';
+                }
             });
-        }
 
-    };
-
-    $scope.editPost = function (obj) {
-
-        $scope.postDetailShow = false;
-        $scope.editPostShow = true;
-        $scope.model.ForumPostID = $scope.postDetail.ForumPostID;
-        $scope.model.ForumPostTitle = $scope.postDetail.ForumPostTitle;
-        $scope.model.ForumPostContent = $scope.postDetail.ForumPostContent;
-    };
-
-    $scope.deleteComment = function (obj) {
-        params = {
-            id: obj
         };
-        forumPostCommentService.deleteComment(params.id).then(function (result) {
-            $scope.getAllComments();
-        });
 
-    };
-
-    $scope.editComment = function (obj) {
-        $scope.commentID = obj;
-        params = {
-            id: obj
-        };
-        forumPostCommentService.getEditComment({ params: params }).then(function (result) {
-            $scope.commentText = result.data.Text;
-        })
-    };
-
-    $scope.reset = function () {
         $scope.init();
-    };
 
-    $scope.updatePost = function (obj) {
-        //obj is forumPost
-        params = {
-            PostID: obj,
-            Content: $scope.model.ForumPostContent,
-            Title: $scope.model.ForumPostTitle
-        };
-        forumPostService.updatePostDetail(params).then(function (result) {
-            if (result.data.success === 1) {
-                $scope.init();
-            }
-        });
-    };
-
-    $scope.deletePost = function (obj) {
-        console.log(obj);
-        params = {
-            id: obj
-        };
-
-        forumPostService.deleteTopicDetail(obj).then(function (result) {
-            if (result.data.success === 1) {
-                $window.location.href = '/Home/Index';
-            }
-        });
-
-    };
-
-    $scope.init();
-
-}]);
+    }]);
 
 app.controller('LayoutCtrl', ['$scope', '$window', 'notificationService',
     function ($scope, $window, notificationService) {
 
-    $scope.userName = null;
-    $scope.generalHub = null; // holds the reference to hub
+        $scope.userName = null;
+        $scope.generalHub = null; // holds the reference to hub
 
-    $scope.generalHub = $.connection.generalHub; // initializes hub
-    $.connection.hub.start(); // starts hub
+        $scope.generalHub = $.connection.generalHub; // initializes hub
+        $.connection.hub.start(); // starts hub
 
-    $scope.init = function () {
+        $scope.init = function () {
 
-        var IsLoggedUser = $('input[id="IsLogged"]').val();
-        //for general notifications
-        $scope.notifInit = true;
-        $scope.TotalShow = false;
+            var IsLoggedUser = $('input[id="IsLogged"]').val();
+            //for general notifications
+            $scope.notifInit = true;
+            $scope.TotalShow = false;
+
+            //for message notifications
+            $scope.notifInitMssg = true;
+            $scope.showMssgNotif = false;
+
+            $scope.settings = false;
+
+            if (IsLoggedUser == 'True') {
+                $scope.getTotalNotif(); //for general notifications
+                $scope.getTotalMessageNotif(); //for message notifications
+            }
+        };
+
+        // for general notifications
+        $scope.generalHub.client.newNotification = function (obj) {
+            $scope.notifInit = false;
+            $scope.TotalShow = true;
+            $scope.totalNotf = obj;
+
+            $scope.getTotalNotif();
+            $scope.playSound();
+            $scope.$apply();
+        };
+
+        // for message notifications
+        $scope.generalHub.client.newMessageNotif = function (obj) {
+            $scope.notifInitMssg = false;
+            $scope.showMssgNotif = true;
+            $scope.totalMssgNotf = obj;
+
+            $scope.getTotalMessageNotif();
+            $scope.playSound();
+            $scope.$apply();
+        };
+
+        //for general notificatiomns
+        $scope.getTotalNotif = function () {
+            notificationService.getGeneralNotifCount().then(function (result) {
+                $scope.totalNotf = result.data.TotalNotification;
+            });
+
+            notificationService.getGeneralNotif().then(function (result) {
+                $scope.NotfList = result.data;
+                $scope.slimScroll();
+            });
+
+        };
 
         //for message notifications
-        $scope.notifInitMssg = true;
-        $scope.showMssgNotif = false;
+        $scope.getTotalMessageNotif = function () {
 
-        $scope.settings = false;
-
-        if (IsLoggedUser == 'True') {
-            $scope.getTotalNotif(); //for general notifications
-            $scope.getTotalMessageNotif(); //for message notifications
-        }
-    };
-
-    // for general notifications
-    $scope.generalHub.client.newNotification = function (obj) {
-        $scope.notifInit = false;
-        $scope.TotalShow = true;
-        $scope.totalNotf = obj;
-
-        $scope.getTotalNotif();
-        $scope.playSound();
-        $scope.$apply();
-    };
-
-    // for message notifications
-    $scope.generalHub.client.newMessageNotif = function (obj) {
-        $scope.notifInitMssg = false;
-        $scope.showMssgNotif = true;
-        $scope.totalMssgNotf = obj;
-
-        $scope.getTotalMessageNotif();
-        $scope.playSound();
-        $scope.$apply();
-    };
-
-    //for general notificatiomns
-    $scope.getTotalNotif = function () {
-        notificationService.getGeneralNotifCount().then(function (result) {
-            $scope.totalNotf = result.data.TotalNotification;
-        });
-
-        notificationService.getGeneralNotif().then(function (result) {
-            $scope.NotfList = result.data;
-            $scope.slimScroll();
-        });
-
-    };
-
-    //for message notifications
-    $scope.getTotalMessageNotif = function () {
-
-        notificationService.getMessageCountNotif().then(function (result) {
-            $scope.totalMssgNotf = result.data.TotalNotification;
-        });
-
-        notificationService.getMessageNotif().then(function (result) {
-            $scope.messageNotifList = result.data;
-            $scope.slimScroll();
-        });
-
-    };
-
-    $scope.playSound = function () {
-        var media = document.getElementById("play");
-        media.pause();
-        const playPromise = media.play();
-        if (playPromise !== null) {
-            playPromise.catch(() => { media.play(); })
-        }
-    };
-
-    $scope.showSettings = function () {
-        document.getElementById("dropDownList").classList.toggle("MenuShow");
-    };
-
-    $scope.showNotifications = function () {
-        document.getElementById("MenuBar").classList.toggle("MenuShow");
-    };
-
-    $scope.slimScroll = function () {
-        setTimeout(function () {
-            $("#messageBox").slimScroll({
-                start: 'bottom',
-                height: '150px'
+            notificationService.getMessageCountNotif().then(function (result) {
+                $scope.totalMssgNotf = result.data.TotalNotification;
             });
-        }, 200);
-    };
 
-    $scope.showMessages = function () {
-        document.getElementById("messageBar").classList.toggle("MenuShow");
-    };
+            notificationService.getMessageNotif().then(function (result) {
+                $scope.messageNotifList = result.data;
+                $scope.slimScroll();
+            });
 
-    // Close the dropdown if the user clicks outside of it
-    $window.onclick = function (e) {
-        if (!e.target.matches('#elUserLink')) {
-            var myDropdown = document.getElementById("dropDownList");
-            if (myDropdown.classList.contains('MenuShow')) {
-                myDropdown.classList.remove('MenuShow');
+        };
+
+        $scope.playSound = function () {
+            var media = document.getElementById("play");
+            media.pause();
+            const playPromise = media.play();
+            if (playPromise !== null) {
+                playPromise.catch(() => { media.play(); })
             }
+        };
+
+        $scope.showSettings = function () {
+            document.getElementById("dropDownList").classList.toggle("MenuShow");
+        };
+
+        $scope.showNotifications = function () {
+            document.getElementById("MenuBar").classList.toggle("MenuShow");
+        };
+
+        $scope.slimScroll = function () {
+            setTimeout(function () {
+                $("#messageBox").slimScroll({
+                    start: 'bottom',
+                    height: '150px'
+                });
+            }, 200);
+        };
+
+        $scope.showMessages = function () {
+            document.getElementById("messageBar").classList.toggle("MenuShow");
+        };
+
+        // Close the dropdown if the user clicks outside of it
+        $window.onclick = function (e) {
+            if (!e.target.matches('#elUserLink')) {
+                var myDropdown = document.getElementById("dropDownList");
+                if (myDropdown.classList.contains('MenuShow')) {
+                    myDropdown.classList.remove('MenuShow');
+                }
+            }
+
         }
 
-    }
+        $scope.init();
 
-    $scope.init();
-
-}]);
+    }]);
 
 
 

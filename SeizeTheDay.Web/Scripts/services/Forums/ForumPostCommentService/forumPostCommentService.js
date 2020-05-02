@@ -1,27 +1,26 @@
 ﻿angular.module('startupController')
     .service('forumPostCommentService', ['$http', function ($http) {
 
-        var urlBase = '/api/PostComments';
-        var updateUrl = '/api/EditComment';
+        var urlBase = 'https://localhost:44367/api/comments/';
 
         this.getCommentListByPostID = function (id) {
-            return $http.get(urlBase,id);
+            return $http.get(urlBase + "getlistbypostid?id=" + id);
         };
 
         this.insertUpdateComment = function (comment) {
-            return $http.post(urlBase, comment);
+            return $http.post(urlBase);
         };
 
         this.deleteComment = function (id) {
-            return $http.delete(urlBase + '/' + id);
+            return $http.delete(urlBase + "deletecomment?id=" + id);
         };
 //////////////////////////////////////////////////////////////////////////////////////////
         this.updateComment = function (comment) {
-            return $http.post(updateUrl,comment);
+            return $http.post(urlBase,comment);
         };
 
-        this.getEditComment = function (comment) {
-            return $http.get(updateUrl, comment);
+        this.getEditComment = function (id) {
+            return $http.get(urlBase + "getbyid?id=" + id);
         };
 
 

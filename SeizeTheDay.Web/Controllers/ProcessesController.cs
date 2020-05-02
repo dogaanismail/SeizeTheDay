@@ -162,7 +162,7 @@ namespace SeizeTheDay.Web.Controllers
                         {
                             deleteBox.Clear();
                             deleteText.AddRange(_chatService.GetByChatBoxIDToList(boxID[i]));
-                            deleteBox.AddRange(_chatBoxService.GetByChatBoxIDToList(boxID[i]));
+                            deleteBox.AddRange(_chatBoxService.GetListById(boxID[i]));
                             if (deleteText != null)
                             {
                                 for (int k = 0; i <= deleteText.Count; ++k)
@@ -216,7 +216,7 @@ namespace SeizeTheDay.Web.Controllers
         //Chats get api
         public IHttpActionResult Get(int id)
         {
-            Xgteamc1XgTeamModel.ChatBox getChatBox = _chatBoxService.GetByChatBoxID(id);
+            Xgteamc1XgTeamModel.ChatBox getChatBox = _chatBoxService.GetById(id);
 
             var sender = (from u in db.Chats
                           where (u.ChatBoxID == id)
@@ -365,7 +365,7 @@ namespace SeizeTheDay.Web.Controllers
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public IHttpActionResult Get(int id)
         {
-            List<Entities.EntityClasses.MySQL.PostComments> commentInf = _commentService.StringInclude(id).Select(x => new Entities.EntityClasses.MySQL.PostComments()
+            List<Entities.EntityClasses.MySQL.PostComments> commentInf = _commentService.GetCommentsByPostId(id).Select(x => new Entities.EntityClasses.MySQL.PostComments()
             {
                 CommentID = x.ForumPostCommentID,
                 Text = x.Text,

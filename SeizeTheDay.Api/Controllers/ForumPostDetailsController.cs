@@ -1,5 +1,7 @@
 ﻿using SeizeTheDay.Business.Abstract.MySQL;
+using SeizeTheDay.Core.Aspects.Postsharp.CacheAspects;
 using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
+using SeizeTheDay.Core.CrossCuttingConcerns.Caching.Microsoft;
 using SeizeTheDay.DataDomain.Api;
 using SeizeTheDay.DataDomain.DTOs;
 using SeizeTheDay.DataDomain.Enumerations;
@@ -11,7 +13,7 @@ using ModelForumpost = Xgteamc1XgTeamModel.ForumPost;
 namespace SeizeTheDay.Api.Controllers
 {
     [RoutePrefix("api/postdetail")]
-    public class ForumPostDetailsController : ApiController
+    public class ForumPostDetailsController : BaseController
     {
         #region Ctor
         private readonly IForumPostService _forumPostService;
@@ -26,6 +28,7 @@ namespace SeizeTheDay.Api.Controllers
         [HttpGet]
         [Route("getdetailsbyid")]
         [PerformanceCounterAspect]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
         public TopicDetailDto GetPostDetailById(int id)
         {
             ModelForumpost getPost = _forumPostService.SingleInclude(id);

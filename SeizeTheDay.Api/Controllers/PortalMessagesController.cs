@@ -17,7 +17,7 @@ using Xgteamc1XgTeamModel;
 namespace SeizeTheDay.Api.Controllers
 {
     [RoutePrefix("api/messages")]
-    public class PortalMessagesController : ApiController
+    public class PortalMessagesController : BaseController
     {
         #region Ctor
         private readonly IPortalMessagesService _portalMessagesService;

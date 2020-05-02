@@ -327,8 +327,6 @@ namespace SeizeTheDay.Web.Controllers
         }
 
         #endregion
-
-       
-
+   
     }
 }
