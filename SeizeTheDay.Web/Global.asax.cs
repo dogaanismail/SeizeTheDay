@@ -1,4 +1,5 @@
 ﻿using SeizeTheDay.IoC.App_Start;
+using SeizeTheDay.Web.ServiceManager;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -21,6 +22,9 @@ namespace SeizeTheDay.Web
 
             //Unity Settings
             UnityConfigMvc.RegisterComponents();
+
+            //for API
+            RestSharpManager.Init();
         }
     }
 }

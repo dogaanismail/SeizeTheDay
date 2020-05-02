@@ -4,13 +4,12 @@ using SeizeTheDay.Core.Constants;
 
 namespace SeizeTheDay.Web.ServiceManager
 {
-    public class ServiceManager
+    public class RestSharpManager
     {
         private const string ServerIp = ApiUrlConstants.BaseUrl;
 
         protected static RestClient Client;
         protected static object LockSync = new object();
-
 
         public static void Init()
         {

@@ -40,7 +40,7 @@ namespace SeizeTheDay.Hubs
         {
             string con = Context.ConnectionId;
 
-            var result = ServiceManager.RestSharpGet<List<PortalMessageDto>>(ApiUrlConstants.GetPortalMessages);
+            var result = RestSharpManager.RestSharpGet<List<PortalMessageDto>>(ApiUrlConstants.GetPortalMessages);
 
             Xgteamc1XgTeamModel.User getUser = _userService.GetByUserName(username);
             Xgteamc1XgTeamModel.PortalMessage newMessage = new Xgteamc1XgTeamModel.PortalMessage

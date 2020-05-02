@@ -5,7 +5,6 @@ using System.Data.Entity.Migrations;
 
 namespace SeizeTheDay.Entities.Identity
 {
-
     public class IdentityContext : IdentityDbContext<User>
     {
         public IdentityContext()
@@ -23,7 +22,6 @@ namespace SeizeTheDay.Entities.Identity
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>().ToTable("UserInfoes");
@@ -53,7 +51,6 @@ namespace SeizeTheDay.Entities.Identity
         }
     }
     
-
     internal class Configuration : DbMigrationsConfiguration<IdentityContext>
     {
         public Configuration()
