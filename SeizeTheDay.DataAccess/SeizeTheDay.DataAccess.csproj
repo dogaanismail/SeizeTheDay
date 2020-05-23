@@ -34,6 +34,29 @@
     <Reference Include="App_Licenses">
       <HintPath>..\..\..\App_Licenses.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data, Version=5.0.2311.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\Devart\dotConnect\MySQL\Devart.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.MySql, Version=8.15.1519.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\Devart\dotConnect\MySQL\Devart.Data.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.MySql.Design, Version=8.15.1519.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\Devart\dotConnect\MySQL\Devart.Data.MySql.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.MySql.Entity.EF6, Version=8.15.1519.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\Devart\dotConnect\MySQL\Entity\EF6\Devart.Data.MySql.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.MySql.Vs, Version=8.15.1519.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\Devart\dotConnect\MySQL\Devart.Data.MySql.Vs.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -42,6 +65,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
@@ -98,6 +122,9 @@
     <Compile Include="Concrete\MySQL\MyUserPermissionDal.cs" />
     <Compile Include="Concrete\MySQL\MyUserRoleDal.cs" />
     <Compile Include="Concrete\MySQL\MyUserTypeDal.cs" />
+    <Compile Include="Dapper\Abstract\IForumPostDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\AbstractDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\ForumPostDataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
@@ -106,6 +133,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SeizeTheDay.Common\SeizeTheDay.Common.csproj">
+      <Project>{5E0DA995-D74E-4ADA-8C3F-D655FA594567}</Project>
+      <Name>SeizeTheDay.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SeizeTheDay.Core\SeizeTheDay.Core.csproj">
       <Project>{18723BD2-A5DE-4635-8C62-5DBCDCCB5FA3}</Project>
       <Name>SeizeTheDay.Core</Name>

@@ -253,3 +253,5 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\SeizeTheDay.DataDomain.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\SeizeTheDay.DataDomain.dll.config
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\System.Web.Http.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\System.Net.Http.Formatting.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Dapper.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Dapper.xml

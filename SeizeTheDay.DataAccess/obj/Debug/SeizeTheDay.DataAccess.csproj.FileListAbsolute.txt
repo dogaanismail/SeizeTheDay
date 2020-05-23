@@ -223,3 +223,17 @@ C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\obj\Debug\SeizeTheDay.DataAccess.
 C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\obj\Debug\SeizeTheDay.DataAccess.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\obj\Debug\SeizeTheDay.DataAccess.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\obj\Debug\SeizeTheDay.DataAccess.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Dapper.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\SeizeTheDay.Common.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\SeizeTheDay.Common.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Dapper.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Devart.Data.MySql.Design.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Devart.Data.MySql.Vs.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Devart.Data.Design.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\EnvDTE.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\VSLangProj.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\VsWebSite.Interop.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Microsoft.VisualStudio.Shell.Interop.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\stdole.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll

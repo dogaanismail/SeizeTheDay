@@ -4,10 +4,14 @@ using Microsoft.Owin.Security;
 using SeizeTheDay.Business.Abstract.MySQL;
 using SeizeTheDay.Business.Concrete.IdentityManagers;
 using SeizeTheDay.Business.Concrete.Manager.MySQL;
+using SeizeTheDay.Business.Dapper.Abstract;
+using SeizeTheDay.Business.Dapper.Concrete;
 using SeizeTheDay.Core.DataAccess.Abstract.MySQL;
 using SeizeTheDay.Core.DataAccess.Concrete.MySQL;
 using SeizeTheDay.DataAccess.Abstract.MySQL;
 using SeizeTheDay.DataAccess.Concrete.MySQL;
+using SeizeTheDay.DataAccess.Dapper.Abstract;
+using SeizeTheDay.DataAccess.Dapper.Concrete;
 using SeizeTheDay.Entities.Identity;
 using SeizeTheDay.Entities.Identity.Entities;
 using System.Data.Entity.Core.Objects;
@@ -105,6 +109,10 @@ namespace SeizeTheDay.IoC.App_Start
 
             container.BindInRequstScope<INotificationService, NotificationManager>();
             container.BindInRequstScope<INotificationDal, MyNotificationDal>();
+
+            container.BindInRequstScope<IForumPostDapperService, ForumPostDapperService>();
+            container.BindInRequstScope<IForumPostDataMapper, ForumPostDataMapper>();
+
 
             container.RegisterType<Xgteamc1XgTeamEntities>(new HierarchicalLifetimeManager(), new InjectionFactory(c => new Xgteamc1XgTeamEntities()));
             container.RegisterType<ObjectContext>(new HierarchicalLifetimeManager(), new InjectionFactory(c => new Xgteamc1XgTeamEntities()));

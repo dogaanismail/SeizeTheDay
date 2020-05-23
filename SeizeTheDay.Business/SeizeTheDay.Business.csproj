@@ -138,6 +138,8 @@
     <Compile Include="Concrete\Manager\MySQL\UserPermissionManager.cs" />
     <Compile Include="Concrete\Manager\MySQL\UserRoleManager.cs" />
     <Compile Include="Concrete\Manager\MySQL\UserTypeManager.cs" />
+    <Compile Include="Dapper\Abstract\IForumPostDapperService.cs" />
+    <Compile Include="Dapper\Concrete\ForumPostDapperService.cs" />
     <Compile Include="Mappings\AutoMapper\Profiles\BusinessProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationRules\FluentValidation\ForumPostValidator.cs" />

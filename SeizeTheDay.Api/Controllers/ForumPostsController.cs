@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using SeizeTheDay.Business.Abstract.MySQL;
+using SeizeTheDay.Business.Dapper.Abstract;
 using SeizeTheDay.Core.Aspects.Postsharp.CacheAspects;
 using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
 using SeizeTheDay.Core.CrossCuttingConcerns.Caching.Microsoft;
@@ -8,6 +9,7 @@ using SeizeTheDay.DataDomain.DTOs;
 using SeizeTheDay.DataDomain.Enumerations;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -21,10 +23,12 @@ namespace SeizeTheDay.Api.Controllers
     {
         #region Ctor
         private readonly IForumPostService _forumPostService;
+        private readonly IForumPostDapperService _forumPostDapperService;
 
-        public ForumPostsController(IForumPostService forumPostService)
+        public ForumPostsController(IForumPostService forumPostService, IForumPostDapperService forumPostDapperService)
         {
             _forumPostService = forumPostService;
+            _forumPostDapperService = forumPostDapperService;
         }
 
         #endregion
@@ -127,7 +131,6 @@ namespace SeizeTheDay.Api.Controllers
             }
         }
 
-
         [Route("deletepost")]
         [HttpPost]
         public IHttpActionResult DeleteForumPost(int id)
@@ -167,6 +170,15 @@ namespace SeizeTheDay.Api.Controllers
 
                 return BadRequest(ex.Message.ToString());
             }
+        }
+
+        [HttpGet]
+        [Route("getpostsbydapper")]
+        [PerformanceCounterAspect]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
+        public IEnumerable<ForumPost> GetForumPostsByDapper()
+        {
+            return _forumPostDapperService.GetForumPosts();
         }
     }
 }
