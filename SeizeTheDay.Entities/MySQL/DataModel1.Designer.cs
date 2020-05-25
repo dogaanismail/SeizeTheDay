@@ -80,7 +80,7 @@ namespace Xgteamc1XgTeamModel
         public Xgteamc1XgTeamEntities() :
                 base(@"name=Xgteamc1XgTeamEntities", "Xgteamc1XgTeamEntities")
         {
-            this.ContextOptions.LazyLoadingEnabled = true;
+            this.ContextOptions.LazyLoadingEnabled = false;
             OnContextCreated();
         }
 
@@ -90,7 +90,7 @@ namespace Xgteamc1XgTeamModel
         public Xgteamc1XgTeamEntities(string connectionString) :
                 base(connectionString, "Xgteamc1XgTeamEntities")
         {
-            this.ContextOptions.LazyLoadingEnabled = true;
+            this.ContextOptions.LazyLoadingEnabled = false;
             OnContextCreated();
         }
 
@@ -99,7 +99,7 @@ namespace Xgteamc1XgTeamModel
         /// </summary>
         public Xgteamc1XgTeamEntities(EntityConnection connection) : base(connection, "Xgteamc1XgTeamEntities")
         {
-            this.ContextOptions.LazyLoadingEnabled = true;
+            this.ContextOptions.LazyLoadingEnabled = false;
             OnContextCreated();
         }
 

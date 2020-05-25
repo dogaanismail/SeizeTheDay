@@ -125,6 +125,9 @@ namespace SeizeTheDay.IoC.App_Start
             container.BindInRequstScope<INotificationDapperService, NotificationDapperService>();
             container.BindInRequstScope<INotificationDataMapper, NotificationDataMapper>();
 
+            container.BindInRequstScope<IPortalMessageDapperService, PortalMessageDapperService>();
+            container.BindInRequstScope<IPortalMessageDataMapper, PortalMessageDataMapper>();
+
             #endregion
 
             #region InfrastructureManagement

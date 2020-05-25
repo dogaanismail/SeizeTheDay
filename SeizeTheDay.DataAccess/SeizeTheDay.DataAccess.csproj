@@ -143,8 +143,13 @@
     <Compile Include="Dapper\Abstract\MySQL\IUserRoleDataMapper.cs" />
     <Compile Include="Dapper\Abstract\MySQL\IUserTypeDataMapper.cs" />
     <Compile Include="Dapper\Concrete\MySQL\AbstractDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\ChatBoxDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\ChatDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\ForumDataMapper.cs" />
     <Compile Include="Dapper\Concrete\MySQL\ForumPostDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\ForumTopicDataMapper.cs" />
     <Compile Include="Dapper\Concrete\MySQL\NotificationDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\PortalMessageDataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
@@ -160,6 +165,10 @@
     <ProjectReference Include="..\SeizeTheDay.Core\SeizeTheDay.Core.csproj">
       <Project>{18723BD2-A5DE-4635-8C62-5DBCDCCB5FA3}</Project>
       <Name>SeizeTheDay.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SeizeTheDay.DataDomain\SeizeTheDay.DataDomain.csproj">
+      <Project>{EC241A13-1A40-4AAC-9D3B-7CE868D743B4}</Project>
+      <Name>SeizeTheDay.DataDomain</Name>
     </ProjectReference>
     <ProjectReference Include="..\SeizeTheDay.Entities\SeizeTheDay.Entities.csproj">
       <Project>{a24ad207-6920-4f3f-b18d-564b079019cc}</Project>

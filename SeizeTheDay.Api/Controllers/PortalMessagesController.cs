@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using SeizeTheDay.Business.Abstract.MySQL;
+using SeizeTheDay.Business.Dapper.Abstract.MySQL;
 using SeizeTheDay.Core.Aspects.Postsharp.CacheAspects;
 using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
 using SeizeTheDay.Core.CrossCuttingConcerns.Caching.Microsoft;
@@ -21,10 +22,12 @@ namespace SeizeTheDay.Api.Controllers
     {
         #region Ctor
         private readonly IPortalMessagesService _portalMessagesService;
+        private readonly IPortalMessageDapperService _portalMessageDapperService;
 
-        public PortalMessagesController(IPortalMessagesService portalMessagesService)
+        public PortalMessagesController(IPortalMessagesService portalMessagesService, IPortalMessageDapperService portalMessageDapperService)
         {
             _portalMessagesService = portalMessagesService;
+            _portalMessageDapperService = portalMessageDapperService;
         }
         #endregion
 
@@ -103,6 +106,15 @@ namespace SeizeTheDay.Api.Controllers
             {
                 return BadRequest(ex.Message.ToString());
             }
+        }
+
+        [HttpGet]
+        [Route("getmessagesbydapper")]
+        [PerformanceCounterAspect]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
+        public List<PortalMessageDto> GetPortalMessagesByDapper()
+        {
+            return _portalMessageDapperService.GetMessages();
         }
 
     }

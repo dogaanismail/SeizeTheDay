@@ -39,7 +39,7 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
                 Title = result.Title,
                 DetailsUrl = result.DetailsUrl,
                 SentTo = result.SentTo,
-                CreatedDate = result.CreatedData,
+                CreatedDate = result.CreatedDate,
                 IsRead = result.IsRead
             };
 

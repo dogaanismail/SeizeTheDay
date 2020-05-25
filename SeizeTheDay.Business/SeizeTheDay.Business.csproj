@@ -140,8 +140,10 @@
     <Compile Include="Concrete\Manager\MySQL\UserTypeManager.cs" />
     <Compile Include="Dapper\Abstract\MySQL\IForumPostDapperService.cs" />
     <Compile Include="Dapper\Abstract\MySQL\INotificationDapperService.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IPortalMessageDapperService.cs" />
     <Compile Include="Dapper\Concrete\MySQL\ForumPostDapperService.cs" />
     <Compile Include="Dapper\Concrete\MySQL\NotificationDapperService.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\PortalMessageDapperService.cs" />
     <Compile Include="Mappings\AutoMapper\Profiles\BusinessProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationRules\FluentValidation\ForumPostValidator.cs" />
