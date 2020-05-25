@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using SeizeTheDay.Business.Abstract.MySQL;
+using SeizeTheDay.Business.Dapper.Abstract.MySQL;
 using SeizeTheDay.Core.Aspects.Postsharp.CacheAspects;
 using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
 using SeizeTheDay.Core.CrossCuttingConcerns.Caching.Microsoft;
@@ -22,11 +23,14 @@ namespace SeizeTheDay.Api.Controllers
         #region Ctor
         private readonly INotificationService _notificationService;
         private readonly IUserService _userService;
+        private readonly INotificationDapperService _notificationDapperService;
 
-        public NotificationsController(INotificationService notificationService, IUserService userService)
+        public NotificationsController(INotificationService notificationService, IUserService userService,
+            INotificationDapperService notificationDapperService)
         {
             _notificationService = notificationService;
             _userService = userService;
+            _notificationDapperService = notificationDapperService;
         }
         #endregion
 
@@ -44,17 +48,17 @@ namespace SeizeTheDay.Api.Controllers
                 {
                     List<NotificationDto> getNot = getUser.Notifications.Where(x => x.Type == (int)NotificationTypeEnum.Notification).
                         Select(x => new NotificationDto
-                      {
-                          NotificationID = x.NotificationID,
-                          Type = x.Type,
-                          Details = x.Details,
-                          Title = x.Title,
-                          DetailsUrl = x.DetailsUrl,
-                          SentTo = x.SentTo,
-                          CreatedDate = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(x.CreatedDate.Value.Month) + " " +
+                        {
+                            NotificationID = x.NotificationID,
+                            Type = x.Type,
+                            Details = x.Details,
+                            Title = x.Title,
+                            DetailsUrl = x.DetailsUrl,
+                            SentTo = x.SentTo,
+                            CreatedDate = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(x.CreatedDate.Value.Month) + " " +
                       x.CreatedDate.Value.Day.ToString() + "," + x.CreatedDate.Value.Year.ToString() + " " + x.CreatedDate.Value.Hour + " : " + x.CreatedDate.Value.Minute,
-                          IsRead = x.IsRead,
-                      }).ToList();
+                            IsRead = x.IsRead,
+                        }).ToList();
 
                     return getNot;
                 }
@@ -211,6 +215,15 @@ namespace SeizeTheDay.Api.Controllers
             {
                 return BadRequest(ex.Message.ToString());
             }
+        }
+
+        [HttpGet]
+        [Route("getnotificationsbydapper")]
+        [PerformanceCounterAspect]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
+        public IEnumerable<Notification> GetNotificationsByDapper()
+        {
+            return _notificationDapperService.GetNotifications();
         }
 
 

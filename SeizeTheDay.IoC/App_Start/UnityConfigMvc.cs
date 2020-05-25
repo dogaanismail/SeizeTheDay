@@ -4,10 +4,14 @@ using Microsoft.Owin.Security;
 using SeizeTheDay.Business.Abstract.MySQL;
 using SeizeTheDay.Business.Concrete.IdentityManagers;
 using SeizeTheDay.Business.Concrete.Manager.MySQL;
+using SeizeTheDay.Business.Dapper.Abstract.MySQL;
+using SeizeTheDay.Business.Dapper.Concrete.MySQL;
 using SeizeTheDay.Core.DataAccess.Abstract.MySQL;
 using SeizeTheDay.Core.DataAccess.Concrete.MySQL;
 using SeizeTheDay.DataAccess.Abstract.MySQL;
 using SeizeTheDay.DataAccess.Concrete.MySQL;
+using SeizeTheDay.DataAccess.Dapper.Abstract.MySQL;
+using SeizeTheDay.DataAccess.Dapper.Concrete.MySQL;
 using SeizeTheDay.Entities.Identity;
 using SeizeTheDay.Entities.Identity.Entities;
 using System.Data.Entity.Core.Objects;
@@ -34,6 +38,7 @@ namespace SeizeTheDay.IoC.App_Start
         }
         public static void RegisterTypes(IUnityContainer container)
         {
+            #region IdentityManagement
             container.RegisterType<IdentityContext>(new PerRequestLifetimeManager());
             container.RegisterType<ApplicationSignInManager>(new PerRequestLifetimeManager());
             container.RegisterType<ApplicationRoleManager>(new PerRequestLifetimeManager());
@@ -48,6 +53,10 @@ namespace SeizeTheDay.IoC.App_Start
 
             container.RegisterType<IUserStore<Entities.Identity.Entities.User>, UserStore<Entities.Identity.Entities.User>>(
                 new InjectionConstructor(typeof(IdentityContext)));
+
+            #endregion
+
+            #region BusinessServiceManagement
 
             container.BindInRequstScope<IForumPostService, ForumPostManager>();
             container.BindInRequstScope<IForumPostDal, MyForumPostDal>();
@@ -112,9 +121,25 @@ namespace SeizeTheDay.IoC.App_Start
             container.BindInRequstScope<INotificationService, NotificationManager>();
             container.BindInRequstScope<INotificationDal, MyNotificationDal>();
 
+            #endregion
+
+            #region InfrastructureManagement
+
             container.RegisterType<Xgteamc1XgTeamEntities>(new HierarchicalLifetimeManager(), new InjectionFactory(c => new Xgteamc1XgTeamEntities()));
             container.RegisterType<ObjectContext>(new HierarchicalLifetimeManager(), new InjectionFactory(c => new Xgteamc1XgTeamEntities()));
             container.RegisterType(typeof(IMyQueryableRepository<>), typeof(MyQueryableRepository<>), new PerRequestLifetimeManager());
+
+            #endregion
+
+            #region DapperServiceManagement
+
+            container.BindInRequstScope<IForumPostDapperService, ForumPostDapperService>();
+            container.BindInRequstScope<IForumPostDataMapper, ForumPostDataMapper>();
+
+            container.BindInRequstScope<INotificationDapperService, NotificationDapperService>();
+            container.BindInRequstScope<INotificationDataMapper, NotificationDataMapper>();
+
+            #endregion
         }
 
         public static void BindInRequstScope<T1, T2>(this IUnityContainer container) where T2 : T1

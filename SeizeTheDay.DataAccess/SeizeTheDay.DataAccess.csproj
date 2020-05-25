@@ -122,9 +122,29 @@
     <Compile Include="Concrete\MySQL\MyUserPermissionDal.cs" />
     <Compile Include="Concrete\MySQL\MyUserRoleDal.cs" />
     <Compile Include="Concrete\MySQL\MyUserTypeDal.cs" />
-    <Compile Include="Dapper\Abstract\IForumPostDataMapper.cs" />
-    <Compile Include="Dapper\Concrete\AbstractDataMapper.cs" />
-    <Compile Include="Dapper\Concrete\ForumPostDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IChatBoxDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IChatDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\ICountryDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IForumDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IForumPostCommentDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IForumPostCommentLikeDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IForumPostDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IForumPostLikeDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IForumTopicDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IFriendDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IFriendRequestDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IModuleDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\INotificationDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IPortalMessageDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IRoleDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IUserDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IUserInfoDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IUserPermissionDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IUserRoleDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\IUserTypeDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\AbstractDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\ForumPostDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\NotificationDataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

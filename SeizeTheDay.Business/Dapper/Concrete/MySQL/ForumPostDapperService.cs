@@ -1,18 +1,22 @@
-﻿using SeizeTheDay.Business.Dapper.Abstract;
-using SeizeTheDay.DataAccess.Dapper.Abstract;
+﻿using SeizeTheDay.Business.Dapper.Abstract.MySQL;
+using SeizeTheDay.DataAccess.Dapper.Abstract.MySQL;
 using System.Collections.Generic;
 using Xgteamc1XgTeamModel;
 
-namespace SeizeTheDay.Business.Dapper.Concrete
+namespace SeizeTheDay.Business.Dapper.Concrete.MySQL
 {
     public class ForumPostDapperService : IForumPostDapperService
     {
+        #region Ctor
         private readonly IForumPostDataMapper _mapper;
 
         public ForumPostDapperService(IForumPostDataMapper mapper)
         {
             _mapper = mapper;
         }
+
+        #endregion
+
         public IEnumerable<ForumPost> GetForumPosts()
         {
             return _mapper.FindAll();
@@ -26,6 +30,11 @@ namespace SeizeTheDay.Business.Dapper.Concrete
         public void Insert(ForumPost data)
         {
             _mapper.Insert(data);
+        }
+
+        public void Delete(int forumPostId)
+        {
+            _mapper.Delete(forumPostId);
         }
     }
 }

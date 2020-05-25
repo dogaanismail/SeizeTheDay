@@ -1,14 +1,11 @@
 ﻿using Dapper;
 using Devart.Data.MySql;
-using SeizeTheDay.Common.Helpers;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.Entity.Core.EntityClient;
-using System.Data.SqlClient;
 using System.Linq;
 
-namespace SeizeTheDay.DataAccess.Dapper.Concrete
+namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
 {
     /// <summary>
     /// The abstract data mapper.
@@ -22,6 +19,11 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete
         /// Gets the table name.
         /// </summary>
         protected abstract string TableName { get; }
+
+        /// <summary>
+        /// Gets the table primary key.
+        /// </summary>
+        protected abstract string PrimaryKeyName { get; }
 
         /// <summary>
         /// Gets the database connection. There is a MySQL connection here.
@@ -100,7 +102,7 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete
             using (IDbConnection cn = Connection)
             {
                 cn.Open();
-                cn.Execute("DELETE FROM " + TableName + " WHERE ID=@ID", new { ID = id });
+                cn.Execute("DELETE FROM " + TableName + " WHERE" + PrimaryKeyName + "=@ID", new { ID = id });
             }
         }
 

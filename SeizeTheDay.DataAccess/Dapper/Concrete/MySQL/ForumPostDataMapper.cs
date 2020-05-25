@@ -1,15 +1,17 @@
 ﻿using Dapper;
-using SeizeTheDay.DataAccess.Dapper.Abstract;
+using SeizeTheDay.DataAccess.Dapper.Abstract.MySQL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xgteamc1XgTeamModel;
 
-namespace SeizeTheDay.DataAccess.Dapper.Concrete
+namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
 {
     public class ForumPostDataMapper : AbstractDataMapper<ForumPost>, IForumPostDataMapper
     {
         protected override string TableName => "ForumPost";
+
+        protected override string PrimaryKeyName => "ForumPostID";
 
         public override ForumPost Map(dynamic result)
         {
@@ -33,7 +35,7 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete
 
         public ForumPost FindById(int id)
         {
-            return FindSingle($"select * from {this.TableName} WHERE ForumPostID=@Id", new { Id = id });
+            return FindSingle($"select * from {this.TableName} WHERE {this.PrimaryKeyName}=@Id", new { Id = id });
         }
 
         public IEnumerable<ForumPost> GetForumPosts()

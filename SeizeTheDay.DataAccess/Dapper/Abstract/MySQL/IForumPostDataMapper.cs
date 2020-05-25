@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xgteamc1XgTeamModel;
 
-namespace SeizeTheDay.DataAccess.Dapper.Abstract
+namespace SeizeTheDay.DataAccess.Dapper.Abstract.MySQL
 {
     public interface IForumPostDataMapper : IDataMapper<ForumPost>
     {
