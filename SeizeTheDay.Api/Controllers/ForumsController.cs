@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using SeizeTheDay.Business.Abstract.MySQL;
+using SeizeTheDay.Business.Dapper.Abstract.MySQL;
 using SeizeTheDay.Core.Aspects.Postsharp.CacheAspects;
 using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
 using SeizeTheDay.Core.CrossCuttingConcerns.Caching.Microsoft;
@@ -20,10 +21,12 @@ namespace SeizeTheDay.Api.Controllers
     {
         #region Ctor
         private readonly IForumService _forumService;
+        private readonly IForumDapperService _forumDapperService;
 
-        public ForumsController(IForumService forumService)
+        public ForumsController(IForumService forumService, IForumDapperService forumDapperService)
         {
             _forumService = forumService;
+            _forumDapperService = forumDapperService;
         }
 
         #endregion
@@ -146,6 +149,15 @@ namespace SeizeTheDay.Api.Controllers
 
                 return BadRequest(ex.Message.ToString());
             }
+        }
+
+        [HttpGet]
+        [Route("getforumsbydapper")]
+        [PerformanceCounterAspect]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
+        public IEnumerable<Forum> GetForumsByDapper()
+        {
+            return _forumDapperService.GetForums();
         }
     }
 }

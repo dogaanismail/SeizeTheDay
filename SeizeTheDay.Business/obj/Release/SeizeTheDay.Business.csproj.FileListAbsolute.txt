@@ -172,7 +172,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Release\Microsoft.Owin.Security
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Release\Newtonsoft.Json.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Release\Ninject.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Release\Owin.dll
-C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Release\PostSharp.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Release\SeizeTheDay.Core.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Release\SeizeTheDay.DataAccess.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Release\SeizeTheDay.DataDomain.dll
@@ -240,3 +239,5 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Business\obj\Release\SeizeTheDay.Business.cs
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\obj\Release\SeizeTheDay.Business.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\obj\Release\SeizeTheDay.Business.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\obj\Release\SeizeTheDay.Business.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Release\Dapper.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Release\Dapper.xml

@@ -36,6 +36,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="FriendRequests">
+      <EntityTypeMapping TypeName="Xgteamc1XgTeamModel.FriendRequest">
+        <MappingFragment StoreEntitySet="FriendRequests">
+          <ScalarProperty Name="FriendRequestID" ColumnName="FriendRequestID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="FutureFriendID" ColumnName="FutureFriendID" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+          <ScalarProperty Name="IsPending" ColumnName="IsPending" />
+          <ScalarProperty Name="SendingDate" ColumnName="SendingDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ForumCommentLikes">
       <EntityTypeMapping TypeName="Xgteamc1XgTeamModel.ForumCommentLike">
         <MappingFragment StoreEntitySet="ForumCommentLikes">
@@ -94,30 +107,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MigrationHistories">
-      <EntityTypeMapping TypeName="Xgteamc1XgTeamModel.MigrationHistory">
-        <MappingFragment StoreEntitySet="__Migrationhistories">
-          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-          <ScalarProperty Name="Model" ColumnName="Model" />
-          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Notifications">
-      <EntityTypeMapping TypeName="Xgteamc1XgTeamModel.Notification">
-        <MappingFragment StoreEntitySet="Notifications">
-          <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="Details" ColumnName="Details" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="DetailsUrl" ColumnName="DetailsUrl" />
-          <ScalarProperty Name="SentTo" ColumnName="SentTo" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Friends">
       <EntityTypeMapping TypeName="Xgteamc1XgTeamModel.Friend">
         <MappingFragment StoreEntitySet="Friends">
@@ -125,19 +114,6 @@
           <ScalarProperty Name="FutureFriendID" ColumnName="FutureFriendID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="BecameFriendDate" ColumnName="BecameFriendDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="FriendRequests">
-      <EntityTypeMapping TypeName="Xgteamc1XgTeamModel.FriendRequest">
-        <MappingFragment StoreEntitySet="FriendRequests">
-          <ScalarProperty Name="FriendRequestID" ColumnName="FriendRequestID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="FutureFriendID" ColumnName="FutureFriendID" />
-          <ScalarProperty Name="Message" ColumnName="Message" />
-          <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
-          <ScalarProperty Name="IsPending" ColumnName="IsPending" />
-          <ScalarProperty Name="SendingDate" ColumnName="SendingDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -179,6 +155,7 @@
           <ScalarProperty Name="SenderID" ColumnName="SenderID" />
           <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
           <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -234,6 +211,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ForumPosts">
+      <EntityTypeMapping TypeName="Xgteamc1XgTeamModel.ForumPost">
+        <MappingFragment StoreEntitySet="ForumPosts">
+          <ScalarProperty Name="ForumPostID" ColumnName="ForumPostID" />
+          <ScalarProperty Name="ForumPostTitle" ColumnName="ForumPostTitle" />
+          <ScalarProperty Name="ForumPostContent" ColumnName="ForumPostContent" />
+          <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ForumTopicID" ColumnName="ForumTopicID" />
+          <ScalarProperty Name="ForumID" ColumnName="ForumID" />
+          <ScalarProperty Name="ShowInPortal" ColumnName="ShowInPortal" />
+          <ScalarProperty Name="PostLocked" ColumnName="PostLocked" />
+          <ScalarProperty Name="ReviewCount" ColumnName="ReviewCount" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Modules">
       <EntityTypeMapping TypeName="Xgteamc1XgTeamModel.Module">
         <MappingFragment StoreEntitySet="Modules">
@@ -247,6 +241,20 @@
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
           <ScalarProperty Name="ParentModuleID" ColumnName="ParentModuleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="Xgteamc1XgTeamModel.Notification">
+        <MappingFragment StoreEntitySet="Notifications">
+          <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="DetailsUrl" ColumnName="DetailsUrl" />
+          <ScalarProperty Name="SentTo" ColumnName="SentTo" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -266,23 +274,6 @@
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="IdentityUserId" ColumnName="IdentityUser_Id" />
           <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ForumPosts">
-      <EntityTypeMapping TypeName="Xgteamc1XgTeamModel.ForumPost">
-        <MappingFragment StoreEntitySet="ForumPosts">
-          <ScalarProperty Name="ForumPostID" ColumnName="ForumPostID" />
-          <ScalarProperty Name="ForumPostTitle" ColumnName="ForumPostTitle" />
-          <ScalarProperty Name="ForumPostContent" ColumnName="ForumPostContent" />
-          <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="ForumTopicID" ColumnName="ForumTopicID" />
-          <ScalarProperty Name="ForumID" ColumnName="ForumID" />
-          <ScalarProperty Name="ShowInPortal" ColumnName="ShowInPortal" />
-          <ScalarProperty Name="PostLocked" ColumnName="PostLocked" />
-          <ScalarProperty Name="ReviewCount" ColumnName="ReviewCount" />
-          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

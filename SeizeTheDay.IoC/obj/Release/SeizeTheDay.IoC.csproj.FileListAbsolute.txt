@@ -388,3 +388,5 @@ C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Release\SeizeTheDay.IoC.csprojAssemb
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Release\SeizeTheDay.IoC.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Release\SeizeTheDay.IoC.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Release\SeizeTheDay.IoC.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Release\Dapper.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Release\Dapper.xml

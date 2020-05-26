@@ -122,6 +122,21 @@ namespace SeizeTheDay.IoC.App_Start
             container.BindInRequstScope<IForumPostDapperService, ForumPostDapperService>();
             container.BindInRequstScope<IForumPostDataMapper, ForumPostDataMapper>();
 
+            container.BindInRequstScope<IForumPostLikeDapperService, ForumPostLikeDapperService>();
+            container.BindInRequstScope<IForumPostLikeDataMapper, ForumPostLikeDataMapper>();
+
+            container.BindInRequstScope<IForumPostCommentDapperService, ForumPostCommentDapperService>();
+            container.BindInRequstScope<IForumPostCommentDataMapper, ForumPostCommentDataMapper>();
+
+            container.BindInRequstScope<IForumPostCommentLikeDapperService, ForumPostCommentLikeDapperService>();
+            container.BindInRequstScope<IForumPostCommentLikeDataMapper, ForumPostCommentLikeDataMapper>();
+
+            container.BindInRequstScope<IForumDapperService, ForumDapperService>();
+            container.BindInRequstScope<IForumDataMapper, ForumDataMapper>();
+
+            container.BindInRequstScope<IForumTopicDapperService, ForumTopicDapperService>();
+            container.BindInRequstScope<IForumTopicDataMapper, ForumTopicDataMapper>();
+
             container.BindInRequstScope<INotificationDapperService, NotificationDapperService>();
             container.BindInRequstScope<INotificationDataMapper, NotificationDataMapper>();
 

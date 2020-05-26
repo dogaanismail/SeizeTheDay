@@ -5,5 +5,6 @@ namespace SeizeTheDay.DataAccess.Dapper.Abstract.MySQL
 {
     public interface IUserRoleDataMapper : IDataMapper<UserRole>
     {
+        UserRole FindByRoleId(string id);
     }
 }

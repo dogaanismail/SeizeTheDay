@@ -16,9 +16,9 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
         {
             var data = new Forum
             {
-                ForumID = result.ForumPostID,
-                ForumName = result.ForumPostTitle,
-                Title = result.ForumPostContent,
+                ForumID = result.ForumID,
+                ForumName = result.ForumName,
+                Title = result.Title,
                 Description = result.Description,
                 CreatedTime = result.CreatedTime,
                 Status = result.Status,

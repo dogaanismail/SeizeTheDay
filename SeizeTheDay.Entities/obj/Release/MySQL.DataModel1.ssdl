@@ -4,14 +4,12 @@
     <EntitySet Name="ForumPostComments" EntityType="Xgteamc1XgTeamModel.Store.ForumPostComment" store:Type="Tables" Schema="xgteamc1_xg_team" Table="ForumPostComment" />
     <EntitySet Name="ForumTopics" EntityType="Xgteamc1XgTeamModel.Store.ForumTopic" store:Type="Tables" Schema="xgteamc1_xg_team" Table="ForumTopic" />
     <EntitySet Name="UserLogins" EntityType="Xgteamc1XgTeamModel.Store.UserLogins" store:Type="Tables" Schema="xgteamc1_xg_team" Table="UserLogins" />
+    <EntitySet Name="FriendRequests" EntityType="Xgteamc1XgTeamModel.Store.FriendRequest" store:Type="Tables" Schema="xgteamc1_xg_team" Table="FriendRequest" />
     <EntitySet Name="ForumCommentLikes" EntityType="Xgteamc1XgTeamModel.Store.ForumCommentLike" store:Type="Tables" Schema="xgteamc1_xg_team" Table="ForumCommentLike" />
     <EntitySet Name="PortalMessages" EntityType="Xgteamc1XgTeamModel.Store.PortalMessages" store:Type="Tables" Schema="xgteamc1_xg_team" Table="PortalMessages" />
     <EntitySet Name="UserInfoes" EntityType="Xgteamc1XgTeamModel.Store.UserInfoes" store:Type="Tables" Schema="xgteamc1_xg_team" Table="UserInfoes" />
     <EntitySet Name="UserTypes" EntityType="Xgteamc1XgTeamModel.Store.UserType" store:Type="Tables" Schema="xgteamc1_xg_team" Table="UserType" />
-    <EntitySet Name="__Migrationhistories" EntityType="Xgteamc1XgTeamModel.Store.__MigrationHistory" store:Type="Tables" Schema="xgteamc1_xg_team" Table="__MigrationHistory" />
-    <EntitySet Name="Notifications" EntityType="Xgteamc1XgTeamModel.Store.Notifications" store:Type="Tables" Schema="xgteamc1_xg_team" Table="Notifications" />
     <EntitySet Name="Friends" EntityType="Xgteamc1XgTeamModel.Store.Friend" store:Type="Tables" Schema="xgteamc1_xg_team" Table="Friend" />
-    <EntitySet Name="FriendRequests" EntityType="Xgteamc1XgTeamModel.Store.FriendRequest" store:Type="Tables" Schema="xgteamc1_xg_team" Table="FriendRequest" />
     <EntitySet Name="ChatBoxes" EntityType="Xgteamc1XgTeamModel.Store.ChatBox" store:Type="Tables" Schema="xgteamc1_xg_team" Table="ChatBox" />
     <EntitySet Name="Countries" EntityType="Xgteamc1XgTeamModel.Store.Country" store:Type="Tables" Schema="xgteamc1_xg_team" Table="Country" />
     <EntitySet Name="ForumPostLikes" EntityType="Xgteamc1XgTeamModel.Store.ForumPostLike" store:Type="Tables" Schema="xgteamc1_xg_team" Table="ForumPostLike" />
@@ -20,10 +18,11 @@
     <EntitySet Name="Roles" EntityType="Xgteamc1XgTeamModel.Store.Roles" store:Type="Tables" Schema="xgteamc1_xg_team" Table="Roles" />
     <EntitySet Name="UserClaims" EntityType="Xgteamc1XgTeamModel.Store.UserClaims" store:Type="Tables" Schema="xgteamc1_xg_team" Table="UserClaims" />
     <EntitySet Name="Users" EntityType="Xgteamc1XgTeamModel.Store.Users" store:Type="Tables" Schema="xgteamc1_xg_team" Table="Users" />
+    <EntitySet Name="ForumPosts" EntityType="Xgteamc1XgTeamModel.Store.ForumPost" store:Type="Tables" Schema="xgteamc1_xg_team" Table="ForumPost" />
     <EntitySet Name="Modules" EntityType="Xgteamc1XgTeamModel.Store.Modules" store:Type="Tables" Schema="xgteamc1_xg_team" Table="Modules" />
+    <EntitySet Name="Notifications" EntityType="Xgteamc1XgTeamModel.Store.Notifications" store:Type="Tables" Schema="xgteamc1_xg_team" Table="Notifications" />
     <EntitySet Name="UserPermissions" EntityType="Xgteamc1XgTeamModel.Store.UserPermissions" store:Type="Tables" Schema="xgteamc1_xg_team" Table="UserPermissions" />
     <EntitySet Name="UserRoles" EntityType="Xgteamc1XgTeamModel.Store.UserRoles" store:Type="Tables" Schema="xgteamc1_xg_team" Table="UserRoles" />
-    <EntitySet Name="ForumPosts" EntityType="Xgteamc1XgTeamModel.Store.ForumPost" store:Type="Tables" Schema="xgteamc1_xg_team" Table="ForumPost" />
     <EntitySet Name="ProfileVisitors" EntityType="Xgteamc1XgTeamModel.Store.ProfileVisitor" store:Type="Tables" Schema="xgteamc1_xg_team" Table="ProfileVisitor" />
     <AssociationSet Name="CommentForumPost" Association="Xgteamc1XgTeamModel.Store.CommentForumPost">
       <End Role="ForumPost" EntitySet="ForumPosts" />
@@ -40,6 +39,14 @@
     <AssociationSet Name="ForumForumTopic" Association="Xgteamc1XgTeamModel.Store.ForumForumTopic">
       <End Role="Forum" EntitySet="Fora" />
       <End Role="ForumTopic" EntitySet="ForumTopics" />
+    </AssociationSet>
+    <AssociationSet Name="RequestFutureFriend" Association="Xgteamc1XgTeamModel.Store.RequestFutureFriend">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="FriendRequest" EntitySet="FriendRequests" />
+    </AssociationSet>
+    <AssociationSet Name="RequestUser" Association="Xgteamc1XgTeamModel.Store.RequestUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="FriendRequest" EntitySet="FriendRequests" />
     </AssociationSet>
     <AssociationSet Name="CommentLikeComment" Association="Xgteamc1XgTeamModel.Store.CommentLikeComment">
       <End Role="ForumPostComment" EntitySet="ForumPostComments" />
@@ -73,10 +80,6 @@
       <End Role="UserType" EntitySet="UserTypes" />
       <End Role="UserInfoes" EntitySet="UserInfoes" />
     </AssociationSet>
-    <AssociationSet Name="UserNotification" Association="Xgteamc1XgTeamModel.Store.UserNotification">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Notifications" EntitySet="Notifications" />
-    </AssociationSet>
     <AssociationSet Name="FriendFutureFriend" Association="Xgteamc1XgTeamModel.Store.FriendFutureFriend">
       <End Role="Users" EntitySet="Users" />
       <End Role="Friend" EntitySet="Friends" />
@@ -84,14 +87,6 @@
     <AssociationSet Name="UserID" Association="Xgteamc1XgTeamModel.Store.UserID">
       <End Role="Users" EntitySet="Users" />
       <End Role="Friend" EntitySet="Friends" />
-    </AssociationSet>
-    <AssociationSet Name="RequestFutureFriend" Association="Xgteamc1XgTeamModel.Store.RequestFutureFriend">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="FriendRequest" EntitySet="FriendRequests" />
-    </AssociationSet>
-    <AssociationSet Name="RequestUser" Association="Xgteamc1XgTeamModel.Store.RequestUser">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="FriendRequest" EntitySet="FriendRequests" />
     </AssociationSet>
     <AssociationSet Name="ChatBoxReceiver" Association="Xgteamc1XgTeamModel.Store.ChatBoxReceiver">
       <End Role="Users" EntitySet="Users" />
@@ -125,14 +120,6 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="Forum" EntitySet="Fora" />
     </AssociationSet>
-    <AssociationSet Name="PermissionModule" Association="Xgteamc1XgTeamModel.Store.PermissionModule">
-      <End Role="Modules" EntitySet="Modules" />
-      <End Role="UserPermissions" EntitySet="UserPermissions" />
-    </AssociationSet>
-    <AssociationSet Name="RoleModule" Association="Xgteamc1XgTeamModel.Store.RoleModule">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="UserPermissions" EntitySet="UserPermissions" />
-    </AssociationSet>
     <AssociationSet Name="CreatedByPost" Association="Xgteamc1XgTeamModel.Store.CreatedByPost">
       <End Role="Users" EntitySet="Users" />
       <End Role="ForumPost" EntitySet="ForumPosts" />
@@ -144,6 +131,18 @@
     <AssociationSet Name="ForumPostForumTopic" Association="Xgteamc1XgTeamModel.Store.ForumPostForumTopic">
       <End Role="ForumTopic" EntitySet="ForumTopics" />
       <End Role="ForumPost" EntitySet="ForumPosts" />
+    </AssociationSet>
+    <AssociationSet Name="UserNotification" Association="Xgteamc1XgTeamModel.Store.UserNotification">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Notifications" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="PermissionModule" Association="Xgteamc1XgTeamModel.Store.PermissionModule">
+      <End Role="Modules" EntitySet="Modules" />
+      <End Role="UserPermissions" EntitySet="UserPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="RoleModule" Association="Xgteamc1XgTeamModel.Store.RoleModule">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserPermissions" EntitySet="UserPermissions" />
     </AssociationSet>
     <AssociationSet Name="VisitedID" Association="Xgteamc1XgTeamModel.Store.VisitedID">
       <End Role="Users" EntitySet="Users" />
@@ -187,6 +186,18 @@
     <Property Name="ProviderKey" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
     <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="128" Collation="utf8_general_ci" />
     <Property Name="IdentityUser_Id" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
+  </EntityType>
+  <EntityType Name="FriendRequest">
+    <Key>
+      <PropertyRef Name="FriendRequestID" />
+    </Key>
+    <Property Name="FriendRequestID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
+    <Property Name="FutureFriendID" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
+    <Property Name="Message" Type="varchar" MaxLength="255" Collation="utf8_turkish_ci" />
+    <Property Name="IsAccepted" Type="boolean" />
+    <Property Name="IsPending" Type="boolean" />
+    <Property Name="SendingDate" Type="datetime" Precision="6" />
   </EntityType>
   <EntityType Name="ForumCommentLike">
     <Key>
@@ -242,29 +253,6 @@
     <Property Name="userTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="userTypeName" Type="varchar" MaxLength="255" Collation="utf8_turkish_ci" />
   </EntityType>
-  <EntityType Name="__MigrationHistory">
-    <Key>
-      <PropertyRef Name="MigrationId" />
-      <PropertyRef Name="ContextKey" />
-    </Key>
-    <Property Name="MigrationId" Type="varchar" Nullable="false" MaxLength="166" Collation="latin1_swedish_ci" />
-    <Property Name="ContextKey" Type="varchar" Nullable="false" MaxLength="166" Collation="latin1_swedish_ci" />
-    <Property Name="Model" Type="longblob" Nullable="false" />
-    <Property Name="ProductVersion" Type="varchar" Nullable="false" MaxLength="32" Collation="latin1_swedish_ci" />
-  </EntityType>
-  <EntityType Name="Notifications">
-    <Key>
-      <PropertyRef Name="NotificationID" />
-    </Key>
-    <Property Name="NotificationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Type" Type="int" />
-    <Property Name="Details" Type="text" Collation="latin1_swedish_ci" />
-    <Property Name="Title" Type="varchar" MaxLength="255" Collation="latin1_swedish_ci" />
-    <Property Name="DetailsUrl" Type="varchar" MaxLength="255" Collation="latin1_swedish_ci" />
-    <Property Name="SentTo" Type="varchar" MaxLength="255" Collation="utf8_general_ci" />
-    <Property Name="CreatedDate" Type="datetime" />
-    <Property Name="IsRead" Type="boolean" />
-  </EntityType>
   <EntityType Name="Friend">
     <Key>
       <PropertyRef Name="FriendID" />
@@ -273,18 +261,6 @@
     <Property Name="FutureFriendID" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
     <Property Name="UserID" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
     <Property Name="BecameFriendDate" Type="datetime" Precision="6" />
-  </EntityType>
-  <EntityType Name="FriendRequest">
-    <Key>
-      <PropertyRef Name="FriendRequestID" />
-    </Key>
-    <Property Name="FriendRequestID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="UserID" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
-    <Property Name="FutureFriendID" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
-    <Property Name="Message" Type="varchar" MaxLength="255" Collation="utf8_turkish_ci" />
-    <Property Name="IsAccepted" Type="boolean" />
-    <Property Name="IsPending" Type="boolean" />
-    <Property Name="SendingDate" Type="datetime" Precision="6" />
   </EntityType>
   <EntityType Name="ChatBox">
     <Key>
@@ -322,6 +298,7 @@
     <Property Name="SenderID" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
     <Property Name="ReceiverID" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
     <Property Name="SentDate" Type="datetime" />
+    <Property Name="IsRead" Type="boolean" />
   </EntityType>
   <EntityType Name="Forum">
     <Key>
@@ -371,6 +348,22 @@
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="256" Collation="latin1_swedish_ci" />
   </EntityType>
+  <EntityType Name="ForumPost">
+    <Key>
+      <PropertyRef Name="ForumPostID" />
+    </Key>
+    <Property Name="ForumPostID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ForumPostTitle" Type="varchar" MaxLength="255" Collation="latin1_swedish_ci" />
+    <Property Name="ForumPostContent" Type="longtext" Collation="latin1_general_ci" />
+    <Property Name="CreatedTime" Type="datetime" Precision="6" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
+    <Property Name="ForumTopicID" Type="int" />
+    <Property Name="ForumID" Type="int" />
+    <Property Name="ShowInPortal" Type="boolean" />
+    <Property Name="PostLocked" Type="boolean" />
+    <Property Name="ReviewCount" Type="int" />
+    <Property Name="IsDefault" Type="boolean" />
+  </EntityType>
   <EntityType Name="Modules">
     <Key>
       <PropertyRef Name="ID" />
@@ -385,6 +378,19 @@
     <Property Name="IsActive" Type="boolean" />
     <Property Name="IsDefault" Type="boolean" />
     <Property Name="ParentModuleID" Type="int" />
+  </EntityType>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="NotificationID" />
+    </Key>
+    <Property Name="NotificationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="int" />
+    <Property Name="Details" Type="text" Collation="latin1_swedish_ci" />
+    <Property Name="Title" Type="varchar" MaxLength="255" Collation="latin1_swedish_ci" />
+    <Property Name="DetailsUrl" Type="varchar" MaxLength="255" Collation="latin1_swedish_ci" />
+    <Property Name="SentTo" Type="varchar" MaxLength="255" Collation="utf8_general_ci" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="IsRead" Type="boolean" />
   </EntityType>
   <EntityType Name="UserPermissions">
     <Key>
@@ -403,22 +409,6 @@
     <Property Name="RoleId" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
     <Property Name="IdentityUser_Id" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
     <Property Name="Discriminator" Type="varchar" Nullable="false" MaxLength="128" Collation="utf8_general_ci" devart:DefaultValue="''" DefaultValue="" />
-  </EntityType>
-  <EntityType Name="ForumPost">
-    <Key>
-      <PropertyRef Name="ForumPostID" />
-    </Key>
-    <Property Name="ForumPostID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="ForumPostTitle" Type="varchar" MaxLength="255" Collation="latin1_swedish_ci" />
-    <Property Name="ForumPostContent" Type="longtext" Collation="latin1_general_ci" />
-    <Property Name="CreatedTime" Type="datetime" Precision="6" />
-    <Property Name="CreatedBy" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
-    <Property Name="ForumTopicID" Type="int" />
-    <Property Name="ForumID" Type="int" />
-    <Property Name="ShowInPortal" Type="boolean" />
-    <Property Name="PostLocked" Type="boolean" />
-    <Property Name="ReviewCount" Type="int" />
-    <Property Name="IsDefault" Type="boolean" />
   </EntityType>
   <EntityType Name="ProfileVisitor">
     <Key>
@@ -474,6 +464,30 @@
       </Principal>
       <Dependent Role="ForumTopic">
         <PropertyRef Name="ForumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RequestFutureFriend">
+    <End Role="Users" Type="Xgteamc1XgTeamModel.Store.Users" Multiplicity="0..1" />
+    <End Role="FriendRequest" Type="Xgteamc1XgTeamModel.Store.FriendRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FriendRequest">
+        <PropertyRef Name="FutureFriendID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RequestUser">
+    <End Role="Users" Type="Xgteamc1XgTeamModel.Store.Users" Multiplicity="0..1" />
+    <End Role="FriendRequest" Type="Xgteamc1XgTeamModel.Store.FriendRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FriendRequest">
+        <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -573,18 +587,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="UserNotification">
-    <End Role="Users" Type="Xgteamc1XgTeamModel.Store.Users" Multiplicity="0..1" />
-    <End Role="Notifications" Type="Xgteamc1XgTeamModel.Store.Notifications" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Notifications">
-        <PropertyRef Name="SentTo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FriendFutureFriend">
     <End Role="Users" Type="Xgteamc1XgTeamModel.Store.Users" Multiplicity="0..1" />
     <End Role="Friend" Type="Xgteamc1XgTeamModel.Store.Friend" Multiplicity="*" />
@@ -605,30 +607,6 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Friend">
-        <PropertyRef Name="UserID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RequestFutureFriend">
-    <End Role="Users" Type="Xgteamc1XgTeamModel.Store.Users" Multiplicity="0..1" />
-    <End Role="FriendRequest" Type="Xgteamc1XgTeamModel.Store.FriendRequest" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="FriendRequest">
-        <PropertyRef Name="FutureFriendID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RequestUser">
-    <End Role="Users" Type="Xgteamc1XgTeamModel.Store.Users" Multiplicity="0..1" />
-    <End Role="FriendRequest" Type="Xgteamc1XgTeamModel.Store.FriendRequest" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="FriendRequest">
         <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
@@ -729,30 +707,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="PermissionModule">
-    <End Role="Modules" Type="Xgteamc1XgTeamModel.Store.Modules" Multiplicity="0..1" />
-    <End Role="UserPermissions" Type="Xgteamc1XgTeamModel.Store.UserPermissions" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Modules">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="UserPermissions">
-        <PropertyRef Name="ModuleID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RoleModule">
-    <End Role="Roles" Type="Xgteamc1XgTeamModel.Store.Roles" Multiplicity="0..1" />
-    <End Role="UserPermissions" Type="Xgteamc1XgTeamModel.Store.UserPermissions" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Roles">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserPermissions">
-        <PropertyRef Name="RoleID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="CreatedByPost">
     <End Role="Users" Type="Xgteamc1XgTeamModel.Store.Users" Multiplicity="0..1" />
     <End Role="ForumPost" Type="Xgteamc1XgTeamModel.Store.ForumPost" Multiplicity="*" />
@@ -786,6 +740,42 @@
       </Principal>
       <Dependent Role="ForumPost">
         <PropertyRef Name="ForumTopicID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserNotification">
+    <End Role="Users" Type="Xgteamc1XgTeamModel.Store.Users" Multiplicity="0..1" />
+    <End Role="Notifications" Type="Xgteamc1XgTeamModel.Store.Notifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notifications">
+        <PropertyRef Name="SentTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PermissionModule">
+    <End Role="Modules" Type="Xgteamc1XgTeamModel.Store.Modules" Multiplicity="0..1" />
+    <End Role="UserPermissions" Type="Xgteamc1XgTeamModel.Store.UserPermissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modules">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserPermissions">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoleModule">
+    <End Role="Roles" Type="Xgteamc1XgTeamModel.Store.Roles" Multiplicity="0..1" />
+    <End Role="UserPermissions" Type="Xgteamc1XgTeamModel.Store.UserPermissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPermissions">
+        <PropertyRef Name="RoleID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -146,10 +146,16 @@
     <Compile Include="Dapper\Concrete\MySQL\ChatBoxDataMapper.cs" />
     <Compile Include="Dapper\Concrete\MySQL\ChatDataMapper.cs" />
     <Compile Include="Dapper\Concrete\MySQL\ForumDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\ForumPostCommentDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\ForumPostCommentLikeDataMapper.cs" />
     <Compile Include="Dapper\Concrete\MySQL\ForumPostDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\ForumPostLikeDataMapper.cs" />
     <Compile Include="Dapper\Concrete\MySQL\ForumTopicDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\ModuleDataMapper.cs" />
     <Compile Include="Dapper\Concrete\MySQL\NotificationDataMapper.cs" />
     <Compile Include="Dapper\Concrete\MySQL\PortalMessageDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\RoleDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\UserRoleDataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
