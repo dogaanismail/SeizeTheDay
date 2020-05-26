@@ -1,5 +1,6 @@
 ﻿using SeizeTheDay.Business.Dapper.Abstract.MySQL;
 using SeizeTheDay.DataAccess.Dapper.Abstract.MySQL;
+using SeizeTheDay.DataDomain.DTOs;
 using System.Collections.Generic;
 using Xgteamc1XgTeamModel;
 
@@ -35,6 +36,11 @@ namespace SeizeTheDay.Business.Dapper.Concrete.MySQL
         public void Delete(int forumPostId)
         {
             _mapper.Delete(forumPostId);
+        }
+
+        public TopicDetailDto GetPostDetailById(int postId)
+        {
+            return _mapper.GetPostDetailById(postId);
         }
     }
 }

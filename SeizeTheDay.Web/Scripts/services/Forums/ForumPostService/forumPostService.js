@@ -18,7 +18,7 @@
 
         ////////////////   POSTDETAIL ////////////////////////////////////
         this.getTopicDetail = function (id) {
-            return $http.get(postDetail + "getdetailsbyid?id=" + id);
+            return $http.get(postDetail + "getdetailsbydapper?id=" + id);
         };
 
         this.updatePostDetail = function (forumPost) {

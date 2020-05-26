@@ -1,4 +1,5 @@
 ﻿using SeizeTheDay.Business.Abstract.MySQL;
+using SeizeTheDay.Business.Dapper.Abstract.MySQL;
 using SeizeTheDay.Core.Aspects.Postsharp.CacheAspects;
 using SeizeTheDay.Core.Aspects.Postsharp.PerformanceAspects;
 using SeizeTheDay.Core.CrossCuttingConcerns.Caching.Microsoft;
@@ -17,10 +18,12 @@ namespace SeizeTheDay.Api.Controllers
     {
         #region Ctor
         private readonly IForumPostService _forumPostService;
+        private readonly IForumPostDapperService _forumPostDapperService;
 
-        public ForumPostDetailsController(IForumPostService forumPostService)
+        public ForumPostDetailsController(IForumPostService forumPostService, IForumPostDapperService forumPostDapperService)
         {
             _forumPostService = forumPostService;
+            _forumPostDapperService = forumPostDapperService;
         }
 
         #endregion
@@ -56,6 +59,15 @@ namespace SeizeTheDay.Api.Controllers
                 PostLikesCount = getPost.ForumPostLikes.Count().ToString()
             };
             return postInf;
+        }
+
+        [HttpGet]
+        [Route("getdetailsbydapper")]
+        [PerformanceCounterAspect(2)]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
+        public TopicDetailDto GetPostDetailByDapper(int id)
+        {
+            return _forumPostDapperService.GetPostDetailById(id);
         }
 
         [Route("editpostdetail")]

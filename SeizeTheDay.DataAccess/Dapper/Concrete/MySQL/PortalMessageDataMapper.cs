@@ -72,7 +72,6 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
                     $"INNER JOIN UserInfoes as userinfo ON userinfo.Id = users.Id").ToList();
 
             }
-
         }
 
         private string InsertQuery => "MessageID, " +
