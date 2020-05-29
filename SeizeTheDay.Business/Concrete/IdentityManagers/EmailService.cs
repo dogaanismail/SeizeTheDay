@@ -25,7 +25,7 @@ namespace SeizeTheDay.Business.Concrete.IdentityManagers
             msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(message.Body, null, MediaTypeNames.Text.Html));
 
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
-            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("ismaildogaan@gmail.com", "Sissoko1453*");
+            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("ismaildogaan@gmail.com", "Password");
             smtpClient.Credentials = credentials;
             smtpClient.EnableSsl = true;
             smtpClient.Send(msg);
