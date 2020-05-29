@@ -9,7 +9,7 @@ namespace SeizeTheDay.Business.Dapper.Abstract.MySQL
         /// Returns all comment.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<ForumPostComment> GetComment();
+        IEnumerable<ForumPostComment> GetComments();
 
         void Insert(ForumPostComment data);
 

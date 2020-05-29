@@ -21,7 +21,7 @@ namespace SeizeTheDay.Business.Dapper.Concrete.MySQL
 
         public ForumPostComment GetByPostId(int postId) => _mapper.GetByPostId(postId);
 
-        public IEnumerable<ForumPostComment> GetComment() => _mapper.FindAll();
+        public IEnumerable<ForumPostComment> GetComments() => _mapper.FindAll();
 
         public ForumPostComment GetCommentById(int commentId) => _mapper.FindById(commentId);
 

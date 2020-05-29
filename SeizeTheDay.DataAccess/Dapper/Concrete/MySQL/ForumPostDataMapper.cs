@@ -98,6 +98,26 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
             }
         }
 
+        public IEnumerable<TopicDetailDto> GetPosts()
+        {
+            using (var cn = Connection)
+            {
+                cn.Open();
+                return cn.Query<TopicDetailDto>($"select post.ForumPostID, post.ForumPostTitle, post.ForumPostContent, post.CreatedTime, post.CreatedBy, topic.ForumTopicID, " +
+                    $"forum.ForumID, post.ShowInPortal, post.PostLocked, post.ReviewCount, post.IsDefault,users.UserName as CreatedByUserName, " +
+                    $"users.Id CreatedByUserID, info.PhotoPath CreatedByPhotoPath, forum.ForumName, topic.ForumTopicName, " +
+                    $"COUNT(DISTINCT(comm.ForumPostID)) as CommentCount, COUNT(DISTINCT(postLike.postID)) as PostLikesCount " +
+                    $"from {this.TableName} as post " +
+                    $"INNER JOIN ForumTopic as topic ON post.ForumTopicID = post.ForumTopicID " +
+                    $"INNER JOIN Forum as forum ON forum.ForumID = post.ForumID " +
+                    $"INNER JOIN Users as users ON users.Id = post.CreatedBy " +
+                    $"INNER JOIN UserInfoes as info ON info.Id = users.Id " +
+                    $"LEFT JOIN ForumPostLike as postLike ON postLike.postID = post.ForumPostID " +
+                    $"LEFT JOIN ForumPostComment as comm ON comm.ForumPostID = post.ForumPostID " +
+                    $"GROUP BY post.ForumPostID").ToList();
+            }
+        }
+
         private string InsertQuery => "ForumPostID, " +
                                         "ForumPostTitle, " +
                                         "ForumPostContent, " +

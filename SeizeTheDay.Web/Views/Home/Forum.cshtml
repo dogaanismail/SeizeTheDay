@@ -309,60 +309,32 @@
                                             {
                                                 foreach (var newPost in Model.NewPosts)
                                                 {
-                                                    if (newPost.User.UserInfoe_Id != null)
+                                                    if (newPost.CreatedByUserID != null)
                                                     {
-                                                        if (newPost.User.UserInfoe_Id.TagUserName != null)
-                                                        {
-                                                            <li class="ipsDataItem ipsDataItem_unread">
-                                                                <div class="ipsDataItem_icon ipsPos_top">
-                                                                    <a href="/Users/Profile/@newPost.User.UserInfoe_Id.Id" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to @newPost.User.UserInfoe_Id.TagUserName's profile">
-                                                                        <img src="~/FileUpload/UserProfile/@newPost.User.UserInfoe_Id.PhotoPath" style="max-width:none" alt="@newPost.User.UserInfoe_Id.TagUserName" itemprop="image">
-                                                                    </a>
+                                                        <li class="ipsDataItem ipsDataItem_unread">
+                                                            <div class="ipsDataItem_icon ipsPos_top">
+                                                                <a href="/Users/Profile/@newPost.CreatedByUserID" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to @newPost.CreatedByUserName's profile">
+                                                                    <img src="~/FileUpload/UserProfile/@newPost.CreatedByPhotoPath" style="max-width:none" alt="@newPost.CreatedByUserName" itemprop="image">
+                                                                </a>
+                                                            </div>
+                                                            <div class="ipsDataItem_main cWidgetComments">
+                                                                <div class="ipsCommentCount ipsPos_right ipsFaded" title="@newPost.PostLikesCount likes">@newPost.PostLikesCount</div>
+                                                                <div class="ipsType_break ipsContained">
+                                                                    <a href="/Home/TopicDetail/@newPost.ForumPostID" title="View the topic @newPost.ForumPostTitle" class="ipsDataItem_title">@newPost.ForumPostTitle</a>
                                                                 </div>
-                                                                <div class="ipsDataItem_main cWidgetComments">
-                                                                    <div class="ipsCommentCount ipsPos_right ipsFaded" title="@newPost.ForumPostComments.Count() replies">@newPost.ForumPostComments.Count()</div>
-                                                                    <div class="ipsType_break ipsContained">
-                                                                        <a href="/Home/TopicDetail/@newPost.ForumPostID" title="View the topic @newPost.ForumPostTitle" class="ipsDataItem_title">@newPost.ForumPostTitle</a>
-                                                                    </div>
-                                                                    <p class="ipsType_reset ipsType_medium ipsType_blendLinks ipsContained">
-                                                                        <span>
-                                                                            By
-                                                                            <a href="/Users/Profile/@newPost.User.UserInfoe_Id.Id" title="Go to @newPost.User.UserInfoe_Id.TagUserName's profile" class="ipsType_break"><span style="color:@newPost.User.UserInfoe_Id.TagColor">@newPost.User.UserInfoe_Id.TagUserName</span></a>
-                                                                        </span>
-                                                                        <span class="ipsType_light">
-                                                                            Started
-                                                                            <time title="@newPost.CreatedTime">@System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(newPost.CreatedTime.Value.Month) @newPost.CreatedTime.Value.Day.ToString(), @newPost.CreatedTime.Value.Year.ToString()</time>
-                                                                        </span>
-                                                                    </p>
-                                                                </div>
-                                                            </li>
-                                                        }
-                                                        else
-                                                        {
-                                                            <li class="ipsDataItem ipsDataItem_unread">
-                                                                <div class="ipsDataItem_icon ipsPos_top">
-                                                                    <a href="/Users/Profile/@newPost.User.UserInfoe_Id.Id" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to @newPost.User.UserName's profile">
-                                                                        <img src="~/FileUpload/UserProfile/@newPost.User.UserInfoe_Id.PhotoPath" style="max-width:none" alt="@newPost.User.UserName" itemprop="image">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="ipsDataItem_main cWidgetComments">
-                                                                    <div class="ipsCommentCount ipsPos_right ipsFaded" title="@newPost.ForumPostComments.Count() replies">@newPost.ForumPostComments.Count()</div>
-                                                                    <div class="ipsType_break ipsContained">
-                                                                        <a href="/Home/TopicDetail/@newPost.ForumPostID" title="View the topic @newPost.ForumPostTitle" class="ipsDataItem_title">@newPost.ForumPostTitle</a>
-                                                                    </div>
-                                                                    <p class="ipsType_reset ipsType_medium ipsType_blendLinks ipsContained">
-                                                                        <span>
-                                                                            By
-                                                                            <a href="/Users/Profile/@newPost.User.UserInfoe_Id.Id" title="Go to @newPost.User.UserName's profile" class="ipsType_break"><span style="color:#c4c4c4">@newPost.User.UserName</span></a>
-                                                                        </span>
-                                                                        <span class="ipsType_light">
-                                                                            Started
-                                                                            <time title="@newPost.CreatedTime">@System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(newPost.CreatedTime.Value.Month) @newPost.CreatedTime.Value.Day.ToString(), @newPost.CreatedTime.Value.Year.ToString()</time>
-                                                                        </span>
-                                                                    </p>
-                                                                </div>
-                                                            </li>
-                                                        }
+                                                                <p class="ipsType_reset ipsType_medium ipsType_blendLinks ipsContained">
+                                                                    <span>
+                                                                        By
+                                                                        <a href="/Users/Profile/@newPost.CreatedByUserID" title="Go to @newPost.CreatedByUserName's profile" class="ipsType_break"><span style="color:#e5da13">@newPost.CreatedByUserName</span></a>
+                                                                    </span>
+                                                                    <span class="ipsType_light">
+                                                                        Started
+                                                                        <time title="@newPost.CreatedTime">@newPost.CreatedTime</time>
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                        </li>
+
                                                     }
                                                 }
                                             }
@@ -373,59 +345,38 @@
                                     <h3 class="ipsWidget_title ipsType_reset">Most Replied Post</h3>
                                     <div class="ipsPad_half ipsWidget_inner">
                                         <ul class="ipsDataList ipsDataList_reducedSpacing">
-                                            @foreach (var mostReply in Model.MostRepliedPost)
+                                            @if (Model.MostRepliedPost != null)
                                             {
-                                                if (mostReply.User.UserInfoe_Id.TagUserName != null)
+                                                foreach (var mostReply in Model.MostRepliedPost)
                                                 {
-                                                    <li class="ipsDataItem ipsDataItem_unread">
-                                                        <div class="ipsDataItem_icon ipsPos_top">
-                                                            <a href="/Users/Profile/@mostReply.User.UserInfoe_Id.Id" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to @mostReply.User.UserInfoe_Id.TagUserName's profile">
-                                                                <img src="~/FileUpload/UserProfile/@mostReply.User.UserInfoe_Id.PhotoPath" style="max-width:none" alt="@mostReply.User.UserInfoe_Id.TagUserName" itemprop="image">
-                                                            </a>
-                                                        </div>
-                                                        <div class="ipsDataItem_main cWidgetComments">
-                                                            <div class="ipsCommentCount ipsPos_right ipsFaded" title="@mostReply.ForumPostComments.Count() replies">@mostReply.ForumPostComments.Count()</div>
-                                                            <div class="ipsType_break ipsContained">
-                                                                <a href="/Home/TopicDetail/@mostReply.ForumPostID" title="View the topic @mostReply.ForumPostTitle" class="ipsDataItem_title">@mostReply.ForumPostTitle</a>
+                                                    if (mostReply.CreatedByUserID != null)
+                                                    {
+
+                                                        <li class="ipsDataItem ipsDataItem_unread">
+                                                            <div class="ipsDataItem_icon ipsPos_top">
+                                                                <a href="/Users/Profile/@mostReply.CreatedByUserID" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to @mostReply.CreatedByUserName's profile">
+                                                                    <img src="~/FileUpload/UserProfile/@mostReply.CreatedByPhotoPath" style="max-width:none" alt="@mostReply.CreatedByUserName" itemprop="image">
+                                                                </a>
                                                             </div>
-                                                            <p class="ipsType_reset ipsType_medium ipsType_blendLinks ipsContained">
-                                                                <span>
-                                                                    By
-                                                                    <a href="/Users/Profile/@mostReply.User.UserInfoe_Id.Id" title="Go to @mostReply.User.UserInfoe_Id.TagUserName's profile" class="ipsType_break"><span style="color:@mostReply.User.UserInfoe_Id.TagColor">@mostReply.User.UserInfoe_Id.TagUserName</span></a>
-                                                                </span>
-                                                                <span class="ipsType_light">
-                                                                    Started
-                                                                    <time title="@mostReply.CreatedTime">@System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(mostReply.CreatedTime.Value.Month) @mostReply.CreatedTime.Value.Day.ToString(), @mostReply.CreatedTime.Value.Year.ToString()</time>
-                                                                </span>
-                                                            </p>
-                                                        </div>
-                                                    </li>
-                                                }
-                                                else
-                                                {
-                                                    <li class="ipsDataItem ipsDataItem_unread">
-                                                        <div class="ipsDataItem_icon ipsPos_top">
-                                                            <a href="/Users/Profile/@mostReply.User.UserInfoe_Id.Id" class="ipsUserPhoto ipsUserPhoto_tiny" title="Go to @mostReply.User.UserName's profile">
-                                                                <img src="~/FileUpload/UserProfile/@mostReply.User.UserInfoe_Id.PhotoPath" style="max-width:none" alt="@mostReply.User.UserName" itemprop="image">
-                                                            </a>
-                                                        </div>
-                                                        <div class="ipsDataItem_main cWidgetComments">
-                                                            <div class="ipsCommentCount ipsPos_right ipsFaded" title="@mostReply.ForumPostComments.Count() replies">@mostReply.ForumPostComments.Count()</div>
-                                                            <div class="ipsType_break ipsContained">
-                                                                <a href="/Home/TopicDetail/@mostReply.ForumPostID" title="View the topic @mostReply.ForumPostTitle" class="ipsDataItem_title">@mostReply.ForumPostTitle</a>
+                                                            <div class="ipsDataItem_main cWidgetComments">
+                                                                <div class="ipsCommentCount ipsPos_right ipsFaded" title="@mostReply.CommentCount replies">@mostReply.CommentCount</div>
+                                                                <div class="ipsType_break ipsContained">
+                                                                    <a href="/Home/TopicDetail/@mostReply.ForumPostID" title="View the topic @mostReply.ForumPostTitle" class="ipsDataItem_title">@mostReply.ForumPostTitle</a>
+                                                                </div>
+                                                                <p class="ipsType_reset ipsType_medium ipsType_blendLinks ipsContained">
+                                                                    <span>
+                                                                        By
+                                                                        <a href="/Users/Profile/@mostReply.CreatedByUserID" title="Go to @mostReply.CreatedByUserName's profile" class="ipsType_break"><span style="color:#e5da13">@mostReply.CreatedByUserName</span></a>
+                                                                    </span>
+                                                                    <span class="ipsType_light">
+                                                                        Started
+                                                                        <time title="@mostReply.CreatedTime">@mostReply.CreatedTime</time>
+                                                                    </span>
+                                                                </p>
                                                             </div>
-                                                            <p class="ipsType_reset ipsType_medium ipsType_blendLinks ipsContained">
-                                                                <span>
-                                                                    By
-                                                                    <a href="/Users/Profile/@mostReply.User.UserInfoe_Id.Id" title="Go to @mostReply.User.UserName's profile" class="ipsType_break"><span style="color:#c4c4c4">@mostReply.User.UserName</span></a>
-                                                                </span>
-                                                                <span class="ipsType_light">
-                                                                    Started
-                                                                    <time title="@mostReply.CreatedTime">@System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(mostReply.CreatedTime.Value.Month) @mostReply.CreatedTime.Value.Day.ToString(), @mostReply.CreatedTime.Value.Year.ToString()</time>
-                                                                </span>
-                                                            </p>
-                                                        </div>
-                                                    </li>
+                                                        </li>
+
+                                                    }
                                                 }
                                             }
                                         </ul>

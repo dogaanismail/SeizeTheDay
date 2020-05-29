@@ -11,17 +11,18 @@ using Microsoft.Owin.Security;
 using SeizeTheDay.FilterAttributes;
 using SeizeTheDay.Core.CrossCuttingConcerns.Caching.Microsoft;
 using SeizeTheDay.Core.Aspects.Postsharp.CacheAspects;
+using SeizeTheDay.Business.Dapper.Abstract.MySQL;
 
 namespace SeizeTheDay.Web.Controllers
 {
     public class HomeController : Controller
     {
 
-        #region Ctor
+        #region Fields
 
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
-        private ApplicationRoleManager _roleManager;
+        private readonly ApplicationSignInManager _signInManager;
+        private readonly ApplicationUserManager _userManager;
+        private readonly ApplicationRoleManager _roleManager;
         private readonly IAuthenticationManager _authenticationManager;
         private readonly IForumService _forumService;
         private readonly IForumPostService _forumPostService;
@@ -33,14 +34,20 @@ namespace SeizeTheDay.Web.Controllers
         private readonly IPortalMessagesService _portalMessagesService;
         private readonly IUserTypeService _userTypeService;
         private readonly ICountryService _countryService;
+        private readonly IForumPostDapperService _forumPostDapperService;
+        private readonly IForumTopicDapperService _forumTopicDapperService;
+        private readonly IForumPostCommentDapperService _forumPostCommentDapperService;
 
+        #endregion
 
+        #region Ctor
         public HomeController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,
             IAuthenticationManager authenticationManager, ApplicationRoleManager roleManager,
-            IForumService forumService, IForumPostService forumPostService, IForumTopicService forumTopicService, 
+            IForumService forumService, IForumPostService forumPostService, IForumTopicService forumTopicService,
             IForumPostCommentService postCommentService, IUserService userService, IForumPostLikeService forumPostLikeService,
             IForumPostCommentLikeService forumPostCommentLikeService, IPortalMessagesService portalMessagesService,
-            IUserTypeService userTypeService, ICountryService countryService, IRoleService roleService)
+            IUserTypeService userTypeService, ICountryService countryService, IRoleService roleService, IForumPostDapperService forumPostDapperService,
+            IForumTopicDapperService forumTopicDapperService, IForumPostCommentDapperService forumPostCommentDapperService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -56,9 +63,10 @@ namespace SeizeTheDay.Web.Controllers
             _portalMessagesService = portalMessagesService;
             _userTypeService = userTypeService;
             _countryService = countryService;
+            _forumPostDapperService = forumPostDapperService;
+            _forumTopicDapperService = forumTopicDapperService;
+            _forumPostCommentDapperService = forumPostCommentDapperService;
         }
-
-     
 
         #endregion
 
@@ -71,18 +79,18 @@ namespace SeizeTheDay.Web.Controllers
         {
             IndexPageModel model = new IndexPageModel
             {
-                ForumPostList = _forumPostService.IncludeWithoutExp().Where(x => x.ShowInPortal == true).ToList(),
+                ForumPostList = _forumPostDapperService.GetPosts().Where(x => x.ShowInPortal == true).ToList(),
                 LastUser = _userManager.Users.Where(x => x.Status == "Active").OrderByDescending(x => x.RegisteredDate).Take(1).FirstOrDefault(),
-                TotalPost = _forumPostService.GetList().Count(),
-                TotalTopic = _forumTopicService.GetList().Count(),
-                TotalReplies = _forumPostCommentService.GetList().Count(),
+                TotalPost = _forumPostDapperService.GetForumPosts().Count(),
+                TotalTopic = _forumTopicDapperService.GetForumTopics().Count(),
+                TotalReplies = _forumPostCommentDapperService.GetComments().Count(),
                 TotalMembers = _userManager.Users.Where(x => x.Status == "Active").Count(),
                 OnlineUsers = _userManager.Users.Where(x => x.LastLoginDate != null).Where(x => x.LastLoginDate.Value.Month == DateTime.Now.Month && x.LastLoginDate.Value.Day == DateTime.Now.Day && x.LastLoginDate.Value.Year == DateTime.Now.Year && DateTime.Now.Hour == x.LastLoginDate.Value.Hour && (DateTime.Now.Minute - x.LastLoginDate.Value.Minute <= 10)).ToList(),
                 OnlineUsersCount = _userManager.Users.Where(x => x.LastLoginDate != null).Where(x => x.LastLoginDate.Value.Month == DateTime.Now.Month && x.LastLoginDate.Value.Day == DateTime.Now.Day && x.LastLoginDate.Value.Year == DateTime.Now.Year && DateTime.Now.Hour == x.LastLoginDate.Value.Hour && (DateTime.Now.Minute - x.LastLoginDate.Value.Minute <= 10)).Count(),
                 OfflineUsers = _userManager.Users.Where(x => x.LastLoginDate != null).Where(x => x.LastLoginDate.Value.Month == DateTime.Now.Month && x.LastLoginDate.Value.Day == DateTime.Now.Day && x.LastLoginDate.Value.Year == DateTime.Now.Year).ToList(),
                 OfflineUsersCount = _userManager.Users.Where(x => x.LastLoginDate != null).Where(x => x.LastLoginDate.Value.Month == DateTime.Now.Month && x.LastLoginDate.Value.Day == DateTime.Now.Day && x.LastLoginDate.Value.Year == DateTime.Now.Year).Count(),
-                NewPosts = _forumPostService.NewPost().OrderByDescending(x => x.CreatedTime).Take(5).ToList(),
-                MostRepliedPost = _forumPostService.MostRepliedComment().OrderByDescending(x => x.ForumPostComments.Count()).Take(5).ToList()
+                NewPosts = _forumPostDapperService.GetPosts().OrderByDescending(x => x.CreatedTime).Take(5).ToList(),
+                MostRepliedPost = _forumPostDapperService.GetPosts().OrderByDescending(x => Convert.ToInt16(x.CommentCount)).Take(5).ToList()
             };
             return View(model);
         }
@@ -96,16 +104,16 @@ namespace SeizeTheDay.Web.Controllers
             {
                 ForumList = _forumService.GetAllLazy(),
                 LastUser = _userManager.Users.Where(x => x.Status == "Active").OrderByDescending(x => x.RegisteredDate).Take(1).FirstOrDefault(),
-                TotalPost = _forumPostService.GetList().Count(),
-                TotalTopic = _forumTopicService.GetList().Count(),
-                TotalReplies = _forumPostCommentService.GetList().Count(),
+                TotalPost = _forumPostDapperService.GetForumPosts().Count(),
+                TotalTopic = _forumTopicDapperService.GetForumTopics().Count(),
+                TotalReplies = _forumPostCommentDapperService.GetComments().Count(),
                 TotalMembers = _userManager.Users.Where(x => x.Status == "Active").Count(),
                 OnlineUsers = _userManager.Users.Where(x => x.LastLoginDate != null).Where(x => x.LastLoginDate.Value.Month == DateTime.Now.Month && x.LastLoginDate.Value.Day == DateTime.Now.Day && x.LastLoginDate.Value.Year == DateTime.Now.Year && DateTime.Now.Hour == x.LastLoginDate.Value.Hour && (DateTime.Now.Minute - x.LastLoginDate.Value.Minute <= 10)).ToList(),
                 OnlineUsersCount = _userManager.Users.Where(x => x.LastLoginDate != null).Where(x => x.LastLoginDate.Value.Month == DateTime.Now.Month && x.LastLoginDate.Value.Day == DateTime.Now.Day && x.LastLoginDate.Value.Year == DateTime.Now.Year && DateTime.Now.Hour == x.LastLoginDate.Value.Hour && (DateTime.Now.Minute - x.LastLoginDate.Value.Minute <= 10)).Count(),
                 OfflineUsers = _userManager.Users.Where(x => x.LastLoginDate != null).Where(x => x.LastLoginDate.Value.Month == DateTime.Now.Month && x.LastLoginDate.Value.Day == DateTime.Now.Day && x.LastLoginDate.Value.Year == DateTime.Now.Year).ToList(),
                 OfflineUsersCount = _userManager.Users.Where(x => x.LastLoginDate != null).Where(x => x.LastLoginDate.Value.Month == DateTime.Now.Month && x.LastLoginDate.Value.Day == DateTime.Now.Day && x.LastLoginDate.Value.Year == DateTime.Now.Year).Count(),
-                NewPosts = _forumPostService.NewPost().OrderByDescending(x => x.CreatedTime).Take(5).ToList(),
-                MostRepliedPost = _forumPostService.MostRepliedComment().OrderByDescending(x => x.ForumPostComments.Count()).Take(5).ToList()
+                NewPosts = _forumPostDapperService.GetPosts().OrderByDescending(x => x.CreatedTime).Take(5).ToList(),
+                MostRepliedPost = _forumPostDapperService.GetPosts().OrderByDescending(x => Convert.ToInt16(x.CommentCount)).Take(5).ToList()
             };
             return View(model);
         }
@@ -135,7 +143,7 @@ namespace SeizeTheDay.Web.Controllers
         [ValidateInput(false)]
         [Authorize(Roles = "User,Admin")]
         public ActionResult AddComment(int id, FormCollection form)
-        {           
+        {
             ForumPostComment comment = new ForumPostComment
             {
                 Text = form["Comment"],
@@ -147,21 +155,21 @@ namespace SeizeTheDay.Web.Controllers
             return RedirectToAction("TopicDetail", "Home", new { id });
         }
 
-        
+
         public ActionResult CreateNewTopic(int id)
         {
-              ForumTopic forumTopic = _forumTopicService.FirstOrDefaultInclude(id);
-              ViewBag.forumTopic = forumTopic.ForumTopicID;
-              ViewBag.forumTopicName = forumTopic.ForumTopicName;
-              ViewBag.forumName = forumTopic.Forum.ForumName;
-              ViewBag.forumID = forumTopic.Forum.ForumID;
-              return View();
+            ForumTopic forumTopic = _forumTopicService.FirstOrDefaultInclude(id);
+            ViewBag.forumTopic = forumTopic.ForumTopicID;
+            ViewBag.forumTopicName = forumTopic.ForumTopicName;
+            ViewBag.forumName = forumTopic.Forum.ForumName;
+            ViewBag.forumID = forumTopic.Forum.ForumID;
+            return View();
         }
 
         [HttpPost]
         [ValidateInput(false)]
         [Authorize(Roles = "User,Admin")]
-        public ActionResult CreateNewTopic( CreateNewTopic topic)
+        public ActionResult CreateNewTopic(CreateNewTopic topic)
         {
             int topicID = Convert.ToInt32(Url.RequestContext.RouteData.Values["id"]);
             if (!ModelState.IsValid)
@@ -188,8 +196,8 @@ namespace SeizeTheDay.Web.Controllers
         [Authorize(Roles = "User,Admin")]
         public ActionResult EditForumPost(int id)
         {
-              ForumPost post = _forumPostService.GetByForumPost(id);
-              return View(post);
+            ForumPost post = _forumPostService.GetByForumPost(id);
+            return View(post);
         }
 
         [HttpPost]
@@ -197,11 +205,11 @@ namespace SeizeTheDay.Web.Controllers
         [Authorize(Roles = "User,Admin")]
         public ActionResult EditForumPost(ForumPost forumPost)
         {
-             ForumPost editPost = _forumPostService.GetByForumPost(forumPost.ForumPostID);
-             editPost.ForumPostContent = forumPost.ForumPostContent;
-             editPost.ForumPostTitle = forumPost.ForumPostTitle;
-             _forumPostService.Update(editPost);
-             return RedirectToAction("TopicDetail", "Home", new { id = editPost.ForumPostID });
+            ForumPost editPost = _forumPostService.GetByForumPost(forumPost.ForumPostID);
+            editPost.ForumPostContent = forumPost.ForumPostContent;
+            editPost.ForumPostTitle = forumPost.ForumPostTitle;
+            _forumPostService.Update(editPost);
+            return RedirectToAction("TopicDetail", "Home", new { id = editPost.ForumPostID });
         }
 
         [Authorize(Roles = "User,Admin")]
@@ -209,16 +217,16 @@ namespace SeizeTheDay.Web.Controllers
         {
             ForumPost deletePost = _forumPostService.GetByForumPost(id);
             int topicID = Convert.ToInt32(deletePost.ForumTopicID);
-             List<ForumPostComment> comment = _forumPostCommentService.GetByForumPostID(id);
-             if (comment != null || comment.Count != 0)
-               {
-                    for (int i = 0; i < comment.Count(); i++)
-                    {
-                        _forumPostCommentService.Delete(comment[i]);
-                    }
+            List<ForumPostComment> comment = _forumPostCommentService.GetByForumPostID(id);
+            if (comment != null || comment.Count != 0)
+            {
+                for (int i = 0; i < comment.Count(); i++)
+                {
+                    _forumPostCommentService.Delete(comment[i]);
                 }
-             _forumPostService.Delete(deletePost);
-             return RedirectToAction("ForumsTopic", "Home", new { id = topicID });
+            }
+            _forumPostService.Delete(deletePost);
+            return RedirectToAction("ForumsTopic", "Home", new { id = topicID });
         }
 
         [HttpPost]
@@ -241,30 +249,30 @@ namespace SeizeTheDay.Web.Controllers
         [Authorize(Roles = "User,Admin")]
         public ActionResult EditNewComment(ForumPostComment forumPostComment)
         {
-                ForumPostComment comment = _forumPostCommentService.GetByForumPostComment(forumPostComment.ForumPostCommentID);
-                comment.Text = forumPostComment.Text;
-                comment.CreatedBy = forumPostComment.CreatedBy;
-                comment.ForumPostID = forumPostComment.ForumPostID;
-                _forumPostCommentService.Update(comment);
-                return RedirectToAction("TopicDetail", "Home", new { id = comment.ForumPostID });
+            ForumPostComment comment = _forumPostCommentService.GetByForumPostComment(forumPostComment.ForumPostCommentID);
+            comment.Text = forumPostComment.Text;
+            comment.CreatedBy = forumPostComment.CreatedBy;
+            comment.ForumPostID = forumPostComment.ForumPostID;
+            _forumPostCommentService.Update(comment);
+            return RedirectToAction("TopicDetail", "Home", new { id = comment.ForumPostID });
         }
 
         [Authorize(Roles = "User,Admin")]
         public ActionResult DeleteComment(int id)
         {
-                ForumPostComment comment = _forumPostCommentService.GetByForumPostComment(id);
-                int postID = Convert.ToInt32(comment.ForumPostID);
-                List<ForumCommentLike> deleteCommentLike = _forumCommentLikeService.GetByForumCommentIDTolist(id);
-                if (deleteCommentLike.Count > 0)
+            ForumPostComment comment = _forumPostCommentService.GetByForumPostComment(id);
+            int postID = Convert.ToInt32(comment.ForumPostID);
+            List<ForumCommentLike> deleteCommentLike = _forumCommentLikeService.GetByForumCommentIDTolist(id);
+            if (deleteCommentLike.Count > 0)
+            {
+                foreach (var item in deleteCommentLike)
                 {
-                    foreach (var item in deleteCommentLike)
-                    {
                     _forumCommentLikeService.Delete(item);
-                    }
                 }
+            }
 
-                _forumPostCommentService.Delete(comment);
-                return RedirectToAction("TopicDetail", "Home", new { id = postID });
+            _forumPostCommentService.Delete(comment);
+            return RedirectToAction("TopicDetail", "Home", new { id = postID });
         }
 
         [HttpPost]
@@ -327,6 +335,6 @@ namespace SeizeTheDay.Web.Controllers
         }
 
         #endregion
-   
+
     }
 }

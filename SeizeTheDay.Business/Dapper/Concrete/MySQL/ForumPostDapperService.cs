@@ -42,5 +42,10 @@ namespace SeizeTheDay.Business.Dapper.Concrete.MySQL
         {
             return _mapper.GetPostDetailById(postId);
         }
+
+        public IEnumerable<TopicDetailDto> GetPosts()
+        {
+            return _mapper.GetPosts();
+        }
     }
 }

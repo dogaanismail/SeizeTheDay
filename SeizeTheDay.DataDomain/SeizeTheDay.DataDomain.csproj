@@ -119,6 +119,7 @@
     <Compile Include="DTOs\NotificationDto.cs" />
     <Compile Include="DTOs\PortalMessageDto.cs" />
     <Compile Include="DTOs\PostCommentDto.cs" />
+    <Compile Include="DTOs\PostWidgetDto.cs" />
     <Compile Include="DTOs\RoleDto.cs" />
     <Compile Include="DTOs\TopicDetailDto.cs" />
     <Compile Include="DTOs\UserDto.cs" />
