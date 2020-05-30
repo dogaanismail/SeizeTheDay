@@ -10,12 +10,19 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class ForumPostManager : IForumPostService
     {
+        #region Fields
         private IForumPostDal _forumPostDal;
+        #endregion
+
+        #region Ctor
 
         public ForumPostManager(IForumPostDal forumPostDal)
         {
             _forumPostDal = forumPostDal;
         }
+
+        #endregion
+
         public void Add(ForumPost forumpost)
         {
             _forumPostDal.Add(forumpost);
@@ -24,13 +31,6 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
         public void Delete(ForumPost forumpost)
         {
             _forumPostDal.Delete(forumpost);
-        }
-
-        //EntityCollection ForumPostComments
-        [CacheAspect(typeof(MemoryCacheManager), 30)]
-        public List<ForumPost> GetAllLazy(int id)
-        {
-            return _forumPostDal.GetAllLazyLoad(x => x.ForumPostID == id,  x => x.User, x => x.ForumTopic, x => x.Forum , x => x.ForumPostComments).ToList(); 
         }
 
         //EntityCollection ForumPostComments
@@ -47,12 +47,6 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
         }
 
         [CacheAspect(typeof(MemoryCacheManager), 30)]
-        public List<ForumPost> GetByForumPostID(int id)
-        {
-            return _forumPostDal.Query(x => x.ForumPostID == id);
-        }
-
-        [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<ForumPost> GetByForumTopicID(int id)
         {
             return _forumPostDal.Query(x => x.ForumTopicID == id);
@@ -64,52 +58,15 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
             return _forumPostDal.GetFirstOrDefaultInclude(x => x.ForumPostID == id,  x => x.User , x => x.ForumTopic, x => x.Forum ,  x => x.ForumPostLikes , x=> x.ForumPostComments);
         }
 
-        //EntityCollection ForumPostComments && ForumPostLikes
-        public ForumPost GetFirstOrDefaultInclude2(int id)
-        {
-            return _forumPostDal.GetFirstOrDefaultInclude2(x => x.ForumPostID == id,  x => x.User, x => x.ForumTopic, x => x.Forum, x => x.ForumPostLikes, x => x.ForumPostComments);
-        }
-
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<ForumPost> GetList()
         {
             return _forumPostDal.GetList();
         }
 
-        [CacheAspect(typeof(MemoryCacheManager), 30)]
-        public List<ForumPost> IncludeWithoutExp()
-        {
-            return _forumPostDal.StringInclude( "User", "User.UserInfoe_Id", "ForumTopic", "Forum", "ForumPostLikes", "ForumPostComments", "ForumPostLikes.User", "ForumPostLikes.User.UserInfoe_Id", "ForumPostComments.User.UserInfoe_Id");
-        }
-
-        [CacheAspect(typeof(MemoryCacheManager), 30)]
-        public List<ForumPost> MostRepliedComment(params string[] children)
-        {
-            return _forumPostDal.StringInclude("User", "User.UserInfoe_Id","ForumPostComments");
-        }
-
-        [CacheAspect(typeof(MemoryCacheManager), 30)]
-        public List<ForumPost> NewPost(params string[] children)
-        {
-            return _forumPostDal.StringInclude("User", "User.UserInfoe_Id", "ForumPostComments");
-        }
-
         public ForumPost SingleInclude(int id, params string[] children)
         {
             return _forumPostDal.StringIncludeSingleWithExpression(x => x.ForumPostID == id, "User", "User.UserInfoe_Id", "ForumTopic", "Forum", "ForumPostLikes", "ForumPostComments");
-
-        }
-
-         //It is very important, we are not using Lazy Loading
-        [CacheAspect(typeof(MemoryCacheManager), 30)] 
-        public ForumPost SingleStringIncludeWithExp(int id, params string[] children)
-        {
-            return _forumPostDal.StringIncludeSingleWithExpression(x => x.ForumPostID == id, "User", "User.UserInfoe_Id", "ForumTopic","Forum", "ForumPostLikes","ForumPostComments", "ForumPostLikes.User", "ForumPostLikes.User.UserInfoe_Id", "ForumPostComments.User.UserInfoe_Id");
-        }
-
-        public List<ForumPost> StringIncludeWithExp(int id, params string[] children)
-        {
-            throw new System.NotImplementedException();
         }
 
         public void Update(ForumPost forumpost)

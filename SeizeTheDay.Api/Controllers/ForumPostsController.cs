@@ -174,6 +174,7 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getpostsbydapper")]
+        [Authorize(Roles = "Admin")]
         [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public IEnumerable<ForumPost> GetForumPostsByDapper()

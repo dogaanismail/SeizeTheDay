@@ -15,6 +15,13 @@ namespace SeizeTheDay.Entities.Identity.Entities
             // Add custom user claims here
             return userIdentity;
         }
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
+        {
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity2 = await manager.CreateIdentityAsync(this, authenticationType);
+            // Add custom user claims here
+            return userIdentity2;
+        }
 
         public string FirstName { get; set; }
         public string LastName { get; set; }

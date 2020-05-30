@@ -26,6 +26,6 @@
         };
 
         this.deletePost = function (id) {
-            return $http.delete(postDetail + '/' + id);
+            return $http.post(postDetail + "deletepost?id=" + id);
         };
     }]);

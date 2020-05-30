@@ -55,13 +55,6 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
             return _userDal.GetList();
         }
 
-        public User GetUserMessenger(string id)
-        {
-            //return _userDal.GetFirstOrDefaultInclude(x => x.Id == id, x => x.ChatBoxes_ReceiverID., x => x.ChatBoxes_SenderID, x => x.Chats_SenderID, x => x.Chats_ReceiverID, x => x.UserInfoe_Id);
-            //return _userDal.StringIncludeSingleWithExpression(x => x.Id == id, "UserInfoe_Id", "ChatBoxes_ReceiverID", "ChatBoxes_ReceiverID.User_ReceiverID", "ChatBoxes_ReceiverID.User_ReceiverID.UserInfoe_Id", "ChatBoxes_SenderID", "ChatBoxes_SenderID.User_SenderID", "ChatBoxes_SenderID.User_SenderID.UserInfoe_Id", "ChatBoxes_SenderID.User_ReceiverID", "ChatBoxes_SenderID.User_ReceiverID.UserInfoe_Id", "ChatBoxes_ReceiverID.User_SenderID", "ChatBoxes_ReceiverID.User_SenderID.UserInfoe_Id");
-            return _userDal.Find(x => x.Id == id);
-        }
-
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public User GetUserNotifications(string userName, params string[] children)
         {
@@ -75,16 +68,6 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
             //return _userDal.StringIncludeSingleWithExpression(x => x.Id == id, "UserInfoe_Id", "x.UserInfoe_Id.Country", "ForumPosts", "ForumPostComments", "FriendRequests_FutureFriendID", "FriendRequests_UserID", "Friends_UserID", "Friends_FutureFriendID", "ForumPostLikes", "ForumCommentLikes", "ChatBoxes_ReceiverID", "ChatBoxes_SenderID", "Chats_SenderID", "Chats_ReceiverID", "ProfileVisitors_VisitorID", "ProfileVisitors_VisitorID.User_UserID", "ProfileVisitors_VisitorID.User_UserID.UserInfoe_Id", "ProfileVisitors_UserID", "ProfileVisitors_UserID.User_UserID", "ProfileVisitors_UserID.User_UserID.UserInfoe_Id", "UserInfoe_Id.UserType");
         }
 
-        public User SingleStringIncludeWithoutExpression(params string[] children)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<User> StringIncludeWithExpression(string id, params string[] children)
-        {
-            throw new NotImplementedException();
-        }
-
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<User> StringIncludeWithoutExpression()
         {
@@ -93,7 +76,7 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 
         public List<User> TolistInclude()
         {
-            return _userDal.TolistInclude(x=> x.UserInfoe_Id);
+            return _userDal.TolistInclude(x => x.UserInfoe_Id);
 
         }
 

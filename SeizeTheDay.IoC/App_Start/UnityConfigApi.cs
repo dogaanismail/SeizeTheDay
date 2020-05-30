@@ -1,6 +1,11 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataHandler;
+using Microsoft.Owin.Security.DataHandler.Encoder;
+using Microsoft.Owin.Security.DataHandler.Serializer;
+using Microsoft.Owin.Security.DataProtection;
 using SeizeTheDay.Business.Abstract.MySQL;
 using SeizeTheDay.Business.Concrete.IdentityManagers;
 using SeizeTheDay.Business.Concrete.Manager.MySQL;
@@ -42,11 +47,25 @@ namespace SeizeTheDay.IoC.App_Start
             container.RegisterType<IAuthenticationManager>(
               injectionMembers: new InjectionFactory(c => HttpContext.Current.GetOwinContext().Authentication));
 
+            container.RegisterType<ApplicationUserManager>(new InjectionFactory(o => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>()));
+
+            container.RegisterType<IdentityFactoryOptions<ApplicationUserManager>>(new InjectionFactory(x =>
+               new IdentityFactoryOptions<ApplicationUserManager>
+               {
+                   DataProtectionProvider = new Microsoft.Owin.Security.DataProtection.DpapiDataProtectionProvider("ApplicationName")
+               }));
+
+
             container.RegisterType<IRoleStore<Roles, string>, RoleStore<Roles, string, IdentityUserRole>>(
               new InjectionConstructor(typeof(IdentityContext)));
 
             container.RegisterType<IUserStore<Entities.Identity.Entities.User>, UserStore<Entities.Identity.Entities.User>>(
                 new InjectionConstructor(typeof(IdentityContext)));
+
+            container.RegisterType<ITextEncoder, Base64UrlTextEncoder>();
+            container.RegisterType<IDataSerializer<AuthenticationTicket>, TicketSerializer>();
+            container.RegisterInstance(new DpapiDataProtectionProvider().Create("ASP.NET Identity"));
+            container.RegisterType<ISecureDataFormat<AuthenticationTicket>, SecureDataFormat<AuthenticationTicket>>();
 
             #endregion
 

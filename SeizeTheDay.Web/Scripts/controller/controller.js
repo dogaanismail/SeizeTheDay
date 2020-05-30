@@ -2106,13 +2106,10 @@ app.controller('DetailCtrl', ['$scope', '$sce', '$window', 'forumPostService', '
         };
 
         $scope.deletePost = function (obj) {
-            console.log(obj);
-            params = {
-                id: obj
-            };
 
-            forumPostService.deleteTopicDetail(obj).then(function (result) {
-                if (result.data.success === 1) {
+            forumPostService.deletePost(obj).then(function (result) {
+                if (result.data.result === 200) {
+                    console.log(result);
                     $window.location.href = '/Home/Index';
                 }
             });
