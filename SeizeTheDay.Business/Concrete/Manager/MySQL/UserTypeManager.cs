@@ -9,11 +9,17 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class UserTypeManager : IUserTypeService
     {
+        #region Fields
         private IUserTypeDal _userTypeDal;
+        #endregion
+
+        #region Ctor
         public UserTypeManager(IUserTypeDal userTypeDal)
         {
             _userTypeDal = userTypeDal;
         }
+        #endregion
+
         public void Add(UserType userType)
         {
             _userTypeDal.Add(userType);

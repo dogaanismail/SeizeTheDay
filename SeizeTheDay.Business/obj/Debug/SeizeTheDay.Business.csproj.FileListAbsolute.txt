@@ -271,3 +271,5 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\System.Net.Http.Formattin
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Dapper.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Dapper.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\SeizeTheDay.Common.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\SeizeTheDay.Common.pdb

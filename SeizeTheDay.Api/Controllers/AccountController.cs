@@ -23,16 +23,19 @@ namespace SeizeTheDay.Api.Controllers
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
+        #region Fields
         private const string LocalLoginProvider = "Local";
         private readonly ApplicationUserManager _userManager;
+        #endregion
 
+        #region Ctor
         public AccountController(ApplicationUserManager userManager,
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
             _userManager = userManager;
             AccessTokenFormat = accessTokenFormat;
         }
-
+        #endregion
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 

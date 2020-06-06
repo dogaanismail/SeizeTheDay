@@ -12,12 +12,14 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class ChatBoxManager : IChatBoxService
     {
-        #region Ctor
+        #region Fields
         private readonly IChatBoxDal _chatBoxDal;
         private readonly IMyQueryableRepository<ChatBox> _chatBoxRepository;
         private readonly IMyQueryableRepository<User> _userRepository;
         private readonly IMyQueryableRepository<UserInfoe> _userDetailRepository;
+        #endregion
 
+        #region Ctor
         public ChatBoxManager(IChatBoxDal chatBoxDal, IMyQueryableRepository<ChatBox> chatBoxRepository,
             IMyQueryableRepository<User> userRepository, IMyQueryableRepository<UserInfoe> userDetailRepository)
         {

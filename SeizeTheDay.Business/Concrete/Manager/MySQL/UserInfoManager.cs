@@ -8,11 +8,16 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class UserInfoManager : IUserInfoService
     {
+        #region Fields
         private IUserInfoDal _userInfoDal;
+        #endregion
+
+        #region Ctor
         public UserInfoManager(IUserInfoDal userInfoDal)
         {
             _userInfoDal = userInfoDal;
         }
+        #endregion
 
         public void AddUser(UserInfoe user)
         {

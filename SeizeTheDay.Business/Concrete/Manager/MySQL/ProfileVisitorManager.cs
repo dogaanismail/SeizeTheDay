@@ -8,12 +8,18 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class ProfileVisitorManager : IProfileVisitorService
     {
+        #region Fields
         private IProfileVisitorDal _visitorDal;
+        #endregion
+
+        #region Ctor
 
         public ProfileVisitorManager(IProfileVisitorDal visitorDal)
         {
             _visitorDal = visitorDal;
         }
+        #endregion
+
         public void Add(ProfileVisitor visitor)
         {
             _visitorDal.Add(visitor);

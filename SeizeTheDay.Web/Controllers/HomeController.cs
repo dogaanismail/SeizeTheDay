@@ -37,6 +37,7 @@ namespace SeizeTheDay.Web.Controllers
         private readonly IForumPostDapperService _forumPostDapperService;
         private readonly IForumTopicDapperService _forumTopicDapperService;
         private readonly IForumPostCommentDapperService _forumPostCommentDapperService;
+        private readonly ISettingDapperService _settingDapperService;
 
         #endregion
 
@@ -47,7 +48,7 @@ namespace SeizeTheDay.Web.Controllers
             IForumPostCommentService postCommentService, IUserService userService, IForumPostLikeService forumPostLikeService,
             IForumPostCommentLikeService forumPostCommentLikeService, IPortalMessagesService portalMessagesService,
             IUserTypeService userTypeService, ICountryService countryService, IRoleService roleService, IForumPostDapperService forumPostDapperService,
-            IForumTopicDapperService forumTopicDapperService, IForumPostCommentDapperService forumPostCommentDapperService)
+            IForumTopicDapperService forumTopicDapperService, IForumPostCommentDapperService forumPostCommentDapperService, ISettingDapperService settingDapperService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -66,6 +67,7 @@ namespace SeizeTheDay.Web.Controllers
             _forumPostDapperService = forumPostDapperService;
             _forumTopicDapperService = forumTopicDapperService;
             _forumPostCommentDapperService = forumPostCommentDapperService;
+            _settingDapperService = settingDapperService;
         }
 
         #endregion
@@ -89,8 +91,8 @@ namespace SeizeTheDay.Web.Controllers
                 OnlineUsersCount = _userManager.Users.Where(x => x.LastLoginDate != null).Where(x => x.LastLoginDate.Value.Month == DateTime.Now.Month && x.LastLoginDate.Value.Day == DateTime.Now.Day && x.LastLoginDate.Value.Year == DateTime.Now.Year && DateTime.Now.Hour == x.LastLoginDate.Value.Hour && (DateTime.Now.Minute - x.LastLoginDate.Value.Minute <= 10)).Count(),
                 OfflineUsers = _userManager.Users.Where(x => x.LastLoginDate != null).Where(x => x.LastLoginDate.Value.Month == DateTime.Now.Month && x.LastLoginDate.Value.Day == DateTime.Now.Day && x.LastLoginDate.Value.Year == DateTime.Now.Year).ToList(),
                 OfflineUsersCount = _userManager.Users.Where(x => x.LastLoginDate != null).Where(x => x.LastLoginDate.Value.Month == DateTime.Now.Month && x.LastLoginDate.Value.Day == DateTime.Now.Day && x.LastLoginDate.Value.Year == DateTime.Now.Year).Count(),
-                NewPosts = _forumPostDapperService.GetPosts().OrderByDescending(x => x.CreatedTime).Take(5).ToList(),
-                MostRepliedPost = _forumPostDapperService.GetPosts().OrderByDescending(x => Convert.ToInt16(x.CommentCount)).Take(5).ToList()
+                NewPosts = _forumPostDapperService.GetPosts().OrderByDescending(x => x.CreatedTime).Take(_settingDapperService.GetByName<int>("portal.newpost.count")).ToList(),
+                MostRepliedPost = _forumPostDapperService.GetPosts().OrderByDescending(x => Convert.ToInt16(x.CommentCount)).Take(_settingDapperService.GetByName<int>("portal.mostrepliedpost.count")).ToList()
             };
             return View(model);
         }
@@ -112,8 +114,8 @@ namespace SeizeTheDay.Web.Controllers
                 OnlineUsersCount = _userManager.Users.Where(x => x.LastLoginDate != null).Where(x => x.LastLoginDate.Value.Month == DateTime.Now.Month && x.LastLoginDate.Value.Day == DateTime.Now.Day && x.LastLoginDate.Value.Year == DateTime.Now.Year && DateTime.Now.Hour == x.LastLoginDate.Value.Hour && (DateTime.Now.Minute - x.LastLoginDate.Value.Minute <= 10)).Count(),
                 OfflineUsers = _userManager.Users.Where(x => x.LastLoginDate != null).Where(x => x.LastLoginDate.Value.Month == DateTime.Now.Month && x.LastLoginDate.Value.Day == DateTime.Now.Day && x.LastLoginDate.Value.Year == DateTime.Now.Year).ToList(),
                 OfflineUsersCount = _userManager.Users.Where(x => x.LastLoginDate != null).Where(x => x.LastLoginDate.Value.Month == DateTime.Now.Month && x.LastLoginDate.Value.Day == DateTime.Now.Day && x.LastLoginDate.Value.Year == DateTime.Now.Year).Count(),
-                NewPosts = _forumPostDapperService.GetPosts().OrderByDescending(x => x.CreatedTime).Take(5).ToList(),
-                MostRepliedPost = _forumPostDapperService.GetPosts().OrderByDescending(x => Convert.ToInt16(x.CommentCount)).Take(5).ToList()
+                NewPosts = _forumPostDapperService.GetPosts().OrderByDescending(x => x.CreatedTime).Take(_settingDapperService.GetByName<int>("forum.newpost.count")).ToList(),
+                MostRepliedPost = _forumPostDapperService.GetPosts().OrderByDescending(x => Convert.ToInt16(x.CommentCount)).Take(_settingDapperService.GetByName<int>("forum.mostrepliedpost.count")).ToList()
             };
             return View(model);
         }

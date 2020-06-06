@@ -7,11 +7,16 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class UserRoleManager : IUserRoleService
     {
+        #region Fields
         private IUserRoleDal _userRoleDal;
+        #endregion
+
+        #region Ctor
         public UserRoleManager(IUserRoleDal userRoleDal)
         {
             _userRoleDal = userRoleDal;
         }
+        #endregion
 
         public void Add(UserRole userRole)
         {

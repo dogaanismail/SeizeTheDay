@@ -10,6 +10,7 @@
     <EntitySet Name="UserInfoes" EntityType="Xgteamc1XgTeamModel.Store.UserInfoes" store:Type="Tables" Schema="xgteamc1_xg_team" Table="UserInfoes" />
     <EntitySet Name="UserTypes" EntityType="Xgteamc1XgTeamModel.Store.UserType" store:Type="Tables" Schema="xgteamc1_xg_team" Table="UserType" />
     <EntitySet Name="Friends" EntityType="Xgteamc1XgTeamModel.Store.Friend" store:Type="Tables" Schema="xgteamc1_xg_team" Table="Friend" />
+    <EntitySet Name="Settings" EntityType="Xgteamc1XgTeamModel.Store.Setting" store:Type="Tables" Schema="xgteamc1_xg_team" Table="Setting" />
     <EntitySet Name="ChatBoxes" EntityType="Xgteamc1XgTeamModel.Store.ChatBox" store:Type="Tables" Schema="xgteamc1_xg_team" Table="ChatBox" />
     <EntitySet Name="Countries" EntityType="Xgteamc1XgTeamModel.Store.Country" store:Type="Tables" Schema="xgteamc1_xg_team" Table="Country" />
     <EntitySet Name="ForumPostLikes" EntityType="Xgteamc1XgTeamModel.Store.ForumPostLike" store:Type="Tables" Schema="xgteamc1_xg_team" Table="ForumPostLike" />
@@ -261,6 +262,14 @@
     <Property Name="FutureFriendID" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
     <Property Name="UserID" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
     <Property Name="BecameFriendDate" Type="datetime" Precision="6" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="SettingId" />
+    </Key>
+    <Property Name="SettingId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" MaxLength="128" Collation="latin1_swedish_ci" />
+    <Property Name="Value" Type="longtext" Collation="latin1_swedish_ci" />
   </EntityType>
   <EntityType Name="ChatBox">
     <Key>

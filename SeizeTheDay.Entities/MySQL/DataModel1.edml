@@ -14,6 +14,7 @@
           <EntitySet Name="UserInfoes" EntityType="Xgteamc1XgTeamModel.Store.UserInfoes" store:Type="Tables" Schema="xgteamc1_xg_team" Table="UserInfoes" />
           <EntitySet Name="UserTypes" EntityType="Xgteamc1XgTeamModel.Store.UserType" store:Type="Tables" Schema="xgteamc1_xg_team" Table="UserType" />
           <EntitySet Name="Friends" EntityType="Xgteamc1XgTeamModel.Store.Friend" store:Type="Tables" Schema="xgteamc1_xg_team" Table="Friend" />
+          <EntitySet Name="Settings" EntityType="Xgteamc1XgTeamModel.Store.Setting" store:Type="Tables" Schema="xgteamc1_xg_team" Table="Setting" />
           <EntitySet Name="ChatBoxes" EntityType="Xgteamc1XgTeamModel.Store.ChatBox" store:Type="Tables" Schema="xgteamc1_xg_team" Table="ChatBox" />
           <EntitySet Name="Countries" EntityType="Xgteamc1XgTeamModel.Store.Country" store:Type="Tables" Schema="xgteamc1_xg_team" Table="Country" />
           <EntitySet Name="ForumPostLikes" EntityType="Xgteamc1XgTeamModel.Store.ForumPostLike" store:Type="Tables" Schema="xgteamc1_xg_team" Table="ForumPostLike" />
@@ -265,6 +266,14 @@
           <Property Name="FutureFriendID" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
           <Property Name="UserID" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
           <Property Name="BecameFriendDate" Type="datetime" Precision="6" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="SettingId" />
+          </Key>
+          <Property Name="SettingId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="128" Collation="latin1_swedish_ci" />
+          <Property Name="Value" Type="longtext" Collation="latin1_swedish_ci" />
         </EntityType>
         <EntityType Name="ChatBox">
           <Key>
@@ -812,7 +821,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Xgteamc1XgTeamModel" Alias="Self" d4p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" annotation:UseStrongSpatialTypes="false" xmlns:d4p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="Xgteamc1XgTeamEntities" annotation:LazyLoadingEnabled="true" ed:Guid="013592b3-f3c2-44af-afe0-6f9470a7c4ad">
+        <EntityContainer Name="Xgteamc1XgTeamEntities" annotation:LazyLoadingEnabled="true" ed:Guid="ba721643-1934-49a4-a621-9c4690e47bc4">
           <EntitySet Name="ForumPostComments" EntityType="Xgteamc1XgTeamModel.ForumPostComment" />
           <EntitySet Name="ForumTopics" EntityType="Xgteamc1XgTeamModel.ForumTopic" />
           <EntitySet Name="UserLogins" EntityType="Xgteamc1XgTeamModel.UserLogin" />
@@ -822,6 +831,7 @@
           <EntitySet Name="UserInfoes" EntityType="Xgteamc1XgTeamModel.UserInfoe" />
           <EntitySet Name="UserTypes" EntityType="Xgteamc1XgTeamModel.UserType" />
           <EntitySet Name="Friends" EntityType="Xgteamc1XgTeamModel.Friend" />
+          <EntitySet Name="Settings" EntityType="Xgteamc1XgTeamModel.Setting" />
           <EntitySet Name="ChatBoxes" EntityType="Xgteamc1XgTeamModel.ChatBox" />
           <EntitySet Name="Countries" EntityType="Xgteamc1XgTeamModel.Country" />
           <EntitySet Name="ForumPostLikes" EntityType="Xgteamc1XgTeamModel.ForumPostLike" />
@@ -965,337 +975,345 @@
             <End Role="ProfileVisitors_VisitorID" EntitySet="ProfileVisitors" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="ForumPostComment" ed:Guid="236fa941-106b-444c-b785-a47d1576d522">
+        <EntityType Name="ForumPostComment" ed:Guid="2f8070a5-1072-421c-acfc-d5c178875de7">
           <Key>
             <PropertyRef Name="ForumPostCommentID" />
           </Key>
-          <Property Name="ForumPostCommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="83c2e79d-8a23-4a53-ad4a-1c7b4cac0de2" />
-          <Property Name="Text" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="571f49da-9ed5-4b43-8eb5-63bc2c7570b5" />
-          <Property Name="CreatedTime" Type="DateTime" ed:ValidateRequired="false" ed:Guid="72c2ba72-49a6-4d0b-ade0-743697c625b5" />
-          <Property Name="CreatedBy" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="04fad240-a750-42bb-9b32-b942c627a5a6" />
-          <Property Name="ForumPostID" Type="Int32" ed:ValidateRequired="false" ed:Guid="bf997019-c994-4684-8dfa-299c46844765" />
-          <NavigationProperty Name="ForumPost" Relationship="Xgteamc1XgTeamModel.CommentForumPost" FromRole="ForumPostComments" ToRole="ForumPost" ed:Guid="1f319603-0b94-4de4-9327-46f30d68bd31" />
-          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.CreatedByComment" FromRole="ForumPostComments" ToRole="User" ed:Guid="635c2f4f-0396-49c0-90c0-d01fc31d9eb7" />
-          <NavigationProperty Name="ForumCommentLikes" Relationship="Xgteamc1XgTeamModel.CommentLikeComment" FromRole="ForumPostComment" ToRole="ForumCommentLikes" ed:Guid="143e88d4-5666-4eee-88f8-fcd1c64e1ed3" />
+          <Property Name="ForumPostCommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="60b9b099-73ec-43c6-a86d-eac110924b3a" />
+          <Property Name="Text" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="d22bfedb-d50f-41d9-9ab4-35cd6f50f274" />
+          <Property Name="CreatedTime" Type="DateTime" ed:ValidateRequired="false" ed:Guid="5e2d4473-1fbc-4e58-921d-241d2db0207e" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="61d50ba0-18a3-4cd0-a4d1-bcc64e9b0f02" />
+          <Property Name="ForumPostID" Type="Int32" ed:ValidateRequired="false" ed:Guid="a69db94c-d656-4a1a-b4db-362dd1e78929" />
+          <NavigationProperty Name="ForumPost" Relationship="Xgteamc1XgTeamModel.CommentForumPost" FromRole="ForumPostComments" ToRole="ForumPost" ed:Guid="a4736f7b-4372-4aa5-9006-f4928e038c71" />
+          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.CreatedByComment" FromRole="ForumPostComments" ToRole="User" ed:Guid="afa448ba-b230-4c4b-9b1b-6bf093d100e4" />
+          <NavigationProperty Name="ForumCommentLikes" Relationship="Xgteamc1XgTeamModel.CommentLikeComment" FromRole="ForumPostComment" ToRole="ForumCommentLikes" ed:Guid="0aeecf32-fc9a-4f09-ae83-42fafeafe859" />
         </EntityType>
-        <EntityType Name="ForumTopic" ed:Guid="b3a39256-d1d7-4d3b-a428-61865dc39739">
+        <EntityType Name="ForumTopic" ed:Guid="604e785d-07fd-4e17-883f-5d30c5361abf">
           <Key>
             <PropertyRef Name="ForumTopicID" />
           </Key>
-          <Property Name="ForumTopicID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="8f7498c6-cbcf-4cea-a8af-19109eae3530" />
-          <Property Name="ForumTopicName" Type="String" MaxLength="150" Unicode="true" ed:ValidateMaxLength="150" ed:ValidateRequired="false" ed:Guid="7473c223-170f-4a60-b231-a4b3e8e0121c" />
-          <Property Name="ForumTopicDescription" Type="String" MaxLength="150" Unicode="true" ed:ValidateMaxLength="150" ed:ValidateRequired="false" ed:Guid="4ea0f0f2-e894-46c8-827d-7881c49a202e" />
-          <Property Name="CreatedTime" Type="DateTime" ed:ValidateRequired="false" ed:Guid="b98a1610-d94a-4c44-8b5e-e76b23ee9bea" />
-          <Property Name="CreatedBy" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="31c08717-63f0-43ec-aa9b-3a123cf1bc97" />
-          <Property Name="ForumID" Type="Int32" ed:ValidateRequired="false" ed:Guid="779a73ec-a85f-47c8-9621-6c2ef5d5f233" />
-          <Property Name="ForumTopicTitle" Type="String" MaxLength="75" Unicode="true" ed:ValidateMaxLength="75" ed:ValidateRequired="false" ed:Guid="3dbe4643-993c-48c7-a060-86b903ae2552" />
-          <Property Name="IsDefault" Type="Boolean" ed:ValidateRequired="false" ed:Guid="3bd7ad1e-afad-45fd-966e-cd215577d4da" />
-          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.CreatedByForumTopic" FromRole="ForumTopics" ToRole="User" ed:Guid="d2d39a30-919e-4ca5-a5d1-f62ce8d646bf" />
-          <NavigationProperty Name="Forum" Relationship="Xgteamc1XgTeamModel.ForumForumTopic" FromRole="ForumTopics" ToRole="Forum" ed:Guid="42714629-82e9-4f55-b26a-6370f6f36800" />
-          <NavigationProperty Name="ForumPosts" Relationship="Xgteamc1XgTeamModel.ForumPostForumTopic" FromRole="ForumTopic" ToRole="ForumPosts" ed:Guid="a5b2b977-c0ba-4cfb-a985-beef4fca77ce" />
+          <Property Name="ForumTopicID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="2bcefa73-45c8-4c7a-bf22-ec3269567cbb" />
+          <Property Name="ForumTopicName" Type="String" MaxLength="150" Unicode="true" ed:ValidateMaxLength="150" ed:ValidateRequired="false" ed:Guid="a776743d-a004-4633-b6c0-42018481621b" />
+          <Property Name="ForumTopicDescription" Type="String" MaxLength="150" Unicode="true" ed:ValidateMaxLength="150" ed:ValidateRequired="false" ed:Guid="8e014526-4fb7-4790-a22b-6bd34ac59846" />
+          <Property Name="CreatedTime" Type="DateTime" ed:ValidateRequired="false" ed:Guid="29bd5ae2-5fa2-4f1d-9961-ea6d36ea6b86" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="c762b264-58bb-4fe2-901d-e0c498f38736" />
+          <Property Name="ForumID" Type="Int32" ed:ValidateRequired="false" ed:Guid="336059ef-3aca-4ea5-a3d2-5f8d694ffafd" />
+          <Property Name="ForumTopicTitle" Type="String" MaxLength="75" Unicode="true" ed:ValidateMaxLength="75" ed:ValidateRequired="false" ed:Guid="3101346e-893c-45c4-9adc-b49489b396f6" />
+          <Property Name="IsDefault" Type="Boolean" ed:ValidateRequired="false" ed:Guid="cd480a1d-04d4-4f08-ad0a-eefc29f1903e" />
+          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.CreatedByForumTopic" FromRole="ForumTopics" ToRole="User" ed:Guid="92c70bac-1224-4c18-9ea8-eecde3fbfb26" />
+          <NavigationProperty Name="Forum" Relationship="Xgteamc1XgTeamModel.ForumForumTopic" FromRole="ForumTopics" ToRole="Forum" ed:Guid="b0140d88-05da-48ff-a674-4fd2f6203dbd" />
+          <NavigationProperty Name="ForumPosts" Relationship="Xgteamc1XgTeamModel.ForumPostForumTopic" FromRole="ForumTopic" ToRole="ForumPosts" ed:Guid="31adb9eb-689f-454d-9797-9e1ebe526f39" />
         </EntityType>
-        <EntityType Name="UserLogin" ed:Guid="1870af63-dba8-4253-88ae-09edcdc13cc4">
+        <EntityType Name="UserLogin" ed:Guid="0c7b739c-a05e-490d-9532-72492466375a">
           <Key>
             <PropertyRef Name="LoginProvider" />
             <PropertyRef Name="ProviderKey" />
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="2731b83a-7c75-46cf-9e10-6becf09fe374" />
-          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="d495f87c-d3d1-4254-af7c-bdb90a412dd8" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="0ffd258b-e77c-4938-ab55-547d770b05db" />
-          <Property Name="IdentityUserId" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="62e117c0-a0b5-4d6d-9ce6-7b387b01fe60" />
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="26941f86-0892-40e8-a67b-f19c9d0a03cb" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="3050e693-bcdd-46b0-b9f6-97e53ffbf72e" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="172b1254-4344-4016-8849-aeb1e853d8b4" />
+          <Property Name="IdentityUserId" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="30d61932-0d29-4f59-ba72-ef12469ed747" />
         </EntityType>
-        <EntityType Name="FriendRequest" ed:Guid="05c285fc-0458-4126-b2c2-b6c8475f4b76">
+        <EntityType Name="FriendRequest" ed:Guid="417b6563-fd00-4b17-a921-7069eead31a2">
           <Key>
             <PropertyRef Name="FriendRequestID" />
           </Key>
-          <Property Name="FriendRequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="544c2b6a-7b3e-4bc6-ae02-06938d417331" />
-          <Property Name="UserID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="bcdf973a-072d-43b7-8b28-f290d4a0b04c" />
-          <Property Name="FutureFriendID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="2d0c56fc-1e9a-4812-b01e-b83579a81244" />
-          <Property Name="Message" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="440e3995-2321-4195-977a-0b70476675eb" />
-          <Property Name="IsAccepted" Type="Boolean" ed:ValidateRequired="false" ed:Guid="2c01506e-96f9-4357-838c-12331977d943" />
-          <Property Name="IsPending" Type="Boolean" ed:ValidateRequired="false" ed:Guid="10ff9405-b6fc-4f41-b58a-2621c78ab3fb" />
-          <Property Name="SendingDate" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="b74caeb8-0198-4710-9168-bbabae6c2d52" />
-          <NavigationProperty Name="User_FutureFriendID" Relationship="Xgteamc1XgTeamModel.RequestFutureFriend" FromRole="FriendRequests_FutureFriendID" ToRole="User_FutureFriendID" ed:Guid="d8ac65af-b9f9-49f1-9b45-e48a6b5685a6" />
-          <NavigationProperty Name="User_UserID" Relationship="Xgteamc1XgTeamModel.RequestUser" FromRole="FriendRequests_UserID" ToRole="User_UserID" ed:Guid="751066de-f710-488a-9050-c95467d897ac" />
+          <Property Name="FriendRequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="f5846255-3c5d-474e-9c34-32b69dcfa401" />
+          <Property Name="UserID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="e3237226-493e-4a24-abf2-d32387c8e1b3" />
+          <Property Name="FutureFriendID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="ea9c3126-2444-42ac-b0e4-0e70cbe6d961" />
+          <Property Name="Message" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="373c64ca-8134-4f88-92a5-a5ae495b2ffb" />
+          <Property Name="IsAccepted" Type="Boolean" ed:ValidateRequired="false" ed:Guid="65026f68-8070-40d0-9324-916d7896970a" />
+          <Property Name="IsPending" Type="Boolean" ed:ValidateRequired="false" ed:Guid="5ea35b2c-3eda-45bb-9a2b-241fcfeaa095" />
+          <Property Name="SendingDate" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="bc6b3a79-7ba6-4c30-ad72-ec7209136c9c" />
+          <NavigationProperty Name="User_FutureFriendID" Relationship="Xgteamc1XgTeamModel.RequestFutureFriend" FromRole="FriendRequests_FutureFriendID" ToRole="User_FutureFriendID" ed:Guid="5b74afd4-50ce-4b38-a5a3-761ee2d9339f" />
+          <NavigationProperty Name="User_UserID" Relationship="Xgteamc1XgTeamModel.RequestUser" FromRole="FriendRequests_UserID" ToRole="User_UserID" ed:Guid="61e9218f-94cf-4aa4-81a0-d2c0e3a01c9c" />
         </EntityType>
-        <EntityType Name="ForumCommentLike" ed:Guid="2dd26669-ba65-407a-9167-12bbff98d2cc">
+        <EntityType Name="ForumCommentLike" ed:Guid="0327d75b-d09e-4a79-84f7-bbe7c3d4b4ea">
           <Key>
             <PropertyRef Name="CommentLikeID" />
           </Key>
-          <Property Name="CommentLikeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="7e440512-2e86-4376-aff5-a42bfea96b12" />
-          <Property Name="UserID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="41384ef4-2dd5-4a76-8ac2-aff732d5546c" />
-          <Property Name="CommentID" Type="Int32" ed:ValidateRequired="false" ed:Guid="77676fff-ded8-4afd-829d-ef3fa7d05432" />
-          <Property Name="LikedDate" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="5e6b03a4-1f67-48dd-92d3-59e61f3e768e" />
-          <NavigationProperty Name="ForumPostComment" Relationship="Xgteamc1XgTeamModel.CommentLikeComment" FromRole="ForumCommentLikes" ToRole="ForumPostComment" ed:Guid="bb3af1e2-f6aa-4ad3-b89c-3893b620f153" />
-          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.CommentUser" FromRole="ForumCommentLikes" ToRole="User" ed:Guid="b99dc4b0-1399-48c1-adcc-1d7e8ebaa5ec" />
+          <Property Name="CommentLikeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="e252e513-e1c5-49f0-ac66-23832263735c" />
+          <Property Name="UserID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="a9552123-f2f5-4d13-8fa3-b4e77fc676e3" />
+          <Property Name="CommentID" Type="Int32" ed:ValidateRequired="false" ed:Guid="49fd8f56-e9e7-4e49-9e27-31e08d9d9ca5" />
+          <Property Name="LikedDate" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="726b410c-91d6-4036-8ba7-4cb6bd3f0b13" />
+          <NavigationProperty Name="ForumPostComment" Relationship="Xgteamc1XgTeamModel.CommentLikeComment" FromRole="ForumCommentLikes" ToRole="ForumPostComment" ed:Guid="006fb4ea-fe74-4890-b308-5eb5a2e32912" />
+          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.CommentUser" FromRole="ForumCommentLikes" ToRole="User" ed:Guid="1e0b037b-d3ef-468c-86bf-d695e88ab07c" />
         </EntityType>
-        <EntityType Name="PortalMessage" ed:Guid="cb270082-5603-443e-8687-da416a463ad2">
+        <EntityType Name="PortalMessage" ed:Guid="b82d7967-c8df-46b1-b260-822e38fe6cca">
           <Key>
             <PropertyRef Name="MessageID" />
           </Key>
-          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="5693a968-0309-461f-9cd9-0291ba3c3245" />
-          <Property Name="PortalMessageUserID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="ee644f38-6f8f-4a41-8c61-518e0b7942e7" />
-          <Property Name="TextMessage" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="f50a74d6-0665-4074-8e38-4f2a20c9a86b" />
-          <Property Name="SendDate" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="964bf441-4299-46dd-94fa-b7d4848d5938" />
-          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.UserPortalMessage" FromRole="PortalMessages" ToRole="User" ed:Guid="2d772e7e-411d-4681-854a-277e95dd20f6" />
+          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="36a56eeb-1a2d-4696-976c-5dbd1d5dc565" />
+          <Property Name="PortalMessageUserID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="0e9c2a32-e27b-45e6-ac4a-cf1249794d8e" />
+          <Property Name="TextMessage" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="60a41dc2-4045-4ed8-b627-f4fb09d8c8dc" />
+          <Property Name="SendDate" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="a51eef40-efcb-4940-9ff0-d7fdee095e96" />
+          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.UserPortalMessage" FromRole="PortalMessages" ToRole="User" ed:Guid="ca93e518-9980-49d1-a4cd-8c51f8a838a6" />
         </EntityType>
-        <EntityType Name="UserInfoe" ed:Guid="9d08273e-2755-44a8-a377-2921c2aa93cb">
+        <EntityType Name="UserInfoe" ed:Guid="cb405229-545d-4909-be62-ee7658f5d062">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="308b326d-229d-4630-807b-386c759fc2ff" />
-          <Property Name="FirstName" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="54b95b4b-4a88-4949-93cd-8484bf7d21ea" />
-          <Property Name="LastName" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="359fb499-e23d-451b-9b08-67477f25db44" />
-          <Property Name="BirthDate" Type="DateTime" ed:ValidateRequired="false" ed:Guid="67c486a5-1ab8-4c59-b37b-aee7cea75e27" />
-          <Property Name="Address" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="c994a606-947d-401b-afa5-1ffea52bf5dc" />
-          <Property Name="PhotoPath" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="d79606ce-60bf-422a-8f2d-5323d84c54de" />
-          <Property Name="FacebookLink" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="e99a69db-ab7e-4123-8a92-566cbb199d6b" />
-          <Property Name="TwitterLink" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="634cdd0e-9f56-4060-bb60-aa633f572729" />
-          <Property Name="SkypeID" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="9120870d-a205-4c08-8535-35bd397ec9b3" />
-          <Property Name="Status" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="6cb6e1cd-59c2-4b4c-845d-efcf15cd79ad" />
-          <Property Name="IsDefault" Type="Boolean" ed:ValidateRequired="false" ed:Guid="17e26f7c-0eea-4244-9555-f9fa9404a685" />
-          <Property Name="LastLoginDate" Type="DateTime" ed:ValidateRequired="false" ed:Guid="cad1bcb2-475c-48c2-b7ed-b0718f5aa8e6" />
-          <Property Name="RegisteredDate" Type="DateTime" ed:ValidateRequired="false" ed:Guid="bffeca66-e334-4a68-b6a5-16deda66ce86" />
-          <Property Name="InsertBy" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="ade2939f-a74f-4d3d-bda9-38a014b22cec" />
-          <Property Name="LastModified" Type="DateTime" ed:ValidateRequired="false" ed:Guid="f4b834d5-33da-48f8-aeaf-cdc93c19f654" />
-          <Property Name="LastModifiedBy" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="d398cb38-deaf-483b-8eae-ad453f4a41b3" />
-          <Property Name="CoverPhotoPath" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="5855fd10-1024-4439-bf7c-a64512985712" />
-          <Property Name="UserCity" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="de25235c-3581-4a34-a0be-e5a48ef7474c" />
-          <Property Name="CountryID" Type="Int32" ed:ValidateRequired="false" ed:Guid="c61a93ec-5411-4989-a220-3791c6d98b1d" />
-          <Property Name="UserTypeID" Type="Int32" ed:ValidateRequired="false" ed:Guid="50684aa6-9998-4862-a853-e4f86cfd16c7" />
-          <Property Name="UserTask" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="d62e7f1d-09f6-4b30-83e5-1dd1c9663b1c" />
-          <Property Name="TagUserName" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="4a4a82a2-7c09-4ba3-8097-ffa9fd3a226d" />
-          <Property Name="TagColor" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="117c8ed8-e4ae-436b-b89f-fe176415a5bb" />
-          <Property Name="IsActive" Type="Boolean" ed:ValidateRequired="false" ed:Guid="5dd35606-d987-4b83-84df-7f952b87ecf9" />
-          <NavigationProperty Name="Country" Relationship="Xgteamc1XgTeamModel.UserCountry" FromRole="UserInfoes" ToRole="Country" ed:Guid="153dd286-593e-4138-818f-aa8782cc1a14" />
-          <NavigationProperty Name="User_InsertBy" Relationship="Xgteamc1XgTeamModel.UserInsertBy" FromRole="UserInfoes_InsertBy" ToRole="User_InsertBy" ed:Guid="4fcf4c4f-2eb7-40d9-806c-3b4d633ed92a" />
-          <NavigationProperty Name="User_LastModifiedBy" Relationship="Xgteamc1XgTeamModel.UserModifiedBy" FromRole="UserInfoes_LastModifiedBy" ToRole="User_LastModifiedBy" ed:Guid="53a4683d-7d70-47e0-8484-ede66c238567" />
-          <NavigationProperty Name="User_Id" Relationship="Xgteamc1XgTeamModel.User_Info" FromRole="UserInfoe_Id" ToRole="User_Id" ed:Guid="752299ba-5708-44f4-b7da-887dc86ea1d3" />
-          <NavigationProperty Name="UserType" Relationship="Xgteamc1XgTeamModel.User_Types" FromRole="UserInfoes" ToRole="UserType" ed:Guid="4520525f-7930-4e34-a3b2-cd6f69d1a321" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="a18bc468-acaf-4176-98e3-709dae29c1dc" />
+          <Property Name="FirstName" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="fb8dbb8b-6e85-4028-b547-99bf87ef2c50" />
+          <Property Name="LastName" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="5b4e588f-f2b8-4b36-b3dc-c2b753c50ea0" />
+          <Property Name="BirthDate" Type="DateTime" ed:ValidateRequired="false" ed:Guid="f5b16fc6-3eac-4f84-a562-58356eb1665c" />
+          <Property Name="Address" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="193e76c6-3ba0-430b-9582-5e75a4232e10" />
+          <Property Name="PhotoPath" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="7b11fc3b-177c-4600-8e4a-b2b1fa898fcb" />
+          <Property Name="FacebookLink" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="94d9efaa-a243-43f9-bb18-9f2d9934fbf9" />
+          <Property Name="TwitterLink" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="a7c9cdfa-4ae1-456a-8cd1-4b5605a583be" />
+          <Property Name="SkypeID" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="ceda8685-3212-4763-90a2-16c8970b42ec" />
+          <Property Name="Status" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="856ca3e8-6536-488b-a117-5f4d6a15d31f" />
+          <Property Name="IsDefault" Type="Boolean" ed:ValidateRequired="false" ed:Guid="4258bf49-6591-456e-9d99-db3f966feed0" />
+          <Property Name="LastLoginDate" Type="DateTime" ed:ValidateRequired="false" ed:Guid="8f4cdda5-5f3d-441a-a2c6-7ed70e530bfe" />
+          <Property Name="RegisteredDate" Type="DateTime" ed:ValidateRequired="false" ed:Guid="a3892230-0609-4608-bf49-e4d0651f9224" />
+          <Property Name="InsertBy" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="639d9048-0a06-45d2-96e2-9b250f936128" />
+          <Property Name="LastModified" Type="DateTime" ed:ValidateRequired="false" ed:Guid="46af06f2-a588-4bbc-bfbc-711a89ceb44a" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="bed0f98b-9b68-4bc5-8f8a-7649922c4503" />
+          <Property Name="CoverPhotoPath" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="9a198ec0-a365-44b9-9ab2-f98820fc484d" />
+          <Property Name="UserCity" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="9aa152c3-b493-452a-ae70-e9d33343f9a7" />
+          <Property Name="CountryID" Type="Int32" ed:ValidateRequired="false" ed:Guid="d4cae029-a2ea-4b09-9f73-0fcf8be0e43d" />
+          <Property Name="UserTypeID" Type="Int32" ed:ValidateRequired="false" ed:Guid="ea121451-be51-42a3-9a31-6b1224efce80" />
+          <Property Name="UserTask" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="5da26cae-4c95-454f-958f-c463dfad1a3a" />
+          <Property Name="TagUserName" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="62542043-c77a-48cd-810b-6adfa2c0a1a5" />
+          <Property Name="TagColor" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="9251abf4-3664-4f0d-8a2c-c2b81d8f8cb4" />
+          <Property Name="IsActive" Type="Boolean" ed:ValidateRequired="false" ed:Guid="7609a0d4-7d1d-4284-afd3-00828d784e40" />
+          <NavigationProperty Name="Country" Relationship="Xgteamc1XgTeamModel.UserCountry" FromRole="UserInfoes" ToRole="Country" ed:Guid="5c164df6-aa2a-4d45-8754-2c98c94d1e6c" />
+          <NavigationProperty Name="User_InsertBy" Relationship="Xgteamc1XgTeamModel.UserInsertBy" FromRole="UserInfoes_InsertBy" ToRole="User_InsertBy" ed:Guid="9df24c77-861f-46c6-998d-c1d48190a815" />
+          <NavigationProperty Name="User_LastModifiedBy" Relationship="Xgteamc1XgTeamModel.UserModifiedBy" FromRole="UserInfoes_LastModifiedBy" ToRole="User_LastModifiedBy" ed:Guid="50d974e1-d44d-47ce-8463-a9c4cd6fbf1c" />
+          <NavigationProperty Name="User_Id" Relationship="Xgteamc1XgTeamModel.User_Info" FromRole="UserInfoe_Id" ToRole="User_Id" ed:Guid="c8ccf1b7-bd35-4c86-acd0-75e467defb18" />
+          <NavigationProperty Name="UserType" Relationship="Xgteamc1XgTeamModel.User_Types" FromRole="UserInfoes" ToRole="UserType" ed:Guid="793e5572-181d-4994-b816-db4f0f7a414a" />
         </EntityType>
-        <EntityType Name="UserType" ed:Guid="0f908768-32b4-4433-86eb-22165b4befb8">
+        <EntityType Name="UserType" ed:Guid="00d04680-379c-4233-8e86-2a8dd8e48e70">
           <Key>
             <PropertyRef Name="UserTypeID" />
           </Key>
-          <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="0410eea3-f939-4b0d-a27a-0d2892feb9f0" />
-          <Property Name="UserTypeName" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="1e2f5de4-09d5-4af1-ab8a-38aa808357ca" />
-          <NavigationProperty Name="UserInfoes" Relationship="Xgteamc1XgTeamModel.User_Types" FromRole="UserType" ToRole="UserInfoes" ed:Guid="2011d752-0dec-4734-a152-02d347bbf3c9" />
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="173a0b85-7416-4571-adb0-e63e485f4d10" />
+          <Property Name="UserTypeName" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="6f2d3c04-4fd6-4203-b3f2-eec9a4700a02" />
+          <NavigationProperty Name="UserInfoes" Relationship="Xgteamc1XgTeamModel.User_Types" FromRole="UserType" ToRole="UserInfoes" ed:Guid="489439fe-c6d8-4634-837e-a11d8b38c3c7" />
         </EntityType>
-        <EntityType Name="Friend" ed:Guid="7b9f5e32-399f-4b0a-b1d3-0e84a1cb5434">
+        <EntityType Name="Friend" ed:Guid="0dfac121-fc45-4170-85ee-2b789b41b31e">
           <Key>
             <PropertyRef Name="FriendID" />
           </Key>
-          <Property Name="FriendID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="3a63696f-d906-4f85-8f4c-f9c7304139bd" />
-          <Property Name="FutureFriendID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="9daab2b5-246f-4839-9813-800a39f364f3" />
-          <Property Name="UserID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="b9d2208a-24f8-4fb9-bb12-70162136b0dd" />
-          <Property Name="BecameFriendDate" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="2f9acd52-28cd-455c-a192-27ccb1639c94" />
-          <NavigationProperty Name="User_FutureFriendID" Relationship="Xgteamc1XgTeamModel.FriendFutureFriend" FromRole="Friends_FutureFriendID" ToRole="User_FutureFriendID" ed:Guid="12c4829a-926b-4a5f-bf92-bc5ff25d223d" />
-          <NavigationProperty Name="User_UserID" Relationship="Xgteamc1XgTeamModel.UserID" FromRole="Friends_UserID" ToRole="User_UserID" ed:Guid="010b206b-f695-432a-8826-9daee3fd5ae3" />
+          <Property Name="FriendID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="d0fbc281-0d55-4dc5-b496-0bb585bcf8ac" />
+          <Property Name="FutureFriendID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="f10dc986-e12c-48bb-b725-85e2bfa6e70d" />
+          <Property Name="UserID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="d2a8b316-4445-41ef-af7a-62ba9f3550b6" />
+          <Property Name="BecameFriendDate" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="7a476e39-ac7e-469e-8603-5369fe46cc3c" />
+          <NavigationProperty Name="User_FutureFriendID" Relationship="Xgteamc1XgTeamModel.FriendFutureFriend" FromRole="Friends_FutureFriendID" ToRole="User_FutureFriendID" ed:Guid="5d9dc21b-12e0-47c7-940f-bfd1a2824e48" />
+          <NavigationProperty Name="User_UserID" Relationship="Xgteamc1XgTeamModel.UserID" FromRole="Friends_UserID" ToRole="User_UserID" ed:Guid="8e78cb7c-76cf-4785-b1a2-cd82c0bba60f" />
         </EntityType>
-        <EntityType Name="ChatBox" ed:Guid="59e6ccf4-f635-4a5c-b232-2b3534a72905">
+        <EntityType Name="Setting" ed:Guid="9f52a220-7c8d-4053-82c3-9f4743351e64">
+          <Key>
+            <PropertyRef Name="SettingId" />
+          </Key>
+          <Property Name="SettingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="25ba4efb-4fe4-4a32-9d99-72c0de7745fe" />
+          <Property Name="Name" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="eebbb630-4fe0-4b31-b878-3fb222943231" />
+          <Property Name="Value" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="b4007fbc-ab13-4d83-9744-dddf7d6e1ba3" />
+        </EntityType>
+        <EntityType Name="ChatBox" ed:Guid="aa38b99d-7843-41f6-a9ea-b42e9cb22bc0">
           <Key>
             <PropertyRef Name="ChatboxID" />
           </Key>
-          <Property Name="ChatboxID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="8f1618c9-bf9a-4d98-b6ce-67f95ce8e701" />
-          <Property Name="Title" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="77a5ecb8-ae61-4a24-b20b-88db0bf11637" />
-          <Property Name="SenderID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="4638c55e-e5d4-4781-bb9c-af7f265cd9d1" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="a797f397-5063-472b-962c-3f660b709786" />
-          <Property Name="ReceiverID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="0ad4ca9a-7874-4ca2-bf53-164e11d49c6c" />
-          <NavigationProperty Name="User_ReceiverID" Relationship="Xgteamc1XgTeamModel.ChatBoxReceiver" FromRole="ChatBoxes_ReceiverID" ToRole="User_ReceiverID" ed:Guid="c1b2eeaa-c3c1-42dc-9278-399413025649" />
-          <NavigationProperty Name="User_SenderID" Relationship="Xgteamc1XgTeamModel.ChatBoxSender" FromRole="ChatBoxes_SenderID" ToRole="User_SenderID" ed:Guid="db465eec-dcc0-4361-9db0-0a135a9f653b" />
-          <NavigationProperty Name="Chats" Relationship="Xgteamc1XgTeamModel.ChatChatBox" FromRole="ChatBox" ToRole="Chats" ed:Guid="e2a6bbb7-d779-44e2-942a-ee7cdf0bdd06" />
+          <Property Name="ChatboxID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="3527925f-b131-4985-a7e4-48c40d76c660" />
+          <Property Name="Title" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="4561a3f0-1789-4d5e-a013-3a8d774a6c4a" />
+          <Property Name="SenderID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="fbf724a9-56da-4d21-8f17-16d2e1697e8e" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="0bbc5e15-16aa-4557-af56-d833dbd31287" />
+          <Property Name="ReceiverID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="84428757-0c37-4f67-b48a-02702d700976" />
+          <NavigationProperty Name="User_ReceiverID" Relationship="Xgteamc1XgTeamModel.ChatBoxReceiver" FromRole="ChatBoxes_ReceiverID" ToRole="User_ReceiverID" ed:Guid="9a1e08dc-ae90-4473-be1f-3c5f8e17cea3" />
+          <NavigationProperty Name="User_SenderID" Relationship="Xgteamc1XgTeamModel.ChatBoxSender" FromRole="ChatBoxes_SenderID" ToRole="User_SenderID" ed:Guid="765499f8-0473-40b6-a02d-ed81d848dfab" />
+          <NavigationProperty Name="Chats" Relationship="Xgteamc1XgTeamModel.ChatChatBox" FromRole="ChatBox" ToRole="Chats" ed:Guid="d342c658-0f94-450e-ad00-0d3c0310eeff" />
         </EntityType>
-        <EntityType Name="Country" ed:Guid="e60e490a-6496-4e09-96ac-e533946d72b8">
+        <EntityType Name="Country" ed:Guid="f025fd25-0292-4994-b392-dbcb1d07ffcb">
           <Key>
             <PropertyRef Name="CountryID" />
           </Key>
-          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="5d3af048-42c3-4575-917b-919f4541dd45" />
-          <Property Name="CountryName" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="6a4d10b0-181c-494f-b251-ee58fcc12c29" />
-          <NavigationProperty Name="UserInfoes" Relationship="Xgteamc1XgTeamModel.UserCountry" FromRole="Country" ToRole="UserInfoes" ed:Guid="b108d815-1b8c-4dc2-b23b-fc4f63902486" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="a9ac2740-0471-41d9-9ef9-2ebe3b4d9533" />
+          <Property Name="CountryName" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="3dfa0c44-5229-4ff9-b278-b06848e52230" />
+          <NavigationProperty Name="UserInfoes" Relationship="Xgteamc1XgTeamModel.UserCountry" FromRole="Country" ToRole="UserInfoes" ed:Guid="fcbc31e0-6276-4c88-9013-62c120052bbb" />
         </EntityType>
-        <EntityType Name="ForumPostLike" ed:Guid="32a1ee5c-b0a2-45c4-87c3-e5cce517eb0d">
+        <EntityType Name="ForumPostLike" ed:Guid="3b68fce3-3487-4f73-81b6-8fe01cbb3ce2">
           <Key>
             <PropertyRef Name="LikeID" />
           </Key>
-          <Property Name="LikeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="b1a0a7a5-2d9d-450e-8f41-a88ff37c44a2" />
-          <Property Name="UserID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="a5f8038e-5eba-40b7-ad01-65efd8ef2bf6" />
-          <Property Name="PostID" Type="Int32" ed:ValidateRequired="false" ed:Guid="113be5ef-304d-4c13-bc2e-ed7f250aca85" />
-          <Property Name="LikedDate" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="21845dbf-fa26-4f76-9087-fd96469e1a77" />
-          <NavigationProperty Name="ForumPost" Relationship="Xgteamc1XgTeamModel.PostLikeForum" FromRole="ForumPostLikes" ToRole="ForumPost" ed:Guid="d2c7b48f-4b3f-4852-aa3c-3268d88d8723" />
-          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.UserPostLike" FromRole="ForumPostLikes" ToRole="User" ed:Guid="db3bda4d-ffd2-458c-acd3-30eb65930098" />
+          <Property Name="LikeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="ff88553f-aeb4-47c8-91fd-61ac859866b5" />
+          <Property Name="UserID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="c1d45b35-2d8c-4b73-8395-4ca101d83469" />
+          <Property Name="PostID" Type="Int32" ed:ValidateRequired="false" ed:Guid="0ce73dad-62de-4c43-be0e-46af57c9a550" />
+          <Property Name="LikedDate" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="1033daf8-c004-4627-9800-f0a90b9520f1" />
+          <NavigationProperty Name="ForumPost" Relationship="Xgteamc1XgTeamModel.PostLikeForum" FromRole="ForumPostLikes" ToRole="ForumPost" ed:Guid="e41cc133-494a-4435-8235-3f05ee34adc6" />
+          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.UserPostLike" FromRole="ForumPostLikes" ToRole="User" ed:Guid="fbf15d32-ad14-4026-aa3a-025bd8eee84e" />
         </EntityType>
-        <EntityType Name="Chat" ed:Guid="db19d34f-c079-4359-a165-5784340375df">
+        <EntityType Name="Chat" ed:Guid="2b45206a-5286-4a33-9e0c-3e591246ac68">
           <Key>
             <PropertyRef Name="ChatID" />
           </Key>
-          <Property Name="ChatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="5fd7888f-13fb-4f6a-a1bf-b48114b8a1dd" />
-          <Property Name="Text" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="226687a3-cf90-4b29-bc11-74147c6bb8f8" />
-          <Property Name="ChatBoxID" Type="Int32" ed:ValidateRequired="false" ed:Guid="d024ac30-b34c-441b-a0b7-d425456946df" />
-          <Property Name="SenderID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="5c1a5de4-e84d-4fc8-965d-894e4d8e1991" />
-          <Property Name="ReceiverID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="cf6c5d9c-76af-4bf6-b853-129b12214655" />
-          <Property Name="SentDate" Type="DateTime" ed:ValidateRequired="false" ed:Guid="68d56043-13dd-4101-809d-b78e3154f290" />
-          <Property Name="IsRead" Type="Boolean" ed:ValidateRequired="false" ed:Guid="60c27a95-0bb1-44d0-93db-b7717d46b347" />
-          <NavigationProperty Name="ChatBox" Relationship="Xgteamc1XgTeamModel.ChatChatBox" FromRole="Chats" ToRole="ChatBox" ed:Guid="fb3e0ec1-1738-4879-9674-2703858a28c6" />
-          <NavigationProperty Name="User_ReceiverID" Relationship="Xgteamc1XgTeamModel.ChatReceiver" FromRole="Chats_ReceiverID" ToRole="User_ReceiverID" ed:Guid="dfa37151-b5fc-419e-a617-8f0d02223b2e" />
-          <NavigationProperty Name="User_SenderID" Relationship="Xgteamc1XgTeamModel.ChatSender" FromRole="Chats_SenderID" ToRole="User_SenderID" ed:Guid="050efe4b-3bb2-4da8-89a4-3459deb11001" />
+          <Property Name="ChatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="6af125f6-90ca-462a-bce5-3a201409c453" />
+          <Property Name="Text" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="fb92983c-e4f8-463e-ac48-79722c1d8e77" />
+          <Property Name="ChatBoxID" Type="Int32" ed:ValidateRequired="false" ed:Guid="6bcd7a74-8151-44ed-8d80-f6e2261ce981" />
+          <Property Name="SenderID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="e1bcf59f-466f-4ed6-bad5-c767b62a8965" />
+          <Property Name="ReceiverID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="b68508f4-a761-4b4b-9700-00a717008c27" />
+          <Property Name="SentDate" Type="DateTime" ed:ValidateRequired="false" ed:Guid="2cbfeb40-c56b-4889-a60d-991d2e5f4120" />
+          <Property Name="IsRead" Type="Boolean" ed:ValidateRequired="false" ed:Guid="846a114a-a6f2-4993-86bf-44a7dcfa52f4" />
+          <NavigationProperty Name="ChatBox" Relationship="Xgteamc1XgTeamModel.ChatChatBox" FromRole="Chats" ToRole="ChatBox" ed:Guid="2688da80-5729-4c76-9875-ac9311293bd0" />
+          <NavigationProperty Name="User_ReceiverID" Relationship="Xgteamc1XgTeamModel.ChatReceiver" FromRole="Chats_ReceiverID" ToRole="User_ReceiverID" ed:Guid="4bf23aaa-25a2-4aa4-b722-dc1f2c5f3698" />
+          <NavigationProperty Name="User_SenderID" Relationship="Xgteamc1XgTeamModel.ChatSender" FromRole="Chats_SenderID" ToRole="User_SenderID" ed:Guid="e2f12867-4fa0-4fb9-9562-96f3ac05ba45" />
         </EntityType>
-        <EntityType Name="Forum" ed:Guid="29dd60ce-17c3-45b6-a96e-b693bbbcb61c">
+        <EntityType Name="Forum" ed:Guid="fa1f4565-6361-43db-a159-5bd23ad84e6c">
           <Key>
             <PropertyRef Name="ForumID" />
           </Key>
-          <Property Name="ForumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="93a0d187-4214-4654-968b-9d66590b74b6" />
-          <Property Name="ForumName" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="3209bace-8e33-47de-87a5-f301ac0b91f2" />
-          <Property Name="Title" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="7de2b22a-76c6-4153-86a5-3f4c350bbe97" />
-          <Property Name="Description" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="4e4c1147-fc38-47d0-a19b-ea225f7d1828" />
-          <Property Name="CreatedTime" Type="DateTime" ed:ValidateRequired="false" ed:Guid="30dd695b-37fc-481c-8a29-40361af985f5" />
-          <Property Name="Status" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="9fc16219-4e88-493d-bb47-eab614cdacc3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="5816562d-23e3-4871-82a1-f28137be8ee9" />
-          <Property Name="IsDefault" Type="Boolean" ed:ValidateRequired="false" ed:Guid="ad68e189-1545-46e2-b02e-cd2526cd2140" />
-          <NavigationProperty Name="ForumTopics" Relationship="Xgteamc1XgTeamModel.ForumForumTopic" FromRole="Forum" ToRole="ForumTopics" ed:Guid="06e35baa-680a-4f1e-b2b5-1f46ce4d114a" />
-          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.CreatedByForum" FromRole="Fora" ToRole="User" ed:Guid="eeac2702-c3e5-4318-8977-638e67306abc" />
-          <NavigationProperty Name="ForumPosts" Relationship="Xgteamc1XgTeamModel.ForumPostForum" FromRole="Forum" ToRole="ForumPosts" ed:Guid="3e83eb5d-baeb-404e-b36f-cd9484abdd8d" />
+          <Property Name="ForumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="37726b25-1d63-40e0-82f7-0b02cc3a86bb" />
+          <Property Name="ForumName" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="2672e612-8b04-4ace-a367-1c6e3c6716f2" />
+          <Property Name="Title" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="38ea88ba-c749-4a6c-9a6b-2c7e47afb42c" />
+          <Property Name="Description" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="07c6e619-45c2-4074-976b-111362010bd2" />
+          <Property Name="CreatedTime" Type="DateTime" ed:ValidateRequired="false" ed:Guid="da69a830-b887-4216-bb69-b8db416a1e17" />
+          <Property Name="Status" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="d13c1d71-7302-4da0-a982-6e2767be0331" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="4107919e-d69b-4f17-bb53-f5456d0b3c4f" />
+          <Property Name="IsDefault" Type="Boolean" ed:ValidateRequired="false" ed:Guid="185d7866-ed67-4556-870f-c6f25690fe07" />
+          <NavigationProperty Name="ForumTopics" Relationship="Xgteamc1XgTeamModel.ForumForumTopic" FromRole="Forum" ToRole="ForumTopics" ed:Guid="6403ab2b-eb5d-40ac-b102-c71de1640cd4" />
+          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.CreatedByForum" FromRole="Fora" ToRole="User" ed:Guid="3d08dd07-3d91-4c2a-bc17-e7759f2007c2" />
+          <NavigationProperty Name="ForumPosts" Relationship="Xgteamc1XgTeamModel.ForumPostForum" FromRole="Forum" ToRole="ForumPosts" ed:Guid="6ad00806-54df-4e57-a751-7a3b80f6cfd1" />
         </EntityType>
-        <EntityType Name="Role" ed:Guid="51058a7d-d98f-4d1f-a55c-7dc8b248e1f6">
+        <EntityType Name="Role" ed:Guid="8ac8b9a4-3f72-436e-8028-394745179ff9">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="e34bd5b5-1513-48bf-9e32-70f807d7a8db" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="ef39f352-cee1-4803-a624-d6827f6a4868" />
-          <Property Name="Discriminator" Type="String" Nullable="false" DefaultValue="''" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="ae8461f6-138d-42ca-be63-27a525edb066" />
-          <NavigationProperty Name="UserPermissions" Relationship="Xgteamc1XgTeamModel.RoleModule" FromRole="Role" ToRole="UserPermissions" ed:Guid="7b3b19f8-40ab-44c4-ba5e-367f959570a0" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="c6dd619c-e93c-420b-9c37-049e67e8db70" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="cfffac35-006d-4eba-a261-01b704c2473c" />
+          <Property Name="Discriminator" Type="String" Nullable="false" DefaultValue="''" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="265e10ae-106c-42d4-a68b-bac0de32b53d" />
+          <NavigationProperty Name="UserPermissions" Relationship="Xgteamc1XgTeamModel.RoleModule" FromRole="Role" ToRole="UserPermissions" ed:Guid="a12a1f3e-5c19-4eba-be2c-d37dde20e65d" />
         </EntityType>
-        <EntityType Name="UserClaim" ed:Guid="a7edc10b-0e32-475f-ba11-2cab88117bc9">
+        <EntityType Name="UserClaim" ed:Guid="7e08126f-e2ff-4438-9acc-ec50908e6c10">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="95404483-9ae4-4e75-97db-17d48b3c8571" />
-          <Property Name="UserId" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="69e57952-c4cf-4ceb-84f9-b3a487c7b0ee" />
-          <Property Name="ClaimType" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="c9e709bd-0acc-4247-b51c-a2344ad47ffd" />
-          <Property Name="ClaimValue" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="84dfa2a1-e0c6-4bd0-b979-df91fb8284c7" />
-          <Property Name="IdentityUserId" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="b9570eb2-49f3-450c-9daf-bf3e2739d319" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="7ee05954-4e7d-46ef-afbb-717e18fd8bf0" />
+          <Property Name="UserId" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="5b905136-36a8-4104-a4bd-1d6a490fe7ab" />
+          <Property Name="ClaimType" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="f0d76d7a-a773-473a-9140-7feac680ef0f" />
+          <Property Name="ClaimValue" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="11276340-7684-4413-8463-03aeae154113" />
+          <Property Name="IdentityUserId" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="7f0019ee-3301-4b10-9dfe-859cd978f62d" />
         </EntityType>
-        <EntityType Name="User" ed:Guid="3045a440-5808-40cb-937d-8208b3c4e2d7">
+        <EntityType Name="User" ed:Guid="0b95f1b4-5cbe-411b-8a6b-fd6e5cefb03b">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="c9de741f-de83-4f60-bec7-520f013c1a04" />
-          <Property Name="Email" Type="String" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="false" ed:Guid="adba40a8-e0ca-4e48-9d9d-427a6a07ee0c" />
-          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="306f1b16-8dab-4a32-bd4c-97f5c86b8bc1" />
-          <Property Name="PasswordHash" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="63f080d9-0b9e-4e01-9547-f9e6cd3ca9dc" />
-          <Property Name="SecurityStamp" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="4f915d7d-5826-46a6-91ee-4d816e3c289a" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="ed1dde76-3700-4c58-8c53-35299fa75169" />
-          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="db96e913-8637-4d61-a324-13782e846ec5" />
-          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="43dda88b-22cc-40f1-aa27-bbb4005b5fc6" />
-          <Property Name="LockoutEndDateUtc" Type="DateTime" ed:ValidateRequired="false" ed:Guid="47eabe59-4a11-40d0-8e2f-4dd5eec84561" />
-          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="d456c640-bea1-4031-a968-f7234b65c611" />
-          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="2dbf9965-3b70-4393-9a7c-2260185b76c8" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="5c6a19a2-92a1-4fb7-887b-62491dea32a2" />
-          <NavigationProperty Name="ForumPostComments" Relationship="Xgteamc1XgTeamModel.CreatedByComment" FromRole="User" ToRole="ForumPostComments" ed:Guid="f865b1cc-b0a3-4ff3-8860-8a5e0770a0d5" />
-          <NavigationProperty Name="ForumTopics" Relationship="Xgteamc1XgTeamModel.CreatedByForumTopic" FromRole="User" ToRole="ForumTopics" ed:Guid="d579dfc3-03c6-44ab-b022-fec8a9d2312c" />
-          <NavigationProperty Name="FriendRequests_FutureFriendID" Relationship="Xgteamc1XgTeamModel.RequestFutureFriend" FromRole="User_FutureFriendID" ToRole="FriendRequests_FutureFriendID" ed:Guid="638581e4-7a68-4c23-bc8a-5038f1d233e8" />
-          <NavigationProperty Name="FriendRequests_UserID" Relationship="Xgteamc1XgTeamModel.RequestUser" FromRole="User_UserID" ToRole="FriendRequests_UserID" ed:Guid="5767c3fb-f8ce-4895-83b6-db42bc1f1c64" />
-          <NavigationProperty Name="ForumCommentLikes" Relationship="Xgteamc1XgTeamModel.CommentUser" FromRole="User" ToRole="ForumCommentLikes" ed:Guid="58cd106d-4211-4477-9319-ee2a26f7a54a" />
-          <NavigationProperty Name="PortalMessages" Relationship="Xgteamc1XgTeamModel.UserPortalMessage" FromRole="User" ToRole="PortalMessages" ed:Guid="ac5f80d0-5678-46c3-bc22-2c3ceca10236" />
-          <NavigationProperty Name="UserInfoes_InsertBy" Relationship="Xgteamc1XgTeamModel.UserInsertBy" FromRole="User_InsertBy" ToRole="UserInfoes_InsertBy" ed:Guid="c81b8ded-51e3-4047-b67e-866a077c0032" />
-          <NavigationProperty Name="UserInfoes_LastModifiedBy" Relationship="Xgteamc1XgTeamModel.UserModifiedBy" FromRole="User_LastModifiedBy" ToRole="UserInfoes_LastModifiedBy" ed:Guid="cda31197-178f-4cda-be77-1573ff62a50e" />
-          <NavigationProperty Name="UserInfoe_Id" Relationship="Xgteamc1XgTeamModel.User_Info" FromRole="User_Id" ToRole="UserInfoe_Id" ed:Guid="a1cfbbe5-20a6-40a6-8041-f4763240d131" />
-          <NavigationProperty Name="Friends_FutureFriendID" Relationship="Xgteamc1XgTeamModel.FriendFutureFriend" FromRole="User_FutureFriendID" ToRole="Friends_FutureFriendID" ed:Guid="781a88dd-6f42-45c6-be7b-40697ac32c84" />
-          <NavigationProperty Name="Friends_UserID" Relationship="Xgteamc1XgTeamModel.UserID" FromRole="User_UserID" ToRole="Friends_UserID" ed:Guid="e5e29b10-e357-4896-8bd5-34af25d31f4e" />
-          <NavigationProperty Name="ChatBoxes_ReceiverID" Relationship="Xgteamc1XgTeamModel.ChatBoxReceiver" FromRole="User_ReceiverID" ToRole="ChatBoxes_ReceiverID" ed:Guid="6fddd5c9-c22c-45b1-affa-12623acacc0f" />
-          <NavigationProperty Name="ChatBoxes_SenderID" Relationship="Xgteamc1XgTeamModel.ChatBoxSender" FromRole="User_SenderID" ToRole="ChatBoxes_SenderID" ed:Guid="9070157b-97f1-492f-a166-abf93d517aaa" />
-          <NavigationProperty Name="ForumPostLikes" Relationship="Xgteamc1XgTeamModel.UserPostLike" FromRole="User" ToRole="ForumPostLikes" ed:Guid="e0a64d35-2bc6-460f-852a-38f0beb6257b" />
-          <NavigationProperty Name="Chats_ReceiverID" Relationship="Xgteamc1XgTeamModel.ChatReceiver" FromRole="User_ReceiverID" ToRole="Chats_ReceiverID" ed:Guid="90cd9a9c-5613-4ceb-8398-ec5f07f929dc" />
-          <NavigationProperty Name="Chats_SenderID" Relationship="Xgteamc1XgTeamModel.ChatSender" FromRole="User_SenderID" ToRole="Chats_SenderID" ed:Guid="64e605bc-4123-4c3b-a7d3-22d3813e72da" />
-          <NavigationProperty Name="Fora" Relationship="Xgteamc1XgTeamModel.CreatedByForum" FromRole="User" ToRole="Fora" ed:Guid="513e4dca-a0a1-4227-a60c-1dcb26c72fa2" />
-          <NavigationProperty Name="ForumPosts" Relationship="Xgteamc1XgTeamModel.CreatedByPost" FromRole="User" ToRole="ForumPosts" ed:Guid="3329496e-d309-437e-ac5a-7d099d2d3c9b" />
-          <NavigationProperty Name="Notifications" Relationship="Xgteamc1XgTeamModel.UserNotification" FromRole="User" ToRole="Notifications" ed:Guid="581239b8-a723-4bdb-8817-23b96754c766" />
-          <NavigationProperty Name="ProfileVisitors_UserID" Relationship="Xgteamc1XgTeamModel.VisitedID" FromRole="User_UserID" ToRole="ProfileVisitors_UserID" ed:Guid="3ea81cf9-e1d1-4843-baaa-e380e5ebb721" />
-          <NavigationProperty Name="ProfileVisitors_VisitorID" Relationship="Xgteamc1XgTeamModel.VisitorId" FromRole="User_VisitorID" ToRole="ProfileVisitors_VisitorID" ed:Guid="ade503ac-d172-4ce9-89c3-98b2f102a511" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="07ddf075-cce9-4a35-9d3b-2004a4b45b4c" />
+          <Property Name="Email" Type="String" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="false" ed:Guid="905e26d5-ae0c-46b4-9ab1-b20df46bc9ee" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="6dfe6daf-d55e-480c-84a5-d80d2b02b054" />
+          <Property Name="PasswordHash" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="ac116ada-91d3-4aaf-88aa-93a614b14062" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="48a20357-bfc0-4919-a673-331377222bcd" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="cafe69cb-aa4f-489c-84b4-a579ef056b08" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="9a40c819-a4b1-4728-9ee4-5f73547168d7" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="8108fe56-e697-48c5-bb78-41264e555688" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" ed:ValidateRequired="false" ed:Guid="26a4dc9b-be3a-41ea-b328-73664c093283" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="e94f8f11-79a0-45c6-82df-431a5092fcef" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="e9245bd4-5ee7-4cb1-a090-d2979b7b8830" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="65f3715c-3066-4e17-9800-5d823306a32c" />
+          <NavigationProperty Name="ForumPostComments" Relationship="Xgteamc1XgTeamModel.CreatedByComment" FromRole="User" ToRole="ForumPostComments" ed:Guid="badda91e-d491-4d68-bef0-8c7142384510" />
+          <NavigationProperty Name="ForumTopics" Relationship="Xgteamc1XgTeamModel.CreatedByForumTopic" FromRole="User" ToRole="ForumTopics" ed:Guid="a5ea8198-a7ea-4f8c-98bf-439997fb3715" />
+          <NavigationProperty Name="FriendRequests_FutureFriendID" Relationship="Xgteamc1XgTeamModel.RequestFutureFriend" FromRole="User_FutureFriendID" ToRole="FriendRequests_FutureFriendID" ed:Guid="395b5c48-2141-43b5-a418-4b3945ca43e1" />
+          <NavigationProperty Name="FriendRequests_UserID" Relationship="Xgteamc1XgTeamModel.RequestUser" FromRole="User_UserID" ToRole="FriendRequests_UserID" ed:Guid="5386d01b-f923-48eb-a10d-aa1eef859cda" />
+          <NavigationProperty Name="ForumCommentLikes" Relationship="Xgteamc1XgTeamModel.CommentUser" FromRole="User" ToRole="ForumCommentLikes" ed:Guid="6fe1fd12-5cae-4a98-be51-061241727ff6" />
+          <NavigationProperty Name="PortalMessages" Relationship="Xgteamc1XgTeamModel.UserPortalMessage" FromRole="User" ToRole="PortalMessages" ed:Guid="3bb567ee-40df-4ba8-805a-1c8bfa854bb9" />
+          <NavigationProperty Name="UserInfoes_InsertBy" Relationship="Xgteamc1XgTeamModel.UserInsertBy" FromRole="User_InsertBy" ToRole="UserInfoes_InsertBy" ed:Guid="d44a40c4-804f-4c62-9167-481d1263c58f" />
+          <NavigationProperty Name="UserInfoes_LastModifiedBy" Relationship="Xgteamc1XgTeamModel.UserModifiedBy" FromRole="User_LastModifiedBy" ToRole="UserInfoes_LastModifiedBy" ed:Guid="2b6b252c-9cf0-433d-8420-c21851ac4d2f" />
+          <NavigationProperty Name="UserInfoe_Id" Relationship="Xgteamc1XgTeamModel.User_Info" FromRole="User_Id" ToRole="UserInfoe_Id" ed:Guid="50075eeb-540d-4c49-9b31-5a2277945bc5" />
+          <NavigationProperty Name="Friends_FutureFriendID" Relationship="Xgteamc1XgTeamModel.FriendFutureFriend" FromRole="User_FutureFriendID" ToRole="Friends_FutureFriendID" ed:Guid="e22a03b8-d682-4411-b51a-1938e0f9aec2" />
+          <NavigationProperty Name="Friends_UserID" Relationship="Xgteamc1XgTeamModel.UserID" FromRole="User_UserID" ToRole="Friends_UserID" ed:Guid="f02c02b6-24de-4566-a641-df84ad2de022" />
+          <NavigationProperty Name="ChatBoxes_ReceiverID" Relationship="Xgteamc1XgTeamModel.ChatBoxReceiver" FromRole="User_ReceiverID" ToRole="ChatBoxes_ReceiverID" ed:Guid="9846b15f-4d3b-4371-8f14-ec58b99c42a8" />
+          <NavigationProperty Name="ChatBoxes_SenderID" Relationship="Xgteamc1XgTeamModel.ChatBoxSender" FromRole="User_SenderID" ToRole="ChatBoxes_SenderID" ed:Guid="94c6d91c-7f8d-4783-a50d-3e9d401e1d9a" />
+          <NavigationProperty Name="ForumPostLikes" Relationship="Xgteamc1XgTeamModel.UserPostLike" FromRole="User" ToRole="ForumPostLikes" ed:Guid="d765e298-1c3c-4cb9-b551-098696bd1f89" />
+          <NavigationProperty Name="Chats_ReceiverID" Relationship="Xgteamc1XgTeamModel.ChatReceiver" FromRole="User_ReceiverID" ToRole="Chats_ReceiverID" ed:Guid="3369cfc3-b756-4a21-acfe-c2e6bbc6144e" />
+          <NavigationProperty Name="Chats_SenderID" Relationship="Xgteamc1XgTeamModel.ChatSender" FromRole="User_SenderID" ToRole="Chats_SenderID" ed:Guid="52a5cb60-0aeb-4286-ad8d-c9519d91b78f" />
+          <NavigationProperty Name="Fora" Relationship="Xgteamc1XgTeamModel.CreatedByForum" FromRole="User" ToRole="Fora" ed:Guid="cf15cdca-376e-44df-8394-f38b41b101a0" />
+          <NavigationProperty Name="ForumPosts" Relationship="Xgteamc1XgTeamModel.CreatedByPost" FromRole="User" ToRole="ForumPosts" ed:Guid="049e4850-ccc1-4a54-9cb8-ad0c28da38f4" />
+          <NavigationProperty Name="Notifications" Relationship="Xgteamc1XgTeamModel.UserNotification" FromRole="User" ToRole="Notifications" ed:Guid="de1cfb2f-2a3b-45bd-b3cf-51ab6c68c2a3" />
+          <NavigationProperty Name="ProfileVisitors_UserID" Relationship="Xgteamc1XgTeamModel.VisitedID" FromRole="User_UserID" ToRole="ProfileVisitors_UserID" ed:Guid="4699bd3b-6cf7-4dc9-a3bb-a47efe6bfa97" />
+          <NavigationProperty Name="ProfileVisitors_VisitorID" Relationship="Xgteamc1XgTeamModel.VisitorId" FromRole="User_VisitorID" ToRole="ProfileVisitors_VisitorID" ed:Guid="8a24e53f-a763-4d55-9187-2b949213cced" />
         </EntityType>
-        <EntityType Name="ForumPost" ed:Guid="229aa9cb-0201-49df-89c9-048d32c65460">
+        <EntityType Name="ForumPost" ed:Guid="bcfe5074-49d9-42f0-9587-8483cfdcf228">
           <Key>
             <PropertyRef Name="ForumPostID" />
           </Key>
-          <Property Name="ForumPostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="921aeab6-e41a-4274-9b32-ab770b154bc0" />
-          <Property Name="ForumPostTitle" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="af99c663-d2a7-4a42-9b4d-8ef5dc032aee" />
-          <Property Name="ForumPostContent" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="d96d5aca-fc8b-4d96-937a-3cf5a0c926d9" />
-          <Property Name="CreatedTime" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="f440029a-a873-4da8-8a6e-dbbbed41622e" />
-          <Property Name="CreatedBy" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="497de4b0-a87c-40a0-938f-e6bea083f7ce" />
-          <Property Name="ForumTopicID" Type="Int32" ed:ValidateRequired="false" ed:Guid="e4414005-11bf-425d-9bbd-d66edcb90331" />
-          <Property Name="ForumID" Type="Int32" ed:ValidateRequired="false" ed:Guid="2241b41f-b932-4aa5-a2a1-8f4c69d583bb" />
-          <Property Name="ShowInPortal" Type="Boolean" ed:ValidateRequired="false" ed:Guid="8577343e-5651-4e31-8de3-66b166f2bf75" />
-          <Property Name="PostLocked" Type="Boolean" ed:ValidateRequired="false" ed:Guid="e0c518a9-b9ca-4ed7-bfe4-9088c6e8309e" />
-          <Property Name="ReviewCount" Type="Int32" ed:ValidateRequired="false" ed:Guid="46b5d9d9-efd1-4c16-8ab6-b20170d443f2" />
-          <Property Name="IsDefault" Type="Boolean" ed:ValidateRequired="false" ed:Guid="f90b8e59-448e-46ef-a15e-bd7c29193659" />
-          <NavigationProperty Name="ForumPostComments" Relationship="Xgteamc1XgTeamModel.CommentForumPost" FromRole="ForumPost" ToRole="ForumPostComments" ed:Guid="7498bedd-272c-467f-b6ac-1555ee44f1c0" />
-          <NavigationProperty Name="ForumPostLikes" Relationship="Xgteamc1XgTeamModel.PostLikeForum" FromRole="ForumPost" ToRole="ForumPostLikes" ed:Guid="2a4a173b-cdf3-49e9-bb1d-3bbc73b178b1" />
-          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.CreatedByPost" FromRole="ForumPosts" ToRole="User" ed:Guid="653060dd-462b-4fff-9151-3a845c543daf" />
-          <NavigationProperty Name="Forum" Relationship="Xgteamc1XgTeamModel.ForumPostForum" FromRole="ForumPosts" ToRole="Forum" ed:Guid="8178eb84-0918-4845-a41e-0fcb57a73892" />
-          <NavigationProperty Name="ForumTopic" Relationship="Xgteamc1XgTeamModel.ForumPostForumTopic" FromRole="ForumPosts" ToRole="ForumTopic" ed:Guid="ba3c38e5-3671-4694-af88-04f30d46edb9" />
+          <Property Name="ForumPostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="c231360f-4513-4594-ae78-e626fec5a9c7" />
+          <Property Name="ForumPostTitle" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="cf923a5c-7e18-4142-a760-08b4995b7eb0" />
+          <Property Name="ForumPostContent" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="115dd3a7-e3f5-429b-9200-9f6f0ff90076" />
+          <Property Name="CreatedTime" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="3617c3da-3b5f-4bb5-a936-ffc1c6eb50de" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="ccca700c-ddb9-4a26-afe6-6fefa3710e0b" />
+          <Property Name="ForumTopicID" Type="Int32" ed:ValidateRequired="false" ed:Guid="8d24f4f0-41e5-437d-932e-84f5cef05019" />
+          <Property Name="ForumID" Type="Int32" ed:ValidateRequired="false" ed:Guid="bc478329-1675-44d6-a246-4b3b007fd6c7" />
+          <Property Name="ShowInPortal" Type="Boolean" ed:ValidateRequired="false" ed:Guid="72a40d0e-6019-4e53-9e08-0a8401b2ddde" />
+          <Property Name="PostLocked" Type="Boolean" ed:ValidateRequired="false" ed:Guid="fa9d1467-5827-4b88-92f9-1adea570059d" />
+          <Property Name="ReviewCount" Type="Int32" ed:ValidateRequired="false" ed:Guid="3676146b-feef-4934-8856-9d65bd17c890" />
+          <Property Name="IsDefault" Type="Boolean" ed:ValidateRequired="false" ed:Guid="0ddba960-e4cd-4210-b18b-d95c170987d4" />
+          <NavigationProperty Name="ForumPostComments" Relationship="Xgteamc1XgTeamModel.CommentForumPost" FromRole="ForumPost" ToRole="ForumPostComments" ed:Guid="5b691b6b-4e0d-407a-8c1f-45773320704a" />
+          <NavigationProperty Name="ForumPostLikes" Relationship="Xgteamc1XgTeamModel.PostLikeForum" FromRole="ForumPost" ToRole="ForumPostLikes" ed:Guid="7f3b588e-d1c7-428a-a504-84dd85b38ae1" />
+          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.CreatedByPost" FromRole="ForumPosts" ToRole="User" ed:Guid="3e72ed43-9f28-4792-a8a5-07b7cd05ad89" />
+          <NavigationProperty Name="Forum" Relationship="Xgteamc1XgTeamModel.ForumPostForum" FromRole="ForumPosts" ToRole="Forum" ed:Guid="bfb51ce8-1e5f-4b49-8192-3689817a922e" />
+          <NavigationProperty Name="ForumTopic" Relationship="Xgteamc1XgTeamModel.ForumPostForumTopic" FromRole="ForumPosts" ToRole="ForumTopic" ed:Guid="ced87224-94fa-49b9-a77e-012eb5b676ed" />
         </EntityType>
-        <EntityType Name="Module" ed:Guid="7b7fbc21-d8b2-4a14-92f2-37e3b0312a43">
+        <EntityType Name="Module" ed:Guid="ce23b4ac-8d0a-478c-9bca-2c43acfb8a2d">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="70002d40-7065-409b-a678-4cf2f5b6754a" />
-          <Property Name="DisplayOrder" Type="Int32" ed:ValidateRequired="false" ed:Guid="fb83472b-d7a1-47d3-939a-fad291f1aa07" />
-          <Property Name="ModuleName" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="856e1be1-57a6-4529-9a41-adeadc54e481" />
-          <Property Name="PageIcon" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="91f05665-26e9-4481-bc88-9f21dcc0894b" />
-          <Property Name="PageUrl" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="0719a051-2ca9-4644-9cff-622eeaaffb67" />
-          <Property Name="PageSlug" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="1f6fad0e-04cf-42e7-8fb4-144352eca225" />
-          <Property Name="IsDeleted" Type="Boolean" ed:ValidateRequired="false" ed:Guid="655def00-3fd4-4e4f-84ef-d9684e309376" />
-          <Property Name="IsActive" Type="Boolean" ed:ValidateRequired="false" ed:Guid="1b8ae4b4-1e86-4331-8be9-f8e71992a99e" />
-          <Property Name="IsDefault" Type="Boolean" ed:ValidateRequired="false" ed:Guid="ac7e31df-f3fc-4b85-9f35-fe3cc2a29045" />
-          <Property Name="ParentModuleID" Type="Int32" ed:ValidateRequired="false" ed:Guid="6edf239f-17e3-406b-a225-c963924ce616" />
-          <NavigationProperty Name="UserPermissions" Relationship="Xgteamc1XgTeamModel.PermissionModule" FromRole="Module" ToRole="UserPermissions" ed:Guid="528778fb-f53b-42fe-8be7-f2beebccdd91" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="bbf38a72-4320-4aa2-9f75-550a72e34d30" />
+          <Property Name="DisplayOrder" Type="Int32" ed:ValidateRequired="false" ed:Guid="a67641f6-8d69-46fb-9f8e-6c077651b96f" />
+          <Property Name="ModuleName" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="2215234e-0a6e-4a80-85f6-d565d252d31f" />
+          <Property Name="PageIcon" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="f6d38271-4726-46d2-af58-d15021c69bd2" />
+          <Property Name="PageUrl" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="7eb022c3-e558-44f1-b798-578507e2d6c6" />
+          <Property Name="PageSlug" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="b4bd329b-12bd-4fab-a53f-63a09e67e132" />
+          <Property Name="IsDeleted" Type="Boolean" ed:ValidateRequired="false" ed:Guid="9b7a9b01-f73a-479f-80be-705eabcd21d2" />
+          <Property Name="IsActive" Type="Boolean" ed:ValidateRequired="false" ed:Guid="eae7b7ad-63a0-4f89-af79-a1de7bf996fd" />
+          <Property Name="IsDefault" Type="Boolean" ed:ValidateRequired="false" ed:Guid="121f0ca0-3ba8-48c6-a0ad-7bbaffacfa87" />
+          <Property Name="ParentModuleID" Type="Int32" ed:ValidateRequired="false" ed:Guid="41086657-7cfc-4a94-b9d0-45e1d45c49ac" />
+          <NavigationProperty Name="UserPermissions" Relationship="Xgteamc1XgTeamModel.PermissionModule" FromRole="Module" ToRole="UserPermissions" ed:Guid="2da33909-6fb1-4d2c-86c3-22c5b391c90f" />
         </EntityType>
-        <EntityType Name="Notification" ed:Guid="0dd271de-bc9b-4465-8e39-6221d7bdbb9c">
+        <EntityType Name="Notification" ed:Guid="7ad2dd01-cf5e-4430-beb3-634bc55b1607">
           <Key>
             <PropertyRef Name="NotificationID" />
           </Key>
-          <Property Name="NotificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="d7e44a48-cff5-4c88-9669-e95b36d0db30" />
-          <Property Name="Type" Type="Int32" ed:ValidateRequired="false" ed:Guid="b4ba2581-b90a-4b95-a236-1fa3ff2e5968" />
-          <Property Name="Details" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="98949f4e-b642-4746-8d0d-3e86305f27c8" />
-          <Property Name="Title" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="2b8b5ab7-d2c1-46bd-84b7-d15c6892e34d" />
-          <Property Name="DetailsUrl" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="80f3fa04-e1f5-43ec-b997-06336d05c33e" />
-          <Property Name="SentTo" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="03c54263-b54c-463a-adee-1c38dff2d22e" />
-          <Property Name="CreatedDate" Type="DateTime" ed:ValidateRequired="false" ed:Guid="bb168ccd-eef8-4c14-85b1-bac8ad4f936a" />
-          <Property Name="IsRead" Type="Boolean" ed:ValidateRequired="false" ed:Guid="f488d3f1-0831-489f-bc38-959f0ca40a42" />
-          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.UserNotification" FromRole="Notifications" ToRole="User" ed:Guid="0cca3ea3-3a53-469d-b959-f7c559b108f6" />
+          <Property Name="NotificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="81e9bd30-0d07-48be-a2ba-d89b67716a06" />
+          <Property Name="Type" Type="Int32" ed:ValidateRequired="false" ed:Guid="ccc1b579-48bb-4d87-8eba-9717e2a57ddd" />
+          <Property Name="Details" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="999aee71-e0ca-4552-93e8-caea8d82a681" />
+          <Property Name="Title" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="ea91e895-2c01-4b32-b1ae-88c12f190a5a" />
+          <Property Name="DetailsUrl" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="cdf8049a-1633-4104-8109-fdcf7cafffe8" />
+          <Property Name="SentTo" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="8b5ae05c-f321-492d-a996-6f826ae30db8" />
+          <Property Name="CreatedDate" Type="DateTime" ed:ValidateRequired="false" ed:Guid="8546211a-eb81-48fd-8889-c17f5c005305" />
+          <Property Name="IsRead" Type="Boolean" ed:ValidateRequired="false" ed:Guid="0a9beaf2-9a4d-4cfe-adda-4668f499b34b" />
+          <NavigationProperty Name="User" Relationship="Xgteamc1XgTeamModel.UserNotification" FromRole="Notifications" ToRole="User" ed:Guid="f0ff9c17-b3aa-4456-af47-0b4f5038935e" />
         </EntityType>
-        <EntityType Name="UserPermission" ed:Guid="9b35e88b-bc84-44d8-9e9b-15a6ff353d55">
+        <EntityType Name="UserPermission" ed:Guid="11ae4df4-2973-427f-b12c-0df25265eb2e">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="4e51ee8e-567c-4604-8576-260ef8d39c7e" />
-          <Property Name="ModuleID" Type="Int32" ed:ValidateRequired="false" ed:Guid="923f34cb-0e50-49a5-bd8b-c5ca49682ae8" />
-          <Property Name="RoleID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="478c2f1d-8678-4e41-a8c1-dd49b55e7ec5" />
-          <NavigationProperty Name="Module" Relationship="Xgteamc1XgTeamModel.PermissionModule" FromRole="UserPermissions" ToRole="Module" ed:Guid="d28a784f-8708-401f-b22d-e90f2f95ff44" />
-          <NavigationProperty Name="Role" Relationship="Xgteamc1XgTeamModel.RoleModule" FromRole="UserPermissions" ToRole="Role" ed:Guid="f75ff8c6-3338-478d-82ea-903153af9f34" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="7c726b0d-7a90-4f03-ad40-3fe5f99bb41a" />
+          <Property Name="ModuleID" Type="Int32" ed:ValidateRequired="false" ed:Guid="2a955e51-6ccc-43ea-9453-46a5879a5783" />
+          <Property Name="RoleID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="23250b6d-fc12-4e73-af72-984074856e4b" />
+          <NavigationProperty Name="Module" Relationship="Xgteamc1XgTeamModel.PermissionModule" FromRole="UserPermissions" ToRole="Module" ed:Guid="ce678ed0-b87e-4787-b107-c8e5f7be974b" />
+          <NavigationProperty Name="Role" Relationship="Xgteamc1XgTeamModel.RoleModule" FromRole="UserPermissions" ToRole="Role" ed:Guid="c0bb4758-ea31-4d3c-8c03-b82623f3922f" />
         </EntityType>
-        <EntityType Name="UserRole" ed:Guid="a3652bb6-2cec-4ebc-aa02-55f0c8099198">
+        <EntityType Name="UserRole" ed:Guid="4c6fefa4-f58b-4f55-9a4f-cf87fb1876ae">
           <Key>
             <PropertyRef Name="UserId" />
             <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="c75177ae-e453-4362-8a64-6132c93c8243" />
-          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="c0190531-9c7f-4717-96ed-42c7bc731d19" />
-          <Property Name="IdentityUserId" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="3dd72ed2-e356-486a-aa93-02397863fd8a" />
-          <Property Name="Discriminator" Type="String" Nullable="false" DefaultValue="''" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="10d4a951-21c6-4722-a8d8-1213f58f5530" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="4256446d-d9f1-4f6f-82c7-1551107f1602" />
+          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="905db3b5-e5d9-4c16-a32b-c5792688b61f" />
+          <Property Name="IdentityUserId" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="75943899-d7d9-4cf6-bf56-0a54eb74a3d6" />
+          <Property Name="Discriminator" Type="String" Nullable="false" DefaultValue="''" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="069b9a5d-b43b-491f-982d-15e0ef77645c" />
         </EntityType>
-        <EntityType Name="ProfileVisitor" ed:Guid="4151c71b-fe72-4649-871c-ea2f5de18c05">
+        <EntityType Name="ProfileVisitor" ed:Guid="ecc635be-aef3-4a34-a00b-1ab9212a663d">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="0f02af43-8ddd-49fe-8367-35af044a2c1d" />
-          <Property Name="UserID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="421721f4-ad92-483d-877b-2d70318e587b" />
-          <Property Name="VisitorID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="854d88db-cd39-4402-b685-6462879b6e76" />
-          <Property Name="VisitedDate" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="a554f7c6-60c6-4e7b-aa72-31e234a9fc8b" />
-          <NavigationProperty Name="User_UserID" Relationship="Xgteamc1XgTeamModel.VisitedID" FromRole="ProfileVisitors_UserID" ToRole="User_UserID" ed:Guid="4ac132df-5a9f-4aff-a003-7dd9789d8025" />
-          <NavigationProperty Name="User_VisitorID" Relationship="Xgteamc1XgTeamModel.VisitorId" FromRole="ProfileVisitors_VisitorID" ToRole="User_VisitorID" ed:Guid="6716b319-eeae-4a96-a06b-165a1cbd91f7" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="e9711a89-a6c5-4114-97bc-039ecda2ebde" />
+          <Property Name="UserID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="1294c0bd-92e5-45ff-9c13-2100ef6a39ce" />
+          <Property Name="VisitorID" Type="String" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="cb29a80e-f4e7-41a7-b711-cf9aac592225" />
+          <Property Name="VisitedDate" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="35ce28fc-f52b-44ab-8b55-7d1c38746258" />
+          <NavigationProperty Name="User_UserID" Relationship="Xgteamc1XgTeamModel.VisitedID" FromRole="ProfileVisitors_UserID" ToRole="User_UserID" ed:Guid="49903231-c039-478b-bf0a-2ac631ef725f" />
+          <NavigationProperty Name="User_VisitorID" Relationship="Xgteamc1XgTeamModel.VisitorId" FromRole="ProfileVisitors_VisitorID" ToRole="User_VisitorID" ed:Guid="9f300704-0902-4fd3-82cd-e37511422f75" />
         </EntityType>
-        <Association Name="CommentForumPost" ed:Guid="17e0daad-5afa-421f-974f-6ae6d539b4df">
+        <Association Name="CommentForumPost" ed:Guid="518b84bb-33f3-4f64-9fb4-a365cc2d486f">
           <End Role="ForumPost" Type="Xgteamc1XgTeamModel.ForumPost" Multiplicity="0..1" />
           <End Role="ForumPostComments" Type="Xgteamc1XgTeamModel.ForumPostComment" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1307,7 +1325,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CreatedByComment" ed:Guid="3a7994a3-6fa0-4281-bec0-6c88750249ea">
+        <Association Name="CreatedByComment" ed:Guid="620ad586-ce22-485a-a463-9dd60d7b1edd">
           <End Role="User" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="ForumPostComments" Type="Xgteamc1XgTeamModel.ForumPostComment" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1319,7 +1337,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CreatedByForumTopic" ed:Guid="e9e11de0-29e7-4ca1-b6bb-c3acf88443d0">
+        <Association Name="CreatedByForumTopic" ed:Guid="7427578b-7870-4fd2-bf6d-a97b8dd677bc">
           <End Role="User" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="ForumTopics" Type="Xgteamc1XgTeamModel.ForumTopic" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1331,7 +1349,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ForumForumTopic" ed:Guid="8c50e454-4b30-411b-b59a-b8579aefd2db">
+        <Association Name="ForumForumTopic" ed:Guid="5fa239f0-44f1-4b8d-ab73-825c0941342b">
           <End Role="Forum" Type="Xgteamc1XgTeamModel.Forum" Multiplicity="0..1" />
           <End Role="ForumTopics" Type="Xgteamc1XgTeamModel.ForumTopic" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1343,7 +1361,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RequestFutureFriend" ed:Guid="79bc96a4-a5a0-41f8-966d-a1cf6bad228e">
+        <Association Name="RequestFutureFriend" ed:Guid="5ce26ac3-c972-4ae9-ad80-3622a4d57aab">
           <End Role="User_FutureFriendID" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="FriendRequests_FutureFriendID" Type="Xgteamc1XgTeamModel.FriendRequest" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1355,7 +1373,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RequestUser" ed:Guid="08cedcc7-40b6-485c-a0a2-e1e717751bd3">
+        <Association Name="RequestUser" ed:Guid="70ebbbc8-c477-4323-839d-9df11a17f59f">
           <End Role="User_UserID" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="FriendRequests_UserID" Type="Xgteamc1XgTeamModel.FriendRequest" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1367,7 +1385,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CommentLikeComment" ed:Guid="0060635a-9dbd-4fe2-889b-2a1ae0f66005">
+        <Association Name="CommentLikeComment" ed:Guid="ef223967-af44-4b7a-b667-c5c6fdaa9216">
           <End Role="ForumPostComment" Type="Xgteamc1XgTeamModel.ForumPostComment" Multiplicity="0..1" />
           <End Role="ForumCommentLikes" Type="Xgteamc1XgTeamModel.ForumCommentLike" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1379,7 +1397,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CommentUser" ed:Guid="1af4c848-c539-42f1-b08f-3551acdd805d">
+        <Association Name="CommentUser" ed:Guid="2f82ae86-1f8e-450c-a60b-56d757a45d1f">
           <End Role="User" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="ForumCommentLikes" Type="Xgteamc1XgTeamModel.ForumCommentLike" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1391,7 +1409,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UserPortalMessage" ed:Guid="f87c8f6e-591a-416c-814f-da89bea236ed">
+        <Association Name="UserPortalMessage" ed:Guid="9284533f-837b-4fb4-9947-059c2bbcc6c4">
           <End Role="User" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="PortalMessages" Type="Xgteamc1XgTeamModel.PortalMessage" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1403,7 +1421,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UserCountry" ed:Guid="44e792c3-6148-4d34-a666-e5605d39ef54">
+        <Association Name="UserCountry" ed:Guid="c8284133-c656-41e5-94e2-b183687f5d11">
           <End Role="Country" Type="Xgteamc1XgTeamModel.Country" Multiplicity="0..1" />
           <End Role="UserInfoes" Type="Xgteamc1XgTeamModel.UserInfoe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1415,7 +1433,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UserInsertBy" ed:Guid="47d5dabc-be5a-41f3-acc5-9b81003fbc1b">
+        <Association Name="UserInsertBy" ed:Guid="0434329c-ccb6-444a-a151-fb12d01267fa">
           <End Role="User_InsertBy" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="UserInfoes_InsertBy" Type="Xgteamc1XgTeamModel.UserInfoe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1427,7 +1445,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UserModifiedBy" ed:Guid="3d2971d1-b950-46d0-9e08-4e3d5dbbda02">
+        <Association Name="UserModifiedBy" ed:Guid="37de7761-d68e-4b45-8700-e1585a5a5566">
           <End Role="User_LastModifiedBy" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="UserInfoes_LastModifiedBy" Type="Xgteamc1XgTeamModel.UserInfoe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1439,7 +1457,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="User_Info" ed:Guid="6365732b-82dc-483f-bc47-ac55416fd347">
+        <Association Name="User_Info" ed:Guid="41779a22-128e-486c-8f06-f33061f6c613">
           <End Role="User_Id" Type="Xgteamc1XgTeamModel.User" Multiplicity="1" />
           <End Role="UserInfoe_Id" Type="Xgteamc1XgTeamModel.UserInfoe" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -1451,7 +1469,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="User_Types" ed:Guid="47d631d1-80ce-4c3c-a610-65291ac63607">
+        <Association Name="User_Types" ed:Guid="4ed1b907-43d4-41af-9949-60084eb4d0ae">
           <End Role="UserType" Type="Xgteamc1XgTeamModel.UserType" Multiplicity="0..1" />
           <End Role="UserInfoes" Type="Xgteamc1XgTeamModel.UserInfoe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1463,7 +1481,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FriendFutureFriend" ed:Guid="4289f548-844f-45f3-a860-0f530123efd5">
+        <Association Name="FriendFutureFriend" ed:Guid="e82e6f1d-8ed8-4b62-913c-91de87b8a002">
           <End Role="User_FutureFriendID" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="Friends_FutureFriendID" Type="Xgteamc1XgTeamModel.Friend" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1475,7 +1493,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UserID" ed:Guid="c2e85d46-9eee-4df0-b600-ff98ced1e17f">
+        <Association Name="UserID" ed:Guid="c23ff00c-af1c-4b47-8a0b-f02402fd0ca5">
           <End Role="User_UserID" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="Friends_UserID" Type="Xgteamc1XgTeamModel.Friend" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1487,7 +1505,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ChatBoxReceiver" ed:Guid="52363ff2-6302-43a6-9808-c724049c137a">
+        <Association Name="ChatBoxReceiver" ed:Guid="29e65071-7286-414d-9760-1d14690269e2">
           <End Role="User_ReceiverID" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="ChatBoxes_ReceiverID" Type="Xgteamc1XgTeamModel.ChatBox" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1499,7 +1517,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ChatBoxSender" ed:Guid="1a128882-f33d-48bc-8a82-0e970ba0f76f">
+        <Association Name="ChatBoxSender" ed:Guid="c8e5fc2d-c9cb-42e2-a1aa-38be51c5a6c7">
           <End Role="User_SenderID" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="ChatBoxes_SenderID" Type="Xgteamc1XgTeamModel.ChatBox" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1511,7 +1529,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PostLikeForum" ed:Guid="ef51f81f-9859-431e-972e-03b12d2ecc18">
+        <Association Name="PostLikeForum" ed:Guid="30ea503a-1883-4be0-ae54-78c6fa376afd">
           <End Role="ForumPost" Type="Xgteamc1XgTeamModel.ForumPost" Multiplicity="0..1" />
           <End Role="ForumPostLikes" Type="Xgteamc1XgTeamModel.ForumPostLike" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1523,7 +1541,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UserPostLike" ed:Guid="7b60f741-8508-491b-92f2-043520c74d23">
+        <Association Name="UserPostLike" ed:Guid="ca8d3744-6b45-4b74-926d-c98100bd0811">
           <End Role="User" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="ForumPostLikes" Type="Xgteamc1XgTeamModel.ForumPostLike" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1535,7 +1553,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ChatChatBox" ed:Guid="b47d6510-49e9-4cb1-a886-63aad5f8c963">
+        <Association Name="ChatChatBox" ed:Guid="b5832792-2a31-4fb9-9cfc-244e3a193405">
           <End Role="ChatBox" Type="Xgteamc1XgTeamModel.ChatBox" Multiplicity="0..1" />
           <End Role="Chats" Type="Xgteamc1XgTeamModel.Chat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1547,7 +1565,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ChatReceiver" ed:Guid="8e0d5cb0-26c2-46b8-b40c-df345bb27ac0">
+        <Association Name="ChatReceiver" ed:Guid="e0763a0e-6ce5-4c76-b5d6-0a72bd7a4d9e">
           <End Role="User_ReceiverID" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="Chats_ReceiverID" Type="Xgteamc1XgTeamModel.Chat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1559,7 +1577,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ChatSender" ed:Guid="101aec30-9cb7-4a6f-aa7b-a00e774e6211">
+        <Association Name="ChatSender" ed:Guid="aa611d17-0f87-4430-853e-eaacb3e32059">
           <End Role="User_SenderID" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="Chats_SenderID" Type="Xgteamc1XgTeamModel.Chat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1571,7 +1589,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CreatedByForum" ed:Guid="9cc832f1-2145-4eac-894c-21cb8e035c8b">
+        <Association Name="CreatedByForum" ed:Guid="0f8bcb55-6345-4a16-a4b4-7c844917c4a3">
           <End Role="User" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="Fora" Type="Xgteamc1XgTeamModel.Forum" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1583,7 +1601,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CreatedByPost" ed:Guid="cabb0226-83e6-4a3b-a11d-93a730c79d7a">
+        <Association Name="CreatedByPost" ed:Guid="e1aaa9ce-afd0-4f36-9304-0fb50757c28a">
           <End Role="User" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="ForumPosts" Type="Xgteamc1XgTeamModel.ForumPost" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1595,7 +1613,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ForumPostForum" ed:Guid="d47ad215-6cb1-4e65-970b-d13939624c6e">
+        <Association Name="ForumPostForum" ed:Guid="0f55e4c8-9c49-4801-b1f4-7a672d10d83f">
           <End Role="Forum" Type="Xgteamc1XgTeamModel.Forum" Multiplicity="0..1" />
           <End Role="ForumPosts" Type="Xgteamc1XgTeamModel.ForumPost" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1607,7 +1625,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ForumPostForumTopic" ed:Guid="2a426f6f-ebbf-43c7-8e72-30c0a4969445">
+        <Association Name="ForumPostForumTopic" ed:Guid="49ab931e-7df9-4051-bbcb-0ccc2b754cb3">
           <End Role="ForumTopic" Type="Xgteamc1XgTeamModel.ForumTopic" Multiplicity="0..1" />
           <End Role="ForumPosts" Type="Xgteamc1XgTeamModel.ForumPost" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1619,7 +1637,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UserNotification" ed:Guid="7143717b-4e46-42df-9ae3-b7361df5a9d1">
+        <Association Name="UserNotification" ed:Guid="95a626cb-80a5-4911-9f5c-7cb8a1759efb">
           <End Role="User" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="Notifications" Type="Xgteamc1XgTeamModel.Notification" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1631,7 +1649,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PermissionModule" ed:Guid="985a2f21-1c9b-4cb8-baee-33489dcd628c">
+        <Association Name="PermissionModule" ed:Guid="5a44b638-3ad1-45db-925b-4f0e7a683f17">
           <End Role="Module" Type="Xgteamc1XgTeamModel.Module" Multiplicity="0..1" />
           <End Role="UserPermissions" Type="Xgteamc1XgTeamModel.UserPermission" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1643,7 +1661,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RoleModule" ed:Guid="0dbd281b-cb0a-4bc2-9b1a-ee2b6b0e87f6">
+        <Association Name="RoleModule" ed:Guid="68b161d6-a5ca-4ece-a25e-987439723842">
           <End Role="Role" Type="Xgteamc1XgTeamModel.Role" Multiplicity="0..1" />
           <End Role="UserPermissions" Type="Xgteamc1XgTeamModel.UserPermission" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1655,7 +1673,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="VisitedID" ed:Guid="f29444ab-c86c-4525-80f1-b71a6d72793a">
+        <Association Name="VisitedID" ed:Guid="481f6c29-9758-443c-88b3-88605b262e13">
           <End Role="User_UserID" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="ProfileVisitors_UserID" Type="Xgteamc1XgTeamModel.ProfileVisitor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1667,7 +1685,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="VisitorId" ed:Guid="6017c177-5acc-4fa3-ad5d-e7c95efc4b24">
+        <Association Name="VisitorId" ed:Guid="6a771ddf-acd4-4b26-b740-90e70a347368">
           <End Role="User_VisitorID" Type="Xgteamc1XgTeamModel.User" Multiplicity="0..1" />
           <End Role="ProfileVisitors_VisitorID" Type="Xgteamc1XgTeamModel.ProfileVisitor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1798,6 +1816,15 @@
                 <ScalarProperty Name="FutureFriendID" ColumnName="FutureFriendID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="BecameFriendDate" ColumnName="BecameFriendDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="Xgteamc1XgTeamModel.Setting">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="SettingId" ColumnName="SettingId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -7,12 +7,16 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class CountryManager : ICountryService
     {
+        #region Fields
         private ICountryDal _countryDal;
+        #endregion
 
+        #region Ctor
         public CountryManager(ICountryDal countryDal)
         {
             _countryDal = countryDal;
         }
+        #endregion
 
         public void Add(Country country)
         {

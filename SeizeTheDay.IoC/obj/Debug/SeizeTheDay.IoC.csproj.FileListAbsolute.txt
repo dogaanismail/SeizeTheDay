@@ -580,3 +580,5 @@ C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\SeizeTheDay.DataDomain.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\SeizeTheDay.DataDomain.dll.config
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\Dapper.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\Dapper.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\SeizeTheDay.Common.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Debug\SeizeTheDay.Common.pdb

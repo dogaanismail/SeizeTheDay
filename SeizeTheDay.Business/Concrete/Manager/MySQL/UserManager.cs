@@ -8,14 +8,18 @@ using Xgteamc1XgTeamModel;
 
 namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
-
     public class UserManager : IUserService
     {
+        #region Fields
         private IUserDal _userDal;
+        #endregion
+
+        #region Ctor
         public UserManager(IUserDal userDal)
         {
             _userDal = userDal;
         }
+        #endregion
 
         public void AddUser(User user)
         {
@@ -65,7 +69,6 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
         public User SingleStringIncludeWithExp(string id, params string[] children)
         {
             return _userDal.StringIncludeSingleWithExpression(x => x.Id == id, "UserInfoe_Id", "ForumPosts", "ForumPostComments", "ForumPostComments.ForumPost", "ForumPostComments.ForumPost.ForumTopic", "ForumPostComments.ForumPost.ForumPostComments", "ForumPostComments.ForumPost.ForumPostLikes", "ForumPostComments.User", "ForumPostComments.User.UserInfoe_Id", "ForumPostComments.User.UserInfoe_Id", "UserInfoe_Id.Country", "FriendRequests_FutureFriendID", "FriendRequests_UserID", "Friends_UserID", "Friends_FutureFriendID", "ProfileVisitors_VisitorID", "ProfileVisitors_VisitorID.User_UserID", "ProfileVisitors_VisitorID.User_UserID.UserInfoe_Id", "ProfileVisitors_UserID", "ProfileVisitors_UserID.User_UserID", "ProfileVisitors_UserID.User_UserID.UserInfoe_Id", "UserInfoe_Id.UserType");
-            //return _userDal.StringIncludeSingleWithExpression(x => x.Id == id, "UserInfoe_Id", "x.UserInfoe_Id.Country", "ForumPosts", "ForumPostComments", "FriendRequests_FutureFriendID", "FriendRequests_UserID", "Friends_UserID", "Friends_FutureFriendID", "ForumPostLikes", "ForumCommentLikes", "ChatBoxes_ReceiverID", "ChatBoxes_SenderID", "Chats_SenderID", "Chats_ReceiverID", "ProfileVisitors_VisitorID", "ProfileVisitors_VisitorID.User_UserID", "ProfileVisitors_VisitorID.User_UserID.UserInfoe_Id", "ProfileVisitors_UserID", "ProfileVisitors_UserID.User_UserID", "ProfileVisitors_UserID.User_UserID.UserInfoe_Id", "UserInfoe_Id.UserType");
         }
 
         [CacheAspect(typeof(MemoryCacheManager), 30)]
@@ -77,7 +80,6 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
         public List<User> TolistInclude()
         {
             return _userDal.TolistInclude(x => x.UserInfoe_Id);
-
         }
 
         public void Update(User User)

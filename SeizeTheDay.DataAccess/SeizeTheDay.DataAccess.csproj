@@ -137,6 +137,7 @@
     <Compile Include="Dapper\Abstract\MySQL\INotificationDataMapper.cs" />
     <Compile Include="Dapper\Abstract\MySQL\IPortalMessageDataMapper.cs" />
     <Compile Include="Dapper\Abstract\MySQL\IRoleDataMapper.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\ISettingDataMapper.cs" />
     <Compile Include="Dapper\Abstract\MySQL\IUserDataMapper.cs" />
     <Compile Include="Dapper\Abstract\MySQL\IUserInfoDataMapper.cs" />
     <Compile Include="Dapper\Abstract\MySQL\IUserPermissionDataMapper.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Dapper\Concrete\MySQL\NotificationDataMapper.cs" />
     <Compile Include="Dapper\Concrete\MySQL\PortalMessageDataMapper.cs" />
     <Compile Include="Dapper\Concrete\MySQL\RoleDataMapper.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\SettingDataMapper.cs" />
     <Compile Include="Dapper\Concrete\MySQL\UserRoleDataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

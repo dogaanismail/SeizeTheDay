@@ -7,11 +7,16 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class UserPermissionManager : IUserPermissionService
     {
+        #region Fields
         private IUserPermissionDal _userPermission;
+        #endregion
+
+        #region Ctor
         public UserPermissionManager(IUserPermissionDal userPermission)
         {
             _userPermission = userPermission;
         }
+        #endregion
 
         public void Add(UserPermission permission)
         {

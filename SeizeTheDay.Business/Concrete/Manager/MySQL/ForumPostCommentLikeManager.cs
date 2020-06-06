@@ -7,6 +7,7 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class ForumPostCommentLikeManager : IForumPostCommentLikeService
     {
+        #region Ctor
 
         private IForumCommentLikeDal _forumCommentLikeDal;
 
@@ -14,6 +15,8 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
         {
             _forumCommentLikeDal = forumCommentLikeDal;
         }
+        #endregion
+
         public void Add(ForumCommentLike forumCommentLike)
         {
             _forumCommentLikeDal.Add(forumCommentLike);

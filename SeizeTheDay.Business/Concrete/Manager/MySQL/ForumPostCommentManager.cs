@@ -7,13 +7,14 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class ForumPostCommentManager : IForumPostCommentService
     {
-
+        #region Ctor
         private IForumPostCommentDal _forumPostCommentDal;
 
         public ForumPostCommentManager(IForumPostCommentDal forumPostComment)
         {
             _forumPostCommentDal = forumPostComment;
         }
+        #endregion
 
         public void Add(ForumPostComment forumPostComment)
         {

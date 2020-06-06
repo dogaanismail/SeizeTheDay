@@ -9,11 +9,16 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class PortalMessageManager : IPortalMessagesService
     {
+        #region Fields
         private IPortalMessagesDal _portalMessagesDal;
+        #endregion
+
+        #region Ctor
         public PortalMessageManager(IPortalMessagesDal portalMessagesDal)
         {
             _portalMessagesDal = portalMessagesDal;
         }
+        #endregion
 
         public void Add(PortalMessage messages)
         {

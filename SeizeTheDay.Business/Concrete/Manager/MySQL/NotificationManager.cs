@@ -9,12 +9,18 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class NotificationManager : INotificationService
     {
+        #region Fields
         private readonly INotificationDal _notificationDal;
+        #endregion
+
+        #region Ctor
 
         public NotificationManager(INotificationDal notificationDal)
         {
             _notificationDal = notificationDal;
         }
+        #endregion
+
         public void Add(Notification notification)
         {
             _notificationDal.Add(notification);

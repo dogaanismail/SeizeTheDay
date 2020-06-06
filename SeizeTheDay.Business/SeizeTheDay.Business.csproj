@@ -146,6 +146,7 @@
     <Compile Include="Dapper\Abstract\MySQL\IForumTopicDapperService.cs" />
     <Compile Include="Dapper\Abstract\MySQL\INotificationDapperService.cs" />
     <Compile Include="Dapper\Abstract\MySQL\IPortalMessageDapperService.cs" />
+    <Compile Include="Dapper\Abstract\MySQL\ISettingDapperService.cs" />
     <Compile Include="Dapper\Concrete\MySQL\ForumDapperService.cs" />
     <Compile Include="Dapper\Concrete\MySQL\ForumPostCommentDapperService.cs" />
     <Compile Include="Dapper\Concrete\MySQL\ForumPostCommentLikeDapperService.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Dapper\Concrete\MySQL\ForumTopicDapperService.cs" />
     <Compile Include="Dapper\Concrete\MySQL\NotificationDapperService.cs" />
     <Compile Include="Dapper\Concrete\MySQL\PortalMessageDapperService.cs" />
+    <Compile Include="Dapper\Concrete\MySQL\SettingDapperService.cs" />
     <Compile Include="Mappings\AutoMapper\Profiles\BusinessProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationRules\FluentValidation\ForumPostValidator.cs" />
@@ -164,6 +166,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\SeizeTheDay.Common\SeizeTheDay.Common.csproj">
+      <Project>{5E0DA995-D74E-4ADA-8C3F-D655FA594567}</Project>
+      <Name>SeizeTheDay.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SeizeTheDay.Core\SeizeTheDay.Core.csproj">
       <Project>{18723BD2-A5DE-4635-8C62-5DBCDCCB5FA3}</Project>
       <Name>SeizeTheDay.Core</Name>

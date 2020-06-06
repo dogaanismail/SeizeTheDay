@@ -8,11 +8,16 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class ModuleManager : IModuleService
     {
+        #region Fields
         private IModuleDal _moduleDal;
+        #endregion
+
+        #region Ctor
         public ModuleManager(IModuleDal moduleDal)
         {
             _moduleDal = moduleDal;
         }
+        #endregion
 
         public void Add(Module module)
         {

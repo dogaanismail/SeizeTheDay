@@ -390,3 +390,5 @@ C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Release\SeizeTheDay.IoC.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\obj\Release\SeizeTheDay.IoC.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Release\Dapper.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Release\Dapper.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Release\SeizeTheDay.Common.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.IoC\bin\Release\SeizeTheDay.Common.pdb

@@ -7,12 +7,14 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class ForumPostLikeManager : IForumPostLikeService
     {
+        #region Ctor
         private IForumPostLikeDal _forumPostLikeDal;
 
         public ForumPostLikeManager(IForumPostLikeDal forumPostLikeDal)
         {
             _forumPostLikeDal = forumPostLikeDal;
         }
+        #endregion
 
         public void Add(ForumPostLike forumpostLike)
         {

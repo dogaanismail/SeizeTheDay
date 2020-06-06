@@ -172,3 +172,5 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\obj\Release\SeizeTheDay.Ninject.cspr
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\obj\Release\SeizeTheDay.Ninject.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\obj\Release\SeizeTheDay.Ninject.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\obj\Release\SeizeTheDay.Ninject.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\SeizeTheDay.Common.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\SeizeTheDay.Common.pdb

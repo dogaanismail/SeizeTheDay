@@ -241,3 +241,5 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Business\obj\Release\SeizeTheDay.Business.dl
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\obj\Release\SeizeTheDay.Business.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Release\Dapper.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Release\Dapper.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Release\SeizeTheDay.Common.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Release\SeizeTheDay.Common.pdb

@@ -9,11 +9,17 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class ForumTopicManager : IForumTopicService
     {
+        #region Fields
+
         private IForumTopicDal _forumTopicDal;
+        #endregion
+
+        #region Ctor
         public ForumTopicManager(IForumTopicDal forumTopicDal)
         {
             _forumTopicDal = forumTopicDal;
         }
+        #endregion
 
         public void Add(ForumTopic forumtopic)
         {

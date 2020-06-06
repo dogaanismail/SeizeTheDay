@@ -7,11 +7,16 @@ namespace SeizeTheDay.Business.Concrete.Manager.MySQL
 {
     public class FriendRequestManager : IFriendRequestService
     {
+        #region Fields
         private IFriendRequestDal _friendRequestDal;
+        #endregion
+
+        #region Ctor
         public FriendRequestManager(IFriendRequestDal friendRequestDal)
         {
             _friendRequestDal = friendRequestDal;
         }
+        #endregion
 
         public void Add(FriendRequest request)
         {
