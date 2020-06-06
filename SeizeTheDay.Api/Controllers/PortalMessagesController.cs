@@ -13,6 +13,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
 using Xgteamc1XgTeamModel;
 
 namespace SeizeTheDay.Api.Controllers
@@ -34,10 +35,10 @@ namespace SeizeTheDay.Api.Controllers
         [HttpGet]
         [Route("getmessages")]
         [PerformanceCounterAspect]
+        [Authorize]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<PortalMessageDto> GetPortalMessages()
         {
-
             List<PortalMessageDto> messages = _portalMessagesService.GetAllLazyWithoutID().OrderBy(x => x.SendDate)
                 .Select(x => new PortalMessageDto
                 {
@@ -64,7 +65,7 @@ namespace SeizeTheDay.Api.Controllers
                 PortalMessage newMessage = new PortalMessage
                 {
                     PortalMessageUserID = User.Identity.GetUserId(),
-                    TextMessage = model.ToString(),
+                    TextMessage = model.TextMessage.ToString(),
                     SendDate = DateTime.Now
                 };
                 _portalMessagesService.Add(newMessage);
@@ -72,12 +73,17 @@ namespace SeizeTheDay.Api.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message.ToString());
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest)
+                {
+                    Content = new StringContent(string.Format(ex.Message)),
+                    ReasonPhrase = " Employee ID Not Found"
+                });
             }
         }
 
         [Route("deletemessage")]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult Delete(int id)
         {
             try
@@ -94,6 +100,7 @@ namespace SeizeTheDay.Api.Controllers
 
         [Route("deletemessage")]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult Delete([FromBody] PortalMessageDto model)
         {
             try

@@ -1,6 +1,7 @@
 ﻿using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using SeizeTheDay.DataDomain.Handlers;
 
 namespace SeizeTheDay.Api
 {
@@ -10,7 +11,7 @@ namespace SeizeTheDay.Api
         {
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
-            //config.MessageHandlers.Add(new ApiResponseHandler());
+            config.MessageHandlers.Add(new ApiResponseHandler());
             config.SuppressDefaultHostAuthentication();        
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));        
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();

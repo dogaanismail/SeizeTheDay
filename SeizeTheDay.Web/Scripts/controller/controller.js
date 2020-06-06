@@ -2109,7 +2109,6 @@ app.controller('DetailCtrl', ['$scope', '$sce', '$window', 'forumPostService', '
 
             forumPostService.deletePost(obj).then(function (result) {
                 if (result.data.result === 200) {
-                    console.log(result);
                     $window.location.href = '/Home/Index';
                 }
             });
@@ -2143,8 +2142,8 @@ app.controller('LayoutCtrl', ['$scope', '$window', 'notificationService',
             $scope.settings = false;
 
             if (IsLoggedUser == 'True') {
-                $scope.getTotalNotif(); //for general notifications
-                $scope.getTotalMessageNotif(); //for message notifications
+                //$scope.getTotalNotif(); //for general notifications
+                //$scope.getTotalMessageNotif(); //for message notifications
             }
         };
 

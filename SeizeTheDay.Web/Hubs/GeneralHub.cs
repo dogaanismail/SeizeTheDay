@@ -11,12 +11,17 @@ using SeizeTheDay.DataDomain.SignalRModels;
 using SeizeTheDay.DataDomain.DTOs;
 using SeizeTheDay.Core.Constants;
 using SeizeTheDay.Web.ServiceManager;
+using System.Web.Http;
+using SeizeTheDay.DataDomain.Api;
+using System.Web.Http.Results;
+using SeizeTheDay.DataDomain.Common;
+using SeizeTheDay.DataDomain.Enumerations;
 
 namespace SeizeTheDay.Hubs
 {
     public class GeneralHub : Hub
     {
-      
+
         #region Services
         private readonly IPortalMessagesService _portalMessagesService = InstanceFactory.GetInstance<IPortalMessagesService>();
         private readonly IChatBoxService _chatBoxService = InstanceFactory.GetInstance<IChatBoxService>();
@@ -38,20 +43,18 @@ namespace SeizeTheDay.Hubs
         //this is for portal messages
         public void Send(string username, string message)
         {
-            string con = Context.ConnectionId;
-
-            var result = RestSharpManager.RestSharpGet<List<PortalMessageDto>>(ApiUrlConstants.GetPortalMessages);
-
-            Xgteamc1XgTeamModel.User getUser = _userService.GetByUserName(username);
-            Xgteamc1XgTeamModel.PortalMessage newMessage = new Xgteamc1XgTeamModel.PortalMessage
+            PortalMessageApi data = new PortalMessageApi
             {
-                PortalMessageUserID = getUser.Id,
-                TextMessage = message.ToString(),
-                SendDate = DateTime.Now
+                TextMessage = message.ToString()
             };
-            _portalMessagesService.Add(newMessage);
-            // Call the addNewMessage method to update clients.
-            Clients.All.addNewMessage(username, message);
+
+            //var messages = RestSharpManager.Call<ApiResponse<List<PortalMessageDto>>>(ApiUrlConstants.GetPortalMessages, null, RestSharp.Method.GET, RestSharp.DataFormat.Json, false, true);
+            var result = RestSharpManager.RestSharpPost<ApiResponse<ApiStatusEnum>>(ApiUrlConstants.CreatePortalMessage, data);
+            if (result.StatusCode == (int)ApiStatusEnum.Ok)
+            {
+                // Call the addNewMessage method to update clients.
+                Clients.All.addNewMessage(username, message);
+            }
         }
 
         #endregion

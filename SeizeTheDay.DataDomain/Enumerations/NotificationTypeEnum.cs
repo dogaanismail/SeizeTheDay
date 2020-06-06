@@ -8,6 +8,6 @@ namespace SeizeTheDay.DataDomain.Enumerations
         Notification = 0,
 
         [Display(Name = "MessageNotification")]
-        MessageNotification = 0,
+        MessageNotification = 1,
     }
 }

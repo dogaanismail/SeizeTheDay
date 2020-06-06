@@ -7,9 +7,13 @@
         #endregion
 
         #region PortalMessage
-        public const string GetPortalMessages = "https://localhost:44367/api/messages/getmessages";
+        public const string GetPortalMessages = "https://localhost:44367/api/messages/getmessagesbydapper";
         public const string CreatePortalMessage = "https://localhost:44367/api/messages/createmessage";
         public const string DeletePortalMessage = "https://localhost:44367/api/messages/deletemessage";
+        #endregion
+
+        #region Account
+        public const string GetToken = "https://localhost:44367/token";
         #endregion
 
         #region Forum

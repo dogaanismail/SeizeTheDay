@@ -9,8 +9,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SeizeTheDay.Business.Abstract.MySQL;
 using SeizeTheDay.Business.Concrete.IdentityManagers;
+using SeizeTheDay.Core.Constants;
+using SeizeTheDay.DataDomain.Api;
+using SeizeTheDay.DataDomain.Common;
 using SeizeTheDay.DataDomain.ViewModels;
 using SeizeTheDay.Entities.Identity.Entities;
+using SeizeTheDay.Web.ServiceManager;
 
 namespace SeizeTheDay.Web.Controllers
 {
@@ -27,8 +31,8 @@ namespace SeizeTheDay.Web.Controllers
 
 
         public AccountController(ApplicationUserManager userManager, IUserService userService,
-            IUserInfoService userInfoService,  ApplicationSignInManager signInManager, 
-            ApplicationRoleManager roleManager, IAuthenticationManager authenticationManager )
+            IUserInfoService userInfoService, ApplicationSignInManager signInManager,
+            ApplicationRoleManager roleManager, IAuthenticationManager authenticationManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -56,7 +60,7 @@ namespace SeizeTheDay.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(SeizeTheDay.DataDomain.ViewModels.LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -89,6 +93,14 @@ namespace SeizeTheDay.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    ClientConfigApi client = new ClientConfigApi
+                    {
+                        grant_type = "password",
+                        userName = model.UserName,
+                        password = model.Password,
+                    };
+                    string encodedBody = string.Format("userName={0}&password={1}&grant_type={2}", client.userName, client.password, client.grant_type);
+                    var loginResult = RestSharpManager.Call<object>(ApiUrlConstants.GetToken, encodedBody, RestSharp.Method.POST, RestSharp.DataFormat.Json, false, true, "application/x-www-form-urlencoded");
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -295,7 +307,7 @@ namespace SeizeTheDay.Web.Controllers
         }
 
         #endregion
-             
+
         #region ForgotPassword
         //
         // GET: /Account/ForgotPassword
@@ -349,7 +361,7 @@ namespace SeizeTheDay.Web.Controllers
 
         #region ResetPassword
 
-       
+
         // GET: /Account/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
@@ -357,7 +369,7 @@ namespace SeizeTheDay.Web.Controllers
             return code == null ? View("Error") : View();
         }
 
-       
+
         // POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
@@ -381,7 +393,7 @@ namespace SeizeTheDay.Web.Controllers
             return RedirectToAction("ResetPasswordConfirmation", "Account");
         }
 
-        
+
         // GET: /Account/ResetPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
@@ -473,7 +485,7 @@ namespace SeizeTheDay.Web.Controllers
         }
 
         #endregion
-       
+
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

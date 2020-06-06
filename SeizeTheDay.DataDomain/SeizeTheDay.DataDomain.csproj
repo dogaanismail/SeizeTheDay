@@ -97,6 +97,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\ClientConfigApi.cs" />
     <Compile Include="Api\ForumApi.cs" />
     <Compile Include="Api\ForumPostApi.cs" />
     <Compile Include="Api\ForumPostCommentApi.cs" />
