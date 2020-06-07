@@ -279,6 +279,7 @@
     <Compile Include="Areas\Admin\Controllers\IconController.cs" />
     <Compile Include="Areas\Admin\Controllers\ModuleController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\ValuesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -2214,6 +2215,7 @@
     <Content Include="Scripts\services\Admin\DashboardService\dashboardService.js" />
     <Content Include="Scripts\services\Admin\MenuService\menuService.js" />
     <Content Include="Scripts\services\Admin\ModuleService\moduleService.js" />
+    <Content Include="Scripts\services\Admin\SettingService\settingService.js" />
     <Content Include="Scripts\services\Forums\ForumPostCommentService\forumPostCommentService.js" />
     <Content Include="Scripts\services\Forums\ForumPostLikeService\forumPostLikeService.js" />
     <Content Include="Scripts\services\Forums\ForumPostService\forumPostService.js" />
@@ -2963,6 +2965,7 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
+    <Content Include="Areas\Admin\Views\Setting\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Web-Profile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

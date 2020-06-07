@@ -107,6 +107,7 @@
     <Compile Include="Api\PortalMessageApi.cs" />
     <Compile Include="Api\PostEditApi.cs" />
     <Compile Include="Api\RoleApi.cs" />
+    <Compile Include="Api\SettingApi.cs" />
     <Compile Include="Api\UserApi.cs" />
     <Compile Include="Common\ApiResponse.cs" />
     <Compile Include="Common\ResultModel.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="DTOs\PostCommentDto.cs" />
     <Compile Include="DTOs\PostWidgetDto.cs" />
     <Compile Include="DTOs\RoleDto.cs" />
+    <Compile Include="DTOs\SettingDto.cs" />
     <Compile Include="DTOs\TopicDetailDto.cs" />
     <Compile Include="DTOs\UserDto.cs" />
     <Compile Include="DTO\AccountBindingModels.cs" />

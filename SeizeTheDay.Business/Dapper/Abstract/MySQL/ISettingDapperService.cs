@@ -14,5 +14,20 @@ namespace SeizeTheDay.Business.Dapper.Abstract.MySQL
         IEnumerable<Setting> GetSettings();
         void Insert(Setting data);
         void Delete(int settingId);
+        void Update(Setting data);
+
+        /// <summary>
+        /// Returns a setting by settingId.
+        /// </summary>
+        /// <param name="settingId"></param>
+        /// <returns></returns>
+        Setting GetById(int settingId);
+
+        /// <summary>
+        /// Returns a setting by settingId.
+        /// </summary>
+        /// <param name="settingId"></param>
+        /// <returns></returns>
+        Setting GetBySettingId(int settingId);
     }
 }

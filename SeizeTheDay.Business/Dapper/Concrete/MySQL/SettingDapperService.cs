@@ -25,6 +25,11 @@ namespace SeizeTheDay.Business.Dapper.Concrete.MySQL
             _mapper.Delete(settingId);
         }
 
+        public Setting GetById(int settingId)
+        {
+            return _mapper.FindById(settingId);
+        }
+
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public virtual T GetByName<T>(string name, T defaultValue = default)
         {
@@ -35,6 +40,11 @@ namespace SeizeTheDay.Business.Dapper.Concrete.MySQL
                 return defaultValue;
         }
 
+        public Setting GetBySettingId(int settingId)
+        {
+            return _mapper.GetBySettingId(settingId);
+        }
+
         public IEnumerable<Setting> GetSettings()
         {
             return _mapper.FindAll();
@@ -43,6 +53,11 @@ namespace SeizeTheDay.Business.Dapper.Concrete.MySQL
         public void Insert(Setting data)
         {
             _mapper.Insert(data);
+        }
+
+        public void Update(Setting data)
+        {
+            _mapper.Update(data);
         }
     }
 }

@@ -590,6 +590,178 @@ app.controller('RoleCtrl', ['$scope', 'roleService',
 
     }]);
 
+//Role Controller
+app.controller('SettingCtrl', ['$scope', 'settingService',
+    function ($scope, _settingService) {
+        //Initialize data
+        $scope.init = function () {
+
+            $scope.model = {
+                settingId: 0,
+                name: '',
+                value: ''
+            };
+
+            //for Display Setting list
+            $scope.flgTable = true;
+
+            //for Display Message
+            $scope.flgMessage = false;
+
+            //for message
+            $scope.message = "";
+
+            //for Setting Link
+            $scope.UserState = "";
+
+            $scope.getAllSettings();
+
+        };
+
+        //Hide alert message
+        $scope.hideMessage = function () {
+            //make message flg false for hide message
+            $scope.flgMessage = false;
+            $("#message").removeClass("alert alert-success").removeClass("alert alert-danger");
+            $("#icon").removeClass("fa-check").removeClass("fa-ban");
+        };
+
+        //Get all settings
+        $scope.getAllSettings = function () {
+            //Define table as Datatable
+            var table = $("#settingTable").DataTable();
+            //Clear table
+            table.clear();
+            //Destroy table
+            table.destroy();
+
+            _settingService.getSettings().then(function (result) {
+                $scope.lstSettings = result.data.result;
+
+                //Set table Configuration
+                setTimeout(function () {
+                    $("#settingTable").DataTable({
+                        "aoColumnDefs": [{
+                            "bSortable": false,
+                            "aTargets": [-1]
+                        }],
+                        "paging": true,
+                        "lengthChange": true,
+                        "searching": true,
+                        "ordering": true,
+                        "info": true,
+                        "autoWidth": false
+                    });
+                }, 500);
+            });
+        };
+
+        //Change flag for display form
+        $scope.addSetting = function () {
+            //Make Table flg false for display Add setting form
+            $scope.flgTable = false;
+            //for Display Link
+            $scope.UserState = "> Add Setting";
+        };
+
+        //Edit setting
+        $scope.editSetting = function (obj) {
+            $scope.model.settingId = obj.settingId;
+            $scope.model.name = obj.name;
+            $scope.model.value = obj.value;
+            //For display role form
+            $scope.flgTable = false;
+            $scope.UserState = "> Edit Setting";
+        };
+
+        //Create/Edit Setting
+        $scope.createEditSetting = function (obj) {
+            $scope.hideMessage();
+            console.log(obj);
+
+            if (obj.settingId > 0) {
+                _settingService.updateSetting(obj).then(function (result) {
+                    if (result.data.success === 200) {
+                        //made message flag true for display message and add classes
+                        $scope.flgMessage = true;
+                        $scope.message = "Setting has been updated successfully !";
+                        $("#message").addClass("alert alert-success");
+                        $("#icon").addClass("fa-thumbs-up");
+                        $scope.getAllSettings();
+                        $scope.reset();
+                    }
+                    else {
+                        //made message flag true for display message and add classes
+                        $scope.flgMessage = true;
+                        $scope.message = "Setting could not be updated !";
+                        $("#message").addClass("alert alert-danger");
+                        $("#icon").addClass("fa-times");
+                    }
+                });
+            }
+            else {
+                _settingService.insertSetting(obj).then(function (result) {
+                    if (result.data.success === 200) {
+                        //made message flag true for display message and add classes
+                        $scope.flgMessage = true;
+                        $scope.message = "Setting has been added successfully !";
+                        $("#message").addClass("alert alert-success");
+                        $("#icon").addClass("fa-thumbs-up");
+                        $scope.getAllSettings();
+                        $scope.reset();
+                    }
+                    else {
+                        //made message flag true for display message and add classes
+                        $scope.flgMessage = true;
+                        $scope.message = "Setting could not be added !";
+                        $("#message").addClass("alert alert-danger");
+                        $("#icon").addClass("fa-times");
+                    }
+                });
+            }
+        };
+
+        //Delete setting
+        $scope.deleteSetting = function (obj) {
+            $scope.hideMessage();
+
+            _settingService.deleteSetting(obj.settingId).then(function (result) {
+                if (result.data.result === 200) {
+                    $scope.flgMessage = true;
+                    $scope.message = "Setting has been deleted successfully!";
+                    $("#message").addClass("alert alert-success");
+                    $("#icon").addClass("fa-thumbs-up");
+                    $scope.getAllSettings();
+                }
+                else {
+                    $scope.flgMessage = true;
+                    $scope.message = "Setting could not be deleted !";
+                    $("#message").addClass("alert alert-danger");
+                    $("#icon").addClass("fa-times");
+                }
+            });
+        };
+
+        //Reset model
+        $scope.reset = function () {
+            $scope.flgTable = true;
+            $scope.UserState = "";
+            //$scope.flgMessage = false;
+            $scope.model = {
+                settingId: 0,
+                name: '',
+                value: ''
+            };
+            $("#liTab_2").removeClass("active");
+            $("#tab_2").removeClass("active");
+            $("#liTab_1").addClass("active");
+            $("#tab_1").addClass("active");
+        };
+
+        $scope.init();
+
+    }]);
+
 //Module Controller
 app.controller('ModuleCtrl', ['$scope', 'moduleService',
     function ($scope, moduleService) {

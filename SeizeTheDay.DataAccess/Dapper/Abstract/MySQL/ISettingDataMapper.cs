@@ -11,5 +11,12 @@ namespace SeizeTheDay.DataAccess.Dapper.Abstract.MySQL
         /// <param name="name"></param>
         /// <returns></returns>
         Setting GetByName(string name);
+
+        /// <summary>
+        /// Returns a setting by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Setting GetBySettingId(int id);
     }
 }

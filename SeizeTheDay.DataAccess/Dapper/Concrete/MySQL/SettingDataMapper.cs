@@ -14,7 +14,7 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
 
         public Setting FindById(int id)
         {
-            return FindSingle($"select * from {this.TableName} WHERE {this.PrimaryKeyName}=@Id", new { Id = id });
+            return FindSingle($"select * from {this.TableName} WHERE SettingId=@Id", new { Id = id });
         }
 
         public void Insert(Setting item)
@@ -43,10 +43,27 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
 
         public void Update(Setting item)
         {
-            throw new NotImplementedException();
+            using (var cn = Connection)
+            {
+                cn.Open();
+
+                var kk = cn.Execute(
+                    $"UPDATE {this.TableName} SET {this.UpdateQuery} WHERE {this.PrimaryKeyName} = '" + item.SettingId + "'",
+                    UpdateParam(item));
+            }
         }
 
         private static object InsertParam(Setting item)
+        {
+            return new
+            {
+                item.SettingId,
+                item.Name,
+                item.Value
+            };
+        }
+
+        private static object UpdateParam(Setting item)
         {
             return new
             {
@@ -61,6 +78,11 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
             return FindSingle($"select * from {this.TableName} WHERE Name = '" + name + "'", null);
         }
 
+        public Setting GetBySettingId(int id)
+        {
+            return FindSingle($"select * from {this.TableName} WHERE {this.PrimaryKeyName} = '" + id + "'", null);
+        }
+
         private string InsertQuery => "SettingId, " +
                                         "Name, " +
                                         "Value ";
@@ -68,5 +90,9 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
         private string InsertQueryParameters => "@SettingId, " +
                                         "@Name, " +
                                         "@Value ";
+
+        private string UpdateQuery => "SettingId=@SettingId, " +
+                                     "Name = @'Name'," +
+                                     "Value = @Value";
     }
 }
