@@ -158,6 +158,8 @@
     <Compile Include="Dapper\Concrete\MySQL\SettingDapperService.cs" />
     <Compile Include="Mappings\AutoMapper\Profiles\BusinessProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceBase\IServiceBase.cs" />
+    <Compile Include="ServiceBase\ServiceBase.cs" />
     <Compile Include="ValidationRules\FluentValidation\ForumPostValidator.cs" />
   </ItemGroup>
   <ItemGroup>

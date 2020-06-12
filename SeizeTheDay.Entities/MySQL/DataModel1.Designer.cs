@@ -23,6 +23,7 @@ using System.Data.Entity.Core.EntityClient;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Core.Objects.DataClasses;
+using SeizeTheDay.Core.Entities;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -711,7 +712,7 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="ForumPostComment")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ForumPostComment : EntityObject    {
+    public partial class ForumPostComment : BaseEntity    {
         #region Factory Method
 
         /// <summary>
@@ -1003,7 +1004,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="ForumTopic")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ForumTopic : EntityObject    {
+    public partial class ForumTopic : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -1387,7 +1389,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="UserLogin")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class UserLogin : EntityObject    {
+    public partial class UserLogin : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -1541,7 +1544,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="FriendRequest")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class FriendRequest : EntityObject    {
+    public partial class FriendRequest : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -1871,7 +1875,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="ForumCommentLike")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ForumCommentLike : EntityObject    {
+    public partial class ForumCommentLike : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -2111,7 +2116,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="PortalMessage")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class PortalMessage : EntityObject    {
+    public partial class PortalMessage : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -2308,7 +2314,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="UserInfoe")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class UserInfoe : EntityObject    {
+    public partial class UserInfoe : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -3277,7 +3284,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="UserType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class UserType : EntityObject    {
+    public partial class UserType : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -3393,7 +3401,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="Friend")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Friend : EntityObject    {
+    public partial class Friend : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -3633,7 +3642,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="Setting")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Setting : EntityObject    {
+    public partial class Setting : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -3753,7 +3763,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="ChatBox")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ChatBox : EntityObject    {
+    public partial class ChatBox : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -4045,7 +4056,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="Country")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Country : EntityObject    {
+    public partial class Country : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -4161,7 +4173,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="ForumPostLike")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ForumPostLike : EntityObject    {
+    public partial class ForumPostLike : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -4401,7 +4414,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="Chat")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Chat : EntityObject    {
+    public partial class Chat : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -4774,7 +4788,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="Forum")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Forum : EntityObject    {
+    public partial class Forum : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -5135,7 +5150,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="Role")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Role : EntityObject    {
+    public partial class Role : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -5285,7 +5301,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="UserClaim")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class UserClaim : EntityObject    {
+    public partial class UserClaim : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -5465,7 +5482,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="User")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class User : EntityObject    {
+    public partial class User : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -6354,7 +6372,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="ForumPost")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ForumPost : EntityObject    {
+    public partial class ForumPost : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -6891,7 +6910,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="Module")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Module : EntityObject    {
+    public partial class Module : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -7247,7 +7267,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="Notification")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Notification : EntityObject    {
+    public partial class Notification : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -7564,7 +7585,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="UserPermission")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class UserPermission : EntityObject    {
+    public partial class UserPermission : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -7775,7 +7797,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="UserRole")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class UserRole : EntityObject    {
+    public partial class UserRole : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>
@@ -7929,7 +7952,8 @@ namespace Xgteamc1XgTeamModel
     [EdmEntityTypeAttribute(NamespaceName="Xgteamc1XgTeamModel", Name="ProfileVisitor")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ProfileVisitor : EntityObject    {
+    public partial class ProfileVisitor : BaseEntity
+    {
         #region Factory Method
 
         /// <summary>

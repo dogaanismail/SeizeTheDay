@@ -88,6 +88,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel1.edml</DependentUpon>
     </Compile>
+    <Compile Include="SeizeTheDayContext\SeizeTheDayObjectContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,7 +106,12 @@
     <None Include="packages.config" />
     <Content Include="Properties\licenses.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SeizeTheDay.Core\SeizeTheDay.Core.csproj">
+      <Project>{18723BD2-A5DE-4635-8C62-5DBCDCCB5FA3}</Project>
+      <Name>SeizeTheDay.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
