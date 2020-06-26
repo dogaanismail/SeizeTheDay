@@ -43,6 +43,7 @@
                             <table id="forumTable" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
+                                        <td>Id</td>
                                         <td>Forum Name</td>
                                         <td>Title</td>
                                         <td>Description</td>
@@ -53,11 +54,12 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="item in lstForum">
-                                        <td>{{item.ForumName}}</td>
-                                        <td>{{item.Title}}</td>
-                                        <td>{{item.Description}}</td>
-                                        <td>{{item.CreatedTime|date:'MMM d, yyyy HH:mm:ss'}}</td>
-                                        <td>{{item.Status}}</td>
+                                        <td>{{item.forumID}}</td>
+                                        <td>{{item.forumName}}</td>
+                                        <td>{{item.title}}</td>
+                                        <td>{{item.description}}</td>
+                                        <td>{{item.createdTime|date:'MMM d, yyyy HH:mm:ss'}}</td>
+                                        <td>{{item.status}}</td>
                                         <td>
                                             <a href="#" class="btn btn-primary btn-circle" ng-click="editForum(item)" title="" data-toggle="tooltip" data-placement="top" data-original-title="Edit Forum">
                                                 <i class="glyphicon glyphicon-pencil"></i>
@@ -87,24 +89,24 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="Forum Name">Forum Name</label>
-                                        <input type="text" ng-model="model.ForumName" required class="form-control" id="ForumName" placeholder="Forum Name">
+                                        <input type="text" ng-model="model.forumName" required class="form-control" id="ForumName" placeholder="Forum Name">
                                     </div>
                                     <div class="form-group">
                                         <label for="Forum Name">Forum Title</label>
-                                        <input type="text" ng-model="model.Title" required class="form-control" id="ForumTitle" placeholder="Forum Title">
+                                        <input type="text" ng-model="model.title" required class="form-control" id="ForumTitle" placeholder="Forum Title">
                                     </div>
                                     <div class="form-group">
                                         <label for="Forum Name">Forum Description</label>
-                                        <input type="text" ng-model="model.Description" required class="form-control" id="ForumDescription" placeholder="Forum Description">
+                                        <input type="text" ng-model="model.description" required class="form-control" id="ForumDescription" placeholder="Forum Description">
                                     </div>
                                     <div class="form-group">
                                         <label for="Forum Name">Forum Status</label>
-                                        <input type="text" ng-model="model.Status" required class="form-control" id="ForumStatus" placeholder="Forum Status">
+                                        <input type="text" ng-model="model.status" required class="form-control" id="ForumStatus" placeholder="Forum Status">
                                     </div>
                                     <div class="form-group">
                                         <label for="Forum Name">Is Default ?</label><br />
                                         <label class="switch">
-                                            <input type="checkbox" ng-model="model.IsDefault" value="{{model.IsDefault}}" />
+                                            <input type="checkbox" ng-model="model.isDefault" value="{{model.isDefault}}" />
                                             <div class="slider round">
                                             </div>
                                         </label>

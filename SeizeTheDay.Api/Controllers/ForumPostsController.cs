@@ -181,5 +181,14 @@ namespace SeizeTheDay.Api.Controllers
         {
             return _forumPostDapperService.GetForumPosts();
         }
+
+        [HttpGet]
+        [Route("getpostswithdetail")]
+        [PerformanceCounterAspect]
+        [CacheAspect(typeof(MemoryCacheManager), 30)]
+        public IEnumerable<TopicDetailDto> GetForumPostDetailByDapper()
+        {
+            return _forumPostDapperService.GetPosts();
+        }
     }
 }

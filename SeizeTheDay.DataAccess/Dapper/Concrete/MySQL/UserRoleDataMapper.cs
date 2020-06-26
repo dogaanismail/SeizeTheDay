@@ -16,12 +16,12 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
 
         public UserRole FindById(int id)
         {
-            return FindSingle($"select * from {this.TableName} WHERE {this.PrimaryKeyName}=@Id", new { Id = id });
+            return FindSingle($"select * from {this.TableName} WHERE {this.PrimaryKeyName}={id}", new { Id = id });
         }
 
         public UserRole FindByRoleId(string id)
         {
-            return FindSingle($"select * from {this.TableName} WHERE {this.PrimaryKeyRole}=@Id", new { Id = id });
+            return FindSingle($"select * from {this.TableName} WHERE {this.PrimaryKeyName}={id}", new { Id = id });
         }
 
         public void Insert(UserRole item)

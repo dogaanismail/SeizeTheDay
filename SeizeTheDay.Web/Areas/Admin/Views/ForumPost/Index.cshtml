@@ -53,11 +53,11 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="item in lstForumPosts">
-                                        <td>{{item.ForumPostTitle}}</td>
-                                        <td>{{item.CreatedByUserName}}</td>
-                                        <td>{{item.ForumName}}</td>
-                                        <td>{{item.ForumTopicName}}</td>
-                                        <td>{{item.CreatedTime|date:'MMM d, yyyy HH:mm:ss'}}</td>
+                                        <td>{{item.forumPostTitle}}</td>
+                                        <td>{{item.createdByUserName}}</td>
+                                        <td>{{item.forumName}}</td>
+                                        <td>{{item.forumTopicName}}</td>
+                                        <td>{{item.createdTime|date:'MMM d, yyyy HH:mm:ss'}}</td>
                                         <td>
                                             <a href="#" class="btn btn-primary btn-circle" ng-click="editForumPost(item)" title="" data-toggle="tooltip" data-placement="top" data-original-title="Edit ForumPost">
                                                 <i class="glyphicon glyphicon-pencil"></i>
@@ -88,17 +88,17 @@
                                     <div class="form-group">
                                         <label for="Forum Name">Forum ID</label>
 
-                                        <select id="Forums" name="Forums" class="form-control" ng-selected="true" style="width: 100%;" ng-change="getAllForumTopicByID(model.ForumID)" ng-model="model.ForumID">
-                                            <option ng-repeat="item in lstForums" ng-selected="model.ForumID==item.ForumID" value="{{item.ForumID}}">{{item.ForumName}}</option>
+                                        <select id="Forums" name="Forums" class="form-control" ng-selected="true" style="width: 100%;" ng-change="getAllForumTopicByID(model.forumID)" ng-model="model.forumID">
+                                            <option ng-repeat="item in lstForums" ng-selected="model.forumID==item.forumID" value="{{item.forumID}}">{{item.forumName}}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
                                         <label for="Forum Topic Name">Forum Topic ID</label>
-                                        <select id="ForumTopics" name="ForumTopics" class="form-control" style="width: 100%;" required ng-model="model.ForumTopicID">
-                                            <option ng-show="lstTopic!==null" ng-selected="model.ForumTopicID==item.ForumTopicID" ng-repeat="item in lstTopic" value="{{item.ForumTopicID}}">{{item.ForumTopicName}}</option>
-                                            <option ng-show="lstForumTopics!==null" ng-selected="model.ForumTopicID==item.ForumTopicID" ng-repeat="item in lstForumTopics" value="{{item.ForumTopicID}}">{{item.ForumTopicName}}</option>
+                                        <select id="ForumTopics" name="ForumTopics" class="form-control" style="width: 100%;" required ng-model="model.forumTopicID">
+                                            <option ng-show="lstTopic!==null" ng-selected="model.forumTopicID==item.forumTopicID" ng-repeat="item in lstTopic" value="{{item.forumTopicID}}">{{item.forumTopicName}}</option>
+                                            <option ng-show="lstForumTopics!==null" ng-selected="model.forumTopicID==item.forumTopicID" ng-repeat="item in lstForumTopics" value="{{item.forumTopicID}}">{{item.forumTopicName}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
                                         <label for="Forum Name">Post Locked ?</label>
                                         <br />
                                         <label class="switch">
-                                            <input type="checkbox" ng-model="model.PostLocked" value="{{model.PostLocked}}" />
+                                            <input type="checkbox" ng-model="model.postLocked" value="{{model.postLocked}}" />
                                             <div class="slider round">
                                             </div>
                                         </label>
@@ -120,7 +120,7 @@
                                         <label for="Forum Name">Show Portal ?</label>
                                         <br />
                                         <label class="switch">
-                                            <input type="checkbox" ng-model="model.ShowInPortal" value="{{model.ShowInPortal}}" />
+                                            <input type="checkbox" ng-model="model.showInPortal" value="{{model.showInPortal}}" />
                                             <div class="slider round">
                                             </div>
                                         </label>
@@ -132,7 +132,7 @@
                                         <label for="Forum Name">Is Default ?</label>
                                         <br />
                                         <label class="switch">
-                                            <input type="checkbox" ng-model="model.IsDefault" value="{{model.IsDefault}}" />
+                                            <input type="checkbox" ng-model="model.isDefault" value="{{model.isDefault}}" />
                                             <div class="slider round">
                                             </div>
                                         </label>
@@ -143,13 +143,13 @@
                                     <div class="form-group">
                                         <label for="Forum Name">Forum Post Content</label>
                                         <!-- NOTE: TinyMCE textareas must have id's -->
-                                        <textarea required data-ui-tinymce="tinymceOptions" id="post" data-ng-model="model.ForumPostContent"></textarea>
+                                        <textarea required data-ui-tinymce="tinymceOptions" id="post" data-ng-model="model.forumPostContent"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="Forum Name">Forum Post Title</label>
-                                    <input type="text" ng-model="model.ForumPostTitle" required class="form-control" id="ForumPostTitle" placeholder="Forum Post Title">
+                                    <input type="text" ng-model="model.forumPostTitle" required class="form-control" id="ForumPostTitle" placeholder="Forum Post Title">
                                 </div>
                             </div>
 

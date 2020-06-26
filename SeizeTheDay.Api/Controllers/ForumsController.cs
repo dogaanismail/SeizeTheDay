@@ -19,14 +19,21 @@ namespace SeizeTheDay.Api.Controllers
     [RoutePrefix("api/forums")]
     public class ForumsController : BaseController
     {
-        #region Ctor
+        #region Fields
         private readonly IForumService _forumService;
         private readonly IForumDapperService _forumDapperService;
+        private readonly ISettingDapperService _settingDapperService;
 
-        public ForumsController(IForumService forumService, IForumDapperService forumDapperService)
+        #endregion
+
+        #region Ctor
+
+        public ForumsController(IForumService forumService, IForumDapperService forumDapperService,
+            ISettingDapperService settingDapperService)
         {
             _forumService = forumService;
             _forumDapperService = forumDapperService;
+            _settingDapperService = settingDapperService;
         }
 
         #endregion
@@ -35,19 +42,39 @@ namespace SeizeTheDay.Api.Controllers
         [Route("getforums")]
         [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
-        public List<ForumDto> GetForums()
+        public IEnumerable<ForumDto> GetForums()
         {
-            List<ForumDto> forums = _forumService.GetList().Select(x => new ForumDto
+            IEnumerable<ForumDto> forums = null;
+
+            if (_settingDapperService.GetByName<bool>("api.forums.getlist.usedapper"))
             {
-                ForumID = x.ForumID,
-                ForumName = x.ForumName,
-                Title = x.Title,
-                Description = x.Description,
-                CreatedTime = x.CreatedTime,
-                Status = x.Status,
-                CreatedBy = x.CreatedBy,
-                IsDefault = x.IsDefault
-            }).ToList();
+                forums = _forumDapperService.GetForums().Select(x => new ForumDto
+                {
+                    ForumID = x.ForumID,
+                    ForumName = x.ForumName,
+                    Title = x.Title,
+                    Description = x.Description,
+                    CreatedTime = x.CreatedTime,
+                    Status = x.Status,
+                    CreatedBy = x.CreatedBy,
+                    IsDefault = x.IsDefault
+                }).ToList();
+                return forums;
+            }
+            else
+            {
+                forums = _forumService.GetList().Select(x => new ForumDto
+                {
+                    ForumID = x.ForumID,
+                    ForumName = x.ForumName,
+                    Title = x.Title,
+                    Description = x.Description,
+                    CreatedTime = x.CreatedTime,
+                    Status = x.Status,
+                    CreatedBy = x.CreatedBy,
+                    IsDefault = x.IsDefault
+                }).ToList();
+            }
 
             return forums;
         }
@@ -57,7 +84,12 @@ namespace SeizeTheDay.Api.Controllers
         [PerformanceCounterAspect]
         public ForumDto GetForumById(int id)
         {
-            Forum forum = _forumService.GetByForum(id);
+            Forum forum;
+            if (_settingDapperService.GetByName<bool>("api.forums.getbyid.usedapper"))
+                forum = _forumDapperService.GetForumById(id);
+            else
+                forum = _forumService.GetByForum(id);
+
             ForumDto forumDto = new ForumDto
             {
                 ForumID = forum.ForumID,
@@ -88,7 +120,11 @@ namespace SeizeTheDay.Api.Controllers
                     CreatedBy = User.Identity.GetUserId(),
                     IsDefault = model.IsDefault
                 };
-                _forumService.Add(forum);
+                if (_settingDapperService.GetByName<bool>("api.forums.create.usedapper"))
+                    _forumDapperService.Insert(forum);
+                else
+                    _forumService.Add(forum);
+
                 return Ok(ApiStatusEnum.Ok);
             }
             catch (Exception ex)
@@ -103,8 +139,17 @@ namespace SeizeTheDay.Api.Controllers
         {
             try
             {
-                var getForum = _forumService.GetByForum(model.ForumID);
-                _forumService.Delete(getForum);
+                Forum forum;
+                if (_settingDapperService.GetByName<bool>("api.forums.getbyid.usedapper"))
+                    forum = _forumDapperService.GetForumById(model.ForumID);
+                else
+                    forum = _forumService.GetByForum(model.ForumID);
+
+                if (_settingDapperService.GetByName<bool>("api.forums.delete.usedapper"))
+                    _forumDapperService.Delete(0); //TODO
+                else
+                    _forumService.Delete(forum);
+
                 return Ok(ApiStatusEnum.Ok);
             }
             catch (Exception ex)
@@ -119,8 +164,17 @@ namespace SeizeTheDay.Api.Controllers
         {
             try
             {
-                var getForum = _forumService.GetByForum(id);
-                _forumService.Delete(getForum);
+                Forum forum;
+                if (_settingDapperService.GetByName<bool>("api.forums.getbyid.usedapper"))
+                    forum = _forumDapperService.GetForumById(id);
+                else
+                    forum = _forumService.GetByForum(id);
+
+                if (_settingDapperService.GetByName<bool>("api.forums.delete.usedapper"))
+                    _forumDapperService.Delete(0);
+                else
+                    _forumService.Delete(forum);
+
                 return Ok(ApiStatusEnum.Ok);
             }
             catch (Exception ex)
@@ -135,29 +189,30 @@ namespace SeizeTheDay.Api.Controllers
         {
             try
             {
-                var getForum = _forumService.GetByForum(model.ForumID);
-                getForum.ForumName = model.ForumName;
-                getForum.Title = model.Title;
-                getForum.Description = model.Description;
-                getForum.Status = model.Status;
-                getForum.IsDefault = model.IsDefault;
-                _forumService.Update(getForum);
+                Forum forum;
+                if (_settingDapperService.GetByName<bool>("api.forums.getbyid.usedapper"))
+                    forum = _forumDapperService.GetForumById(model.ForumID);
+                else
+                    forum = _forumService.GetByForum(model.ForumID);
+
+                forum.ForumName = model.ForumName;
+                forum.Title = model.Title;
+                forum.Description = model.Description;
+                forum.Status = model.Status;
+                forum.IsDefault = model.IsDefault;
+
+                if (_settingDapperService.GetByName<bool>("api.forums.update.usedapper"))
+                    return null; //TODO
+                else
+                    _forumService.Update(forum);
+
                 return Ok(ApiStatusEnum.Ok);
             }
             catch (Exception ex)
             {
-
                 return BadRequest(ex.Message.ToString());
             }
         }
 
-        [HttpGet]
-        [Route("getforumsbydapper")]
-        [PerformanceCounterAspect]
-        [CacheAspect(typeof(MemoryCacheManager), 30)]
-        public IEnumerable<Forum> GetForumsByDapper()
-        {
-            return _forumDapperService.GetForums();
-        }
     }
 }
