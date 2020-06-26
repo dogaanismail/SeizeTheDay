@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Xgteamc1XgTeamModel;
+using SeizeTheDay.Business.Dapper.Abstract.MySQL;
 
 namespace SeizeTheDay.Api.Controllers
 {
@@ -19,17 +20,24 @@ namespace SeizeTheDay.Api.Controllers
     [RoutePrefix("api/roles")]
     public class RolesController : BaseController
     {
-        #region Ctor
+        #region Fields
+
         private readonly IRoleService _roleService;
         private ApplicationRoleManager _roleManager;
         private readonly IModuleService _moduleService;
+        private readonly ISettingDapperService _settingDapperService;
+
+        #endregion
+
+        #region Ctor
 
         public RolesController(IRoleService roleService, ApplicationRoleManager roleManager,
-            IModuleService moduleService)
+            IModuleService moduleService, ISettingDapperService settingDapperService)
         {
             _roleService = roleService;
             _roleManager = roleManager;
             _moduleService = moduleService;
+            _settingDapperService = settingDapperService;
         }
 
         #endregion
