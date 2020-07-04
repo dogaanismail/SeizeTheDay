@@ -83,6 +83,10 @@
     <Compile Include="Identity\Entities\User.cs" />
     <Compile Include="Identity\Entities\UserRole.cs" />
     <Compile Include="Identity\IdentityContext.cs" />
+    <Compile Include="Mapping\Forums\ForumMap.cs" />
+    <Compile Include="Mapping\Forums\ForumTopicMap.cs" />
+    <Compile Include="Mapping\Setting\SettingMap.cs" />
+    <Compile Include="Mapping\SystemEntityTypeConfiguration.cs" />
     <Compile Include="MySQL\DataModel1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -114,6 +118,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mapping\ChatBox\" />
+    <Folder Include="Mapping\Chat\" />
+    <Folder Include="Mapping\Country\" />
+    <Folder Include="Mapping\FriendRequest\" />
+    <Folder Include="Mapping\Friend\" />
+    <Folder Include="Mapping\Module\" />
+    <Folder Include="Mapping\Notification\" />
+    <Folder Include="Mapping\ProfileVisitor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Data.Entity.Core.Objects.DataClasses;
 
 namespace SeizeTheDay.Core.Entities
 {
@@ -8,13 +7,19 @@ namespace SeizeTheDay.Core.Entities
     /// Base class for entities
     /// </summary>
     [Serializable]
-    public abstract partial class BaseEntity : EntityObject
+    public abstract partial class BaseEntity 
     {
         /// <summary>
         /// Gets or sets the entity identifier
         /// </summary>
         [UIHint("hidden")]
         public int Id { get; set; }
+
+        public DateTime? CreatedDate { get; set; }
+
+        public DateTime? ModifiedDate { get; set; }
+
+        #region Functions
 
         public override bool Equals(object obj)
         {
@@ -68,5 +73,7 @@ namespace SeizeTheDay.Core.Entities
         {
             return !(x == y);
         }
+
+        #endregion
     }
 }

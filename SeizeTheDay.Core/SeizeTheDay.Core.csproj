@@ -177,6 +177,11 @@
     <Compile Include="DataAccess\Concrete\NHibernate\NhEntityRepositoryBase.cs" />
     <Compile Include="DataAccess\Concrete\NHibernate\NHibernateHelper.cs" />
     <Compile Include="DataAccess\Concrete\NHibernate\NHQueryableRepository.cs" />
+    <Compile Include="Domain\Forums\Forum.cs" />
+    <Compile Include="Domain\Forums\ForumPost.cs" />
+    <Compile Include="Domain\Forums\ForumPostComment.cs" />
+    <Compile Include="Domain\Forums\ForumTopic.cs" />
+    <Compile Include="Domain\Setting\Setting.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Utilities\PageList\IPagedList.cs" />
@@ -185,6 +190,14 @@
     <Compile Include="Utilities\Mappings\AutoMapperHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Domain\ChatBox\" />
+    <Folder Include="Domain\Chat\" />
+    <Folder Include="Domain\Country\" />
+    <Folder Include="Domain\FriendRequest\" />
+    <Folder Include="Domain\Friend\" />
+    <Folder Include="Domain\Module\" />
+    <Folder Include="Domain\Notification\" />
+    <Folder Include="Domain\ProfileVisitor\" />
     <Folder Include="Utilities\Mvc\Infrastructure\" />
   </ItemGroup>
   <ItemGroup>

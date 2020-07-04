@@ -1,26 +1,28 @@
 ﻿using SeizeTheDay.Core.Entities;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Objects;
+using System.Data;
+using System.Data.Entity;
+using System.Data.SqlClient;
 
 namespace SeizeTheDay.Core.DataAccess.Abstract
 {
     public interface IDbContext
     {
         /// <summary>
-        /// Gets ObjectSet
+        /// Get DbSet
         /// </summary>
         /// <typeparam name="TEntity">Entity type</typeparam>
         /// <returns>DbSet</returns>
-        ObjectSet<TEntity> Set<TEntity>() where TEntity : BaseEntity;
+        IDbSet<TEntity> Set<TEntity>() where TEntity : BaseEntity;
 
         /// <summary>
-        /// Saves changes
+        /// Save changes
         /// </summary>
         /// <returns></returns>
         int SaveChanges();
 
         /// <summary>
-        /// Executes stores procedure and load a list of entities at the end
+        /// Execute stores procedure and load a list of entities at the end
         /// </summary>
         /// <typeparam name="TEntity">Entity type</typeparam>
         /// <param name="commandText">Command text</param>
@@ -48,10 +50,15 @@ namespace SeizeTheDay.Core.DataAccess.Abstract
         /// <returns>The result returned by the database after executing the command.</returns>
         int ExecuteSqlCommand(string sql, bool doNotEnsureTransaction = false, int? timeout = null, params object[] parameters);
 
+        DataSet ExecuteDataSet(List<string> sqlStatements);
+        DataSet ExecuteDataSet(string sqlStatement);
+
         IList<T> ExecuteStoredProcedure<T>(string commandText, params object[] parameters);
 
+        DataTable ExecuteStoredProcedure(string commandText, params SqlParameter[] parameters);
+
         /// <summary>
-        /// Detachs an entity
+        /// Detach an entity
         /// </summary>
         /// <param name="entity">Entity</param>
         void Detach(object entity);
