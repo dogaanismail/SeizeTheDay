@@ -21,14 +21,21 @@ namespace SeizeTheDay.Api.Controllers
     [RoutePrefix("api/forumposts")]
     public class ForumPostsController : BaseController
     {
-        #region Ctor
+        #region Fields
         private readonly IForumPostService _forumPostService;
         private readonly IForumPostDapperService _forumPostDapperService;
+        private readonly ISettingDapperService _settingDapperService;
 
-        public ForumPostsController(IForumPostService forumPostService, IForumPostDapperService forumPostDapperService)
+        #endregion
+
+        #region Ctor
+
+        public ForumPostsController(IForumPostService forumPostService, IForumPostDapperService forumPostDapperService,
+            ISettingDapperService settingDapperService)
         {
             _forumPostService = forumPostService;
             _forumPostDapperService = forumPostDapperService;
+            _settingDapperService = settingDapperService;
         }
 
         #endregion
@@ -37,26 +44,52 @@ namespace SeizeTheDay.Api.Controllers
         [Route("getposts")]
         [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
-        public List<ForumPostDto> GetForumPosts()
+        public IEnumerable<ForumPostDto> GetForumPosts()
         {
-            List<ForumPostDto> forumPosts = _forumPostService.GetAllLazyWithoutID().Select(x => new ForumPostDto()
+            List<ForumPostDto> forumPosts = null;
+            if (_settingDapperService.GetByName<bool>("api.forumposts.getlist.usedapper"))
             {
-                ForumPostID = x.ForumPostID,
-                ForumPostTitle = x.ForumPostTitle,
-                ForumPostContent = x.ForumPostContent,
-                CreatedTime = x.CreatedTime,
-                CreatedBy = x.CreatedBy,
-                ForumTopicID = x.ForumTopicID,
-                ForumID = x.ForumID,
-                ShowInPortal = x.ShowInPortal,
-                PostLocked = x.PostLocked,
-                ReviewCount = x.ReviewCount,
-                CreatedByUserName = x.User.UserName,
-                ForumName = x.Forum.ForumName,
-                ForumTopicName = x.ForumTopic.ForumTopicName,
-                IsDefault = x.IsDefault
+                forumPosts = _forumPostDapperService.GetForumPosts().Select(x => new ForumPostDto()
+                {
+                    ForumPostID = x.ForumPostID,
+                    ForumPostTitle = x.ForumPostTitle,
+                    ForumPostContent = x.ForumPostContent,
+                    CreatedTime = x.CreatedTime,
+                    CreatedBy = x.CreatedBy,
+                    ForumTopicID = x.ForumTopicID,
+                    ForumID = x.ForumID,
+                    ShowInPortal = x.ShowInPortal,
+                    PostLocked = x.PostLocked,
+                    ReviewCount = x.ReviewCount,
+                    CreatedByUserName = x.User.UserName,
+                    ForumName = x.Forum.ForumName,
+                    ForumTopicName = x.ForumTopic.ForumTopicName,
+                    IsDefault = x.IsDefault
 
-            }).ToList();
+                }).ToList();
+            }
+            else
+            {
+                forumPosts = _forumPostService.GetAllLazyWithoutID().Select(x => new ForumPostDto()
+                {
+                    ForumPostID = x.ForumPostID,
+                    ForumPostTitle = x.ForumPostTitle,
+                    ForumPostContent = x.ForumPostContent,
+                    CreatedTime = x.CreatedTime,
+                    CreatedBy = x.CreatedBy,
+                    ForumTopicID = x.ForumTopicID,
+                    ForumID = x.ForumID,
+                    ShowInPortal = x.ShowInPortal,
+                    PostLocked = x.PostLocked,
+                    ReviewCount = x.ReviewCount,
+                    CreatedByUserName = x.User.UserName,
+                    ForumName = x.Forum.ForumName,
+                    ForumTopicName = x.ForumTopic.ForumTopicName,
+                    IsDefault = x.IsDefault
+
+                }).ToList();
+            }
+
             return forumPosts;
         }
 
@@ -66,7 +99,12 @@ namespace SeizeTheDay.Api.Controllers
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public ForumPostDto GetForumPostById(int id)
         {
-            ForumPost forumPost = _forumPostService.SingleInclude(id);
+            ForumPost forumPost;
+            if (_settingDapperService.GetByName<bool>("api.forumposts.getbyid.usedapper"))
+                forumPost = _forumPostDapperService.GetForumPost(id);
+            else
+                forumPost = _forumPostService.SingleInclude(id);
+
             ForumPostDto postDto = new ForumPostDto
             {
                 ForumPostID = forumPost.ForumPostID,
@@ -84,6 +122,7 @@ namespace SeizeTheDay.Api.Controllers
                 ForumTopicName = forumPost.ForumTopic.ForumTopicName,
                 IsDefault = forumPost.IsDefault
             };
+
             return postDto;
         }
 
@@ -106,7 +145,10 @@ namespace SeizeTheDay.Api.Controllers
                     ReviewCount = model.ReviewCount,
                     IsDefault = model.IsDefault
                 };
-                _forumPostService.Add(forumPost);
+                if (_settingDapperService.GetByName<bool>("api.forumposts.create.usedapper"))
+                    _forumPostDapperService.Insert(forumPost);
+                else
+                    _forumPostService.Add(forumPost);
                 return Ok(ApiStatusEnum.Ok);
             }
             catch (Exception ex)
@@ -121,8 +163,17 @@ namespace SeizeTheDay.Api.Controllers
         {
             try
             {
-                var getForumPost = _forumPostService.GetByForumPost(model.ForumPostID);
-                _forumPostService.Delete(getForumPost);
+                ForumPost forumPost;
+                if (_settingDapperService.GetByName<bool>("api.forumposts.getbyid.usedapper"))
+                    forumPost = _forumPostDapperService.GetForumPost(model.ForumPostID);
+                else
+                    forumPost = _forumPostService.GetByForumPost(model.ForumPostID);
+
+                if (_settingDapperService.GetByName<bool>("api.forumposts.delete.usedapper"))
+                    _forumPostDapperService.Delete(0); //TODO
+                else
+                    _forumPostService.Delete(forumPost);
+
                 return Ok(ApiStatusEnum.Ok);
             }
             catch (Exception ex)
@@ -137,8 +188,17 @@ namespace SeizeTheDay.Api.Controllers
         {
             try
             {
-                var getForumPost = _forumPostService.GetByForumPost(id);
-                _forumPostService.Delete(getForumPost);
+                ForumPost forumPost;
+                if (_settingDapperService.GetByName<bool>("api.forumposts.getbyid.usedapper"))
+                    forumPost = _forumPostDapperService.GetForumPost(id);
+                else
+                    forumPost = _forumPostService.GetByForumPost(id);
+
+                if (_settingDapperService.GetByName<bool>("api.forumposts.delete.usedapper"))
+                    _forumPostDapperService.Delete(0); //TODO
+                else
+                    _forumPostService.Delete(forumPost);
+
                 return Ok(ApiStatusEnum.Ok);
             }
             catch (Exception ex)
@@ -153,33 +213,40 @@ namespace SeizeTheDay.Api.Controllers
         {
             try
             {
-                var updateForumPost = _forumPostService.SingleInclude(model.ForumPostID);
-                updateForumPost.ForumPostTitle = model.ForumPostTitle;
-                updateForumPost.ForumPostContent = model.ForumPostContent;
-                updateForumPost.ForumTopicID = model.ForumTopicID;
-                updateForumPost.ForumID = model.ForumID;
-                updateForumPost.ShowInPortal = model.ShowInPortal;
-                updateForumPost.PostLocked = model.PostLocked;
-                updateForumPost.ReviewCount = model.ReviewCount;
-                updateForumPost.IsDefault = model.IsDefault;
-                _forumPostService.Update(updateForumPost);
+                ForumPost forumPost;
+                if (_settingDapperService.GetByName<bool>("api.forumposts.getbyid.usedapper"))
+                    forumPost = _forumPostDapperService.GetForumPost(model.ForumPostID);
+                else
+                    forumPost = _forumPostService.GetByForumPost(model.ForumPostID);
+
+                forumPost.ForumPostTitle = model.ForumPostTitle;
+                forumPost.ForumPostContent = model.ForumPostContent;
+                forumPost.ForumTopicID = model.ForumTopicID;
+                forumPost.ForumID = model.ForumID;
+                forumPost.ShowInPortal = model.ShowInPortal;
+                forumPost.PostLocked = model.PostLocked;
+                forumPost.ReviewCount = model.ReviewCount;
+                forumPost.IsDefault = model.IsDefault;
+
+                if (_settingDapperService.GetByName<bool>("api.forumposts.update.usedapper"))
+                    return null; //TODO
+                else
+                    _forumPostService.Update(forumPost);
                 return Ok(ApiStatusEnum.Ok);
             }
             catch (Exception ex)
             {
-
                 return BadRequest(ex.Message.ToString());
             }
         }
 
         [HttpGet]
-        [Route("getpostsbydapper")]
-        [Authorize(Roles = "Admin")]
+        [Route("getpostswithdetail")]
         [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
-        public IEnumerable<ForumPost> GetForumPostsByDapper()
+        public IEnumerable<TopicDetailDto> GetForumPostDetailByDapper()
         {
-            return _forumPostDapperService.GetForumPosts();
+            return _forumPostDapperService.GetPosts();
         }
     }
 }

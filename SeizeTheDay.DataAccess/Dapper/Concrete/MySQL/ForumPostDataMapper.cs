@@ -36,7 +36,7 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
 
         public ForumPost FindById(int id)
         {
-            return FindSingle($"select * from {this.TableName} WHERE {this.PrimaryKeyName}=@Id", new { Id = id });
+            return FindSingle($"select * from {this.TableName} WHERE {this.PrimaryKeyName}={id}", new { Id = id });
         }
 
         public IEnumerable<ForumPost> GetForumPosts()

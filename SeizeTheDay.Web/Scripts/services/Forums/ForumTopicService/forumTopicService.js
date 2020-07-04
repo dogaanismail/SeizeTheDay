@@ -1,14 +1,14 @@
 ﻿angular.module('startupController')
     .service('forumTopicService', ['$http', function ($http) {
 
-        var urlBase = '/api/ForumTopic';
+        var urlBase = 'https://localhost:44367/api/forumtopics/';
 
         this.getForumTopicList = function () {
-            return $http.get(urlBase);
+            return $http.get(urlBase + "gettopics");
         };
 
         this.getForumTopicListGetByForumID = function (id) {
-            return $http.get(urlBase,id);
+            return $http.get(urlBase + "getbyforumid?id=" + id);
         };
 
 

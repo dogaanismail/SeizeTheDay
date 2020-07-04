@@ -8,6 +8,10 @@
             return $http.get(urlBase + "getposts");
         };
 
+        this.getPostWithDetail = function () {
+            return $http.get(urlBase + "getpostswithdetail");
+        };
+
         this.insertUpdateForumPost = function (forumPost) {
             return $http.post(urlBase, forumPost);
         };

@@ -14,7 +14,7 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
 
         public ForumPostLike FindById(int id)
         {
-            return FindSingle($"select * from {this.TableName} WHERE {this.PrimaryKeyName}=@Id", new { Id = id });
+            return FindSingle($"select * from {this.TableName} WHERE {this.PrimaryKeyName}={id}", new { Id = id });
         }
 
         public void Insert(ForumPostLike item)

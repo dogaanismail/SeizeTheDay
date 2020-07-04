@@ -1085,19 +1085,19 @@ app.controller('DashboardCtrl', ['$scope', 'dashboardService',
 
 //Forum Controller
 app.controller('ForumCtrl', ['$scope', 'forumService',
-    function ($scope, forumService) {
+    function ($scope, _forumService) {
 
         //Initialize data
         $scope.init = function () {
             $scope.model = {
-                ForumID: '',
-                ForumName: '',
-                Title: '',
-                Description: '',
-                CreatedTime: '',
-                Status: '',
-                CreatedBy: '',
-                IsDefault: false
+                forumID: '',
+                forumName: '',
+                title: '',
+                description: '',
+                createdTime: '',
+                status: '',
+                createdBy: '',
+                isDefault: false
             };
 
             //for module link
@@ -1127,8 +1127,8 @@ app.controller('ForumCtrl', ['$scope', 'forumService',
             table.clear();
             table.destroy();
 
-            forumService.getForumList().then(function (result) {
-                $scope.lstForum = result.data;
+            _forumService.getForumList().then(function (result) {
+                $scope.lstForum = result.data.result;
 
                 //Set Table Configuration
                 setTimeout(function () {
@@ -1159,21 +1159,21 @@ app.controller('ForumCtrl', ['$scope', 'forumService',
         $scope.editForum = function (obj) {
             //Edit Module
             $scope.UserState = "> Edit Forum";
-            $scope.model.ForumID = obj.ForumID;
-            $scope.model.ForumName = obj.ForumName;
-            $scope.model.Title = obj.Title;
-            $scope.model.Description = obj.Description;
-            $scope.model.CreatedTime = obj.CreatedTime;
-            $scope.model.Status = obj.Status;
-            $scope.model.CreatedBy = obj.CreatedBy;
-            $scope.model.IsDefault = obj.IsDefault;
+            $scope.model.forumID = obj.forumID;
+            $scope.model.forumName = obj.forumName;
+            $scope.model.title = obj.title;
+            $scope.model.description = obj.description;
+            $scope.model.createdTime = obj.createdTime;
+            $scope.model.status = obj.status;
+            $scope.model.createdBy = obj.createdBy;
+            $scope.model.isDefault = obj.isDefault;
             $scope.flgTable = false;
         };
 
         //Create/update forum
         $scope.createForum = function (obj) {
             $scope.hideMessage();
-            forumService.insertUpdateForum(obj).then(function (result) {
+            _forumService.insertUpdateForum(obj).then(function (result) {
                 if (result.data.success === 1) {
                     //Make message flg true for display message
                     $scope.flgMessage = true;
@@ -1196,10 +1196,10 @@ app.controller('ForumCtrl', ['$scope', 'forumService',
         $scope.deleteForum = function (obj) {
             $scope.hideMessage();
             params = {
-                id: obj.ForumID
+                id: obj.forumID
             };
 
-            forumService.deleteForum(params.id).then(function (result) {
+            _forumService.deleteForum(params.id).then(function (result) {
                 if (result.data.success === 1) {
                     $scope.flgMessage = true;
                     $scope.message = result.data.message;
@@ -1222,14 +1222,14 @@ app.controller('ForumCtrl', ['$scope', 'forumService',
             $scope.UserState = "";
 
             $scope.model = {
-                ForumID: '',
-                ForumName: '',
-                Title: '',
-                Description: '',
-                CreatedTime: '',
-                Status: '',
-                CreatedBy: '',
-                IsDefault: false
+                forumID: '',
+                forumName: '',
+                title: '',
+                description: '',
+                createdTime: '',
+                status: '',
+                createdBy: '',
+                isDefault: false
             };
         };
 
@@ -1238,8 +1238,8 @@ app.controller('ForumCtrl', ['$scope', 'forumService',
     }]);
 
 //ForumTopic Controller
-app.controller('ForumTopicCtrl', ['$scope', 'forumTopicService', 'forumService',
-    function ($scope, forumTopicService, forumService) {
+app.controller('ForumTopicCtrl', ['$scope', 'forumTopicService', '_forumService',
+    function ($scope, forumTopicService, _forumService) {
 
         //Initialize data
         $scope.init = function () {
@@ -1374,7 +1374,7 @@ app.controller('ForumTopicCtrl', ['$scope', 'forumTopicService', 'forumService',
 
         //get forum 
         $scope.getAllForums = function () {
-            forumService.getForumList().then(function (result) {
+            _forumService.getForumList().then(function (result) {
                 $scope.lstForums = result.data;
             });
         };
@@ -1402,25 +1402,25 @@ app.controller('ForumTopicCtrl', ['$scope', 'forumTopicService', 'forumService',
 
 //ForumPost Controller
 app.controller('ForumPostCtrl', ['$scope', '$sce', 'forumTopicService', 'forumService', 'forumPostService',
-    function ($scope, $sce, forumTopicService, forumService, forumPostService) {
+    function ($scope, $sce, _forumTopicService, _forumService, _forumPostService) {
 
         //Initialize data
         $scope.init = function () {
             $scope.model = {
-                ForumPostID: 0,
-                ForumPostTitle: '',
-                ForumPostContent: '',
-                CreatedTime: null,
-                CreatedBy: '',
-                ForumTopicID: 0,
-                ForumID: 0,
-                ShowInPortal: false,
-                PostLocked: false,
-                ReviewCount: 0,
-                CreatedByUserName: '',
-                ForumName: '',
-                ForumTopicName: '',
-                IsDefault: false
+                forumPostID: 0,
+                forumPostTitle: '',
+                forumPostContent: '',
+                createdTime: null,
+                createdBy: '',
+                forumTopicID: 0,
+                forumID: 0,
+                showInPortal: false,
+                postLocked: false,
+                reviewCount: 0,
+                createdByUserName: '',
+                forumName: '',
+                forumTopicName: '',
+                isDefault: false
 
             };
 
@@ -1484,16 +1484,16 @@ app.controller('ForumPostCtrl', ['$scope', '$sce', 'forumTopicService', 'forumSe
 
         //get forum 
         $scope.getAllForums = function () {
-            forumService.getForumList().then(function (result) {
-                $scope.lstForums = result.data;
+            _forumService.getForumList().then(function (result) {
+                $scope.lstForums = result.data.result;
             });
         };
 
         //get forumtopic
         $scope.showForumTopics = function () {
             $scope.lstTopic = null;
-            forumTopicService.getForumTopicList().then(function (result) {
-                $scope.lstForumTopics = result.data;
+            _forumTopicService.getForumTopicList().then(function (result) {
+                $scope.lstForumTopics = result.data.result;
             });
         };
 
@@ -1504,8 +1504,8 @@ app.controller('ForumPostCtrl', ['$scope', '$sce', 'forumTopicService', 'forumSe
             table.clear();
             table.destroy();
 
-            forumPostService.getForumPostList().then(function (result) {
-                $scope.lstForumPosts = result.data;
+            _forumPostService.getForumPostList().then(function (result) {
+                $scope.lstForumPosts = result.data.result;
 
                 //Set Table Configuration
                 setTimeout(function () {
@@ -1528,12 +1528,8 @@ app.controller('ForumPostCtrl', ['$scope', '$sce', 'forumTopicService', 'forumSe
         //Get all forum topic list wtih forumID
         $scope.getAllForumTopicByID = function (obj) {
             $scope.lstForumTopics = null;
-            params = {
-                id: obj
-            };
-            $scope.lstForumTopics = null;
-            forumTopicService.getForumTopicListGetByForumID({ params: params }).then(function (result) {
-                $scope.lstTopic = result.data;
+            _forumTopicService.getForumTopicListGetByForumID(obj).then(function (result) {
+                $scope.lstTopic = result.data.result;
             });
         };
 
@@ -1548,20 +1544,20 @@ app.controller('ForumPostCtrl', ['$scope', '$sce', 'forumTopicService', 'forumSe
         $scope.editForumPost = function (obj) {
             //Edit post
             $scope.UserState = "> Edit ForumPost";
-            $scope.model.ForumPostID = obj.ForumPostID;
-            $scope.model.ForumPostTitle = obj.ForumPostTitle;
-            $scope.model.ForumPostContent = obj.ForumPostContent;
-            $scope.model.CreatedTime = obj.CreatedTime;
-            $scope.model.CreatedBy = obj.CreatedBy;
-            $scope.model.ForumTopicID = obj.ForumTopicID;
-            $scope.model.ForumID = obj.ForumID;
-            $scope.model.ShowInPortal = obj.ShowInPortal;
-            $scope.model.PostLocked = obj.PostLocked;
-            $scope.model.ReviewCount = obj.ReviewCount;
-            $scope.model.CreatedByUserName = obj.CreatedByUserName;
-            $scope.model.ForumName = obj.ForumName;
-            $scope.model.ForumTopicName = obj.ForumTopicName;
-            $scope.model.IsDefault = obj.IsDefault;
+            $scope.model.forumPostID = obj.forumPostID;
+            $scope.model.forumPostTitle = obj.forumPostTitle;
+            $scope.model.forumPostContent = obj.forumPostContent;
+            $scope.model.createdTime = obj.createdTime;
+            $scope.model.createdBy = obj.createdBy;
+            $scope.model.forumTopicID = obj.forumTopicID;
+            $scope.model.forumID = obj.forumID;
+            $scope.model.showInPortal = obj.showInPortal;
+            $scope.model.postLocked = obj.postLocked;
+            $scope.model.reviewCount = obj.reviewCount;
+            $scope.model.createdByUserName = obj.createdByUserName;
+            $scope.model.forumName = obj.forumName;
+            $scope.model.forumTopicName = obj.forumTopicName;
+            $scope.model.isDefault = obj.isDefault;
             $scope.flgTable = false;
 
             //var sample = $scope.model.ForumPostContent;
@@ -1576,7 +1572,7 @@ app.controller('ForumPostCtrl', ['$scope', '$sce', 'forumTopicService', 'forumSe
         //Create/update forum post
         $scope.createForumPost = function (obj) {
             $scope.hideMessage();
-            forumPostService.insertUpdateForumPost(obj).then(function (result) {
+            _forumPostService.insertUpdateForumPost(obj).then(function (result) {
                 if (result.data.success === 1) {
                     //Make message flg true for display message
                     $scope.flgMessage = true;
@@ -1599,9 +1595,9 @@ app.controller('ForumPostCtrl', ['$scope', '$sce', 'forumTopicService', 'forumSe
         $scope.deleteForumPost = function (obj) {
             $scope.hideMessage();
             params = {
-                id: obj.ForumPostID
+                id: obj.forumPostID
             };
-            forumPostService.deleteForumPost(params.id).then(function (result) {
+            _forumPostService.deleteForumPost(params.id).then(function (result) {
                 if (result.data.success === 1) {
                     $scope.flgMessage = true;
                     $scope.message = result.data.message;
@@ -1625,20 +1621,20 @@ app.controller('ForumPostCtrl', ['$scope', '$sce', 'forumTopicService', 'forumSe
             $scope.UserState = "";
 
             $scope.model = {
-                ForumPostID: 0,
-                ForumPostTitle: '',
-                ForumPostContent: '',
-                CreatedTime: null,
-                CreatedBy: '',
-                ForumTopicID: 0,
-                ForumID: 0,
-                ShowInPortal: false,
-                PostLocked: false,
-                ReviewCount: 0,
-                CreatedByUserName: '',
-                ForumName: '',
-                ForumTopicName: '',
-                IsDefault: false
+                forumPostID: 0,
+                forumPostTitle: '',
+                forumPostContent: '',
+                createdTime: null,
+                createdBy: '',
+                forumTopicID: 0,
+                forumID: 0,
+                showInPortal: false,
+                postLocked: false,
+                reviewCount: 0,
+                createdByUserName: '',
+                forumName: '',
+                forumTopicName: '',
+                isDefault: false
             };
             $scope.tinymceOptions2 = null;
         };

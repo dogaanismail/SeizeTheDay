@@ -26,6 +26,7 @@ namespace SeizeTheDay.Api.Controllers
         #region Fields
         private const string LocalLoginProvider = "Local";
         private readonly ApplicationUserManager _userManager;
+        public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
         #endregion
 
         #region Ctor
@@ -37,8 +38,7 @@ namespace SeizeTheDay.Api.Controllers
         }
         #endregion
 
-        public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
-
+       
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]

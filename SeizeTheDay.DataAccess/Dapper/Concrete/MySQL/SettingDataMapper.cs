@@ -14,7 +14,7 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
 
         public Setting FindById(int id)
         {
-            return FindSingle($"select * from {this.TableName} WHERE SettingId=@Id", new { Id = id });
+            return FindSingle($"select * from {this.TableName} WHERE {this.PrimaryKeyName}={id}", new { Id = id });
         }
 
         public void Insert(Setting item)

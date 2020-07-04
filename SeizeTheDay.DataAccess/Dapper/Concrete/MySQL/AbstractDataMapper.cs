@@ -56,7 +56,7 @@ namespace SeizeTheDay.DataAccess.Dapper.Concrete.MySQL
             using (IDbConnection cn = Connection)
             {
                 cn.Open();
-                var result = cn.Query(query, (object)param).SingleOrDefault();
+                var result = cn.Query<T>(query, (object)param).SingleOrDefault();
 
                 if (result != null)
                 {

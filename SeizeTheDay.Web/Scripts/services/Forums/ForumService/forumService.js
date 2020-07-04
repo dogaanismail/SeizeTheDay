@@ -2,9 +2,10 @@
     .service('forumService', ['$http', function ($http) {
 
         var urlBase = '/api/Forums';
+        var apiBase = 'https://localhost:44367/api/forums/';
 
         this.getForumList = function () {
-            return $http.get(urlBase);
+            return $http.get(apiBase + "getforumsbydapper");
         };
 
         this.insertUpdateForum = function (forum) {

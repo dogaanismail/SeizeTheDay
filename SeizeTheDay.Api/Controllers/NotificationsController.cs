@@ -226,6 +226,5 @@ namespace SeizeTheDay.Api.Controllers
             return _notificationDapperService.GetNotifications();
         }
 
-
     }
 }

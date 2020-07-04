@@ -18,14 +18,19 @@ namespace SeizeTheDay.Api.Controllers
     [RoutePrefix("api/forumtopics")]
     public class ForumTopicsController : BaseController
     {
-        #region Ctor
+        #region Fields
         private readonly IForumTopicService _forumTopicService;
         private readonly IForumTopicDapperService _forumTopicDapperService;
+        private readonly ISettingDapperService _settingDapperService;
+        #endregion
 
-        public ForumTopicsController(IForumTopicService forumTopicService, IForumTopicDapperService forumTopicDapperService)
+        #region Ctor
+        public ForumTopicsController(IForumTopicService forumTopicService, IForumTopicDapperService forumTopicDapperService,
+            ISettingDapperService settingDapperService)
         {
             _forumTopicService = forumTopicService;
             _forumTopicDapperService = forumTopicDapperService;
+            _settingDapperService = settingDapperService;
         }
         #endregion
 
@@ -33,9 +38,12 @@ namespace SeizeTheDay.Api.Controllers
         [Route("gettopics")]
         [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
-        public List<ForumTopicDto> GetForumTopics()
+        public IEnumerable<ForumTopicDto> GetForumTopics()
         {
-            List<ForumTopicDto> forumTopic = _forumTopicService.TolistIncludeWithoutID()
+            IEnumerable<ForumTopicDto> forumTopic = null;
+            if (_settingDapperService.GetByName<bool>("api.forumtopics.getlist.usedapper"))
+            {
+                forumTopic = _forumTopicDapperService.GetForumTopics()
                 .Select(x => new ForumTopicDto()
                 {
                     ForumTopicID = x.ForumTopicID,
@@ -47,6 +55,23 @@ namespace SeizeTheDay.Api.Controllers
                     ForumTopicTitle = x.ForumTopicTitle,
                     ForumName = x.Forum.ForumName
                 }).ToList();
+            }
+            else
+            {
+                forumTopic = _forumTopicService.TolistIncludeWithoutID()
+             .Select(x => new ForumTopicDto()
+             {
+                 ForumTopicID = x.ForumTopicID,
+                 ForumTopicName = x.ForumTopicName,
+                 ForumTopicDescription = x.ForumTopicDescription,
+                 CreatedTime = x.CreatedTime,
+                 CreatedBy = x.CreatedBy,
+                 ForumID = x.ForumID,
+                 ForumTopicTitle = x.ForumTopicTitle,
+                 ForumName = x.Forum.ForumName
+             }).ToList();
+            }
+
             return forumTopic;
         }
 
@@ -56,21 +81,26 @@ namespace SeizeTheDay.Api.Controllers
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public ForumTopicDto GetForumTopicById(int id)
         {
-            ForumTopic forum = _forumTopicService.SingleStringIncludeWithExp(id);
-            ForumTopicDto forumDto = new ForumTopicDto
+            ForumTopic forumTopic;
+            if (_settingDapperService.GetByName<bool>("api.forumtopics.getbyid.usedapper"))
+                forumTopic = _forumTopicDapperService.GetForumTopicById(id);
+            else
+                forumTopic = _forumTopicService.SingleStringIncludeWithExp(id);
+
+            ForumTopicDto forumTopicDto = new ForumTopicDto
             {
-                ForumTopicID = forum.ForumTopicID,
-                ForumTopicName = forum.ForumTopicName,
-                ForumTopicDescription = forum.ForumTopicDescription,
-                CreatedTime = forum.CreatedTime,
-                CreatedBy = forum.CreatedBy,
-                ForumID = forum.ForumID,
-                ForumTopicTitle = forum.ForumTopicTitle,
-                ForumName = forum.Forum.ForumName,
-                IsDefault = forum.IsDefault
+                ForumTopicID = forumTopic.ForumTopicID,
+                ForumTopicName = forumTopic.ForumTopicName,
+                ForumTopicDescription = forumTopic.ForumTopicDescription,
+                CreatedTime = forumTopic.CreatedTime,
+                CreatedBy = forumTopic.CreatedBy,
+                ForumID = forumTopic.ForumID,
+                ForumTopicTitle = forumTopic.ForumTopicTitle,
+                ForumName = forumTopic.Forum.ForumName,
+                IsDefault = forumTopic.IsDefault
             };
 
-            return forumDto;
+            return forumTopicDto;
         }
 
         [Route("getbyforumid")]
@@ -79,6 +109,7 @@ namespace SeizeTheDay.Api.Controllers
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<ForumTopicDto> GetByForumId(int id)
         {
+            //TODO
             List<ForumTopicDto> forumTopic = _forumTopicService.TolistIncludeByForumID(id)
                  .Select(x => new ForumTopicDto()
                  {

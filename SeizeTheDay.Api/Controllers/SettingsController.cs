@@ -72,7 +72,11 @@ namespace SeizeTheDay.Api.Controllers
                     Name = model.Name,
                     Value = model.Value
                 };
-                _settingDapperService.Insert(newSetting);
+                if (_settingDapperService.GetByName<bool>("api.settings.create.usedapper"))
+                    _settingDapperService.Insert(newSetting);
+                else
+                    return null; //TODO
+
                 return Ok(ApiStatusEnum.Ok);
             }
             catch (Exception ex)
@@ -92,7 +96,11 @@ namespace SeizeTheDay.Api.Controllers
                 {
                     setting.Name = model.Name;
                     setting.Value = model.Value;
-                    _settingDapperService.Update(setting);
+                    if (_settingDapperService.GetByName<bool>("api.settings.update.usedapper"))
+                        _settingDapperService.Update(setting);
+                    else
+                        return null; //TODO
+
                     return Ok(ApiStatusEnum.Ok);
                 }
                 return Ok(ApiStatusEnum.BadRequest);
@@ -112,7 +120,10 @@ namespace SeizeTheDay.Api.Controllers
                 ModelSetting setting = _settingDapperService.GetById(model.SettingId);
                 if (setting != null)
                 {
-                    _settingDapperService.Delete(setting.SettingId);
+                    if (_settingDapperService.GetByName<bool>("api.settings.delete.usedapper"))
+                        _settingDapperService.Delete(setting.SettingId);
+                    else
+                        return null; //TODO
                     return Ok(ApiStatusEnum.Ok);
                 }
                 return Ok(ApiStatusEnum.BadRequest);
@@ -132,7 +143,10 @@ namespace SeizeTheDay.Api.Controllers
                 ModelSetting setting = _settingDapperService.GetById(id);
                 if (setting != null)
                 {
-                    _settingDapperService.Delete(setting.SettingId);
+                    if (_settingDapperService.GetByName<bool>("api.settings.delete.usedapper"))
+                        _settingDapperService.Delete(setting.SettingId);
+                    else
+                        return null; //TODO
                     return Ok(ApiStatusEnum.Ok);
                 }
                 return Ok(ApiStatusEnum.BadRequest);
