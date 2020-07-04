@@ -13,6 +13,12 @@ namespace SeizeTheDay.Entities.Mapping.Forums
             this.Property(f => f.Description).IsRequired().HasMaxLength(500);
             this.Property(f => f.Status).IsRequired().HasMaxLength(25);
             this.Property(f => f.IsDefault).IsRequired().IsOptional();
+
+            //TODO
+            //this.HasRequired(ft => ft.User)
+            //   .WithMany()
+            //   .HasForeignKey(ft => ft.UserId)
+            //   .WillCascadeOnDelete(false);
         }
     }
 }

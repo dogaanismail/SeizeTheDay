@@ -83,8 +83,14 @@
     <Compile Include="Identity\Entities\User.cs" />
     <Compile Include="Identity\Entities\UserRole.cs" />
     <Compile Include="Identity\IdentityContext.cs" />
+    <Compile Include="Mapping\Country\CountryMap.cs" />
+    <Compile Include="Mapping\Forums\ForumCommentLikeMap.cs" />
     <Compile Include="Mapping\Forums\ForumMap.cs" />
+    <Compile Include="Mapping\Forums\ForumPostCommentMap.cs" />
+    <Compile Include="Mapping\Forums\ForumPostLikeMap.cs" />
+    <Compile Include="Mapping\Forums\ForumPostMap.cs" />
     <Compile Include="Mapping\Forums\ForumTopicMap.cs" />
+    <Compile Include="Mapping\Forums\PortalMessageMap.cs" />
     <Compile Include="Mapping\Setting\SettingMap.cs" />
     <Compile Include="Mapping\SystemEntityTypeConfiguration.cs" />
     <Compile Include="MySQL\DataModel1.Designer.cs">
@@ -122,7 +128,6 @@
   <ItemGroup>
     <Folder Include="Mapping\ChatBox\" />
     <Folder Include="Mapping\Chat\" />
-    <Folder Include="Mapping\Country\" />
     <Folder Include="Mapping\FriendRequest\" />
     <Folder Include="Mapping\Friend\" />
     <Folder Include="Mapping\Module\" />

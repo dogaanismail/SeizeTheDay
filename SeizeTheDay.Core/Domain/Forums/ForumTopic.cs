@@ -30,9 +30,9 @@ namespace SeizeTheDay.Core.Domain.Forums
         public int ForumId { get; set; }
 
         /// <summary>
-        /// Gets or sets the customer identifier
+        /// Gets or sets the user identifier
         /// </summary>
-        public int UserId { get; set; }
+        public int CreatedBy { get; set; }
 
         /// <summary>
         /// Gets the forum
@@ -41,7 +41,7 @@ namespace SeizeTheDay.Core.Domain.Forums
 
         //TODO
         /// <summary>
-        /// Gets the customer
+        /// Gets the user
         /// </summary>
         //public virtual User User { get; set; }
     }

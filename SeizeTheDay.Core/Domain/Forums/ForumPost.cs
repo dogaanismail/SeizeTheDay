@@ -10,7 +10,7 @@ namespace SeizeTheDay.Core.Domain.Forums
         public string Title { get; set; }
 
         /// <summary>
-        /// Gets or sets the title
+        /// Gets or sets the content
         /// </summary>
         public string Content { get; set; }
 
@@ -30,7 +30,7 @@ namespace SeizeTheDay.Core.Domain.Forums
         public int ReviewCount { get; set; }
 
         /// <summary>
-        /// Gets or sets the review count
+        /// Gets or sets the isdefault
         /// </summary>
         public int IsDefault { get; set; }
 
@@ -47,7 +47,7 @@ namespace SeizeTheDay.Core.Domain.Forums
         /// <summary>
         /// Gets or sets the user identifier
         /// </summary>
-        public int UserId { get; set; }
+        public int CreatedBy { get; set; }
 
         /// <summary>
         /// Gets the forum
@@ -55,13 +55,13 @@ namespace SeizeTheDay.Core.Domain.Forums
         public virtual Forum Forum { get; set; }
 
         /// <summary>
-        /// Gets the forum
+        /// Gets the forumtopic
         /// </summary>
         public virtual ForumTopic ForumTopic { get; set; }
 
         //TODO
         /// <summary>
-        /// Gets the customer
+        /// Gets the user
         /// </summary>
         //public virtual User User { get; set; }
     }

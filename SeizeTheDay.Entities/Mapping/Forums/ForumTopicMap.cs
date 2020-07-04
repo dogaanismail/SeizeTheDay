@@ -18,9 +18,9 @@ namespace SeizeTheDay.Entities.Mapping.Forums
                 .HasForeignKey(ft => ft.ForumId);
 
             //TODO
-            //this.HasRequired(ft => ft.Customer)
+            //this.HasRequired(ft => ft.User)
             //   .WithMany()
-            //   .HasForeignKey(ft => ft.CustomerId)
+            //   .HasForeignKey(ft => ft.UserId)
             //   .WillCascadeOnDelete(false);
         }
     }

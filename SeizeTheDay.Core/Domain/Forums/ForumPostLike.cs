@@ -2,33 +2,27 @@
 
 namespace SeizeTheDay.Core.Domain.Forums
 {
-    public partial class ForumPostComment : BaseEntity
+    public partial class ForumPostLike : BaseEntity
     {
-        /// <summary>
-        /// Gets or sets the text
-        /// </summary>
-        public string Text { get; set; }
-
         /// <summary>
         /// Gets or sets the user identifier
         /// </summary>
         public int CreatedBy { get; set; }
 
         /// <summary>
-        /// Gets or sets the forum identifier
+        /// Gets or sets the forum post identifier
         /// </summary>
         public int ForumPostId { get; set; }
 
         /// <summary>
-        /// Gets the forumtopic
+        /// Gets the comment
         /// </summary>
         public virtual ForumPost ForumPost { get; set; }
 
         //TODO
         /// <summary>
-        /// Gets the user
+        /// Gets the customer
         /// </summary>
         //public virtual User User { get; set; }
     }
-
 }

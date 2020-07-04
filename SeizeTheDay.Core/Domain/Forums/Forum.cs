@@ -32,11 +32,11 @@ namespace SeizeTheDay.Core.Domain.Forums
         /// <summary>
         /// Gets or sets the customer identifier
         /// </summary>
-        public int UserId { get; set; }
+        public int CreatedBy { get; set; }
 
         //TODO
         /// <summary>
-        /// Gets the customer
+        /// Gets the user
         /// </summary>
         //public virtual User User { get; set; }
     }
