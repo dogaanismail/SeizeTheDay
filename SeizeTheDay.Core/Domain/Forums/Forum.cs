@@ -30,7 +30,7 @@ namespace SeizeTheDay.Core.Domain.Forums
         public bool IsDefault { get; set; }
 
         /// <summary>
-        /// Gets or sets the customer identifier
+        /// Gets or sets the user identifier
         /// </summary>
         public int CreatedBy { get; set; }
 

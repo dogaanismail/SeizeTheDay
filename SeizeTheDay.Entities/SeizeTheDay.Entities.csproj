@@ -83,6 +83,9 @@
     <Compile Include="Identity\Entities\User.cs" />
     <Compile Include="Identity\Entities\UserRole.cs" />
     <Compile Include="Identity\IdentityContext.cs" />
+    <Compile Include="Mapping\Chats\ChatGroupMap.cs" />
+    <Compile Include="Mapping\Chats\ChatGroupUserMap.cs" />
+    <Compile Include="Mapping\Chats\ChatMap.cs" />
     <Compile Include="Mapping\Country\CountryMap.cs" />
     <Compile Include="Mapping\Forums\ForumCommentLikeMap.cs" />
     <Compile Include="Mapping\Forums\ForumMap.cs" />
@@ -91,6 +94,11 @@
     <Compile Include="Mapping\Forums\ForumPostMap.cs" />
     <Compile Include="Mapping\Forums\ForumTopicMap.cs" />
     <Compile Include="Mapping\Forums\PortalMessageMap.cs" />
+    <Compile Include="Mapping\Friends\FriendMap.cs" />
+    <Compile Include="Mapping\Friends\FriendRequestMap.cs" />
+    <Compile Include="Mapping\Module\ModuleMap.cs" />
+    <Compile Include="Mapping\Notification\NotificationMap.cs" />
+    <Compile Include="Mapping\ProfileVisitor\ProfileVisitorMap.cs" />
     <Compile Include="Mapping\Setting\SettingMap.cs" />
     <Compile Include="Mapping\SystemEntityTypeConfiguration.cs" />
     <Compile Include="MySQL\DataModel1.Designer.cs">
@@ -125,14 +133,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mapping\ChatBox\" />
-    <Folder Include="Mapping\Chat\" />
-    <Folder Include="Mapping\FriendRequest\" />
-    <Folder Include="Mapping\Friend\" />
-    <Folder Include="Mapping\Module\" />
-    <Folder Include="Mapping\Notification\" />
-    <Folder Include="Mapping\ProfileVisitor\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

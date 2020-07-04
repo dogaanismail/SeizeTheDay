@@ -13,7 +13,7 @@ namespace SeizeTheDay.Entities.Mapping.Forums
             this.Property(fp => fp.ShowInPortal).IsOptional();
             this.Property(fp => fp.PostLocked).IsOptional();
             this.Property(fp => fp.ReviewCount).IsOptional();
-            this.Property(fp => fp.IsDefault).IsRequired().IsOptional();
+            this.Property(fp => fp.IsDefault).IsOptional();
 
             this.HasRequired(fp => fp.Forum)
                .WithMany()

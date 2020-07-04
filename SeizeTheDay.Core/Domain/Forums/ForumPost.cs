@@ -1,9 +1,12 @@
 ﻿using SeizeTheDay.Core.Entities;
+using System.Collections.Generic;
 
 namespace SeizeTheDay.Core.Domain.Forums
 {
     public partial class ForumPost : BaseEntity
     {
+        private ICollection<ForumPostComment> _forumPostComments;
+
         /// <summary>
         /// Gets or sets the title
         /// </summary>
@@ -58,6 +61,15 @@ namespace SeizeTheDay.Core.Domain.Forums
         /// Gets the forumtopic
         /// </summary>
         public virtual ForumTopic ForumTopic { get; set; }
+
+        /// <summary>
+        /// Gets or sets forumpost comments
+        /// </summary>
+        public virtual ICollection<ForumPostComment> ForumPostComments
+        {
+            get { return _forumPostComments ?? (_forumPostComments = new List<ForumPostComment>()); }
+            protected set { _forumPostComments = value; }
+        }
 
         //TODO
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using SeizeTheDay.Core.DataAccess.Abstract;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using SeizeTheDay.Core.DataAccess.Abstract;
 using SeizeTheDay.Core.Entities;
 using SeizeTheDay.Entities.Mapping;
 using System;
@@ -7,17 +8,15 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SeizeTheDay.Entities.EntityFramework
 {
-    public class SeizeTheDayContext : DbContext, IDbContext
+    public class SeizeTheDayContext : IdentityDbContext, IDbContext
     {
         #region Ctor
         public SeizeTheDayContext()
@@ -160,33 +159,6 @@ namespace SeizeTheDay.Entities.EntityFramework
             return result;
         }
 
-        public DataTable ExecuteStoredProcedure(string commandText, params SqlParameter[] parameters)
-        {
-            var dataSettingsManager = new DataSettingsManager();
-            var dataProviderSettings = dataSettingsManager.LoadSettings();
-            var dt = new DataTable();
-            using (var conn = new SqlConnection(dataProviderSettings.DataConnectionString))
-            {
-                //open the connection for use
-                if (conn.State == ConnectionState.Closed)
-                    conn.Open();
-
-                var cmd = new SqlCommand(commandText, conn)
-                {
-                    CommandType = CommandType.StoredProcedure,
-                    CommandTimeout = 0
-                };
-                if (parameters != null && parameters.Any())
-                    cmd.Parameters.AddRange(parameters.GroupBy(x => x.ParameterName).Select(x => x.First()).ToArray());
-                var da = new SqlDataAdapter(cmd);
-
-                da.Fill(dt);
-                conn.Close();
-            }
-
-            return dt;
-        }
-
         /// <summary>
         /// Creates a raw SQL query that will return elements of the given generic type.  The type can be any type that has properties that match the names of the columns returned from the query, or can be a simple primitive type. The type does not have to be an entity type. The results of this query are never tracked by the context even if the type of object returned is an entity type.
         /// </summary>
@@ -233,35 +205,6 @@ namespace SeizeTheDay.Entities.EntityFramework
             return result;
         }
 
-        public DataSet ExecuteDataSet(List<string> sqlStatements)
-        {
-            var dataset = new DataSet();
-
-            var dataSettingsManager = new DataSettingsManager();
-            var dataProviderSettings = dataSettingsManager.LoadSettings();
-            using (SqlConnection connection = new SqlConnection(dataProviderSettings.DataConnectionString))
-            {
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-
-                foreach (var sqlStatement in sqlStatements)
-                {
-                    DataTable dt = dataset.Tables.Add();
-                    SqlDataAdapter adapter = new SqlDataAdapter();
-                    adapter.SelectCommand = new SqlCommand(sqlStatement, connection);
-                    adapter.Fill(dt);
-                }
-            }
-
-            return dataset;
-        }
-
-        public DataSet ExecuteDataSet(string sqlStatement)
-        {
-            var queryList = new List<string>();
-            queryList.Add(sqlStatement);
-            return ExecuteDataSet(queryList);
-        }
 
         /// <summary>
         /// Detach an entity

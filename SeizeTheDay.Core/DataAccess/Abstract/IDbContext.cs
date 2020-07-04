@@ -50,12 +50,7 @@ namespace SeizeTheDay.Core.DataAccess.Abstract
         /// <returns>The result returned by the database after executing the command.</returns>
         int ExecuteSqlCommand(string sql, bool doNotEnsureTransaction = false, int? timeout = null, params object[] parameters);
 
-        DataSet ExecuteDataSet(List<string> sqlStatements);
-        DataSet ExecuteDataSet(string sqlStatement);
-
         IList<T> ExecuteStoredProcedure<T>(string commandText, params object[] parameters);
-
-        DataTable ExecuteStoredProcedure(string commandText, params SqlParameter[] parameters);
 
         /// <summary>
         /// Detach an entity
@@ -69,6 +64,8 @@ namespace SeizeTheDay.Core.DataAccess.Abstract
         bool ProxyCreationEnabled { get; set; }
 
         bool ValidateOnSaveEnabled { get; set; }
+
+        bool LazyLoadingEnabled { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether auto detect changes setting is enabled (used in EF)
