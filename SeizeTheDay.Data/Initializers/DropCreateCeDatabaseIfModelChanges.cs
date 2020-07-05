@@ -1,75 +1,75 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using SeizeTheDay.Core.Domain.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
+﻿//using Microsoft.AspNet.Identity.EntityFramework;
+//using SeizeTheDay.Core.Domain.Identity;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
+//using System.Transactions;
 
-namespace SeizeTheDay.Data.Initializers
-{
-    /// <summary>
-    /// An implementation of IDatabaseInitializer that will <b>DELETE</b>, recreate, and optionally re-seed the
-    /// database only if the model has changed since the database was created.  This is achieved by writing a
-    /// hash of the store model to the database when it is created and then comparing that hash with one
-    /// generated from the current model.
-    /// To seed the database, create a derived class and override the Seed method.
-    /// </summary>
-    public class DropCreateCeDatabaseIfModelChanges<TContext> : SqlCeInitializer<TContext> where TContext : IdentityDbContext<AppUser, AppRole, int,
-        AppUserLogin, AppUserRole, AppUserClaim>
-    {
-        #region Strategy implementation
+//namespace SeizeTheDay.Data.Initializers
+//{
+//    /// <summary>
+//    /// An implementation of IDatabaseInitializer that will <b>DELETE</b>, recreate, and optionally re-seed the
+//    /// database only if the model has changed since the database was created.  This is achieved by writing a
+//    /// hash of the store model to the database when it is created and then comparing that hash with one
+//    /// generated from the current model.
+//    /// To seed the database, create a derived class and override the Seed method.
+//    /// </summary>
+//    public class DropCreateCeDatabaseIfModelChanges<TContext> : SqlCeInitializer<TContext> where TContext : IdentityDbContext<AppUser, AppRole, int,
+//        AppUserLogin, AppUserRole, AppUserClaim>
+//    {
+//        #region Strategy implementation
 
-        /// <summary>
-        /// Executes the strategy to initialize the database for the given context.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        public override void InitializeDatabase(TContext context)
-        {
-            if (context == null)
-            {
-                throw new ArgumentNullException("context");
-            }
+//        /// <summary>
+//        /// Executes the strategy to initialize the database for the given context.
+//        /// </summary>
+//        /// <param name="context">The context.</param>
+//        public override void InitializeDatabase(TContext context)
+//        {
+//            if (context == null)
+//            {
+//                throw new ArgumentNullException("context");
+//            }
 
-            var replacedContext = ReplaceSqlCeConnection(context);
+//            var replacedContext = ReplaceSqlCeConnection(context);
 
-            bool databaseExists;
-            using (new TransactionScope(TransactionScopeOption.Suppress))
-            {
-                databaseExists = replacedContext.Database.Exists();
-            }
+//            bool databaseExists;
+//            using (new TransactionScope(TransactionScopeOption.Suppress))
+//            {
+//                databaseExists = replacedContext.Database.Exists();
+//            }
 
-            if (databaseExists)
-            {
-                if (context.Database.CompatibleWithModel(throwIfNoMetadata: true))
-                {
-                    return;
-                }
+//            if (databaseExists)
+//            {
+//                if (context.Database.CompatibleWithModel(throwIfNoMetadata: true))
+//                {
+//                    return;
+//                }
 
-                replacedContext.Database.Delete();
-            }
+//                replacedContext.Database.Delete();
+//            }
 
-            // Database didn't exist or we deleted it, so we now create it again.
-            context.Database.Create();
+//            // Database didn't exist or we deleted it, so we now create it again.
+//            context.Database.Create();
 
-            Seed(context);
-            context.SaveChanges();
-        }
+//            Seed(context);
+//            context.SaveChanges();
+//        }
 
-        #endregion
+//        #endregion
 
-        #region Seeding methods
+//        #region Seeding methods
 
-        /// <summary>
-        /// A that should be overridden to actually add data to the context for seeding. 
-        /// The default implementation does nothing.
-        /// </summary>
-        /// <param name="context">The context to seed.</param>
-        protected virtual void Seed(TContext context)
-        {
-        }
+//        /// <summary>
+//        /// A that should be overridden to actually add data to the context for seeding. 
+//        /// The default implementation does nothing.
+//        /// </summary>
+//        /// <param name="context">The context to seed.</param>
+//        protected virtual void Seed(TContext context)
+//        {
+//        }
 
-        #endregion
-    }
-}
+//        #endregion
+//    }
+//}

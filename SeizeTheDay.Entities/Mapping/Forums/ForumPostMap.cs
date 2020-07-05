@@ -17,11 +17,13 @@ namespace SeizeTheDay.Entities.Mapping.Forums
 
             this.HasRequired(fp => fp.Forum)
                .WithMany()
-               .HasForeignKey(fp => fp.ForumId);
+               .HasForeignKey(fp => fp.ForumId)
+                 .WillCascadeOnDelete(false);
 
             this.HasRequired(fp => fp.ForumTopic)
                .WithMany()
-               .HasForeignKey(fp => fp.ForumTopicId);
+               .HasForeignKey(fp => fp.ForumTopicId)
+                .WillCascadeOnDelete(false);
 
             //TODO
             //this.HasRequired(fp => fp.UserId)

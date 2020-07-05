@@ -64,9 +64,9 @@
     <Compile Include="Initializers\DropCreateCeDatabaseAlways.cs" />
     <Compile Include="Initializers\DropCreateCeDatabaseIfModelChanges.cs" />
     <Compile Include="Initializers\SqlCeInitializer.cs" />
-    <Compile Include="Migrations\202007050135253_InitialCreate.cs" />
-    <Compile Include="Migrations\202007050135253_InitialCreate.Designer.cs">
-      <DependentUpon>202007050135253_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202007051115562_InitialCreate.cs" />
+    <Compile Include="Migrations\202007051115562_InitialCreate.Designer.cs">
+      <DependentUpon>202007051115562_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,8 +86,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007050135253_InitialCreate.resx">
-      <DependentUpon>202007050135253_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007051115562_InitialCreate.resx">
+      <DependentUpon>202007051115562_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -96,6 +96,12 @@
     <Compile Include="Mapping\Forums\PortalMessageMap.cs" />
     <Compile Include="Mapping\Friends\FriendMap.cs" />
     <Compile Include="Mapping\Friends\FriendRequestMap.cs" />
+    <Compile Include="Mapping\Identity\AppRoleMap.cs" />
+    <Compile Include="Mapping\Identity\AppUserClaimMap.cs" />
+    <Compile Include="Mapping\Identity\AppUserDetailMap.cs" />
+    <Compile Include="Mapping\Identity\AppUserLoginMap.cs" />
+    <Compile Include="Mapping\Identity\AppUserMap.cs" />
+    <Compile Include="Mapping\Identity\AppUserRoleMap.cs" />
     <Compile Include="Mapping\Module\ModuleMap.cs" />
     <Compile Include="Mapping\Notification\NotificationMap.cs" />
     <Compile Include="Mapping\ProfileVisitor\ProfileVisitorMap.cs" />

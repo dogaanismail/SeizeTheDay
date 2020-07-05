@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -20,6 +21,6 @@ namespace SeizeTheDay.Core.Domain.Identity
             var userIdentity2 = await manager.CreateIdentityAsync(this, authenticationType);
             // Add custom user claims here
             return userIdentity2;
-        }
+        }      
     }
 }

@@ -2,7 +2,14 @@
 using SeizeTheDay.Core.DataAccess.Abstract;
 using SeizeTheDay.Core.Domain.Identity;
 using SeizeTheDay.Core.Entities;
-using SeizeTheDay.Entities.Mapping;
+using SeizeTheDay.Entities.Mapping.Chats;
+using SeizeTheDay.Entities.Mapping.Country;
+using SeizeTheDay.Entities.Mapping.Forums;
+using SeizeTheDay.Entities.Mapping.Friends;
+using SeizeTheDay.Entities.Mapping.Module;
+using SeizeTheDay.Entities.Mapping.Notification;
+using SeizeTheDay.Entities.Mapping.ProfileVisitor;
+using SeizeTheDay.Entities.Mapping.Setting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,12 +19,11 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 
 namespace SeizeTheDay.Data.EntityFramework
 {
-    public class SeizeTheDayContext : IdentityDbContext<AppUser, AppRole,int, 
+    public class SeizeTheDayContext : IdentityDbContext<AppUser, AppRole, int,
         AppUserLogin, AppUserRole, AppUserClaim>, IDbContext
     {
         #region Ctor
@@ -31,15 +37,23 @@ namespace SeizeTheDay.Data.EntityFramework
         #region Utilities
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            var typesToRegister = Assembly.GetExecutingAssembly().GetTypes()
-            .Where(type => !String.IsNullOrEmpty(type.Namespace))
-            .Where(type => type.BaseType != null && type.BaseType.IsGenericType &&
-                type.BaseType.GetGenericTypeDefinition() == typeof(SystemEntityTypeConfiguration<>));
-            foreach (var type in typesToRegister)
-            {
-                dynamic configurationInstance = Activator.CreateInstance(type);
-                modelBuilder.Configurations.Add(configurationInstance);
-            }
+            modelBuilder.Configurations.Add(new ChatGroupMap());
+            modelBuilder.Configurations.Add(new ChatGroupUserMap());
+            modelBuilder.Configurations.Add(new ChatMap());
+            modelBuilder.Configurations.Add(new CountryMap());
+            modelBuilder.Configurations.Add(new ForumCommentLikeMap());
+            modelBuilder.Configurations.Add(new ForumMap());
+            modelBuilder.Configurations.Add(new ForumPostCommentMap());
+            modelBuilder.Configurations.Add(new ForumPostLikeMap());
+            modelBuilder.Configurations.Add(new ForumPostMap());
+            modelBuilder.Configurations.Add(new ForumTopicMap());
+            modelBuilder.Configurations.Add(new PortalMessageMap());
+            modelBuilder.Configurations.Add(new FriendMap());
+            modelBuilder.Configurations.Add(new FriendRequestMap());
+            modelBuilder.Configurations.Add(new ModuleMap());
+            modelBuilder.Configurations.Add(new NotificationMap());
+            modelBuilder.Configurations.Add(new ProfileVisitorMap());
+            modelBuilder.Configurations.Add(new SettingMap());
             base.OnModelCreating(modelBuilder);
         }
 
@@ -51,17 +65,12 @@ namespace SeizeTheDay.Data.EntityFramework
         /// <returns>Attached entity</returns>
         protected virtual TEntity AttachEntityToContext<TEntity>(TEntity entity) where TEntity : BaseEntity, new()
         {
-            //little hack here until Entity Framework really supports stored procedures
-            //otherwise, navigation properties of loaded entities are not loaded until an entity is attached to the context
             var alreadyAttached = Set<TEntity>().Local.FirstOrDefault(x => x.Id == entity.Id);
             if (alreadyAttached == null)
             {
-                //attach new entity
                 Set<TEntity>().Attach(entity);
                 return entity;
             }
-
-            //entity is already loaded
             return alreadyAttached;
         }
 
@@ -206,7 +215,6 @@ namespace SeizeTheDay.Data.EntityFramework
             //return result
             return result;
         }
-
 
         /// <summary>
         /// Detach an entity

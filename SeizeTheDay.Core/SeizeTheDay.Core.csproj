@@ -193,6 +193,7 @@
     <Compile Include="Domain\Identity\AppRole.cs" />
     <Compile Include="Domain\Identity\AppUser.cs" />
     <Compile Include="Domain\Identity\AppUserClaim.cs" />
+    <Compile Include="Domain\Identity\AppUserDetail.cs" />
     <Compile Include="Domain\Identity\AppUserLogin.cs" />
     <Compile Include="Domain\Identity\AppUserRole.cs" />
     <Compile Include="Domain\Module\Module.cs" />
