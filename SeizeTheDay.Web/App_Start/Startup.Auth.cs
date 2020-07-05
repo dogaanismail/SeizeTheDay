@@ -7,14 +7,13 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.DataProtection;
 using Owin;
 using SeizeTheDay.Business.Concrete.IdentityManagers;
-using SeizeTheDay.Entities.Identity;
-using SeizeTheDay.Entities.Identity.Entities;
+using SeizeTheDay.Core.Domain.Identity;
 
 namespace SeizeTheDay.Web
 {
     public partial class Startup
     {
-   
+
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
@@ -37,11 +36,12 @@ namespace SeizeTheDay.Web
                 {
                     // Enables the application to validate the security stamp when the user logs in.
                     // This is a security feature which is used when you change a password or add an external login to your account.  
-                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, User>(
+                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, AppUser, int>(
                         validateInterval: TimeSpan.FromMinutes(0),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                        regenerateIdentityCallback: (manager, user) => user.GenerateUserIdentityAsync(manager),
+                        getUserIdCallback: (id) => (Int32.Parse(id.GetUserId())))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.

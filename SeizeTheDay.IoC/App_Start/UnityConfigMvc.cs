@@ -8,12 +8,12 @@ using SeizeTheDay.Business.Dapper.Abstract.MySQL;
 using SeizeTheDay.Business.Dapper.Concrete.MySQL;
 using SeizeTheDay.Core.DataAccess.Abstract.MySQL;
 using SeizeTheDay.Core.DataAccess.Concrete.MySQL;
+using SeizeTheDay.Core.Domain.Identity;
+using SeizeTheDay.Data.EntityFramework;
 using SeizeTheDay.DataAccess.Abstract.MySQL;
 using SeizeTheDay.DataAccess.Concrete.MySQL;
 using SeizeTheDay.DataAccess.Dapper.Abstract.MySQL;
 using SeizeTheDay.DataAccess.Dapper.Concrete.MySQL;
-using SeizeTheDay.Entities.Identity;
-using SeizeTheDay.Entities.Identity.Entities;
 using System.Data.Entity.Core.Objects;
 using System.Web;
 using System.Web.Http;
@@ -39,7 +39,6 @@ namespace SeizeTheDay.IoC.App_Start
         public static void RegisterTypes(IUnityContainer container)
         {
             #region IdentityManagement
-            container.RegisterType<IdentityContext>(new PerRequestLifetimeManager());
             container.RegisterType<ApplicationSignInManager>(new PerRequestLifetimeManager());
             container.RegisterType<ApplicationRoleManager>(new PerRequestLifetimeManager());
             container.RegisterType<ApplicationUserManager>(new PerRequestLifetimeManager());
@@ -48,11 +47,11 @@ namespace SeizeTheDay.IoC.App_Start
             container.RegisterType<IAuthenticationManager>(
               injectionMembers: new InjectionFactory(c => HttpContext.Current.GetOwinContext().Authentication));
 
-            container.RegisterType<IRoleStore<Roles, string>, RoleStore<Roles, string, IdentityUserRole>>(
-              new InjectionConstructor(typeof(IdentityContext)));
+            //container.RegisterType<IRoleStore<AppRole, int>, RoleStore<AppRole, int, IdentityUserRole<int>>(
+            //  new InjectionConstructor(typeof(SeizeTheDayContext)));
 
-            container.RegisterType<IUserStore<Entities.Identity.Entities.User>, UserStore<Entities.Identity.Entities.User>>(
-                new InjectionConstructor(typeof(IdentityContext)));
+            //container.RegisterType<IUserStore<AppUser, UserStore<AppUser,int>>(
+            //    new InjectionConstructor(typeof(SeizeTheDayContext)));
 
             #endregion
 

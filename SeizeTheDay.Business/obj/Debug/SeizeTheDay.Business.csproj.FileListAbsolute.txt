@@ -210,7 +210,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\System.ComponentModel.Ann
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\NHibernate.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\log4net.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Microsoft.Owin.Host.SystemWeb.dll
-C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Devart.Data.MySql.Entity.EF6.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Remotion.Linq.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Remotion.Linq.EagerFetching.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Antlr3.Runtime.dll
@@ -240,7 +239,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Ninject.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\NHibernate.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\log4net.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml
-C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Devart.Data.MySql.Entity.EF6.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Remotion.Linq.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Remotion.Linq.EagerFetching.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Antlr3.Runtime.xml
@@ -273,3 +271,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Dapper.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\Dapper.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\SeizeTheDay.Common.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\SeizeTheDay.Common.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\SeizeTheDay.Data.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\SeizeTheDay.Data.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\SeizeTheDay.Data.dll.config

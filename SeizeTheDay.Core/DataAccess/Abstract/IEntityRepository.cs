@@ -15,6 +15,5 @@ namespace SeizeTheDay.Core.DataAccess.Abstract
         T Update(T entity);
         void Delete(T entity);
 
-
     }
 }

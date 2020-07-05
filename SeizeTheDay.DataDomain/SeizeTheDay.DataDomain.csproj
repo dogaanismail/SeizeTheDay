@@ -180,6 +180,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SeizeTheDay.Core\SeizeTheDay.Core.csproj">
+      <Project>{18723BD2-A5DE-4635-8C62-5DBCDCCB5FA3}</Project>
+      <Name>SeizeTheDay.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SeizeTheDay.Entities\SeizeTheDay.Entities.csproj">
       <Project>{a24ad207-6920-4f3f-b18d-564b079019cc}</Project>
       <Name>SeizeTheDay.Entities</Name>

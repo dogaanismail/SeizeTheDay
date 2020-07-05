@@ -10,10 +10,10 @@ using Microsoft.Owin.Security;
 using SeizeTheDay.Business.Abstract.MySQL;
 using SeizeTheDay.Business.Concrete.IdentityManagers;
 using SeizeTheDay.Core.Constants;
+using SeizeTheDay.Core.Domain.Identity;
 using SeizeTheDay.DataDomain.Api;
 using SeizeTheDay.DataDomain.Common;
 using SeizeTheDay.DataDomain.ViewModels;
-using SeizeTheDay.Entities.Identity.Entities;
 using SeizeTheDay.Web.ServiceManager;
 
 namespace SeizeTheDay.Web.Controllers
@@ -177,21 +177,22 @@ namespace SeizeTheDay.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var newUser = new User
+                var newUser = new AppUser
                 {
                     UserName = model.UserName,
                     Email = model.Email,
-                    FirstName = model.Name,
-                    LastName = model.SurName,
-                    RegisteredDate = DateTime.Now,
-                    PhotoPath = "User.jpg",
-                    CoverPhotoPath = "default-banner.jpg",
-                    Status = "NotActive",
-                    IsDefault = false,
-                    IsActive = false
+
+                    //FirstName = model.Name,
+                    //LastName = model.SurName,
+                    //RegisteredDate = DateTime.Now,
+                    //PhotoPath = "User.jpg",
+                    //CoverPhotoPath = "default-banner.jpg",
+                    //Status = "NotActive",
+                    //IsDefault = false,
+                    //IsActive = false
                 };
                 var role = await _roleManager.FindByNameAsync("User");
-                UserRole userRole = new UserRole
+                AppUserRole userRole = new AppUserRole
                 {
                     RoleId = role.Id,
                     UserId = newUser.Id
@@ -280,7 +281,7 @@ namespace SeizeTheDay.Web.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new AppUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

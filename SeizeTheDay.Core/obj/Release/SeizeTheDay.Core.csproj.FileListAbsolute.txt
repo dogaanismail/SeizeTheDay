@@ -196,7 +196,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Core\bin\Release\System.Web.WebPages.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\bin\Release\System.Web.WebPages.Deployment.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\bin\Release\System.Web.WebPages.Razor.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\bin\Release\SeizeTheDay.Core.pssym
-C:\Projects\SeizeTheDay\SeizeTheDay.Core\obj\Release\SeizeTheDay.Core.csprojAssemblyReference.cache
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\obj\Release\SeizeTheDay.Core.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\obj\Release\SeizeTheDay.Core.dll.postsharp
 C:\Projects\SeizeTheDay\SeizeTheDay.Core\obj\Release\SeizeTheDay.Core.dll

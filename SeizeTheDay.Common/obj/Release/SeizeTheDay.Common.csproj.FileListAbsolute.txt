@@ -18,6 +18,5 @@ C:\Users\dogan\Desktop\seizetheday\Seizetheday\SeizeTheDay.Common\obj\Release\Se
 C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.Common\obj\Release\SeizeTheDay.Common.csprojAssemblyReference.cache
 C:\Projects\SeizeTheDay\SeizeTheDay.Common\bin\Release\SeizeTheDay.Common.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Common\bin\Release\SeizeTheDay.Common.pdb
-C:\Projects\SeizeTheDay\SeizeTheDay.Common\obj\Release\SeizeTheDay.Common.csprojAssemblyReference.cache
 C:\Projects\SeizeTheDay\SeizeTheDay.Common\obj\Release\SeizeTheDay.Common.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Common\obj\Release\SeizeTheDay.Common.pdb

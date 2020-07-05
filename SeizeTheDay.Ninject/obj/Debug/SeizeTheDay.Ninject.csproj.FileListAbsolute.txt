@@ -196,7 +196,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\FluentValidation.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\PostSharp.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\NHibernate.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\log4net.dll
-C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Devart.Data.MySql.Entity.EF6.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Remotion.Linq.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Remotion.Linq.EagerFetching.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Antlr3.Runtime.dll
@@ -235,7 +234,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\FluentValidation.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\PostSharp.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\NHibernate.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\log4net.xml
-C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Devart.Data.MySql.Entity.EF6.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Remotion.Linq.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Remotion.Linq.EagerFetching.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Antlr3.Runtime.xml
@@ -257,3 +255,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Dapper.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\Dapper.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\SeizeTheDay.Common.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\SeizeTheDay.Common.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\SeizeTheDay.Data.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\SeizeTheDay.Data.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\SeizeTheDay.Data.dll.config

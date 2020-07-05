@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeizeTheDay.Ninject", "Seiz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeizeTheDay.Api", "SeizeTheDay.Api\SeizeTheDay.Api.csproj", "{DEC7DA64-8010-417F-807F-C4FA10DBB8B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeizeTheDay.Data", "SeizeTheDay.Data\SeizeTheDay.Data.csproj", "{B71A3CE3-5D17-45B4-B745-26FB53B9E3DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{DEC7DA64-8010-417F-807F-C4FA10DBB8B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEC7DA64-8010-417F-807F-C4FA10DBB8B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEC7DA64-8010-417F-807F-C4FA10DBB8B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B71A3CE3-5D17-45B4-B745-26FB53B9E3DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B71A3CE3-5D17-45B4-B745-26FB53B9E3DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B71A3CE3-5D17-45B4-B745-26FB53B9E3DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B71A3CE3-5D17-45B4-B745-26FB53B9E3DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +125,7 @@ Global
 		{3C601B04-DE79-4686-A2E8-3C47D61055B8} = {CB879254-4A32-4678-B112-B4D1647B354E}
 		{4B208E47-2821-4FA3-A681-595DD1A0DDC8} = {CB879254-4A32-4678-B112-B4D1647B354E}
 		{DEC7DA64-8010-417F-807F-C4FA10DBB8B6} = {ECE52B1B-A0DE-48F3-B001-8DB2045A331A}
+		{B71A3CE3-5D17-45B4-B745-26FB53B9E3DC} = {2A7D6B92-6F47-448B-9963-69C712AAFDA0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB9B17B4-720D-4E5A-871F-F08669913465}

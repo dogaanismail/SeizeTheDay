@@ -7,8 +7,10 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using SeizeTheDay.Business.Concrete.IdentityManagers;
-using IdentityUser = SeizeTheDay.Entities.Identity.Entities.User;
-using IdentityDbContext = SeizeTheDay.Entities.Identity.IdentityContext;
+using SeizeTheDay.Core.Domain.Identity;
+using SeizeTheDay.Data.EntityFramework;
+using IdentityUser = SeizeTheDay.Core.Domain.Identity.AppUser;
+
 
 namespace SeizeTheDay.Api.Providers
 {
@@ -29,7 +31,7 @@ namespace SeizeTheDay.Api.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var mang = new ApplicationUserManager(new UserStore<IdentityUser>(new IdentityDbContext()));
+            var mang = new ApplicationUserManager(new UserStore<IdentityUser, AppRole, int, AppUserLogin, AppUserRole, AppUserClaim>(new SeizeTheDayContext()));
             IdentityUser user = await mang.FindAsync(context.UserName, context.Password);
 
             if (user == null)

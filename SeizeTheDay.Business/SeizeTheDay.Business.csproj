@@ -158,6 +158,8 @@
     <Compile Include="Dapper\Concrete\MySQL\SettingDapperService.cs" />
     <Compile Include="Mappings\AutoMapper\Profiles\BusinessProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceBase\IServiceBase.cs" />
+    <Compile Include="ServiceBase\ServiceBase.cs" />
     <Compile Include="ValidationRules\FluentValidation\ForumPostValidator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +183,10 @@
     <ProjectReference Include="..\SeizeTheDay.DataDomain\SeizeTheDay.DataDomain.csproj">
       <Project>{EC241A13-1A40-4AAC-9D3B-7CE868D743B4}</Project>
       <Name>SeizeTheDay.DataDomain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SeizeTheDay.Data\SeizeTheDay.Data.csproj">
+      <Project>{B71A3CE3-5D17-45B4-B745-26FB53B9E3DC}</Project>
+      <Name>SeizeTheDay.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\SeizeTheDay.Entities\SeizeTheDay.Entities.csproj">
       <Project>{a24ad207-6920-4f3f-b18d-564b079019cc}</Project>
