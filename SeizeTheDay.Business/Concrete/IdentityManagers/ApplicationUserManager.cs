@@ -1,20 +1,18 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
 using Microsoft.Owin.Security.DataProtection;
-using SeizeTheDay.Entities.Identity.Entities;
+using SeizeTheDay.Core.Domain.Identity;
 using System;
 
 namespace SeizeTheDay.Business.Concrete.IdentityManagers
 {
-    public class ApplicationUserManager : UserManager<User>
+    public class ApplicationUserManager : UserManager<AppUser, int>
     {
         public static IDataProtectionProvider DataProtectionProvider { get; set; }
-        public ApplicationUserManager(IUserStore<User> store) : base(store)
+        public ApplicationUserManager(IUserStore<AppUser, int> store) : base(store)
         {
             // Configure validation logic for usernames
-            this.UserValidator = new UserValidator<User>(this)
+            this.UserValidator = new UserValidator<AppUser, int>(this)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -37,11 +35,11 @@ namespace SeizeTheDay.Business.Concrete.IdentityManagers
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
             // You can write your own provider and plug it in here.
-            this.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<User>
+            this.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<AppUser, int>
             {
                 MessageFormat = "Your security code is {0}"
             });
-            this.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<User>
+            this.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<AppUser, int>
             {
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
@@ -54,34 +52,8 @@ namespace SeizeTheDay.Business.Concrete.IdentityManagers
             {
                 IDataProtector dataProtector = dataProtectionProvider.Create("ASP.NET Identity");
 
-                this.UserTokenProvider = new DataProtectorTokenProvider<User>(dataProtector);
+                this.UserTokenProvider = new DataProtectorTokenProvider<AppUser, int>(dataProtector);
             }
         }
-
-        //public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
-        //{
-        //    var manager = new ApplicationUserManager(new UserStore<User>(context.Get<IdentityDbContext>()));
-        //    // Configure validation logic for usernames
-        //    manager.UserValidator = new UserValidator<User>(manager)
-        //    {
-        //        //AllowOnlyAlphanumericUserNames = false,
-        //        RequireUniqueEmail = true
-        //    };
-        //    // Configure validation logic for passwords
-        //    manager.PasswordValidator = new PasswordValidator
-        //    {
-        //        RequiredLength = 6,
-        //        RequireNonLetterOrDigit = true,
-        //        RequireDigit = true,
-        //        RequireLowercase = true,
-        //        RequireUppercase = true,
-        //    };
-        //    var dataProtectionProvider = options.DataProtectionProvider;
-        //    if (dataProtectionProvider != null)
-        //    {
-        //        manager.UserTokenProvider = new DataProtectorTokenProvider<User>(dataProtectionProvider.Create("ASP.NET Identity"));
-        //    }
-        //    return manager;
-        //}
     }
 }

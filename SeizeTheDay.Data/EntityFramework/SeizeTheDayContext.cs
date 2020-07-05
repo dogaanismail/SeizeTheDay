@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using SeizeTheDay.Core.DataAccess.Abstract;
+using SeizeTheDay.Core.Domain.Identity;
 using SeizeTheDay.Core.Entities;
 using SeizeTheDay.Entities.Mapping;
 using System;
@@ -14,9 +15,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace SeizeTheDay.Entities.EntityFramework
+namespace SeizeTheDay.Data.EntityFramework
 {
-    public class SeizeTheDayContext : IdentityDbContext, IDbContext
+    public class SeizeTheDayContext : IdentityDbContext<AppUser, AppRole,int, 
+        AppUserLogin, AppUserRole, AppUserClaim>, IDbContext
     {
         #region Ctor
         public SeizeTheDayContext()
@@ -282,8 +284,10 @@ namespace SeizeTheDay.Entities.EntityFramework
         public DataTable ToDataTable<T>(List<T> data, string tableName)
         {
             var props = TypeDescriptor.GetProperties(typeof(T));
-            var table = new DataTable();
-            table.TableName = tableName;
+            var table = new DataTable
+            {
+                TableName = tableName
+            };
             try
             {
                 for (int i = 0; i < props.Count; i++)

@@ -116,7 +116,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\NHibernate.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\log4net.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\Devart.Data.MySql.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\Dapper.dll
-C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\Devart.Data.MySql.Entity.EF6.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\System.Web.Http.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\Remotion.Linq.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\Remotion.Linq.EagerFetching.dll
@@ -160,7 +159,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\NHibernate.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\log4net.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\Devart.Data.MySql.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\Dapper.xml
-C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\Devart.Data.MySql.Entity.EF6.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\System.Web.Http.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\Remotion.Linq.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\Remotion.Linq.EagerFetching.xml
@@ -174,3 +172,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\obj\Release\SeizeTheDay.Ninject.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\obj\Release\SeizeTheDay.Ninject.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\SeizeTheDay.Common.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\SeizeTheDay.Common.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\SeizeTheDay.Data.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\SeizeTheDay.Data.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Release\SeizeTheDay.Data.dll.config

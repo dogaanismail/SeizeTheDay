@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using Microsoft.Owin.Security;
 using SeizeTheDay.DataDomain.ViewModels;
 using SeizeTheDay.Entities.EntityClasses.MySQL;
-using SeizeTheDay.Entities.Identity.Entities;
 using SeizeTheDay.Business.Concrete.IdentityManagers;
 using SeizeTheDay.FilterAttributes;
+using SeizeTheDay.Core.Domain.Identity;
 
 namespace SeizeTheDay.Web.Controllers
 {
@@ -71,16 +71,16 @@ namespace SeizeTheDay.Web.Controllers
 
 
         [Authorize(Roles = "User,Admin")]
-        public ActionResult EditProfile(string id)
+        public ActionResult EditProfile(int id)
         {
             var getUser = _userManager.FindById(id);
 
-            if (getUser.Id == User.Identity.GetUserId())
+            if (getUser.Id == 5)
             {
                 var selected = _countryService.FirstOrDefault();
                 SelectList list = new SelectList(_countryService.GetList(), "CountryID", "CountryName", selectedValue: selected.CountryID);
                 ViewData["country"] = list;
-                Xgteamc1XgTeamModel.UserInfoe getUserr = _userInfoService.GetFirstOrDefaultInclude(id);
+                Xgteamc1XgTeamModel.UserInfoe getUserr = _userInfoService.GetFirstOrDefaultInclude("dgg");
                 return View(getUserr);
             }
             else
@@ -302,7 +302,7 @@ namespace SeizeTheDay.Web.Controllers
                 return View(model);
             }
             var user = _userService.GetByUserID(User.Identity.GetUserId());
-            Entities.Identity.Entities.User checkPass = _userManager.FindById(User.Identity.GetUserId());
+            AppUser checkPass = _userManager.FindById(5); //TODO
             bool result = await _userManager.CheckPasswordAsync(checkPass, model.OldPassword);
             if (result)
             {
@@ -349,7 +349,7 @@ namespace SeizeTheDay.Web.Controllers
 
         private bool HasPassword()
         {
-            var user = _userManager.FindById(User.Identity.GetUserId());
+            var user = _userManager.FindById(5);
             if (user != null)
             {
                 return user.PasswordHash != null;
@@ -359,7 +359,7 @@ namespace SeizeTheDay.Web.Controllers
 
         private bool HasPhoneNumber()
         {
-            var user = _userManager.FindById(User.Identity.GetUserId());
+            var user = _userManager.FindById(5);
             if (user != null)
             {
                 return user.PhoneNumber != null;

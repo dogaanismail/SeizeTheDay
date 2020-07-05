@@ -17,8 +17,6 @@ using SeizeTheDay.DataAccess.Abstract.MySQL;
 using SeizeTheDay.DataAccess.Concrete.MySQL;
 using SeizeTheDay.DataAccess.Dapper.Abstract.MySQL;
 using SeizeTheDay.DataAccess.Dapper.Concrete.MySQL;
-using SeizeTheDay.Entities.Identity;
-using SeizeTheDay.Entities.Identity.Entities;
 using System.Data.Entity.Core.Objects;
 using System.Web;
 using System.Web.Http;
@@ -38,7 +36,7 @@ namespace SeizeTheDay.IoC.App_Start
 
             #region IdentityManagement
 
-            container.RegisterType<IdentityContext>(new PerRequestLifetimeManager());
+
             container.RegisterType<ApplicationSignInManager>(new PerRequestLifetimeManager());
             container.RegisterType<ApplicationRoleManager>(new PerRequestLifetimeManager());
             container.RegisterType<ApplicationUserManager>(new PerRequestLifetimeManager());
@@ -56,11 +54,11 @@ namespace SeizeTheDay.IoC.App_Start
                }));
 
 
-            container.RegisterType<IRoleStore<Roles, string>, RoleStore<Roles, string, IdentityUserRole>>(
-              new InjectionConstructor(typeof(IdentityContext)));
+            //container.RegisterType<IRoleStore<Roles, string>, RoleStore<Roles, string, IdentityUserRole>>(
+            //  new InjectionConstructor(typeof(IdentityContext)));
 
-            container.RegisterType<IUserStore<Entities.Identity.Entities.User>, UserStore<Entities.Identity.Entities.User>>(
-                new InjectionConstructor(typeof(IdentityContext)));
+            //container.RegisterType<IUserStore<Entities.Identity.Entities.User>, UserStore<Entities.Identity.Entities.User>>(
+            //    new InjectionConstructor(typeof(IdentityContext)));
 
             container.RegisterType<ITextEncoder, Base64UrlTextEncoder>();
             container.RegisterType<IDataSerializer<AuthenticationTicket>, TicketSerializer>();

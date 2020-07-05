@@ -26,3 +26,15 @@ C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.WebUI.Tes
 C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Release\SeizeTheDay.WebUI.Tests.dll
 C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Release\SeizeTheDay.WebUI.Tests.pdb
 C:\Users\dogan\OneDrive\Masaüstü\Seizetheday\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Release\SeizeTheDay.WebUI.Tests.csprojAssemblyReference.cache
+C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\bin\Release\SeizeTheDay.WebUI.Tests.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\bin\Release\SeizeTheDay.WebUI.Tests.pdb
+C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Release\SeizeTheDay.WebUI.Tests.csproj.CopyComplete
+C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Release\SeizeTheDay.WebUI.Tests.dll
+C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Release\SeizeTheDay.WebUI.Tests.pdb

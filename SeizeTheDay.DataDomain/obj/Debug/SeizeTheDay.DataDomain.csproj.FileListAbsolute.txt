@@ -127,9 +127,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\System.Web.WebPages.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\System.Web.WebPages.Razor.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\EntityFramework.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Devart.Data.MySql.Entity.EF6.dll
-C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Devart.Data.dll
-C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Devart.Data.MySql.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\SeizeTheDay.Entities.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\SeizeTheDay.Entities.dll.config
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
@@ -147,9 +144,6 @@ C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\System.Web.WebPages.Dep
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\EntityFramework.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Devart.Data.MySql.Entity.EF6.xml
-C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Devart.Data.xml
-C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Devart.Data.MySql.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\obj\Debug\SeizeTheDay.DataDomain.csprojAssemblyReference.cache
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\obj\Debug\SeizeTheDay.DataDomain.csproj.CopyComplete
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\obj\Debug\SeizeTheDay.DataDomain.dll
