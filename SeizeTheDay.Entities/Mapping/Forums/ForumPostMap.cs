@@ -8,7 +8,7 @@ namespace SeizeTheDay.Entities.Mapping.Forums
         {
             this.ToTable("ForumPost");
             this.HasKey(fp => fp.Id);
-            this.Property(fp => fp.Title).IsRequired().HasMaxLength(200);
+            this.Property(fp => fp.Title).IsRequired().HasMaxLength(256);
             this.Property(fp => fp.Content).IsRequired().HasColumnType("nvarchar(max)");
             this.Property(fp => fp.ShowInPortal).IsOptional();
             this.Property(fp => fp.PostLocked).IsOptional();
@@ -25,11 +25,10 @@ namespace SeizeTheDay.Entities.Mapping.Forums
                .HasForeignKey(fp => fp.ForumTopicId)
                 .WillCascadeOnDelete(false);
 
-            //TODO
-            //this.HasRequired(fp => fp.UserId)
-            //  .WithMany()
-            //  .HasForeignKey(fp => fp.CustomerId)
-            //  .WillCascadeOnDelete(false);
+            this.HasRequired(fp => fp.User)
+              .WithMany()
+              .HasForeignKey(fp => fp.CreatedBy)
+              .WillCascadeOnDelete(false);
         }
     }
 }

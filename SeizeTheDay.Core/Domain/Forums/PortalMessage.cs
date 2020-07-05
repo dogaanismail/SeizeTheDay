@@ -1,4 +1,5 @@
-﻿using SeizeTheDay.Core.Entities;
+﻿using SeizeTheDay.Core.Domain.Identity;
+using SeizeTheDay.Core.Entities;
 
 namespace SeizeTheDay.Core.Domain.Forums
 {
@@ -14,10 +15,9 @@ namespace SeizeTheDay.Core.Domain.Forums
         /// </summary>
         public int CreatedBy { get; set; }
 
-        //TODO
         /// <summary>
-        /// Gets the user
+        /// Gets the user that has created a portalmessage.
         /// </summary>
-        //public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }

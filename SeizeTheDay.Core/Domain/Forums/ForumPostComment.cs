@@ -1,4 +1,5 @@
-﻿using SeizeTheDay.Core.Entities;
+﻿using SeizeTheDay.Core.Domain.Identity;
+using SeizeTheDay.Core.Entities;
 
 namespace SeizeTheDay.Core.Domain.Forums
 {
@@ -15,7 +16,7 @@ namespace SeizeTheDay.Core.Domain.Forums
         public int CreatedBy { get; set; }
 
         /// <summary>
-        /// Gets or sets the forum identifier
+        /// Gets or sets the forumpost identifier
         /// </summary>
         public int ForumPostId { get; set; }
 
@@ -24,11 +25,9 @@ namespace SeizeTheDay.Core.Domain.Forums
         /// </summary>
         public virtual ForumPost ForumPost { get; set; }
 
-        //TODO
         /// <summary>
-        /// Gets the user
+        /// Gets the user that has created a comment.
         /// </summary>
-        //public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
     }
-
 }

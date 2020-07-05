@@ -8,17 +8,16 @@ namespace SeizeTheDay.Entities.Mapping.Forums
         {
             this.ToTable("Forum");
             this.HasKey(f => f.Id);
-            this.Property(f => f.Name).IsRequired().HasMaxLength(200);
-            this.Property(f => f.Title).IsRequired().HasMaxLength(200);
-            this.Property(f => f.Description).IsRequired().HasMaxLength(500);
-            this.Property(f => f.Status).IsRequired().HasMaxLength(25);
+            this.Property(f => f.Name).IsRequired().HasMaxLength(128);
+            this.Property(f => f.Title).IsRequired().HasMaxLength(256);
+            this.Property(f => f.Description).IsRequired().HasMaxLength(512);
+            this.Property(f => f.Status).IsRequired().HasMaxLength(64);
             this.Property(f => f.IsDefault).IsRequired().IsOptional();
 
-            //TODO
-            //this.HasRequired(ft => ft.User)
-            //   .WithMany()
-            //   .HasForeignKey(ft => ft.UserId)
-            //   .WillCascadeOnDelete(false);
+            this.HasRequired(f => f.User)
+               .WithMany()
+               .HasForeignKey(f => f.CreatedBy)
+               .WillCascadeOnDelete(false);
         }
     }
 }

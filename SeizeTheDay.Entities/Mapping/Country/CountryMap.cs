@@ -6,7 +6,7 @@
         {
             this.ToTable("Country");
             this.HasKey(f => f.Id);
-            this.Property(f => f.Name).IsRequired().HasMaxLength(50);
+            this.Property(f => f.Name).IsRequired().HasMaxLength(64);
         }
     }
 }

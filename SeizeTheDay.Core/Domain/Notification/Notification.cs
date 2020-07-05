@@ -1,4 +1,5 @@
-﻿using SeizeTheDay.Core.Entities;
+﻿using SeizeTheDay.Core.Domain.Identity;
+using SeizeTheDay.Core.Entities;
 
 namespace SeizeTheDay.Core.Domain.Notification
 {
@@ -34,10 +35,9 @@ namespace SeizeTheDay.Core.Domain.Notification
         /// </summary>
         public int SentTo { get; set; }
 
-        //TODO
         /// <summary>
         /// Gets the user
         /// </summary>
-        //public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }

@@ -2,13 +2,12 @@
 
 namespace SeizeTheDay.Entities.Mapping.Identity
 {
-    public partial class AppUserRoleMap : SystemEntityTypeConfiguration<AppUserRole>
+    public class AppUserRoleMap : SystemEntityTypeConfiguration<AppUserRole>
     {
         public AppUserRoleMap()
         {
-            this.ToTable("AppUserRole");
-            this.HasKey(f => f.RoleId);
-            this.HasKey(f => f.UserId);
+            ToTable("AppUserRole");
+            HasKey(f => new { f.RoleId, f.UserId });
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SeizeTheDay.Core.Entities;
+﻿using SeizeTheDay.Core.Domain.Identity;
+using SeizeTheDay.Core.Entities;
 using System.Collections.Generic;
 
 namespace SeizeTheDay.Core.Domain.Forums
@@ -71,10 +72,9 @@ namespace SeizeTheDay.Core.Domain.Forums
             protected set { _forumPostComments = value; }
         }
 
-        //TODO
         /// <summary>
-        /// Gets the user
+        /// Gets the user that has created a forum post.
         /// </summary>
-        //public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }

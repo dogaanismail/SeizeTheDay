@@ -13,10 +13,10 @@ namespace SeizeTheDay.Entities.Mapping.Chats
                 .WithMany()
                 .HasForeignKey(fp => fp.ChatGroupId);
 
-            //TODO
-            //this.HasRequired(fp => fp.Member)
-            //    .WithMany()
-            //    .HasForeignKey(fp => fp.MemberId);
+            this.HasRequired(fp => fp.GroupMember)
+                .WithMany()
+                .HasForeignKey(fp => fp.MemberId)
+            .WillCascadeOnDelete(false);
         }
     }
 }

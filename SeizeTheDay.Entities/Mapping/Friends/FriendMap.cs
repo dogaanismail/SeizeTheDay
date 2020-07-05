@@ -10,11 +10,15 @@ namespace SeizeTheDay.Entities.Mapping.Friends
             this.HasKey(f => f.Id);
             this.Property(f => f.BecameFriendDate).IsRequired();
 
-            //TODO
-            //this.HasRequired(ft => ft.User)
-            //   .WithMany()
-            //   .HasForeignKey(ft => ft.UserId)
-            //   .WillCascadeOnDelete(false);
+            this.HasRequired(f => f.FriendUser)
+               .WithMany()
+               .HasForeignKey(f => f.UserId)
+               .WillCascadeOnDelete(false);
+
+            this.HasRequired(f => f.FutureFriend)
+               .WithMany()
+               .HasForeignKey(f => f.FutureFriendId)
+               .WillCascadeOnDelete(false);
         }
     }
 }

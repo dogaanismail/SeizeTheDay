@@ -1,4 +1,5 @@
-﻿using SeizeTheDay.Core.Entities;
+﻿using SeizeTheDay.Core.Domain.Identity;
+using SeizeTheDay.Core.Entities;
 using System;
 
 namespace SeizeTheDay.Core.Domain.Friends
@@ -20,7 +21,14 @@ namespace SeizeTheDay.Core.Domain.Friends
         /// </summary>
         public DateTime BecameFriendDate { get; set; }
 
-        //public virtual AppUser FutureFriend { get; set; }
-        //public virtual AppUser FriendUser { get; set; }
+        /// <summary>
+        /// Gets the FutureFriend
+        /// </summary>
+        public virtual AppUser FutureFriend { get; set; }
+
+        /// <summary>
+        /// Gets the FriendUser
+        /// </summary>
+        public virtual AppUser FriendUser { get; set; }
     }
 }

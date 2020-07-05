@@ -1,11 +1,12 @@
-﻿using SeizeTheDay.Core.Entities;
+﻿using SeizeTheDay.Core.Domain.Identity;
+using SeizeTheDay.Core.Entities;
 
 namespace SeizeTheDay.Core.Domain.Chats
 {
     public partial class Chat : BaseEntity
     {
         /// <summary>
-        /// Gets or sets the name
+        /// Gets or sets the text
         /// </summary>
         public string Text { get; set; }
 
@@ -20,20 +21,19 @@ namespace SeizeTheDay.Core.Domain.Chats
         public bool IsRead { get; set; }
 
         /// <summary>
-        /// Gets or sets the ChatBoxId
+        /// Gets or sets the ChatGroupId
         /// </summary>
         public int ChatGroupId { get; set; }
 
         /// <summary>
-        /// Gets the forum
+        /// Gets the ChatGroup
         /// </summary>
         public virtual ChatGroup ChatGroup { get; set; }
 
-        //TODO
         /// <summary>
-        /// Gets the user
+        /// Gets the Sender
         /// </summary>
-        //public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
 
     }
 }

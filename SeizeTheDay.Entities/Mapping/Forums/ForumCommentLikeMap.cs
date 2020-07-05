@@ -12,12 +12,11 @@ namespace SeizeTheDay.Entities.Mapping.Forums
             this.HasRequired(fcl => fcl.ForumPostComment)
                .WithMany()
                .HasForeignKey(fcl => fcl.CommentId);
-
-            //TODO
-            //this.HasRequired(ft => ft.User)
-            //   .WithMany()
-            //   .HasForeignKey(ft => ft.UserId)
-            //   .WillCascadeOnDelete(false);
+           
+            this.HasRequired(fcl => fcl.User)
+               .WithMany()
+               .HasForeignKey(fcl => fcl.CreatedBy)
+               .WillCascadeOnDelete(false);
         }
     }
 }

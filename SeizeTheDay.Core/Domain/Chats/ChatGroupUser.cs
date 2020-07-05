@@ -1,4 +1,5 @@
-﻿using SeizeTheDay.Core.Entities;
+﻿using SeizeTheDay.Core.Domain.Identity;
+using SeizeTheDay.Core.Entities;
 
 namespace SeizeTheDay.Core.Domain.Chats
 {
@@ -19,10 +20,9 @@ namespace SeizeTheDay.Core.Domain.Chats
         /// </summary>
         public virtual ChatGroup ChatGroup { get; set; }
 
-        //TODO
         /// <summary>
-        /// Gets the member
+        /// Gets the GroupMember
         /// </summary>
-        //public virtual User GroupMember { get; set; }
+        public virtual AppUser GroupMember { get; set; }
     }
 }

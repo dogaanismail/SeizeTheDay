@@ -8,12 +8,12 @@ namespace SeizeTheDay.Entities.Mapping.Forums
         {
             this.ToTable("PortalMessage");
             this.HasKey(pm => pm.Id);
-            this.Property(pm => pm.Text).IsRequired().HasMaxLength(300);
-            //TODO
-            //this.HasRequired(fp => fp.UserId)
-            //  .WithMany()
-            //  .HasForeignKey(fp => fp.CustomerId)
-            //  .WillCascadeOnDelete(false);
+            this.Property(pm => pm.Text).IsRequired().HasMaxLength(256);
+
+            this.HasRequired(fp => fp.User)
+              .WithMany()
+              .HasForeignKey(fp => fp.CreatedBy)
+              .WillCascadeOnDelete(false);
         }
     }
 }

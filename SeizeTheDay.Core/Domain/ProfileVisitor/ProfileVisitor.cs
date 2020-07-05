@@ -1,4 +1,5 @@
-﻿using SeizeTheDay.Core.Entities;
+﻿using SeizeTheDay.Core.Domain.Identity;
+using SeizeTheDay.Core.Entities;
 
 namespace SeizeTheDay.Core.Domain.ProfileVisitor
 {
@@ -14,16 +15,14 @@ namespace SeizeTheDay.Core.Domain.ProfileVisitor
         /// </summary>
         public int VisitorId { get; set; }
 
-        //TODO
         /// <summary>
         /// Gets the user
         /// </summary>
-        //public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
 
-        //TODO
         /// <summary>
-        /// Gets the user
+        /// Gets the visitor
         /// </summary>
-        //public virtual User User { get; set; }
+        public virtual AppUser Visitor { get; set; }
     }
 }

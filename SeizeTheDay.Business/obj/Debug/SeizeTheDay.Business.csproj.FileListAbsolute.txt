@@ -274,4 +274,3 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\SeizeTheDay.Common.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\SeizeTheDay.Data.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\SeizeTheDay.Data.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\SeizeTheDay.Data.dll.config
-C:\Projects\SeizeTheDay\SeizeTheDay.Business\bin\Debug\System.Data.SqlServerCe.dll

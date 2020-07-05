@@ -13,11 +13,10 @@ namespace SeizeTheDay.Entities.Mapping.Forums
                .WithMany()
                .HasForeignKey(fpl => fpl.ForumPostId);
 
-            //TODO
-            //this.HasRequired(ft => ft.User)
-            //   .WithMany()
-            //   .HasForeignKey(ft => ft.UserId)
-            //   .WillCascadeOnDelete(false);
+            this.HasRequired(fpl => fpl.User)
+               .WithMany()
+               .HasForeignKey(fpl => fpl.CreatedBy)
+               .WillCascadeOnDelete(false);
         }
     }
 }

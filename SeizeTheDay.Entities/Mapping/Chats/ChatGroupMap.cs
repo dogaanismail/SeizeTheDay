@@ -8,7 +8,7 @@ namespace SeizeTheDay.Entities.Mapping.Chats
         {
             this.ToTable("ChatGroup");
             this.HasKey(cg => cg.Id);
-            this.Property(cg => cg.GroupFlag).IsOptional().HasMaxLength(200);
+            this.Property(cg => cg.GroupFlag).IsOptional().HasMaxLength(128);
 
             //TODO
             //this.HasRequired(ft => ft.User)

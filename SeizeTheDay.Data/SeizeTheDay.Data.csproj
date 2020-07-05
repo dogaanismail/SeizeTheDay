@@ -59,11 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityFramework\SeizeTheDayContext.cs" />
-    <Compile Include="Initializers\CreateCeDatabaseIfNotExists.cs" />
-    <Compile Include="Initializers\CreateTablesIfNotExist.cs" />
-    <Compile Include="Initializers\DropCreateCeDatabaseAlways.cs" />
-    <Compile Include="Initializers\DropCreateCeDatabaseIfModelChanges.cs" />
-    <Compile Include="Initializers\SqlCeInitializer.cs" />
+    <Compile Include="Migrations\202007051653416_InitialCreate.cs" />
+    <Compile Include="Migrations\202007051653416_InitialCreate.Designer.cs">
+      <DependentUpon>202007051653416_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -80,6 +79,11 @@
       <Project>{A24AD207-6920-4F3F-B18D-564B079019CC}</Project>
       <Name>SeizeTheDay.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007051653416_InitialCreate.resx">
+      <DependentUpon>202007051653416_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

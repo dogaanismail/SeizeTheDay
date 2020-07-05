@@ -1,4 +1,5 @@
-﻿using SeizeTheDay.Core.Entities;
+﻿using SeizeTheDay.Core.Domain.Identity;
+using SeizeTheDay.Core.Entities;
 
 namespace SeizeTheDay.Core.Domain.Friends
 {
@@ -34,10 +35,14 @@ namespace SeizeTheDay.Core.Domain.Friends
         /// </summary>
         public string RequestMessage { get; set; }
 
-        //TODO
         /// <summary>
-        /// Gets the user
+        /// Gets the user that has created a friendrequest.
         /// </summary>
-        //public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
+
+        /// <summary>
+        /// Gets the user that has been sent a friend request by a user
+        /// </summary>
+        public virtual AppUser FutureFriend { get; set; }
     }
 }

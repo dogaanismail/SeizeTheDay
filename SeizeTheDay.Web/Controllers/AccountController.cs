@@ -181,6 +181,7 @@ namespace SeizeTheDay.Web.Controllers
                 {
                     UserName = model.UserName,
                     Email = model.Email,
+
                     //FirstName = model.Name,
                     //LastName = model.SurName,
                     //RegisteredDate = DateTime.Now,

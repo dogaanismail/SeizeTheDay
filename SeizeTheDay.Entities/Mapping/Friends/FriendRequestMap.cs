@@ -2,7 +2,6 @@
 
 namespace SeizeTheDay.Entities.Mapping.Friends
 {
-
     public partial class FriendRequestMap : SystemEntityTypeConfiguration<FriendRequest>
     {
         public FriendRequestMap()
@@ -12,13 +11,17 @@ namespace SeizeTheDay.Entities.Mapping.Friends
             this.Property(fr => fr.IsAccepted).IsRequired();
             this.Property(fr => fr.IsPending).IsRequired();
             this.Property(fr => fr.IsRejected).IsRequired();
-            this.Property(fr => fr.RequestMessage).IsOptional();
+            this.Property(fr => fr.RequestMessage).IsOptional().HasMaxLength(256);
 
-            //TODO
-            //this.HasRequired(ft => ft.User)
-            //   .WithMany()
-            //   .HasForeignKey(ft => ft.UserId)
-            //   .WillCascadeOnDelete(false);
+            this.HasRequired(fr => fr.User)
+               .WithMany()
+               .HasForeignKey(fr => fr.UserId)
+               .WillCascadeOnDelete(false);
+
+            this.HasRequired(fr => fr.FutureFriend)
+              .WithMany()
+              .HasForeignKey(fr => fr.FutureFriendId)
+              .WillCascadeOnDelete(false);
         }
     }
 }

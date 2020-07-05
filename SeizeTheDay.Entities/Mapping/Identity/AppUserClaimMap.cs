@@ -2,12 +2,14 @@
 
 namespace SeizeTheDay.Entities.Mapping.Identity
 {
-    public partial class AppUserClaimMap : SystemEntityTypeConfiguration<AppUserClaim>
+    public class AppUserClaimMap : SystemEntityTypeConfiguration<AppUserClaim>
     {
         public AppUserClaimMap()
         {
             this.ToTable("AppUserClaim");
-            this.HasKey(f => f.Id);
+            this.HasKey<int>(f => f.Id);
+            this.Property(f => f.ClaimType).IsRequired().HasMaxLength(256);
+            this.Property(f => f.ClaimValue).IsRequired().HasMaxLength(256);
         }
     }
 }

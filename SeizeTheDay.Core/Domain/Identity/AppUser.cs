@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using SeizeTheDay.Core.Entities;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SeizeTheDay.Core.Domain.Identity
 {
-    public partial class AppUser : IdentityUser<int, AppUserLogin, AppUserRole, AppUserClaim>
+    public class AppUser : IdentityUser<int, AppUserLogin, AppUserRole, AppUserClaim>
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AppUser, int> manager)
         {

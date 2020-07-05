@@ -2,13 +2,14 @@
 
 namespace SeizeTheDay.Entities.Mapping.Identity
 {
-    public partial class AppUserLoginMap : SystemEntityTypeConfiguration<AppUserLogin>
+    public class AppUserLoginMap : SystemEntityTypeConfiguration<AppUserLogin>
     {
         public AppUserLoginMap()
         {
             this.ToTable("AppUserLogin");
-            this.HasKey(f => f.LoginProvider);
-            this.HasKey(f => f.ProviderKey);
+            this.HasKey(f => new { f.LoginProvider, f.ProviderKey });
+            this.Property(f => f.LoginProvider).IsRequired().HasMaxLength(256);
+            this.Property(f => f.ProviderKey).IsRequired().HasMaxLength(256);
         }
     }
 }

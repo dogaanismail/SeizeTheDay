@@ -33,11 +33,20 @@ namespace SeizeTheDay.Data.EntityFramework
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
+
+        public static SeizeTheDayContext Create()
+        {
+            return new SeizeTheDayContext();
+        }
+        static SeizeTheDayContext()
+        {
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SeizeTheDayContext>());
+        }
         #endregion
 
         #region Utilities
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {         
+        {
             modelBuilder.Configurations.Add(new ChatGroupMap());
             modelBuilder.Configurations.Add(new ChatGroupUserMap());
             modelBuilder.Configurations.Add(new ChatMap());
@@ -61,8 +70,14 @@ namespace SeizeTheDay.Data.EntityFramework
             modelBuilder.Configurations.Add(new AppUserLoginMap());
             modelBuilder.Configurations.Add(new AppUserMap());
             modelBuilder.Configurations.Add(new AppUserRoleMap());
-
             base.OnModelCreating(modelBuilder);
+
+            //This is used for rename for identity entity tables.
+            modelBuilder.Entity<AppUser>().ToTable("AppUser");
+            modelBuilder.Entity<AppRole>().ToTable("AppRole");
+            modelBuilder.Entity<AppUserRole>().ToTable("AppUserRole");
+            modelBuilder.Entity<AppUserClaim>().ToTable("AppUserClaim");
+            modelBuilder.Entity<AppUserLogin>().ToTable("AppUserLogin");
         }
 
         /// <summary>

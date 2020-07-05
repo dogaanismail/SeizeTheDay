@@ -1,4 +1,5 @@
-﻿using SeizeTheDay.Core.Entities;
+﻿using SeizeTheDay.Core.Domain.Identity;
+using SeizeTheDay.Core.Entities;
 
 namespace SeizeTheDay.Core.Domain.Forums
 {
@@ -19,10 +20,9 @@ namespace SeizeTheDay.Core.Domain.Forums
         /// </summary>
         public virtual ForumPost ForumPost { get; set; }
 
-        //TODO
         /// <summary>
-        /// Gets the customer
+        /// Gets the user that has liked a post.
         /// </summary>
-        //public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }
