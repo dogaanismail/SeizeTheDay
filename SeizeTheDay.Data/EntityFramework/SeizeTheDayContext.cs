@@ -6,6 +6,7 @@ using SeizeTheDay.Entities.Mapping.Chats;
 using SeizeTheDay.Entities.Mapping.Country;
 using SeizeTheDay.Entities.Mapping.Forums;
 using SeizeTheDay.Entities.Mapping.Friends;
+using SeizeTheDay.Entities.Mapping.Identity;
 using SeizeTheDay.Entities.Mapping.Module;
 using SeizeTheDay.Entities.Mapping.Notification;
 using SeizeTheDay.Entities.Mapping.ProfileVisitor;
@@ -36,7 +37,7 @@ namespace SeizeTheDay.Data.EntityFramework
 
         #region Utilities
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
+        {         
             modelBuilder.Configurations.Add(new ChatGroupMap());
             modelBuilder.Configurations.Add(new ChatGroupUserMap());
             modelBuilder.Configurations.Add(new ChatMap());
@@ -54,6 +55,13 @@ namespace SeizeTheDay.Data.EntityFramework
             modelBuilder.Configurations.Add(new NotificationMap());
             modelBuilder.Configurations.Add(new ProfileVisitorMap());
             modelBuilder.Configurations.Add(new SettingMap());
+            modelBuilder.Configurations.Add(new AppRoleMap());
+            modelBuilder.Configurations.Add(new AppUserClaimMap());
+            modelBuilder.Configurations.Add(new AppUserDetailMap());
+            modelBuilder.Configurations.Add(new AppUserLoginMap());
+            modelBuilder.Configurations.Add(new AppUserMap());
+            modelBuilder.Configurations.Add(new AppUserRoleMap());
+
             base.OnModelCreating(modelBuilder);
         }
 

@@ -1,9 +1,4 @@
 ﻿using SeizeTheDay.Core.Domain.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeizeTheDay.Entities.Mapping.Identity
 {
@@ -14,11 +9,10 @@ namespace SeizeTheDay.Entities.Mapping.Identity
             this.ToTable("AppUser");
             this.HasKey(f => f.Id);
 
-            //TODO
-            //this.HasRequired(ft => ft.User)
-            //   .WithMany()
-            //   .HasForeignKey(ft => ft.UserId)
-            //   .WillCascadeOnDelete(false);
+            this.HasRequired(ft => ft.UserDetail)
+               .WithMany()
+               .HasForeignKey(ft => ft.UserDetailId)
+               .WillCascadeOnDelete(false);
         }
     }
 }

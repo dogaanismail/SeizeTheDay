@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SeizeTheDay.Core.Domain.Identity;
 
 namespace SeizeTheDay.Entities.Mapping.Identity
 {
-    class AppUserRoleMap
+    public partial class AppUserRoleMap : SystemEntityTypeConfiguration<AppUserRole>
     {
+        public AppUserRoleMap()
+        {
+            this.ToTable("AppUserRole");
+            this.HasKey(f => f.RoleId);
+            this.HasKey(f => f.UserId);
+        }
     }
 }

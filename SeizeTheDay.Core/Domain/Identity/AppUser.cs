@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SeizeTheDay.Core.Domain.Identity
 {
-    public class AppUser : IdentityUser<int, AppUserLogin, AppUserRole, AppUserClaim>
+    public partial class AppUser : IdentityUser<int, AppUserLogin, AppUserRole, AppUserClaim>
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AppUser, int> manager)
         {
@@ -21,6 +20,16 @@ namespace SeizeTheDay.Core.Domain.Identity
             var userIdentity2 = await manager.CreateIdentityAsync(this, authenticationType);
             // Add custom user claims here
             return userIdentity2;
-        }      
+        }
+
+        /// <summary>
+        /// Gets or sets user detail Id
+        /// </summary>
+        public int UserDetailId { get; set; }
+
+        /// <summary>
+        /// Gets the user detail
+        /// </summary>
+        public virtual AppUserDetail UserDetail { get; set; }
     }
 }
