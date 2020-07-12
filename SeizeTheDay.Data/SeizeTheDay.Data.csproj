@@ -59,9 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityFramework\SeizeTheDayContext.cs" />
-    <Compile Include="Migrations\202007051653416_InitialCreate.cs" />
-    <Compile Include="Migrations\202007051653416_InitialCreate.Designer.cs">
-      <DependentUpon>202007051653416_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202007112223018_InitialCreate.cs" />
+    <Compile Include="Migrations\202007112223018_InitialCreate.Designer.cs">
+      <DependentUpon>202007112223018_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,8 +81,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007051653416_InitialCreate.resx">
-      <DependentUpon>202007051653416_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007112223018_InitialCreate.resx">
+      <DependentUpon>202007112223018_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,7 +9,7 @@ namespace SeizeTheDay.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(SeizeTheDay.Data.EntityFramework.SeizeTheDayContext context)

@@ -255,3 +255,4 @@ C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\System.Web.WebPages.Raz
 C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\System.Web.Razor.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\System.Net.Http.Formatting.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\obj\Debug\SeizeTheDay.DataAccess.csproj.CoreCompileInputs.cache

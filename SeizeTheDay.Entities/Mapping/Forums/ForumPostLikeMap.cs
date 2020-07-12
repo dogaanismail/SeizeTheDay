@@ -9,10 +9,6 @@ namespace SeizeTheDay.Entities.Mapping.Forums
             this.ToTable("ForumPostLike");
             this.HasKey(fpl => fpl.Id);
 
-            this.HasRequired(fpl => fpl.ForumPost)
-               .WithMany()
-               .HasForeignKey(fpl => fpl.ForumPostId);
-
             this.HasRequired(fpl => fpl.User)
                .WithMany()
                .HasForeignKey(fpl => fpl.CreatedBy)

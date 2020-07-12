@@ -10,10 +10,6 @@ namespace SeizeTheDay.Entities.Mapping.Forums
             this.HasKey(fpm => fpm.Id);
             this.Property(fpm => fpm.Text).IsRequired().HasMaxLength(512);
 
-            this.HasRequired(fpm => fpm.ForumPost)
-                .WithMany()
-                .HasForeignKey(fpm => fpm.ForumPostId);
-
             this.HasRequired(fpm => fpm.User)
                .WithMany()
                .HasForeignKey(fpm => fpm.CreatedBy)

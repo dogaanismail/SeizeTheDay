@@ -258,3 +258,4 @@ C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\SeizeTheDay.Common.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\SeizeTheDay.Data.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\SeizeTheDay.Data.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\bin\Debug\SeizeTheDay.Data.dll.config
+C:\Projects\SeizeTheDay\SeizeTheDay.Ninject\obj\Debug\SeizeTheDay.Ninject.csproj.CoreCompileInputs.cache

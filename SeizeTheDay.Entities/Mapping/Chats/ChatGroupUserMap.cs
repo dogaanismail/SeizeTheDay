@@ -9,10 +9,6 @@ namespace SeizeTheDay.Entities.Mapping.Chats
             this.ToTable("ChatGroupUser");
             this.HasKey(c => c.Id);
 
-            this.HasRequired(fp => fp.ChatGroup)
-                .WithMany()
-                .HasForeignKey(fp => fp.ChatGroupId);
-
             this.HasRequired(fp => fp.GroupMember)
                 .WithMany()
                 .HasForeignKey(fp => fp.MemberId)

@@ -9,10 +9,6 @@
             this.Property(c => c.Text).IsRequired().HasMaxLength(256);
             this.Property(c => c.IsRead).IsRequired();
 
-            this.HasRequired(fp => fp.ChatGroup)
-                .WithMany()
-                .HasForeignKey(fp => fp.ChatGroupId);
-
             this.HasRequired(ft => ft.User)
                .WithMany()
                .HasForeignKey(ft => ft.SenderId)

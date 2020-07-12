@@ -6,7 +6,11 @@ namespace SeizeTheDay.Core.Domain.Forums
 {
     public partial class ForumPost : BaseEntity
     {
-        private ICollection<ForumPostComment> _forumPostComments;
+        public ForumPost()
+        {
+            PostComments = new HashSet<ForumPostComment>();
+            PostLikes = new HashSet<ForumPostLike>();
+        }
 
         /// <summary>
         /// Gets or sets the title
@@ -66,11 +70,12 @@ namespace SeizeTheDay.Core.Domain.Forums
         /// <summary>
         /// Gets or sets forumpost comments
         /// </summary>
-        public virtual ICollection<ForumPostComment> ForumPostComments
-        {
-            get { return _forumPostComments ?? (_forumPostComments = new List<ForumPostComment>()); }
-            protected set { _forumPostComments = value; }
-        }
+        public virtual ICollection<ForumPostComment> PostComments { get; set; }
+
+        /// <summary>
+        /// Gets or sets forumpost likes
+        /// </summary>
+        public virtual ICollection<ForumPostLike> PostLikes { get; set; }
 
         /// <summary>
         /// Gets the user that has created a forum post.

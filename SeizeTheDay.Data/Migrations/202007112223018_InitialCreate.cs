@@ -131,15 +131,12 @@ namespace SeizeTheDay.Data.Migrations
                         MemberId = c.Int(nullable: false),
                         CreatedDate = c.DateTime(),
                         ModifiedDate = c.DateTime(),
-                        ChatGroup_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.ChatGroup", t => t.ChatGroupId, cascadeDelete: true)
                 .ForeignKey("dbo.AppUser", t => t.MemberId)
-                .ForeignKey("dbo.ChatGroup", t => t.ChatGroup_Id)
                 .Index(t => t.ChatGroupId)
-                .Index(t => t.MemberId)
-                .Index(t => t.ChatGroup_Id);
+                .Index(t => t.MemberId);
             
             CreateTable(
                 "dbo.Chat",
@@ -152,15 +149,12 @@ namespace SeizeTheDay.Data.Migrations
                         ChatGroupId = c.Int(nullable: false),
                         CreatedDate = c.DateTime(),
                         ModifiedDate = c.DateTime(),
-                        ChatGroup_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.ChatGroup", t => t.ChatGroupId, cascadeDelete: true)
                 .ForeignKey("dbo.AppUser", t => t.SenderId)
-                .ForeignKey("dbo.ChatGroup", t => t.ChatGroup_Id)
                 .Index(t => t.SenderId)
-                .Index(t => t.ChatGroupId)
-                .Index(t => t.ChatGroup_Id);
+                .Index(t => t.ChatGroupId);
             
             CreateTable(
                 "dbo.Country",
@@ -182,12 +176,13 @@ namespace SeizeTheDay.Data.Migrations
                         CommentId = c.Int(nullable: false),
                         CreatedDate = c.DateTime(),
                         ModifiedDate = c.DateTime(),
+                        ForumPostComment_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ForumPostComment", t => t.CommentId, cascadeDelete: true)
+                .ForeignKey("dbo.ForumPostComment", t => t.ForumPostComment_Id)
                 .ForeignKey("dbo.AppUser", t => t.CreatedBy)
                 .Index(t => t.CreatedBy)
-                .Index(t => t.CommentId);
+                .Index(t => t.ForumPostComment_Id);
             
             CreateTable(
                 "dbo.ForumPostComment",
@@ -199,15 +194,12 @@ namespace SeizeTheDay.Data.Migrations
                         ForumPostId = c.Int(nullable: false),
                         CreatedDate = c.DateTime(),
                         ModifiedDate = c.DateTime(),
-                        ForumPost_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ForumPost", t => t.ForumPost_Id)
                 .ForeignKey("dbo.ForumPost", t => t.ForumPostId, cascadeDelete: true)
                 .ForeignKey("dbo.AppUser", t => t.CreatedBy)
                 .Index(t => t.CreatedBy)
-                .Index(t => t.ForumPostId)
-                .Index(t => t.ForumPost_Id);
+                .Index(t => t.ForumPostId);
             
             CreateTable(
                 "dbo.ForumPost",
@@ -334,7 +326,9 @@ namespace SeizeTheDay.Data.Migrations
                         ModifiedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AppUser", t => t.FutureFriendId)
                 .ForeignKey("dbo.AppUser", t => t.UserId)
+                .Index(t => t.FutureFriendId)
                 .Index(t => t.UserId);
             
             CreateTable(
@@ -407,26 +401,24 @@ namespace SeizeTheDay.Data.Migrations
             DropForeignKey("dbo.ProfileVisitor", "UserId", "dbo.AppUser");
             DropForeignKey("dbo.Notification", "SentTo", "dbo.AppUser");
             DropForeignKey("dbo.FriendRequest", "UserId", "dbo.AppUser");
+            DropForeignKey("dbo.FriendRequest", "FutureFriendId", "dbo.AppUser");
             DropForeignKey("dbo.Friend", "FutureFriendId", "dbo.AppUser");
             DropForeignKey("dbo.Friend", "UserId", "dbo.AppUser");
             DropForeignKey("dbo.PortalMessage", "CreatedBy", "dbo.AppUser");
+            DropForeignKey("dbo.ForumCommentLike", "CreatedBy", "dbo.AppUser");
+            DropForeignKey("dbo.ForumPostComment", "CreatedBy", "dbo.AppUser");
+            DropForeignKey("dbo.ForumCommentLike", "ForumPostComment_Id", "dbo.ForumPostComment");
+            DropForeignKey("dbo.ForumPost", "CreatedBy", "dbo.AppUser");
             DropForeignKey("dbo.ForumPostLike", "CreatedBy", "dbo.AppUser");
             DropForeignKey("dbo.ForumPostLike", "ForumPostId", "dbo.ForumPost");
-            DropForeignKey("dbo.ForumCommentLike", "CreatedBy", "dbo.AppUser");
-            DropForeignKey("dbo.ForumCommentLike", "CommentId", "dbo.ForumPostComment");
-            DropForeignKey("dbo.ForumPostComment", "CreatedBy", "dbo.AppUser");
             DropForeignKey("dbo.ForumPostComment", "ForumPostId", "dbo.ForumPost");
-            DropForeignKey("dbo.ForumPost", "CreatedBy", "dbo.AppUser");
             DropForeignKey("dbo.ForumPost", "ForumTopicId", "dbo.ForumTopic");
             DropForeignKey("dbo.ForumTopic", "CreatedBy", "dbo.AppUser");
             DropForeignKey("dbo.ForumTopic", "ForumId", "dbo.Forum");
-            DropForeignKey("dbo.ForumPostComment", "ForumPost_Id", "dbo.ForumPost");
             DropForeignKey("dbo.ForumPost", "ForumId", "dbo.Forum");
             DropForeignKey("dbo.Forum", "CreatedBy", "dbo.AppUser");
-            DropForeignKey("dbo.Chat", "ChatGroup_Id", "dbo.ChatGroup");
             DropForeignKey("dbo.Chat", "SenderId", "dbo.AppUser");
             DropForeignKey("dbo.Chat", "ChatGroupId", "dbo.ChatGroup");
-            DropForeignKey("dbo.ChatGroupUser", "ChatGroup_Id", "dbo.ChatGroup");
             DropForeignKey("dbo.ChatGroupUser", "MemberId", "dbo.AppUser");
             DropForeignKey("dbo.ChatGroupUser", "ChatGroupId", "dbo.ChatGroup");
             DropForeignKey("dbo.AppUser", "UserDetailId", "dbo.AppUserDetail");
@@ -438,6 +430,7 @@ namespace SeizeTheDay.Data.Migrations
             DropIndex("dbo.ProfileVisitor", new[] { "UserId" });
             DropIndex("dbo.Notification", new[] { "SentTo" });
             DropIndex("dbo.FriendRequest", new[] { "UserId" });
+            DropIndex("dbo.FriendRequest", new[] { "FutureFriendId" });
             DropIndex("dbo.Friend", new[] { "UserId" });
             DropIndex("dbo.Friend", new[] { "FutureFriendId" });
             DropIndex("dbo.PortalMessage", new[] { "CreatedBy" });
@@ -449,15 +442,12 @@ namespace SeizeTheDay.Data.Migrations
             DropIndex("dbo.ForumPost", new[] { "CreatedBy" });
             DropIndex("dbo.ForumPost", new[] { "ForumTopicId" });
             DropIndex("dbo.ForumPost", new[] { "ForumId" });
-            DropIndex("dbo.ForumPostComment", new[] { "ForumPost_Id" });
             DropIndex("dbo.ForumPostComment", new[] { "ForumPostId" });
             DropIndex("dbo.ForumPostComment", new[] { "CreatedBy" });
-            DropIndex("dbo.ForumCommentLike", new[] { "CommentId" });
+            DropIndex("dbo.ForumCommentLike", new[] { "ForumPostComment_Id" });
             DropIndex("dbo.ForumCommentLike", new[] { "CreatedBy" });
-            DropIndex("dbo.Chat", new[] { "ChatGroup_Id" });
             DropIndex("dbo.Chat", new[] { "ChatGroupId" });
             DropIndex("dbo.Chat", new[] { "SenderId" });
-            DropIndex("dbo.ChatGroupUser", new[] { "ChatGroup_Id" });
             DropIndex("dbo.ChatGroupUser", new[] { "MemberId" });
             DropIndex("dbo.ChatGroupUser", new[] { "ChatGroupId" });
             DropIndex("dbo.AppUserLogin", new[] { "UserId" });

@@ -5,8 +5,11 @@ namespace SeizeTheDay.Core.Domain.Chats
 {
     public partial class ChatGroup : BaseEntity
     {
-        private ICollection<ChatGroupUser> _chatGroupUsers;
-        private ICollection<Chat> _chats;
+        public ChatGroup()
+        {
+            Chats = new HashSet<Chat>();
+            ChatGroupMembers = new HashSet<ChatGroupUser>();
+        }
 
         /// <summary>
         /// Gets or sets the name
@@ -21,20 +24,12 @@ namespace SeizeTheDay.Core.Domain.Chats
         /// <summary>
         /// Gets or sets chatgroup members
         /// </summary>
-        public virtual ICollection<ChatGroupUser> ChatGroupMembers
-        {
-            get { return _chatGroupUsers ?? (_chatGroupUsers = new List<ChatGroupUser>()); }
-            protected set { _chatGroupUsers = value; }
-        }
+        public virtual ICollection<ChatGroupUser> ChatGroupMembers { get; set; }
 
         /// <summary>
         /// Gets or sets chatgroup chats
         /// </summary>
-        public virtual ICollection<Chat> Chats
-        {
-            get { return _chats ?? (_chats = new List<Chat>()); }
-            protected set { _chats = value; }
-        }
+        public virtual ICollection<Chat> Chats { get; set; }
 
     }
 }

@@ -13,7 +13,7 @@ namespace SeizeTheDay.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202007051653416_InitialCreate"; }
+            get { return "202007112223018_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

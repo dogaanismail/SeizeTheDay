@@ -8,11 +8,7 @@ namespace SeizeTheDay.Entities.Mapping.Forums
         {
             this.ToTable("ForumCommentLike");
             this.HasKey(fcl => fcl.Id);
-
-            this.HasRequired(fcl => fcl.ForumPostComment)
-               .WithMany()
-               .HasForeignKey(fcl => fcl.CommentId);
-           
+         
             this.HasRequired(fcl => fcl.User)
                .WithMany()
                .HasForeignKey(fcl => fcl.CreatedBy)

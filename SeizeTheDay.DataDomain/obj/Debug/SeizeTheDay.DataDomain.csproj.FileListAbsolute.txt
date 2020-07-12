@@ -178,3 +178,4 @@ C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Remotion.Linq.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Remotion.Linq.EagerFetching.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Antlr3.Runtime.xml
 C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\bin\Debug\Iesi.Collections.xml
+C:\Projects\SeizeTheDay\SeizeTheDay.DataDomain\obj\Debug\SeizeTheDay.DataDomain.csproj.CoreCompileInputs.cache

@@ -39,3 +39,4 @@ C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Debug\SeizeTheDay.WebUI.Test
 C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Debug\SeizeTheDay.WebUI.Tests.dll
 C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Debug\SeizeTheDay.WebUI.Tests.pdb
 C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Debug\SeizeTheDay.WebUI.Tests.csprojAssemblyReference.cache
+C:\Projects\SeizeTheDay\SeizeTheDay.WebUI.Tests\obj\Debug\SeizeTheDay.WebUI.Tests.csproj.CoreCompileInputs.cache
