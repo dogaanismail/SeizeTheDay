@@ -36,7 +36,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("gettopics")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public IEnumerable<ForumTopicDto> GetForumTopics()
         {
@@ -77,7 +76,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [Route("getbyid")]
         [HttpGet]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public ForumTopicDto GetForumTopicById(int id)
         {
@@ -105,7 +103,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [Route("getbyforumid")]
         [HttpGet]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<ForumTopicDto> GetByForumId(int id)
         {
@@ -206,7 +203,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("gettopicsbydapper")]
-        [PerformanceCounterAspect(1)]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public IEnumerable<ForumTopic> GetForumTopicsByDapper()
         {

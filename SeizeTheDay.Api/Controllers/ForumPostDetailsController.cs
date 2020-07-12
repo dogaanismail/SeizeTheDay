@@ -30,7 +30,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getdetailsbyid")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public TopicDetailDto GetPostDetailById(int id)
         {
@@ -63,7 +62,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getdetailsbydapper")]
-        [PerformanceCounterAspect(2)]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public TopicDetailDto GetPostDetailByDapper(int id)
         {

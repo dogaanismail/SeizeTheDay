@@ -31,7 +31,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getlistbypostid")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<PostCommentDto> GetListByPostId(int id)
         {
@@ -53,8 +52,7 @@ namespace SeizeTheDay.Api.Controllers
         }
 
         [HttpGet]
-        [Route("getbyid")]
-        [PerformanceCounterAspect]
+        [Route("getbyid")]     
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public PostCommentDto GetById(int id)
         {
@@ -73,7 +71,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getcomments")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<PostCommentDto> GetComments()
         {

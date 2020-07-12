@@ -40,7 +40,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getforums")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public IEnumerable<ForumDto> GetForums()
         {

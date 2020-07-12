@@ -42,7 +42,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getposts")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public IEnumerable<ForumPostDto> GetForumPosts()
         {
@@ -95,7 +94,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getpostbyid")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public ForumPostDto GetForumPostById(int id)
         {
@@ -242,7 +240,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getpostswithdetail")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public IEnumerable<TopicDetailDto> GetForumPostDetailByDapper()
         {

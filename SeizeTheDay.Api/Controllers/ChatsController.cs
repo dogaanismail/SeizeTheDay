@@ -29,7 +29,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getchatsbyboxid")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public ChatDto GetChatByBoxId(int id)
         {          

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Security;
+﻿using Microsoft.Owin.Security;
 using SeizeTheDay.Business.Abstract.MySQL;
 using SeizeTheDay.Business.Concrete.IdentityManagers;
 using SeizeTheDay.Business.Concrete.Manager.MySQL;
@@ -8,8 +6,6 @@ using SeizeTheDay.Business.Dapper.Abstract.MySQL;
 using SeizeTheDay.Business.Dapper.Concrete.MySQL;
 using SeizeTheDay.Core.DataAccess.Abstract.MySQL;
 using SeizeTheDay.Core.DataAccess.Concrete.MySQL;
-using SeizeTheDay.Core.Domain.Identity;
-using SeizeTheDay.Data.EntityFramework;
 using SeizeTheDay.DataAccess.Abstract.MySQL;
 using SeizeTheDay.DataAccess.Concrete.MySQL;
 using SeizeTheDay.DataAccess.Dapper.Abstract.MySQL;

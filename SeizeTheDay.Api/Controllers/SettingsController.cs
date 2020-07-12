@@ -29,7 +29,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getsettings")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<SettingDto> GetSettings()
         {

@@ -31,7 +31,7 @@ namespace SeizeTheDay.DataDomain.Common
             return new ResultModel<T>();
         }
 
-        public new static ResultModel<T> Error()
+        public static ResultModel<T> Error()
         {
             return new ResultModel<T>(false);
         }

@@ -14,7 +14,7 @@ namespace SeizeTheDay.Ninject.Modules
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfiles(assembliesToScan: GetType().Assembly);
+                cfg.AddMaps(assembliesToScan: GetType().Assembly);
             });
 
             return config;

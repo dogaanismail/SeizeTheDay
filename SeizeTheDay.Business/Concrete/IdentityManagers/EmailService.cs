@@ -28,7 +28,7 @@ namespace SeizeTheDay.Business.Concrete.IdentityManagers
             System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("ismaildogaan@gmail.com", "Password");
             smtpClient.Credentials = credentials;
             smtpClient.EnableSsl = true;
-            smtpClient.Send(msg);
+            await smtpClient.SendMailAsync(msg);
         }
     }
 }

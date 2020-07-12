@@ -34,7 +34,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getmessages")]
-        [PerformanceCounterAspect]
         [Authorize]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<PortalMessageDto> GetPortalMessages()
@@ -117,7 +116,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getmessagesbydapper")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<PortalMessageDto> GetPortalMessagesByDapper()
         {

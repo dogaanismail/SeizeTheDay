@@ -36,7 +36,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getnotifications")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<NotificationDto> GetNotifications()
         {
@@ -72,7 +71,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getcount")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public NotificationDto GetNotificationsCount()
         {
@@ -90,7 +88,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getmessagenot")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public List<NotificationDto> GetMessageNotifications()
         {
@@ -126,7 +123,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getnotcount")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public NotificationDto GetMessageNotificationsCount()
         {
@@ -219,7 +215,6 @@ namespace SeizeTheDay.Api.Controllers
 
         [HttpGet]
         [Route("getnotificationsbydapper")]
-        [PerformanceCounterAspect]
         [CacheAspect(typeof(MemoryCacheManager), 30)]
         public IEnumerable<Notification> GetNotificationsByDapper()
         {
