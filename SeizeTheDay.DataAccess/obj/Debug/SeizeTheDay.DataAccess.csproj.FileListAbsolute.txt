@@ -260,6 +260,11 @@ D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\SeizeTheDay.DataAccess.
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\SeizeTheDay.DataAccess.dll
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\SeizeTheDay.DataAccess.pdb
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Dapper.dll
+D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Devart.Data.dll
+D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Devart.Data.MySql.Design.dll
+D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Devart.Data.MySql.dll
+D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Devart.Data.MySql.Entity.EF6.dll
+D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Devart.Data.MySql.Vs.dll
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\EntityFramework.dll
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\SeizeTheDay.Common.dll
@@ -280,6 +285,12 @@ D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Microsoft.AspNet.Identi
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Newtonsoft.Json.dll
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\System.Web.Mvc.dll
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\System.Web.Http.dll
+D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Devart.Data.Design.dll
+D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\EnvDTE.dll
+D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\VSLangProj.dll
+D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\VsWebSite.Interop.dll
+D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Microsoft.VisualStudio.Shell.Interop.dll
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Remotion.Linq.dll
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Remotion.Linq.EagerFetching.dll
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Antlr3.Runtime.dll
@@ -290,6 +301,8 @@ D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\System.Web.WebPages.Raz
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\System.Web.Razor.dll
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Microsoft.Web.Infrastructure.dll
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\System.Net.Http.Formatting.dll
+D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\stdole.dll
+D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\System.Web.WebPages.Deployment.dll
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\SeizeTheDay.Common.pdb
 D:\Projects\SeizeTheDay\SeizeTheDay.DataAccess\bin\Debug\SeizeTheDay.Core.pdb
